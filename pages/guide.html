@@ -15,6 +15,9 @@
         body {
             background: #f8fafc;
             color: #1e293b;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
         .navbar {
@@ -22,9 +25,13 @@
             padding: 1rem 5%;
             box-shadow: 0 4px 20px rgba(0,0,0,0.03);
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
             flex-wrap: wrap;
+            gap: 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
         .logo {
@@ -59,80 +66,56 @@
         }
 
         .container {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+            width: 100%;
+            flex: 1;
         }
 
-        h1 {
-            font-size: 2.5rem;
-            color: #0f172a;
-            margin-bottom: 0.5rem;
-        }
-
-        .subtitle {
-            color: #64748b;
-            margin-bottom: 2rem;
-            font-size: 1.1rem;
-        }
-
+        /* Hero centré */
         .guide-hero {
             background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
             border-radius: 30px;
             padding: 3rem;
             margin-bottom: 3rem;
             color: white;
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .guide-hero-content {
-            flex: 1;
-            min-width: 300px;
+            text-align: center;
         }
 
         .guide-hero h1 {
-            color: white;
-            font-size: 2.8rem;
+            font-size: clamp(2rem, 5vw, 2.8rem);
             margin-bottom: 1rem;
         }
 
         .guide-hero p {
             color: #cbd5e1;
             font-size: 1.2rem;
-            margin-bottom: 1.5rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
         }
 
-        .guide-hero-image {
-            flex: 1;
-            min-width: 300px;
-            text-align: center;
-        }
-
-        .guide-hero-image img {
-            max-width: 100%;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-        }
-
-        .section-title {
-            font-size: 2rem;
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: #eab308;
             color: #0f172a;
-            margin: 3rem 0 1.5rem;
-            text-align: center;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s;
         }
 
-        .section-subtitle {
-            text-align: center;
-            color: #64748b;
-            margin-bottom: 2rem;
+        .btn:hover {
+            background: #fbbf24;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(234,179,8,0.3);
         }
 
+        /* Chapitres centrés */
         .chapters {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 1rem;
             margin-bottom: 3rem;
         }
@@ -151,17 +134,16 @@
         .chapter-card:hover {
             transform: translateY(-5px);
             border-color: #eab308;
-            box-shadow: 0 10px 25px rgba(234,179,8,0.1);
         }
 
         .chapter-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
         }
 
         .chapter-card h3 {
             color: #0f172a;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.3rem;
         }
 
         .chapter-card p {
@@ -169,6 +151,7 @@
             font-size: 0.9rem;
         }
 
+        /* Sections centrées */
         .guide-section {
             background: white;
             border-radius: 30px;
@@ -179,177 +162,45 @@
         }
 
         .section-header {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
+            text-align: center;
             margin-bottom: 2rem;
-        }
-
-        .section-icon {
-            font-size: 3rem;
-            background: #f8fafc;
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
 
         .section-header h2 {
             font-size: 2rem;
             color: #0f172a;
+            margin-bottom: 1rem;
         }
 
         .section-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            align-items: center;
-        }
-
-        .section-text {
+            max-width: 800px;
+            margin: 0 auto;
             color: #475569;
             line-height: 1.7;
         }
 
-        .section-text p {
+        .section-content p {
             margin-bottom: 1rem;
         }
 
-        .section-text ul {
+        .section-content ul {
             margin-left: 1.5rem;
             margin-bottom: 1rem;
         }
 
-        .section-text li {
+        .section-content li {
             margin-bottom: 0.5rem;
-        }
-
-        .section-image img {
-            width: 100%;
-            border-radius: 20px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-
-        .tips-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .tip-card {
-            background: #f8fafc;
-            padding: 1.5rem;
-            border-radius: 16px;
-            border-left: 4px solid #eab308;
-        }
-
-        .tip-card h4 {
-            color: #0f172a;
-            margin-bottom: 0.8rem;
-            font-size: 1.2rem;
-        }
-
-        .tip-card p {
-            color: #64748b;
-            line-height: 1.6;
-        }
-
-        .tools-box {
-            background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
-            border: 2px dashed #eab308;
-            border-radius: 30px;
-            padding: 3rem;
-            margin-top: 3rem;
-            text-align: center;
-        }
-
-        .tools-box h3 {
-            font-size: 2rem;
-            color: #0f172a;
-            margin-bottom: 1rem;
-        }
-
-        .tools-box p {
-            color: #64748b;
-            margin-bottom: 2rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 1rem 2.5rem;
-            background: #eab308;
-            color: #0f172a;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: all 0.3s;
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn:hover {
-            background: #fbbf24;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(234,179,8,0.3);
-        }
-
-        .resources {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
-        }
-
-        .resource-card {
-            background: white;
-            border-radius: 16px;
-            padding: 1.5rem;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.03);
-        }
-
-        .resource-card h4 {
-            color: #0f172a;
-            margin: 1rem 0 0.5rem;
-        }
-
-        .resource-card p {
-            color: #64748b;
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-        }
-
-        .resource-link {
-            display: inline-block;
-            padding: 0.5rem 1.5rem;
-            background: #f1f5f9;
-            color: #0f172a;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 500;
-            transition: background 0.3s;
-        }
-
-        .resource-link:hover {
-            background: #eab308;
-            color: white;
         }
 
         .footer {
             background: #0f172a;
             color: white;
             padding: 3rem 5% 2rem;
-            margin-top: 4rem;
+            margin-top: 3rem;
         }
 
         .footer-content {
-            max-width: 1200px;
+            max-width: 1000px;
             margin: 0 auto;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -391,18 +242,8 @@
                 justify-content: center;
             }
 
-            .guide-hero {
-                flex-direction: column;
-                text-align: center;
+            .guide-section {
                 padding: 2rem;
-            }
-
-            .section-content {
-                grid-template-columns: 1fr;
-            }
-
-            .section-image {
-                order: -1;
             }
         }
     </style>
@@ -419,29 +260,24 @@
     </nav>
 
     <div class="container">
-        <!-- Hero -->
+        <!-- Hero centré -->
         <div class="guide-hero">
-            <div class="guide-hero-content">
-                <h1>📚 Guide de l'investisseur locatif</h1>
-                <p>Que vous soyez débutant ou confirmé, ce guide vous accompagne pas à pas pour réussir vos investissements immobiliers.</p>
-                <a href="#section1" class="btn" style="background: white; color: #0f172a;">Commencer la lecture →</a>
-            </div>
-            <div class="guide-hero-image">
-                <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Investissement immobilier">
-            </div>
+            <h1>📚 Guide de l'investisseur locatif</h1>
+            <p>Que vous soyez débutant ou confirmé, ce guide vous accompagne pas à pas pour réussir vos investissements immobiliers.</p>
+            <a href="#section1" class="btn">Commencer la lecture →</a>
         </div>
 
-        <!-- Chapitres rapides -->
+        <!-- Chapitres -->
         <div class="chapters">
             <div class="chapter-card" onclick="document.getElementById('section1').scrollIntoView({behavior: 'smooth'})">
                 <div class="chapter-icon">🏠</div>
                 <h3>1. Les bases</h3>
-                <p>Comprendre l'investissement locatif</p>
+                <p>Comprendre l'investissement</p>
             </div>
             <div class="chapter-card" onclick="document.getElementById('section2').scrollIntoView({behavior: 'smooth'})">
                 <div class="chapter-icon">🏦</div>
                 <h3>2. Financement</h3>
-                <p>Comment financer son achat</p>
+                <p>Comment financer</p>
             </div>
             <div class="chapter-card" onclick="document.getElementById('section3').scrollIntoView({behavior: 'smooth'})">
                 <div class="chapter-icon">📊</div>
@@ -458,162 +294,66 @@
         <!-- Section 1 -->
         <section id="section1" class="guide-section">
             <div class="section-header">
-                <div class="section-icon">🏠</div>
                 <h2>1. Les bases de l'investissement locatif</h2>
             </div>
             <div class="section-content">
-                <div class="section-text">
-                    <p>L'investissement locatif consiste à acheter un bien immobilier pour le louer et en tirer des revenus. C'est l'une des stratégies les plus efficaces pour se constituer un patrimoine à long terme.</p>
-                    <p><strong>Pourquoi investir dans l'immobilier ?</strong></p>
-                    <ul>
-                        <li>💰 Revenus complémentaires réguliers</li>
-                        <li>📈 Plus-value à la revente</li>
-                        <li>🏦 Constitution d'un patrimoine</li>
-                        <li>📉 Avantages fiscaux</li>
-                        <li>🛡️ Protection contre l'inflation</li>
-                    </ul>
-                </div>
-                <div class="section-image">
-                    <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Immobilier">
-                </div>
+                <p>L'investissement locatif consiste à acheter un bien immobilier pour le louer et en tirer des revenus. C'est l'une des stratégies les plus efficaces pour se constituer un patrimoine à long terme.</p>
+                <p><strong>Pourquoi investir dans l'immobilier ?</strong></p>
+                <ul>
+                    <li>💰 Revenus complémentaires réguliers</li>
+                    <li>📈 Plus-value à la revente</li>
+                    <li>🏦 Constitution d'un patrimoine</li>
+                    <li>📉 Avantages fiscaux</li>
+                    <li>🛡️ Protection contre l'inflation</li>
+                </ul>
             </div>
         </section>
 
         <!-- Section 2 -->
         <section id="section2" class="guide-section">
             <div class="section-header">
-                <div class="section-icon">🏦</div>
                 <h2>2. Comment financer son achat</h2>
             </div>
             <div class="section-content">
-                <div class="section-image">
-                    <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Financement">
-                </div>
-                <div class="section-text">
-                    <p>Le financement est la clé d'un investissement réussi. Voici les principales options :</p>
-                    <ul>
-                        <li><strong>Crédit immobilier classique</strong> : taux entre 3.5% et 4.5%</li>
-                        <li><strong>Prêt à taux zéro (PTZ)</strong> : pour primo-accédants</li>
-                        <li><strong>Crédit in fine</strong> : vous ne remboursez que les intérêts</li>
-                        <li><strong>Apport personnel</strong> : idéalement 10-20%</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="tip-card" style="margin-top: 2rem;">
-                <h4>💡 Astuce</h4>
-                <p>Faites jouer la concurrence entre banques. Une différence de 0.5% peut représenter des milliers d'euros d'économies.</p>
+                <p>Le financement est la clé d'un investissement réussi. Voici les principales options :</p>
+                <ul>
+                    <li><strong>Crédit immobilier classique</strong> : taux entre 3.5% et 4.5%</li>
+                    <li><strong>Prêt à taux zéro (PTZ)</strong> : pour primo-accédants</li>
+                    <li><strong>Crédit in fine</strong> : vous ne remboursez que les intérêts</li>
+                    <li><strong>Apport personnel</strong> : idéalement 10-20%</li>
+                </ul>
             </div>
         </section>
 
         <!-- Section 3 -->
         <section id="section3" class="guide-section">
             <div class="section-header">
-                <div class="section-icon">📊</div>
                 <h2>3. Calculer la rentabilité</h2>
             </div>
             <div class="section-content">
-                <div class="section-text">
-                    <p>La rentabilité est le critère le plus important. Voici comment la calculer :</p>
-                    <p><strong>Rentabilité brute :</strong> (Loyer annuel / Prix d'achat) × 100</p>
-                    <p><strong>Rentabilité nette :</strong> (Loyer annuel - charges) / (Prix d'achat + frais) × 100</p>
-                    <p><strong>Cash-flow :</strong> Loyer - charges - mensualité</p>
-                </div>
-                <div class="section-image">
-                    <img src="https://images.unsplash.com/photo-1554224154-26032ffc0d07?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Calculs">
-                </div>
-            </div>
-            <div class="tools-box">
-                <h3>🔧 Utilisez notre simulateur</h3>
-                <p>Calculez précisément la rentabilité de votre projet en quelques clics</p>
-                <a href="/pages/simulateur.html" class="btn">Accéder au simulateur →</a>
+                <p>La rentabilité est le critère le plus important. Voici comment la calculer :</p>
+                <p><strong>Rentabilité brute :</strong> (Loyer annuel / Prix d'achat) × 100</p>
+                <p><strong>Rentabilité nette :</strong> (Loyer annuel - charges) / (Prix d'achat + frais) × 100</p>
+                <p><strong>Cash-flow :</strong> Loyer - charges - mensualité</p>
+                <p style="margin-top: 1.5rem;">👉 Utilisez notre <a href="/pages/simulateur.html">simulateur gratuit</a> pour des calculs précis.</p>
             </div>
         </section>
 
         <!-- Section 4 -->
         <section id="section4" class="guide-section">
             <div class="section-header">
-                <div class="section-icon">🔍</div>
                 <h2>4. Choisir le bon bien</h2>
             </div>
             <div class="section-content">
-                <div class="section-image">
-                    <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Choix du bien">
-                </div>
-                <div class="section-text">
-                    <p>Critères essentiels pour sélectionner un bien rentable :</p>
-                    <ul>
-                        <li><strong>Emplacement</strong> : proximité transports, écoles, commerces</li>
-                        <li><strong>État du bien</strong> : travaux nécessaires</li>
-                        <li><strong>Demande locative</strong> : étudiants, familles, etc.</li>
-                        <li><strong>Prix au m²</strong> : comparer avec le marché</li>
-                    </ul>
-                </div>
+                <p>Critères essentiels pour sélectionner un bien rentable :</p>
+                <ul>
+                    <li><strong>Emplacement</strong> : proximité transports, écoles, commerces</li>
+                    <li><strong>État du bien</strong> : travaux nécessaires</li>
+                    <li><strong>Demande locative</strong> : étudiants, familles, etc.</li>
+                    <li><strong>Prix au m²</strong> : comparer avec le marché</li>
+                </ul>
             </div>
         </section>
-
-        <!-- Section 5 -->
-        <section id="section5" class="guide-section">
-            <div class="section-header">
-                <div class="section-icon">📝</div>
-                <h2>5. Fiscalité immobilière</h2>
-            </div>
-            <div class="tips-grid">
-                <div class="tip-card">
-                    <h4>Régime réel</h4>
-                    <p>Déduisez vos charges réelles (travaux, intérêts). Idéal si charges élevées.</p>
-                </div>
-                <div class="tip-card">
-                    <h4>Micro-foncier</h4>
-                    <p>Abattement de 30% sur les revenus. Jusqu'à 15 000€ de loyers.</p>
-                </div>
-                <div class="tip-card">
-                    <h4>LMNP</h4>
-                    <p>Loueur Meublé Non Professionnel : amortissement du bien possible.</p>
-                </div>
-                <div class="tip-card">
-                    <h4>Pinel</h4>
-                    <p>Réduction d'impôt pour investissement dans le neuf.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Ressources -->
-        <h2 class="section-title">📚 Ressources recommandées</h2>
-        <p class="section-subtitle">Des outils et lectures pour aller plus loin</p>
-
-        <div class="resources">
-            <div class="resource-card">
-                <div style="font-size: 2.5rem;">📖</div>
-                <h4>Investir dans l'immobilier pour les nuls</h4>
-                <p>Le livre de référence pour débuter</p>
-                <a href="https://www.amazon.fr/dp/2416008746?tag=TON_TAG_ICI" target="_blank" class="resource-link">Voir sur Amazon</a>
-            </div>
-            <div class="resource-card">
-                <div style="font-size: 2.5rem;">🧮</div>
-                <h4>Calculateur financier</h4>
-                <p>Pour vos calculs rapides</p>
-                <a href="https://www.amazon.fr/dp/2416008746?tag=TON_TAG_ICI" target="_blank" class="resource-link">Voir sur Amazon</a>
-            </div>
-            <div class="resource-card">
-                <div style="font-size: 2.5rem;">🏦</div>
-                <h4>Simulateur de prêt</h4>
-                <p>Trouvez le meilleur taux</p>
-                <a href="https://www.meilleurtaux.com/credit-immobilier/?affiliate=rentapro" target="_blank" class="resource-link">Meilleurtaux</a>
-            </div>
-            <div class="resource-card">
-                <div style="font-size: 2.5rem;">🔍</div>
-                <h4>Recherche de biens</h4>
-                <p>Consultez les annonces</p>
-                <a href="https://www.seloger.com/?utm_source=rentapro" target="_blank" class="resource-link">SeLoger</a>
-            </div>
-        </div>
-
-        <!-- Call to action -->
-        <div class="tools-box">
-            <h3>🎯 Prêt à passer à l'action ?</h3>
-            <p>Utilisez notre simulateur pour analyser votre premier investissement en quelques minutes</p>
-            <a href="/pages/simulateur.html" class="btn">Commencer la simulation →</a>
-        </div>
     </div>
 
     <footer class="footer">
@@ -624,12 +364,6 @@
                 <a href="/pages/simulateur.html">Simulateur</a>
                 <a href="/pages/guide.html">Guide</a>
                 <a href="/pages/contact.html">Contact</a>
-            </div>
-            <div class="footer-section">
-                <h4>Ressources</h4>
-                <a href="#">Blog</a>
-                <a href="#">FAQ</a>
-                <a href="#">Calculateurs</a>
             </div>
             <div class="footer-section">
                 <h4>Contact</h4>
@@ -643,7 +377,6 @@
     </footer>
 
     <script>
-        // Smooth scroll pour les ancres
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();

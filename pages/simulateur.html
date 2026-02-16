@@ -9,22 +9,30 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
 
         body {
             background: #f8fafc;
             color: #1e293b;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
+        /* Navigation centrée */
         .navbar {
             background: white;
             padding: 1rem 5%;
             box-shadow: 0 4px 20px rgba(0,0,0,0.03);
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
             flex-wrap: wrap;
+            gap: 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
         .logo {
@@ -58,34 +66,67 @@
             border-bottom: 3px solid #eab308;
         }
 
+        /* Conteneur principal centré */
         .container {
-            max-width: 1400px;
-            margin: 2rem auto;
-            padding: 0 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            width: 100%;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* En-tête centré */
+        .header-center {
+            text-align: center;
+            margin-bottom: 2rem;
         }
 
         h1 {
-            font-size: 2.5rem;
+            font-size: clamp(2rem, 5vw, 2.8rem);
             color: #0f172a;
             margin-bottom: 0.5rem;
         }
 
         .subtitle {
             color: #64748b;
-            margin-bottom: 2rem;
             font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
         }
 
+        /* Compteur d'essais */
+        .trial-counter {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            display: inline-block;
+            margin: 1rem auto;
+            font-weight: 600;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .trial-counter span {
+            color: #eab308;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 0.3rem;
+        }
+
+        /* Grille du simulateur */
         .simulator-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 2rem;
-            margin-bottom: 3rem;
+            margin: 2rem 0;
         }
 
-        .input-card {
+        /* Cartes */
+        .card {
             background: white;
-            border-radius: 20px;
+            border-radius: 30px;
             padding: 2rem;
             box-shadow: 0 10px 30px rgba(0,0,0,0.05);
             border: 1px solid rgba(0,0,0,0.03);
@@ -118,7 +159,6 @@
             border-radius: 12px;
             font-size: 1rem;
             transition: all 0.3s;
-            background: white;
         }
 
         .form-group input:focus,
@@ -147,17 +187,10 @@
             padding-left: 2rem;
         }
 
-        .results-card {
-            background: white;
-            border-radius: 20px;
-            padding: 2rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            border: 1px solid rgba(0,0,0,0.03);
-        }
-
+        /* Résultats */
         .result-section {
             background: #f8fafc;
-            border-radius: 16px;
+            border-radius: 20px;
             padding: 1.5rem;
             margin-bottom: 1.5rem;
         }
@@ -203,230 +236,148 @@
             background: #fef9e7;
             padding: 1rem;
             border-radius: 12px;
-            margin-top: 1rem;
             border-left: 4px solid #eab308;
         }
 
-        .btn-calculate {
-            background: #0f172a;
-            color: white;
-            border: none;
+        /* Boutons */
+        .btn {
             padding: 1rem;
             border-radius: 12px;
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
-            width: 100%;
             transition: all 0.3s;
+            border: none;
+            width: 100%;
         }
 
-        .btn-calculate:hover {
+        .btn-primary {
+            background: #0f172a;
+            color: white;
+        }
+
+        .btn-primary:hover:not(:disabled) {
             background: #1e293b;
             transform: translateY(-2px);
             box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
         }
 
         .btn-save {
             background: white;
             color: #0f172a;
             border: 2px solid #e2e8f0;
-            padding: 1rem;
-            border-radius: 12px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            width: 100%;
             margin-top: 1rem;
-            transition: all 0.3s;
         }
 
-        .btn-save:hover {
+        .btn-save:hover:not(:disabled) {
             border-color: #eab308;
             background: #fef9e7;
         }
 
-        .comparison-section {
-            margin-top: 3rem;
-            background: white;
-            border-radius: 20px;
-            padding: 2rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-        }
-
-        .comparison-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-        }
-
-        .comparison-item {
-            background: #f8fafc;
-            padding: 1.5rem;
-            border-radius: 16px;
+        /* Section premium */
+        .premium-banner {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            border-radius: 30px;
+            padding: 3rem;
+            margin: 2rem 0;
             text-align: center;
-            cursor: pointer;
-            transition: all 0.3s;
-            border: 2px solid transparent;
+            color: white;
         }
 
-        .comparison-item:hover {
-            border-color: #eab308;
-            transform: translateY(-5px);
-        }
-
-        .comparison-item h4 {
-            color: #0f172a;
+        .premium-banner h2 {
+            font-size: 2rem;
             margin-bottom: 1rem;
         }
 
-        .monetization-section {
-            margin-top: 3rem;
-            background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
-            border-radius: 20px;
-            padding: 2rem;
-            border: 2px solid #eab308;
+        .premium-banner p {
+            color: #cbd5e1;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .monetization-grid {
+        .premium-features {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 1.5rem;
             margin: 2rem 0;
         }
 
-        .monetization-card {
-            background: white;
+        .feature-item {
+            background: rgba(255,255,255,0.1);
+            padding: 1rem;
             border-radius: 16px;
-            padding: 1.5rem;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.03);
-            transition: transform 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            justify-content: center;
         }
 
-        .monetization-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .monetization-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .monetization-card h4 {
-            color: #0f172a;
-            margin-bottom: 0.5rem;
-        }
-
-        .monetization-card p {
-            color: #64748b;
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-        }
-
-        .btn-paypal {
-            display: inline-block;
-            background: #0070ba;
-            color: white;
-            padding: 0.8rem 1.5rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: background 0.3s;
-        }
-
-        .btn-paypal:hover {
-            background: #005ea6;
-        }
-
-        .btn-coffee {
-            display: inline-block;
-            background: #FFDD00;
-            color: #0f172a;
-            padding: 0.8rem 1.5rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: background 0.3s;
-        }
-
-        .btn-coffee:hover {
-            background: #e6c200;
-        }
-
-        .btn-amazon {
-            display: inline-block;
-            background: #ff9900;
-            color: white;
-            padding: 0.8rem 1.5rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: background 0.3s;
-        }
-
-        .btn-amazon:hover {
-            background: #e68900;
-        }
-
-        .btn-seloger {
-            display: inline-block;
-            background: #E30613;
-            color: white;
-            padding: 0.8rem 1.5rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: background 0.3s;
-        }
-
-        .btn-seloger:hover {
-            background: #b30510;
-        }
-
-        .pdf-premium {
-            background: #0f172a;
-            border-radius: 16px;
-            padding: 2rem;
-            text-align: center;
-            color: white;
+        .premium-pricing {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
             margin-top: 2rem;
         }
 
-        .pdf-premium h4 {
-            color: #eab308;
+        .pricing-card {
+            background: white;
+            color: #0f172a;
+            padding: 2rem;
+            border-radius: 20px;
+            min-width: 250px;
+            text-align: center;
+        }
+
+        .pricing-card h3 {
             font-size: 1.5rem;
             margin-bottom: 1rem;
         }
 
-        .pdf-premium p {
-            margin-bottom: 1.5rem;
-            opacity: 0.9;
+        .pricing-card .price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #eab308;
+            margin-bottom: 1rem;
         }
 
-        .btn-pdf {
+        .pricing-card .price small {
+            font-size: 1rem;
+            color: #64748b;
+        }
+
+        .btn-premium {
             background: #eab308;
             color: #0f172a;
+            padding: 1rem 2rem;
             border: none;
-            padding: 1rem 3rem;
             border-radius: 50px;
-            font-weight: bold;
-            font-size: 1.2rem;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.3s;
+            width: 100%;
         }
 
-        .btn-pdf:hover {
+        .btn-premium:hover {
             background: #fbbf24;
             transform: translateY(-3px);
             box-shadow: 0 10px 20px rgba(234,179,8,0.3);
         }
 
+        /* Footer centré */
         .footer {
             background: #0f172a;
             color: white;
             padding: 3rem 5% 2rem;
-            margin-top: 4rem;
+            margin-top: 3rem;
+            width: 100%;
         }
 
         .footer-content {
@@ -435,6 +386,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 3rem;
+            text-align: left;
         }
 
         .footer-section h4 {
@@ -461,19 +413,7 @@
             color: #64748b;
         }
 
-        @media (max-width: 900px) {
-            .simulator-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .input-group {
-                grid-template-columns: 1fr;
-            }
-
-            .comparison-grid {
-                grid-template-columns: 1fr;
-            }
-
+        @media (max-width: 768px) {
             .navbar {
                 flex-direction: column;
                 gap: 1rem;
@@ -482,6 +422,18 @@
             .nav-links {
                 flex-wrap: wrap;
                 justify-content: center;
+            }
+
+            .simulator-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .input-group {
+                grid-template-columns: 1fr;
+            }
+
+            .premium-pricing {
+                flex-direction: column;
             }
         }
     </style>
@@ -498,12 +450,17 @@
     </nav>
 
     <div class="container">
-        <h1>📊 Simulateur de rentabilité locative</h1>
-        <div class="subtitle">Remplissez les champs ci-dessous pour obtenir une analyse complète de votre investissement</div>
+        <div class="header-center">
+            <h1>📊 Simulateur de rentabilité locative</h1>
+            <p class="subtitle">Analysez vos investissements en quelques clics. 3 simulations gratuites par jour.</p>
+            <div class="trial-counter">
+                🔄 Simulations restantes aujourd'hui : <span id="trialCount">3</span>
+            </div>
+        </div>
 
         <div class="simulator-grid">
             <!-- Formulaire -->
-            <div class="input-card">
+            <div class="card">
                 <h2 style="margin-bottom: 1.5rem;">💰 Paramètres du bien</h2>
 
                 <div class="input-group">
@@ -588,12 +545,12 @@
                     <small style="color: #64748b;">Estimez votre tranche d'imposition</small>
                 </div>
 
-                <button class="btn-calculate" onclick="calculer()">Calculer la rentabilité</button>
-                <button class="btn-save" onclick="sauvegarderSimulation()">💾 Sauvegarder cette simulation</button>
+                <button class="btn btn-primary" id="calculBtn" onclick="calculer()">Calculer la rentabilité</button>
+                <button class="btn btn-save" id="saveBtn" onclick="sauvegarderSimulation()">💾 Sauvegarder cette simulation</button>
             </div>
 
             <!-- Résultats -->
-            <div class="results-card" id="results">
+            <div class="card" id="results">
                 <h2 style="margin-bottom: 1.5rem;">📈 Résultats</h2>
 
                 <div class="result-section">
@@ -650,88 +607,38 @@
             </div>
         </div>
 
-        <!-- Section comparaison -->
-        <div class="comparison-section">
-            <h2>🔄 Comparer plusieurs biens</h2>
-            <p style="color: #64748b; margin-bottom: 1rem;">Cliquez sur un emplacement pour sauvegarder la simulation actuelle</p>
+        <!-- Bannière Premium -->
+        <div class="premium-banner" id="premiumBanner">
+            <h2>✨ Passez à RentaPro Premium ✨</h2>
+            <p>Profitez de toutes les fonctionnalités sans limitation et boostez vos analyses immobilières</p>
 
-            <div class="comparison-grid">
-                <div class="comparison-item" onclick="sauvegarderComparaison(1)">
-                    <h4>Bien 1</h4>
-                    <div id="comp1">Cliquez pour sauvegarder</div>
-                </div>
-                <div class="comparison-item" onclick="sauvegarderComparaison(2)">
-                    <h4>Bien 2</h4>
-                    <div id="comp2">Cliquez pour sauvegarder</div>
-                </div>
-                <div class="comparison-item" onclick="sauvegarderComparaison(3)">
-                    <h4>Bien 3</h4>
-                    <div id="comp3">Cliquez pour sauvegarder</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Section monétisation complète -->
-        <div class="monetization-section">
-            <h2 style="text-align: center; margin-bottom: 1rem;">💰 Soutenez RentaPro</h2>
-            <p style="text-align: center; color: #64748b; margin-bottom: 2rem;">Votre soutien me permet de maintenir cet outil gratuit et de l'améliorer</p>
-
-            <div class="monetization-grid">
-                <!-- PayPal Me -->
-                <div class="monetization-card">
-                    <div class="monetization-icon">☕</div>
-                    <h4>Offrez-moi un café</4>
-                    <p>Soutenez mon travail avec un petit don via PayPal</p>
-                    <a href="https://www.paypal.me/kevinhojp" target="_blank" class="btn-paypal">PayPal.Me</a>
-                </div>
-
-                <!-- Buy Me a Coffee -->
-                <div class="monetization-card">
-                    <div class="monetization-icon">☕</div>
-                    <h4>Buy Me a Coffee</h4>
-                    <p>Une autre façon de soutenir gratuitement</p>
-                    <a href="https://www.buymeacoffee.com/kevinhojp" target="_blank" class="btn-coffee">Soutenir</a>
-                </div>
-
-                <!-- Amazon -->
-                <div class="monetization-card">
-                    <div class="monetization-icon">📚</div>
-                    <h4>Livres recommandés</h4>
-                    <p>Les meilleurs livres sur l'immobilier</p>
-                    <a href="https://www.amazon.fr/s?k=investissement+locatif&tag=TON_TAG_ICI" target="_blank" class="btn-amazon">Amazon</a>
-                </div>
-
-                <!-- SeLoger -->
-                <div class="monetization-card">
-                    <div class="monetization-icon">🔍</div>
-                    <h4>Trouver un bien</h4>
-                    <p>Consultez les annonces sur SeLoger</p>
-                    <a href="https://www.seloger.com/?utm_source=rentapro" target="_blank" class="btn-seloger">SeLoger</a>
-                </div>
-
-                <!-- Meilleurtaux -->
-                <div class="monetization-card">
-                    <div class="monetization-icon">🏦</div>
-                    <h4>Simuler un prêt</h4>
-                    <p>Trouvez le meilleur taux</p>
-                    <a href="https://www.meilleurtaux.com/credit-immobilier/?affiliate=rentapro" target="_blank" class="btn-coffee">Meilleurtaux</a>
-                </div>
-
-                <!-- Formation -->
-                <div class="monetization-card">
-                    <div class="monetization-icon">🎓</div>
-                    <h4>Formations</h4>
-                    <p>Apprenez avec les experts</p>
-                    <a href="#" class="btn-paypal">Bientôt</a>
-                </div>
+            <div class="premium-features">
+                <div class="feature-item">✅ Simulations illimitées</div>
+                <div class="feature-item">📊 Export PDF détaillé</div>
+                <div class="feature-item">🔄 Comparateur avancé</div>
+                <div class="feature-item">📈 Graphiques interactifs</div>
+                <div class="feature-item">💾 Sauvegardes illimitées</div>
+                <div class="feature-item">📧 Support prioritaire</div>
             </div>
 
-            <!-- PDF Premium avec PayPal -->
-            <div class="pdf-premium">
-                <h4>📊 Rapport complet en PDF</h4>
-                <p>Obtenez une analyse détaillée avec graphiques, projections sur 10 ans et conseils personnalisés</p>
-                <button onclick="acheterPDF()" class="btn-pdf">Télécharger le rapport (2,99€)</button>
-                <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.7;">Paiement sécurisé via PayPal</p>
+            <div class="premium-pricing">
+                <div class="pricing-card">
+                    <h3>Mensuel</h3>
+                    <div class="price">2,99$ <small>/mois</small></div>
+                    <button class="btn-premium" onclick="acheterPremium('monthly')">Choisir</button>
+                </div>
+                <div class="pricing-card">
+                    <h3>Annuel</h3>
+                    <div class="price">29,99$ <small>/an</small></div>
+                    <button class="btn-premium" onclick="acheterPremium('yearly')">Choisir</button>
+                    <p style="margin-top: 0.5rem; color: #059669;">Économisez 16%</p>
+                </div>
+                <div class="pricing-card">
+                    <h3>À vie</h3>
+                    <div class="price">49,99$</div>
+                    <button class="btn-premium" onclick="acheterPremium('lifetime')">Choisir</button>
+                    <p style="margin-top: 0.5rem; color: #059669;">Paiement unique</p>
+                </div>
             </div>
         </div>
     </div>
@@ -752,18 +659,48 @@
                 <a href="#">Calculateurs</a>
             </div>
             <div class="footer-section">
+                <h4>Légal</h4>
+                <a href="#">Mentions légales</a>
+                <a href="#">CGU</a>
+                <a href="#">Politique de confidentialité</a>
+            </div>
+            <div class="footer-section">
                 <h4>Contact</h4>
                 <p style="color: #94a3b8;">📧 mukendikevin668@gmail.com</p>
                 <p style="color: #94a3b8;">📞 +243 974 843 721</p>
             </div>
         </div>
         <div class="copyright">
-            © 2026 RentaPro - Outil gratuit pour investisseurs immobiliers
+            © 2026 RentaPro - Tous droits réservés
         </div>
     </footer>
 
     <script>
+        // Gestion des essais gratuits
+        let simulationsRestantes = 3;
+        let isPremium = localStorage.getItem('rentapro_premium') === 'true';
+
+        function updateTrialDisplay() {
+            document.getElementById('trialCount').textContent = simulationsRestantes;
+            
+            if (isPremium) {
+                document.getElementById('trialCount').textContent = '∞';
+                document.getElementById('calculBtn').disabled = false;
+                document.getElementById('saveBtn').disabled = false;
+                document.getElementById('premiumBanner').style.display = 'none';
+            } else {
+                document.getElementById('calculBtn').disabled = simulationsRestantes <= 0;
+                document.getElementById('saveBtn').disabled = simulationsRestantes <= 0;
+            }
+        }
+
         function calculer() {
+            if (!isPremium && simulationsRestantes <= 0) {
+                alert('❌ Vous avez utilisé vos 3 simulations gratuites. Passez à Premium pour continuer !');
+                document.getElementById('premiumBanner').scrollIntoView({ behavior: 'smooth' });
+                return;
+            }
+
             // Récupération des valeurs
             const prixAchat = parseFloat(document.getElementById('prixAchat').value) || 0;
             const fraisNotaire = parseFloat(document.getElementById('fraisNotaire').value) || 0;
@@ -825,31 +762,49 @@
                 cashflowSpan.classList.add('positive');
                 cashflowSpan.classList.remove('negative');
             }
+
+            // Décrémenter les essais si pas premium
+            if (!isPremium) {
+                simulationsRestantes--;
+                updateTrialDisplay();
+                
+                if (simulationsRestantes === 0) {
+                    alert('✅ Vous avez utilisé vos 3 simulations. Pour continuer, passez à Premium !');
+                }
+            }
         }
 
         function sauvegarderSimulation() {
+            if (!isPremium && simulationsRestantes <= 0) {
+                alert('❌ Version gratuite limitée à 3 simulations. Passez à Premium pour sauvegarder !');
+                return;
+            }
             alert('✅ Simulation sauvegardée !');
         }
 
-        function sauvegarderComparaison(num) {
-            const prix = document.getElementById('prixAchat').value;
-            const rendement = document.getElementById('rendementNet').innerText;
-            const cashflow = document.getElementById('cashflow').innerText;
-
-            document.getElementById('comp' + num).innerHTML = `
-                <strong>$${parseInt(prix).toLocaleString()}</strong><br>
-                Rendement: ${rendement}<br>
-                Cash-flow: ${cashflow}
-            `;
+        function acheterPremium(type) {
+            let montant = type === 'monthly' ? 2.99 : type === 'yearly' ? 29.99 : 49.99;
+            alert(`🔒 Redirection vers PayPal pour un paiement sécurisé de ${montant}$`);
+            
+            // Simuler l'achat (à remplacer par vrai lien PayPal)
+            localStorage.setItem('rentapro_premium', 'true');
+            isPremium = true;
+            updateTrialDisplay();
+            alert('🎉 Félicitations ! Vous êtes maintenant membre Premium. Toutes les fonctionnalités sont débloquées !');
         }
 
-        function acheterPDF() {
-            alert("🔒 Redirection vers PayPal pour un paiement sécurisé de 2,99€");
-            window.open("https://www.paypal.me/kevinhojp/2.99", "_blank");
+        // Initialisation
+        updateTrialDisplay();
+        if (isPremium) {
+            document.getElementById('premiumBanner').style.display = 'none';
         }
 
-        // Calcul automatique au chargement
-        window.onload = calculer;
+        // Calcul automatique au chargement (ne compte pas comme essai)
+        window.onload = function() {
+            if (isPremium || simulationsRestantes > 0) {
+                calculer();
+            }
+        };
     </script>
 </body>
 </html>
