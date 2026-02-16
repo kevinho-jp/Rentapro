@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RentaPro - Simulateur investissement immobilier</title>
+    <style>
+        /* TON STYLE RESTE ICI (tout le CSS que je t'ai donné avant) */
+        /* Je ne le recopie pas pour gagner de la place mais il est identique */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', sans-serif;
+        }
+        
+        body {
+            background: #f4f7fc;
+        }
+        
+        .navbar {
+            background: #0a1a2f;
+            padding: 1rem 5%;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #fff 0%, #ffd700 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+        }
+        
+        .nav-links a:hover {
+            color: #ffd700;
+        }
+        
+        .hero {
+            height: 600px;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1973&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            padding: 2rem;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: #ffd700;
+            color: #0a1a2f;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            margin: 0.5rem;
+        }
+        
+        .footer {
+            background: #0a1a2f;
+            color: white;
+            padding: 3rem 5% 2rem;
+            text-align: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: #999;
+            text-decoration: none;
+        }
+        
+        .footer-links a:hover {
+            color: #ffd700;
+        }
+        
+        .copyright {
+            color: #666;
+            margin-top: 2rem;
+        }
+        
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">🏠 RentaPro</div>
+        <div class="nav-links">
+            <a href="/" style="color: #ffd700;">Accueil</a>
+            <a href="/pages/simulateur.html">Simulateur</a>
+            <a href="/pages/guide.html">Guide</a>
+            <a href="/pages/contact.html">Contact</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Investissez dans l'immobilier en connaissance de cause</h1>
+            <p>Calculez gratuitement la rentabilité de vos projets locatifs en quelques secondes</p>
+            <a href="/pages/simulateur.html" class="btn">📊 Essayer le simulateur</a>
+            <a href="/pages/guide.html" class="btn" style="background: transparent; border: 2px solid white; color: white;">📚 Lire le guide</a>
+        </div>
+    </section>
+
+    <!-- Section features (simplifiée) -->
+    <section style="padding: 4rem 5%; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto;">
+        <div style="background: white; padding: 2rem; border-radius: 20px; text-align: center;">
+            <div style="font-size: 3rem;">📊</div>
+            <h3>Simulateur complet</h3>
+            <p>Calculez rendement brut, net et cash-flow</p>
+            <a href="/pages/simulateur.html" style="color: #0a1a2f;">Essayer →</a>
+        </div>
+        <div style="background: white; padding: 2rem; border-radius: 20px; text-align: center;">
+            <div style="font-size: 3rem;">📚</div>
+            <h3>Guide gratuit</h3>
+            <p>Tout pour réussir votre investissement</p>
+            <a href="/pages/guide.html" style="color: #0a1a2f;">Lire →</a>
+        </div>
+        <div style="background: white; padding: 2rem; border-radius: 20px; text-align: center;">
+            <div style="font-size: 3rem;">📞</div>
+            <h3>Contact</h3>
+            <p>Une question ? Je vous réponds</p>
+            <a href="/pages/contact.html" style="color: #0a1a2f;">Écrire →</a>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="/">Accueil</a>
+            <a href="/pages/simulateur.html">Simulateur</a>
+            <a href="/pages/guide.html">Guide</a>
+            <a href="/pages/contact.html">Contact</a>
+        </div>
+        <div class="copyright">
+            📧 mukendikevin668@gmail.com | 📞 +243 974 843 721<br>
+            © 2026 RentaPro - Outil gratuit pour investisseurs immobiliers
+        </div>
+    </footer>
+</body>
+</html>

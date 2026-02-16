@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulateur de rentabilité locative - RentaPro</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', sans-serif;
+        }
+        
+        body {
+            background: #f4f7fc;
+        }
+        
+        .navbar {
+            background: #0a1a2f;
+            padding: 1rem 5%;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #fff 0%, #ffd700 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 2rem;
+            padding: 0.5rem 1rem;
+        }
+        
+        .nav-links a:hover {
+            color: #ffd700;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+        
+        h1 {
+            color: #0a1a2f;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .subtitle {
+            color: #666;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+        
+        .simulator-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        
+        .input-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .input-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            color: #0a1a2f;
+            margin-bottom: 0.5rem;
+        }
+        
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: #ffd700;
+        }
+        
+        .currency-input {
+            position: relative;
+        }
+        
+        .currency-input:before {
+            content: "$";
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #666;
+            font-weight: bold;
+        }
+        
+        .currency-input input {
+            padding-left: 2rem;
+        }
+        
+        .results-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .result-section {
+            background: #f8faff;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .result-section h3 {
+            color: #0a1a2f;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .result-item:last-child {
+            border-bottom: none;
+        }
+        
+        .result-label {
+            color: #666;
+        }
+        
+        .result-value {
+            font-weight: 700;
+            color: #0a1a2f;
+        }
+        
+        .positive {
+            color: #27ae60;
+        }
+        
+        .negative {
+            color: #e74c3c;
+        }
+        
+        .highlight {
+            background: #ffd70020;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            margin-top: 1rem;
+        }
+        
+        .btn-calculate {
+            background: #0a1a2f;
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 1rem;
+            transition: background 0.3s;
+        }
+        
+        .btn-calculate:hover {
+            background: #1a2a3f;
+        }
+        
+        .btn-save {
+            background: #ffd700;
+            color: #0a1a2f;
+            border: none;
+            padding: 1rem;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 1rem;
+            transition: background 0.3s;
+        }
+        
+        .btn-save:hover {
+            background: #e6c200;
+        }
+        
+        .comparison-section {
+            margin-top: 2rem;
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .comparison-item {
+            background: #f8faff;
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .comparison-item h4 {
+            color: #0a1a2f;
+            margin-bottom: 0.5rem;
+        }
+        
+        @media (max-width: 900px) {
+            .simulator-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .input-group {
+                grid-template-columns: 1fr;
+            }
+            
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">🏠 RentaPro</div>
+        <div class="nav-links">
+            <a href="/">Accueil</a>
+            <a href="/pages/simulateur.html" style="color: #ffd700;">Simulateur</a>
+            <a href="/pages/guide.html">Guide</a>
+            <a href="/pages/contact.html">Contact</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>📊 Simulateur de rentabilité locative</h1>
+        <div class="subtitle">Calculez précisément la rentabilité de votre investissement en quelques clics</div>
+        
+        <div class="simulator-grid">
+            <!-- Formulaire -->
+            <div class="input-card">
+                <h2 style="margin-bottom: 1.5rem;">💰 Paramètres du bien</h2>
+                
+                <div class="input-group">
+                    <div class="form-group">
+                        <label>Prix d'achat ($)</label>
+                        <div class="currency-input">
+                            <input type="number" id="prixAchat" value="250000" step="1000">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Frais de notaire (%)</label>
+                        <input type="number" id="fraisNotaire" value="8" step="0.1">
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <div class="form-group">
+                        <label>Travaux ($)</label>
+                        <div class="currency-input">
+                            <input type="number" id="travaux" value="15000" step="1000">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Apport personnel ($)</label>
+                        <div class="currency-input">
+                            <input type="number" id="apport" value="50000" step="1000">
+                        </div>
+                    </div>
+                </div>
+                
+                <h2 style="margin: 1.5rem 0 1rem;">🏦 Financement</h2>
+                
+                <div class="input-group">
+                    <div class="form-group">
+                        <label>Taux d'intérêt (%)</label>
+                        <input type="number" id="taux" value="4.5" step="0.1">
+                    </div>
+                    <div class="form-group">
+                        <label>Durée (années)</label>
+                        <select id="duree">
+                            <option value="10">10 ans</option>
+                            <option value="15">15 ans</option>
+                            <option value="20" selected>20 ans</option>
+                            <option value="25">25 ans</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <h2 style="margin: 1.5rem 0 1rem;">🏘️ Revenus & charges</h2>
+                
+                <div class="input-group">
+                    <div class="form-group">
+                        <label>Loyer mensuel ($)</label>
+                        <div class="currency-input">
+                            <input type="number" id="loyer" value="1200" step="50">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Charges mensuelles ($)</label>
+                        <div class="currency-input">
+                            <input type="number" id="charges" value="250" step="10">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <div class="form-group">
+                        <label>Taxe foncière annuelle ($)</label>
+                        <div class="currency-input">
+                            <input type="number" id="taxeFonciere" value="800" step="50">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Vacance locative (%)</label>
+                        <input type="number" id="vacance" value="5" step="0.5">
+                    </div>
+                </div>
+                
+                <button class="btn-calculate" onclick="calculer()">Calculer la rentabilité</button>
+                <button class="btn-save" onclick="sauvegarderSimulation()">💾 Sauvegarder cette simulation</button>
+            </div>
+            
+            <!-- Résultats -->
+            <div class="results-card" id="results">
+                <h2 style="margin-bottom: 1.5rem;">📈 Résultats</h2>
+                
+                <div class="result-section">
+                    <h3>💰 Coût total d'acquisition</h3>
+                    <div class="result-item">
+                        <span class="result-label">Prix d'achat + frais + travaux</span>
+                        <span class="result-value" id="totalAchat">$0</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Montant emprunté</span>
+                        <span class="result-value" id="montantEmprunte">$0</span>
+                    </div>
+                </div>
+                
+                <div class="result-section">
+                    <h3>📊 Rentabilité</h3>
+                    <div class="result-item">
+                        <span class="result-label">Rendement brut</span>
+                        <span class="result-value" id="rendementBrut">0%</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Rendement net (avant impôt)</span>
+                        <span class="result-value" id="rendementNet">0%</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Rendement net-net (après impôt)</span>
+                        <span class="result-value" id="rendementNetNet">0%</span>
+                    </div>
+                </div>
+                
+                <div class="result-section">
+                    <h3>💵 Cash-flow</h3>
+                    <div class="result-item">
+                        <span class="result-label">Mensualité de crédit</span>
+                        <span class="result-value" id="mensualite">$0</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Revenus nets annuels</span>
+                        <span class="result-value" id="revenusNets">$0</span>
+                    </div>
+                    <div class="result-item highlight">
+                        <span class="result-label">Cash-flow mensuel</span>
+                        <span class="result-value" id="cashflow">$0</span>
+                    </div>
+                </div>
+                
+                <div class="result-section">
+                    <h3>⏱️ Seuil de rentabilité</h3>
+                    <div class="result-item">
+                        <span class="result-label">Années pour récupérer l'apport</span>
+                        <span class="result-value" id="retourInvestissement">0 ans</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section comparaison -->
+        <div class="comparison-section">
+            <h2>🔄 Comparer plusieurs biens</h2>
+            <p style="color: #666; margin-bottom: 1rem;">Ajoutez jusqu'à 3 biens à comparer</p>
+            
+            <div class="comparison-grid" id="comparisonGrid">
+                <div class="comparison-item" onclick="ajouterComparaison(1)">
+                    <h4>Bien 1</h4>
+                    <div id="comp1">Cliquez pour ajouter</div>
+                </div>
+                <div class="comparison-item" onclick="ajouterComparaison(2)">
+                    <h4>Bien 2</h4>
+                    <div id="comp2">Cliquez pour ajouter</div>
+                </div>
+                <div class="comparison-item" onclick="ajouterComparaison(3)">
+                    <h4>Bien 3</h4>
+                    <div id="comp3">Cliquez pour ajouter</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let simulations = [];
+        
+        function calculer() {
+            // Récupération des valeurs
+            const prixAchat = parseFloat(document.getElementById('prixAchat').value) || 0;
+            const fraisNotaire = parseFloat(document.getElementById('fraisNotaire').value) || 0;
+            const travaux = parseFloat(document.getElementById('travaux').value) || 0;
+            const apport = parseFloat(document.getElementById('apport').value) || 0;
+            const taux = parseFloat(document.getElementById('taux').value) || 0;
+            const duree = parseFloat(document.getElementById('duree').value) || 0;
+            const loyer = parseFloat(document.getElementById('loyer').value) || 0;
+            const charges = parseFloat(document.getElementById('charges').value) || 0;
+            const taxeFonciere = parseFloat(document.getElementById('taxeFonciere').value) || 0;
+            const vacance = parseFloat(document.getElementById('vacance').value) || 0;
+
+            // Calculs
+            const fraisMontant = prixAchat * (fraisNotaire / 100);
+            const totalAcquisition = prixAchat + fraisMontant + travaux;
+            const montantEmprunt = totalAcquisition - apport;
+
+            // Mensualité
+            let mensualite = 0;
+            if (montantEmprunt > 0 && taux > 0 && duree > 0) {
+                const tauxMensuel = taux / 100 / 12;
+                const nbMois = duree * 12;
+                mensualite = montantEmprunt * tauxMensuel * Math.pow(1 + tauxMensuel, nbMois) / (Math.pow(1 + tauxMensuel, nbMois) - 1);
+            }
+
+            // Revenus et charges
+            const loyerAnnuel = loyer * 12;
+            const chargesAnnuel = charges * 12;
+            const perteVacance = loyerAnnuel * (vacance / 100);
+            const revenusNetsAnnuel = loyerAnnuel - chargesAnnuel - perteVacance - taxeFonciere;
+            const cashflowMensuel = (revenusNetsAnnuel / 12) - mensualite;
+            
+            // Rendements
+            const rendementBrut = (loyerAnnuel / prixAchat) * 100;
+            const rendementNet = (revenusNetsAnnuel / totalAcquisition) * 100;
+            const rendementNetNet = rendementNet * 0.7; // Approximation impôts 30%
+            
+            // Retour sur investissement
+            const retourInvestissement = apport > 0 ? apport / (revenusNetsAnnuel - mensualite * 12) : 0;
+
+            // Affichage
+            document.getElementById('totalAchat').innerText = '$' + totalAcquisition.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+            document.getElementById('montantEmprunte').innerText = '$' + montantEmprunt.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+            document.getElementById('mensualite').innerText = '$' + mensualite.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+            document.getElementById('revenusNets').innerText = '$' + revenusNetsAnnuel.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+            document.getElementById('cashflow').innerText = '$' + cashflowMensuel.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+            document.getElementById('rendementBrut').innerText = rendementBrut.toFixed(2) + '%';
+            document.getElementById('rendementNet').innerText = rendementNet.toFixed(2) + '%';
+            document.getElementById('rendementNetNet').innerText = rendementNetNet.toFixed(2) + '%';
+            document.getElementById('retourInvestissement').innerText = retourInvestissement.toFixed(1) + ' ans';
+
+            // Coloration cash-flow
+            const cashflowSpan = document.getElementById('cashflow');
+            if (cashflowMensuel < 0) {
+                cashflowSpan.classList.add('negative');
+                cashflowSpan.classList.remove('positive');
+            } else {
+                cashflowSpan.classList.add('positive');
+                cashflowSpan.classList.remove('negative');
+            }
+        }
+
+        function sauvegarderSimulation() {
+            const simulation = {
+                prix: document.getElementById('prixAchat').value,
+                loyer: document.getElementById('loyer').value,
+                rendement: document.getElementById('rendementNet').innerText,
+                cashflow: document.getElementById('cashflow').innerText,
+                date: new Date().toLocaleDateString()
+            };
+            
+            simulations.push(simulation);
+            alert('✅ Simulation sauvegardée !');
+        }
+
+        function ajouterComparaison(num) {
+            const data = {
+                prix: document.getElementById('prixAchat').value,
+                rendement: document.getElementById('rendementNet').innerText,
+                cashflow: document.getElementById('cashflow').innerText
+            };
+            
+            document.getElementById('comp' + num).innerHTML = 
+                `$${parseInt(data.prix).toLocaleString()}<br>Rendement: ${data.rendement}<br>Cash-flow: ${data.cashflow}`;
+        }
+
+        // Calcul automatique au chargement
+        window.onload = calculer;
+    </script>
+</body>
+</html>
