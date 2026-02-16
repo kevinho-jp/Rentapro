@@ -1,11 +1,3 @@
-
-
-
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -17,196 +9,342 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', 'Segoe UI', sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
         }
-        
+
         body {
-            background: #f4f7fc;
+            background: #f8fafc;
+            color: #1e293b;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
         }
-        
+
         .navbar {
-            background: #0a1a2f;
+            background: white;
             padding: 1rem 5%;
-            color: white;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
         }
-        
+
         .logo {
             font-size: 1.8rem;
             font-weight: 700;
-            background: linear-gradient(135deg, #fff 0%, #ffd700 100%);
+            background: linear-gradient(135deg, #0f172a 0%, #334155 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
         .nav-links a {
-            color: white;
+            color: #475569;
             text-decoration: none;
-            margin-left: 2rem;
-            padding: 0.5rem 1rem;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 0.5rem 0;
         }
-        
+
         .nav-links a:hover {
-            color: #ffd700;
+            color: #0f172a;
         }
-        
+
+        .nav-links a.active {
+            color: #0f172a;
+            font-weight: 600;
+            border-bottom: 3px solid #eab308;
+        }
+
         .container {
             max-width: 1200px;
             margin: 3rem auto;
             padding: 0 2rem;
             flex: 1;
         }
-        
+
         h1 {
-            color: #0a1a2f;
             font-size: 2.5rem;
+            color: #0f172a;
             text-align: center;
             margin-bottom: 1rem;
         }
-        
+
         .subtitle {
             text-align: center;
-            color: #666;
+            color: #64748b;
             margin-bottom: 3rem;
+            font-size: 1.1rem;
         }
-        
+
         .contact-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 3rem;
         }
-        
+
         .contact-info {
             background: white;
-            border-radius: 20px;
+            border-radius: 30px;
             padding: 2rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
         }
-        
+
         .info-card {
             display: flex;
             align-items: flex-start;
-            gap: 1rem;
+            gap: 1.5rem;
             padding: 1.5rem;
-            background: #f8faff;
-            border-radius: 15px;
+            background: #f8fafc;
+            border-radius: 20px;
             margin-bottom: 1rem;
             transition: transform 0.3s;
         }
-        
+
         .info-card:hover {
             transform: translateX(10px);
         }
-        
+
         .info-icon {
             font-size: 2rem;
             min-width: 50px;
             text-align: center;
         }
-        
+
         .info-content h3 {
-            color: #0a1a2f;
+            color: #0f172a;
             margin-bottom: 0.5rem;
+            font-size: 1.2rem;
         }
-        
+
         .info-content p {
-            color: #666;
+            color: #64748b;
             line-height: 1.6;
         }
-        
+
+        .social-section {
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .social-section h3 {
+            color: #0f172a;
+            margin-bottom: 1rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            background: #f1f5f9;
+            color: #0f172a;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .social-link:hover {
+            background: #eab308;
+            color: white;
+            transform: translateY(-5px);
+        }
+
         .contact-form {
             background: white;
-            border-radius: 20px;
+            border-radius: 30px;
             padding: 2rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
         }
-        
+
         .form-group {
             margin-bottom: 1.5rem;
         }
-        
+
         .form-group label {
             display: block;
             font-weight: 600;
-            color: #0a1a2f;
+            color: #334155;
             margin-bottom: 0.5rem;
         }
-        
+
         .form-group input,
         .form-group textarea,
         .form-group select {
             width: 100%;
             padding: 1rem;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
+            border: 2px solid #e2e8f0;
+            border-radius: 16px;
             font-size: 1rem;
-            transition: border-color 0.3s;
+            transition: all 0.3s;
+            background: white;
         }
-        
+
         .form-group input:focus,
         .form-group textarea:focus,
         .form-group select:focus {
             outline: none;
-            border-color: #ffd700;
+            border-color: #eab308;
+            box-shadow: 0 0 0 3px rgba(234,179,8,0.1);
         }
-        
+
         .form-group textarea {
             resize: vertical;
             min-height: 120px;
         }
-        
+
         .btn-submit {
-            background: #0a1a2f;
+            background: #0f172a;
             color: white;
             border: none;
             padding: 1rem 2rem;
-            border-radius: 10px;
+            border-radius: 50px;
             font-size: 1.1rem;
             font-weight: 600;
             cursor: pointer;
             width: 100%;
-            transition: background 0.3s;
+            transition: all 0.3s;
         }
-        
+
         .btn-submit:hover {
-            background: #1a2a3f;
+            background: #1e293b;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
-        
+
         .alert {
-            background: #27ae60;
+            background: #059669;
             color: white;
             padding: 1rem;
-            border-radius: 10px;
+            border-radius: 16px;
             margin-bottom: 1rem;
             text-align: center;
             display: none;
         }
-        
-        .footer {
-            background: #0a1a2f;
+
+        .support-section {
+            margin-top: 3rem;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            border-radius: 30px;
+            padding: 3rem;
+            text-align: center;
             color: white;
-            padding: 2rem 5%;
+        }
+
+        .support-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .support-section p {
+            color: #cbd5e1;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .support-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-support {
+            display: inline-block;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn-paypal {
+            background: #0070ba;
+            color: white;
+        }
+
+        .btn-paypal:hover {
+            background: #005ea6;
+            transform: translateY(-3px);
+        }
+
+        .btn-coffee {
+            background: #FFDD00;
+            color: #0f172a;
+        }
+
+        .btn-coffee:hover {
+            background: #e6c200;
+            transform: translateY(-3px);
+        }
+
+        .footer {
+            background: #0f172a;
+            color: white;
+            padding: 3rem 5% 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+        }
+
+        .footer-section h4 {
+            color: #eab308;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-section a {
+            color: #94a3b8;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-section a:hover {
+            color: #eab308;
+        }
+
+        .copyright {
             text-align: center;
             margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #334155;
+            color: #64748b;
         }
-        
+
         @media (max-width: 768px) {
-            .contact-grid {
-                grid-template-columns: 1fr;
-            }
-            
             .navbar {
                 flex-direction: column;
                 gap: 1rem;
             }
-            
-            .nav-links a {
-                margin: 0 0.5rem;
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -218,64 +356,76 @@
             <a href="/">Accueil</a>
             <a href="/pages/simulateur.html">Simulateur</a>
             <a href="/pages/guide.html">Guide</a>
-            <a href="/pages/contact.html" style="color: #ffd700;">Contact</a>
+            <a href="/pages/contact.html" class="active">Contact</a>
         </div>
     </nav>
 
     <div class="container">
         <h1>📞 Contactez-nous</h1>
         <div class="subtitle">Une question ? Besoin d'aide ? Je vous réponds sous 24h</div>
-        
+
         <div class="alert" id="successAlert">
             ✅ Message envoyé ! Je vous répondrai dans les plus brefs délais.
         </div>
-        
+
         <div class="contact-grid">
             <!-- Informations de contact -->
             <div class="contact-info">
                 <h2 style="margin-bottom: 1.5rem;">📍 Mes coordonnées</h2>
-                
+
                 <div class="info-card">
                     <div class="info-icon">📧</div>
                     <div class="info-content">
                         <h3>Email</h3>
                         <p>mukendikevin668@gmail.com</p>
+                        <p style="font-size: 0.9rem; color: #94a3b8;">Réponse sous 24h</p>
                     </div>
                 </div>
-                
+
                 <div class="info-card">
                     <div class="info-icon">📞</div>
                     <div class="info-content">
                         <h3>Téléphone / WhatsApp</h3>
                         <p>+243 974 843 721</p>
-                        <p style="font-size: 0.9rem; color: #999;">Disponible sur WhatsApp</p>
+                        <p style="font-size: 0.9rem; color: #94a3b8;">Disponible sur WhatsApp</p>
                     </div>
                 </div>
-                
+
                 <div class="info-card">
                     <div class="info-icon">⏰</div>
                     <div class="info-content">
                         <h3>Horaires</h3>
-                        <p>Lundi - Vendredi : 9h - 18h<br>Samedi : 10h - 16h</p>
+                        <p>Lundi - Vendredi : 9h - 18h</p>
+                        <p>Samedi : 10h - 16h</p>
+                    </div>
+                </div>
+
+                <div class="social-section">
+                    <h3>Suivez-moi</h3>
+                    <div class="social-links">
+                        <a href="#" class="social-link">f</a>
+                        <a href="#" class="social-link">in</a>
+                        <a href="#" class="social-link">X</a>
+                        <a href="#" class="social-link">📱</a>
                     </div>
                 </div>
             </div>
-            
+
             <!-- Formulaire de contact -->
             <div class="contact-form">
                 <h2 style="margin-bottom: 1.5rem;">✉️ Envoyez-moi un message</h2>
-                
+
                 <form id="contactForm" onsubmit="return envoyerMessage(event)">
                     <div class="form-group">
                         <label>Nom complet *</label>
-                        <input type="text" id="nom" required>
+                        <input type="text" id="nom" placeholder="Votre nom" required>
                     </div>
-                    
+
                     <div class="form-group">
                         <label>Email *</label>
-                        <input type="email" id="email" required>
+                        <input type="email" id="email" placeholder="votre@email.com" required>
                     </div>
-                    
+
                     <div class="form-group">
                         <label>Sujet</label>
                         <select id="sujet">
@@ -285,50 +435,76 @@
                             <option>Autre</option>
                         </select>
                     </div>
-                    
+
                     <div class="form-group">
                         <label>Message *</label>
-                        <textarea id="message" required placeholder="Bonjour, je souhaiterais..."></textarea>
+                        <textarea id="message" placeholder="Bonjour, je souhaiterais..." required></textarea>
                     </div>
-                    
+
                     <button type="submit" class="btn-submit">Envoyer le message</button>
                 </form>
-                
-                <p style="text-align: center; margin-top: 1rem; color: #666; font-size: 0.9rem;">
-                    * Champs obligatoires
-                </p>
+            </div>
+        </div>
+
+        <!-- Section soutien -->
+        <div class="support-section">
+            <h2>💝 Soutenez RentaPro</h2>
+            <p>Ce site est 100% gratuit et le restera. Si mon travail vous aide, vous pouvez me soutenir par un petit don.</p>
+            <div class="support-buttons">
+                <a href="https://www.paypal.me/kevinhojp" target="_blank" class="btn-support btn-paypal">💳 Faire un don PayPal</a>
+                <a href="https://www.buymeacoffee.com/kevinhojp" target="_blank" class="btn-support btn-coffee">☕ Buy Me a Coffee</a>
             </div>
         </div>
     </div>
 
     <footer class="footer">
-        <p>© 2026 RentaPro - Tous droits réservés</p>
-        <p style="margin-top: 1rem; color: #999; font-size: 0.9rem;">
-            📧 mukendikevin668@gmail.com | 📞 +243 974 843 721
-        </p>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>RentaPro</h4>
+                <a href="/">Accueil</a>
+                <a href="/pages/simulateur.html">Simulateur</a>
+                <a href="/pages/guide.html">Guide</a>
+                <a href="/pages/contact.html">Contact</a>
+            </div>
+            <div class="footer-section">
+                <h4>Ressources</h4>
+                <a href="#">Blog</a>
+                <a href="#">FAQ</a>
+                <a href="#">Calculateurs</a>
+            </div>
+            <div class="footer-section">
+                <h4>Légal</h4>
+                <a href="#">Mentions légales</a>
+                <a href="#">CGU</a>
+                <a href="#">Politique de confidentialité</a>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p style="color: #94a3b8;">📧 mukendikevin668@gmail.com</p>
+                <p style="color: #94a3b8;">📞 +243 974 843 721</p>
+            </div>
+        </div>
+        <div class="copyright">
+            © 2026 RentaPro - Tous droits réservés
+        </div>
     </footer>
 
     <script>
         function envoyerMessage(event) {
             event.preventDefault();
-            
-            // Ici on pourrait envoyer vers un vrai backend
-            // Pour l'instant, on simule l'envoi
-            
-            // Afficher l'alerte de succès
+
+            // Simulation d'envoi
             document.getElementById('successAlert').style.display = 'block';
-            
-            // Réinitialiser le formulaire
             document.getElementById('contactForm').reset();
-            
-            // Faire défiler jusqu'à l'alerte
+
+            // Scroll vers l'alerte
             document.getElementById('successAlert').scrollIntoView({ behavior: 'smooth' });
-            
-            // Cacher l'alerte après 5 secondes
+
+            // Cacher après 5 secondes
             setTimeout(() => {
                 document.getElementById('successAlert').style.display = 'none';
             }, 5000);
-            
+
             return false;
         }
     </script>
