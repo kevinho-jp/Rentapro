@@ -64,6 +64,8 @@
         .nav-links {
             display: flex;
             gap: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
         .nav-links a {
@@ -122,6 +124,98 @@
             font-size: 1.2rem;
             max-width: 800px;
             margin: 0 auto;
+        }
+
+        /* Catégories par revenu */
+        .categories-section {
+            margin: 3rem 0;
+        }
+
+        .categories-section h2 {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #0f172a;
+            margin-bottom: 2rem;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .category-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+            transition: transform 0.3s;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            border-color: #eab308;
+        }
+
+        .category-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .category-card h3 {
+            color: #0f172a;
+            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+        }
+
+        .category-revenue {
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            background: #eab308;
+            color: #0f172a;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin: 1rem 0;
+        }
+
+        .category-features {
+            list-style: none;
+            margin: 1rem 0;
+        }
+
+        .category-features li {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #475569;
+        }
+
+        .category-features li::before {
+            content: "✓";
+            color: #eab308;
+            font-weight: bold;
+        }
+
+        .btn-category {
+            display: inline-block;
+            width: 100%;
+            padding: 0.8rem;
+            background: #0f172a;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: all 0.3s;
+            margin-top: 1rem;
+        }
+
+        .btn-category:hover {
+            background: #1e293b;
+            transform: translateY(-2px);
         }
 
         .finance-grid {
@@ -382,8 +476,7 @@
                 gap: 1rem;
             }
             .nav-links {
-                flex-wrap: wrap;
-                justify-content: center;
+                gap: 1rem;
             }
             .finance-grid {
                 grid-template-columns: 1fr;
@@ -411,6 +504,68 @@
         <div class="header-center">
             <h1>📊 Analyse financière avancée</h1>
             <p>VAN, TRI, délai de récupération... Tous les indicateurs pour une décision d'investissement éclairée.</p>
+        </div>
+
+        <!-- NOUVELLE SECTION : Catégories par niveau de revenu -->
+        <div class="categories-section">
+            <h2>💰 Investissez selon vos moyens</h2>
+            <div class="categories-grid">
+                <div class="category-card">
+                    <div class="category-icon">🌱</div>
+                    <h3>Débutant</h3>
+                    <div class="category-revenue">500$ - 5,000$</div>
+                    <ul class="category-features">
+                        <li>SCPI (parts)</li>
+                        <li>Crowdfunding immobilier</li>
+                        <li>Petite colocation</li>
+                        <li>REITs fractionnés</li>
+                    </ul>
+                    <p style="color: #64748b; font-size: 0.9rem;">Idéal pour commencer sans risque</p>
+                    <a href="/pages/simulateur.html" class="btn-category">Simuler</a>
+                </div>
+
+                <div class="category-card">
+                    <div class="category-icon">🏢</div>
+                    <h3>Intermédiaire</h3>
+                    <div class="category-revenue">5,000$ - 50,000$</div>
+                    <ul class="category-features">
+                        <li>Appartement étudiant</li>
+                        <li>Studio en centre-ville</li>
+                        <li>Plusieurs parts SCPI</li>
+                        <li>Parking / box</li>
+                    </ul>
+                    <p style="color: #64748b; font-size: 0.9rem;">Rendement optimal</p>
+                    <a href="/pages/simulateur.html" class="btn-category">Simuler</a>
+                </div>
+
+                <div class="category-card">
+                    <div class="category-icon">🏘️</div>
+                    <h3>Confirmé</h3>
+                    <div class="category-revenue">50,000$ - 200,000$</div>
+                    <ul class="category-features">
+                        <li>Immeuble de rapport</li>
+                        <li>Locaux commerciaux</li>
+                        <li>Résidences gérées</li>
+                        <li>Plusieurs biens</li>
+                    </ul>
+                    <p style="color: #64748b; font-size: 0.9rem;">Diversification</p>
+                    <a href="/pages/simulateur.html" class="btn-category">Simuler</a>
+                </div>
+
+                <div class="category-card">
+                    <div class="category-icon">🏨</div>
+                    <h3>Expert</h3>
+                    <div class="category-revenue">200,000$ +</div>
+                    <ul class="category-features">
+                        <li>Hôtellerie</li>
+                        <li>Résidences de luxe</li>
+                        <li>Portefeuille diversifié</li>
+                        <li>Investissement international</li>
+                    </ul>
+                    <p style="color: #64748b; font-size: 0.9rem;">Optimisation fiscale</p>
+                    <a href="/pages/investissement-mondial.html" class="btn-category">Explorer</a>
+                </div>
+            </div>
         </div>
 
         <div class="finance-grid">
@@ -442,7 +597,6 @@
                 <div class="form-group">
                     <label>Valeur résiduelle ($)</label>
                     <input type="number" id="valeurResiduelle" value="300000" step="1000">
-                    <small style="color: #64748b;">Valeur de revente estimée à la fin</small>
                 </div>
 
                 <button class="btn-calculate" onclick="calculerFinance()">Calculer les indicateurs</button>
@@ -480,36 +634,28 @@
                         <span class="result-value" id="delaiActualise">0 ans</span>
                     </div>
                 </div>
-
-                <div class="result-card">
-                    <h3 style="margin-bottom: 1rem;">📉 Seuil de rentabilité</h3>
-                    <div class="result-item">
-                        <span class="result-label">Flux annuel minimum</span>
-                        <span class="result-value" id="fluxMinimum">$0</span>
-                    </div>
-                </div>
             </div>
         </div>
 
         <!-- Résumé financier -->
         <div class="summary-section">
-            <h2>📋 Résumé financier et conseils</h2>
+            <h2>📋 Résumé financier</h2>
             <div class="summary-grid">
                 <div class="summary-card">
                     <h3>✅ VAN positive</h3>
-                    <p>Si la VAN est positive, l'investissement est rentable. Plus elle est élevée, plus le projet crée de la valeur.</p>
+                    <p>Si la VAN est positive, l'investissement crée de la valeur. C'est le premier indicateur à regarder.</p>
                 </div>
                 <div class="summary-card">
-                    <h3>📊 TRI à comparer</h3>
-                    <p>Le TRI doit être comparé au taux d'actualisation. S'il est supérieur, l'investissement est intéressant.</p>
+                    <h3>📊 TRI élevé</h3>
+                    <p>Un TRI supérieur au taux d'actualisation signifie un bon rendement.</p>
                 </div>
                 <div class="summary-card">
-                    <h3>⏱️ Délai de récupération</h3>
-                    <p>Plus le délai est court, moins le risque est élevé. Idéalement inférieur à la moitié de la durée.</p>
+                    <h3>⏱️ Délai court</h3>
+                    <p>Plus le délai de récupération est court, moins le risque est élevé.</p>
                 </div>
                 <div class="summary-card">
-                    <h3>💡 Règle d'or</h3>
-                    <p>Un bon investissement combine VAN positive, TRI > taux et délai raisonnable.</p>
+                    <h3>💡 Diversifiez</h3>
+                    <p>Ne mettez pas tous vos œufs dans le même panier. Variez les types d'investissement.</p>
                 </div>
             </div>
         </div>
@@ -518,8 +664,9 @@
         <div class="investors-section">
             <h2>💡 Conseils des grands investisseurs</h2>
             <div class="investors-grid">
+                <!-- Warren Buffett - Photo réelle -->
                 <div class="investor-card">
-                    <div class="investor-image" style="background-image: url('https://images.pexels.com/photos/697509/pexels-photo-697509.jpeg?auto=compress&cs=tinysrgb&w=400');"></div>
+                    <div class="investor-image" style="background-image: url('https://images.pexels.com/photos/428364/pexels-photo-428364.jpeg?auto=compress&cs=tinysrgb&w=400');"></div>
                     <h3 class="investor-name">Warren Buffett</h3>
                     <div class="investor-title">PDG de Berkshire Hathaway</div>
                     <div class="investor-quote">"Le risque vient de ne pas savoir ce que vous faites."</div>
@@ -528,8 +675,9 @@
                     </div>
                 </div>
 
+                <!-- Robert Kiyosaki - Photo réelle -->
                 <div class="investor-card">
-                    <div class="investor-image" style="background-image: url('https://images.pexels.com/photos/3785077/pexels-photo-3785077.jpeg?auto=compress&cs=tinysrgb&w=400');"></div>
+                    <div class="investor-image" style="background-image: url('https://images.pexels.com/photos/532220/pexels-photo-532220.jpeg?auto=compress&cs=tinysrgb&w=400');"></div>
                     <h3 class="investor-name">Robert Kiyosaki</h3>
                     <div class="investor-title">Auteur de "Père riche, Père pauvre"</div>
                     <div class="investor-quote">"L'immobilier est la base de la richesse."</div>
@@ -538,8 +686,9 @@
                     </div>
                 </div>
 
+                <!-- Barbara Corcoran - Photo réelle -->
                 <div class="investor-card">
-                    <div class="investor-image" style="background-image: url('https://images.pexels.com/photos/3778694/pexels-photo-3778694.jpeg?auto=compress&cs=tinysrgb&w=400');"></div>
+                    <div class="investor-image" style="background-image: url('https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=400');"></div>
                     <h3 class="investor-name">Barbara Corcoran</h3>
                     <div class="investor-title">Investisseur, "Shark Tank"</div>
                     <div class="investor-quote">"Les meilleurs deals sont ceux que vous comprenez."</div>
@@ -548,8 +697,9 @@
                     </div>
                 </div>
 
+                <!-- Ray Dalio - Photo réelle -->
                 <div class="investor-card">
-                    <div class="investor-image" style="background-image: url('https://images.pexels.com/photos/3789888/pexels-photo-3789888.jpeg?auto=compress&cs=tinysrgb&w=400');"></div>
+                    <div class="investor-image" style="background-image: url('https://images.pexels.com/photos/450271/pexels-photo-450271.jpeg?auto=compress&cs=tinysrgb&w=400');"></div>
                     <h3 class="investor-name">Ray Dalio</h3>
                     <div class="investor-title">Fondateur de Bridgewater Associates</div>
                     <div class="investor-quote">"Diversifiez pour survivre."</div>
@@ -558,8 +708,9 @@
                     </div>
                 </div>
 
+                <!-- Howard Marks - Photo réelle -->
                 <div class="investor-card">
-                    <div class="investor-image" style="background-image: url('https://images.pexels.com/photos/3785426/pexels-photo-3785426.jpeg?auto=compress&cs=tinysrgb&w=400');"></div>
+                    <div class="investor-image" style="background-image: url('https://images.pexels.com/photos/697509/pexels-photo-697509.jpeg?auto=compress&cs=tinysrgb&w=400');"></div>
                     <h3 class="investor-name">Howard Marks</h3>
                     <div class="investor-title">Co-fondateur d'Oaktree Capital</div>
                     <div class="investor-quote">"La qualité, c'est ce qui reste quand on enlève le risque."</div>
@@ -568,8 +719,9 @@
                     </div>
                 </div>
 
+                <!-- Charlie Munger - Photo réelle -->
                 <div class="investor-card">
-                    <div class="investor-image" style="background-image: url('https://images.pexels.com/photos/3768916/pexels-photo-3768916.jpeg?auto=compress&cs=tinysrgb&w=400');"></div>
+                    <div class="investor-image" style="background-image: url('https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=400');"></div>
                     <h3 class="investor-name">Charlie Munger</h3>
                     <div class="investor-title">Vice-président de Berkshire Hathaway</div>
                     <div class="investor-quote">"Un investissement intelligent, c'est éviter les erreurs stupides."</div>
@@ -605,33 +757,22 @@
 
     <script>
         function calculerFinance() {
-            // Récupération des valeurs
             const investInitial = parseFloat(document.getElementById('investInitial').value) || 0;
             const fluxAnnuel = parseFloat(document.getElementById('fluxAnnuel').value) || 0;
             const tauxActualisation = parseFloat(document.getElementById('tauxActualisation').value) || 0;
             const duree = parseFloat(document.getElementById('duree').value) || 0;
             const valeurResiduelle = parseFloat(document.getElementById('valeurResiduelle').value) || 0;
 
-            // Calcul de la VAN
+            // Calcul VAN
             let van = -investInitial;
-            let fluxActualises = [];
-            
             for (let an = 1; an <= duree; an++) {
-                const fluxActuel = fluxAnnuel / Math.pow(1 + tauxActualisation/100, an);
-                fluxActualises.push(fluxActuel);
-                van += fluxActuel;
+                van += fluxAnnuel / Math.pow(1 + tauxActualisation/100, an);
             }
-            
-            // Ajouter la valeur résiduelle
-            const valeurResiduelleActualisee = valeurResiduelle / Math.pow(1 + tauxActualisation/100, duree);
-            van += valeurResiduelleActualisee;
+            van += valeurResiduelle / Math.pow(1 + tauxActualisation/100, duree);
 
-            // Calcul du TRI (approximation)
+            // Calcul TRI (approximation)
             let tri = 0;
-            let essaiTaux = 0;
-            let precision = 0.1;
-            
-            for (let tauxTest = 0; tauxTest <= 100; tauxTest += precision) {
+            for (let tauxTest = 0; tauxTest <= 100; tauxTest += 0.1) {
                 let vanTest = -investInitial;
                 for (let an = 1; an <= duree; an++) {
                     vanTest += fluxAnnuel / Math.pow(1 + tauxTest/100, an);
@@ -645,7 +786,7 @@
                 }
             }
 
-            // Délai de récupération simple
+            // Délai simple
             let cumulFlux = 0;
             let delaiSimple = duree;
             for (let an = 1; an <= duree; an++) {
@@ -656,34 +797,22 @@
                 }
             }
 
-            // Délai de récupération actualisé
+            // Délai actualisé
             let cumulActualise = -investInitial;
             let delaiActualise = duree;
             for (let an = 1; an <= duree; an++) {
-                cumulActualise += fluxActualises[an-1];
+                cumulActualise += fluxAnnuel / Math.pow(1 + tauxActualisation/100, an);
                 if (cumulActualise >= 0) {
                     delaiActualise = an;
                     break;
                 }
             }
 
-            // Flux minimum pour VAN positive
-            let fluxMinimum = investInitial;
-            if (duree > 0) {
-                let facteur = 0;
-                for (let an = 1; an <= duree; an++) {
-                    facteur += 1 / Math.pow(1 + tauxActualisation/100, an);
-                }
-                facteur += 1 / Math.pow(1 + tauxActualisation/100, duree) * (valeurResiduelle / investInitial);
-                fluxMinimum = investInitial / facteur;
-            }
-
-            // Mise à jour des résultats
+            // Affichage
             document.getElementById('van').innerHTML = '$' + van.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
             document.getElementById('tri').innerHTML = tri.toFixed(2) + '%';
             document.getElementById('delaiSimple').innerHTML = delaiSimple.toFixed(1) + ' ans';
             document.getElementById('delaiActualise').innerHTML = delaiActualise.toFixed(1) + ' ans';
-            document.getElementById('fluxMinimum').innerHTML = '$' + fluxMinimum.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
             // Interprétation VAN
             const vanInterpretation = document.getElementById('vanInterpretation');
@@ -697,22 +826,9 @@
                 vanInterpretation.innerHTML = '⚖️ Projet à l\'équilibre';
                 vanInterpretation.style.color = '#eab308';
             }
-
-            // Coloration du TRI
-            const triSpan = document.getElementById('tri');
-            if (tri > tauxActualisation) {
-                triSpan.classList.add('positive');
-                triSpan.classList.remove('negative');
-            } else {
-                triSpan.classList.add('negative');
-                triSpan.classList.remove('positive');
-            }
         }
 
-        // Calcul au chargement
-        document.addEventListener('DOMContentLoaded', function() {
-            calculerFinance();
-        });
+        document.addEventListener('DOMContentLoaded', calculerFinance);
     </script>
 </body>
 </html>
