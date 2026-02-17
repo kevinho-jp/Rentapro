@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analyse financière avancée - RentaPro</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            background: #f8fafc;
+            color: #1e293b;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .navbar {
+            background: white;
+            padding: 1rem 5%;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .logo-icon {
+            font-size: 2rem;
+            background: linear-gradient(135deg, #0f172a 0%, #334155 100%);
+            color: #eab308;
+            width: 50px;
+            height: 50px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .logo-text {
+            background: linear-gradient(135deg, #0f172a 0%, #334155 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #475569;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 0.5rem 0;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #0f172a;
+        }
+
+        .nav-links a.active {
+            color: #0f172a;
+            font-weight: 600;
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: #eab308;
+            border-radius: 3px 3px 0 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            width: 100%;
+            flex: 1;
+        }
+
+        .header-center {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            border-radius: 40px;
+            color: white;
+        }
+
+        .header-center h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 1rem;
+        }
+
+        .header-center p {
+            color: #cbd5e1;
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .finance-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .card {
+            background: white;
+            border-radius: 30px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border: 1px solid rgba(0,0,0,0.03);
+        }
+
+        .card h2 {
+            color: #0f172a;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .input-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            color: #334155;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #eab308;
+            box-shadow: 0 0 0 3px rgba(234,179,8,0.1);
+        }
+
+        .btn-calculate {
+            background: #0f172a;
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s;
+        }
+
+        .btn-calculate:hover {
+            background: #1e293b;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .result-card {
+            background: #f8fafc;
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .result-item:last-child {
+            border-bottom: none;
+        }
+
+        .result-label {
+            color: #64748b;
+        }
+
+        .result-value {
+            font-weight: 700;
+            color: #0f172a;
+            font-size: 1.1rem;
+        }
+
+        .positive {
+            color: #059669;
+        }
+
+        .negative {
+            color: #dc2626;
+        }
+
+        .summary-section {
+            background: white;
+            border-radius: 30px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .summary-section h2 {
+            color: #0f172a;
+            margin-bottom: 1.5rem;
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .summary-card {
+            background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+            padding: 1.5rem;
+            border-radius: 20px;
+            border-left: 4px solid #eab308;
+        }
+
+        .summary-card h3 {
+            color: #0f172a;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .summary-card p {
+            color: #64748b;
+            line-height: 1.6;
+        }
+
+        .investors-section {
+            margin: 4rem 0;
+        }
+
+        .investors-section h2 {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #0f172a;
+            margin-bottom: 2rem;
+        }
+
+        .investors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .investor-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .investor-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background-size: cover;
+            background-position: center;
+            margin-bottom: 1.5rem;
+            border: 4px solid #eab308;
+        }
+
+        .investor-name {
+            font-size: 1.5rem;
+            color: #0f172a;
+            margin-bottom: 0.3rem;
+        }
+
+        .investor-title {
+            color: #64748b;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .investor-quote {
+            color: #334155;
+            font-style: italic;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .investor-advice {
+            background: #f8fafc;
+            padding: 1rem;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            color: #475569;
+            width: 100%;
+            text-align: left;
+        }
+
+        .footer {
+            background: #0f172a;
+            color: white;
+            padding: 4rem 5% 2rem;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+        }
+
+        .footer-section h4 {
+            color: #eab308;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-section a {
+            color: #94a3b8;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-section a:hover {
+            color: #eab308;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid #334155;
+            color: #64748b;
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .finance-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <div class="logo-icon">🏠</div>
+            <span class="logo-text">RentaPro</span>
+        </div>
+        <div class="nav-links">
+            <a href="/">Accueil</a>
+            <a href="/pages/simulateur.html">Simulateur</a>
+            <a href="/pages/guide.html">Guide</a>
+            <a href="/pages/investissement-mondial.html">🌍 Monde</a>
+            <a href="/pages/analyse-financiere.html" class="active">📊 Finance</a>
+            <a href="/pages/contact.html">Contact</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="header-center">
+            <h1>📊 Analyse financière avancée</h1>
+            <p>VAN, TRI, délai de récupération... Tous les indicateurs pour une décision d'investissement éclairée.</p>
+        </div>
+
+        <div class="finance-grid">
+            <!-- Formulaire -->
+            <div class="card">
+                <h2>💰 Paramètres d'investissement</h2>
+                
+                <div class="form-group">
+                    <label>Investissement initial ($)</label>
+                    <input type="number" id="investInitial" value="250000" step="1000">
+                </div>
+
+                <div class="form-group">
+                    <label>Flux de trésorerie annuel ($)</label>
+                    <input type="number" id="fluxAnnuel" value="15000" step="500">
+                </div>
+
+                <div class="input-group">
+                    <div class="form-group">
+                        <label>Taux d'actualisation (%)</label>
+                        <input type="number" id="tauxActualisation" value="5" step="0.1">
+                    </div>
+                    <div class="form-group">
+                        <label>Durée (années)</label>
+                        <input type="number" id="duree" value="10" min="1" max="30">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Valeur résiduelle ($)</label>
+                    <input type="number" id="valeurResiduelle" value="300000" step="1000">
+                    <small style="color: #64748b;">Valeur de revente estimée à la fin</small>
+                </div>
+
+                <button class="btn-calculate" onclick="calculerFinance()">Calculer les indicateurs</button>
+            </div>
+
+            <!-- Résultats -->
+            <div class="card">
+                <h2>📈 Indicateurs financiers</h2>
+                
+                <div class="result-card">
+                    <h3 style="margin-bottom: 1rem;">💰 Valeur Actuelle Nette (VAN)</h3>
+                    <div class="result-item">
+                        <span class="result-label">VAN</span>
+                        <span class="result-value" id="van">$0</span>
+                    </div>
+                    <div style="margin-top: 0.5rem; font-size: 0.9rem; color: #64748b;" id="vanInterpretation"></div>
+                </div>
+
+                <div class="result-card">
+                    <h3 style="margin-bottom: 1rem;">📊 Taux de Rendement Interne (TRI)</h3>
+                    <div class="result-item">
+                        <span class="result-label">TRI</span>
+                        <span class="result-value" id="tri">0%</span>
+                    </div>
+                </div>
+
+                <div class="result-card">
+                    <h3 style="margin-bottom: 1rem;">⏱️ Délais de récupération</h3>
+                    <div class="result-item">
+                        <span class="result-label">Délai simple</span>
+                        <span class="result-value" id="delaiSimple">0 ans</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Délai actualisé</span>
+                        <span class="result-value" id="delaiActualise">0 ans</span>
+                    </div>
+                </div>
+
+                <div class="result-card">
+                    <h3 style="margin-bottom: 1rem;">📉 Seuil de rentabilité</h3>
+                    <div class="result-item">
+                        <span class="result-label">Flux annuel minimum</span>
+                        <span class="result-value" id="fluxMinimum">$0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Résumé financier -->
+        <div class="summary-section">
+            <h2>📋 Résumé financier et conseils</h2>
+            <div class="summary-grid">
+                <div class="summary-card">
+                    <h3>✅ VAN positive</h3>
+                    <p>Si la VAN est positive, l'investissement est rentable. Plus elle est élevée, plus le projet crée de la valeur.</p>
+                </div>
+                <div class="summary-card">
+                    <h3>📊 TRI à comparer</h3>
+                    <p>Le TRI doit être comparé au taux d'actualisation. S'il est supérieur, l'investissement est intéressant.</p>
+                </div>
+                <div class="summary-card">
+                    <h3>⏱️ Délai de récupération</h3>
+                    <p>Plus le délai est court, moins le risque est élevé. Idéalement inférieur à la moitié de la durée.</p>
+                </div>
+                <div class="summary-card">
+                    <h3>💡 Règle d'or</h3>
+                    <p>Un bon investissement combine VAN positive, TRI > taux et délai raisonnable.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Investisseurs avec vraies photos -->
+        <div class="investors-section">
+            <h2>💡 Conseils des grands investisseurs</h2>
+            <div class="investors-grid">
+                <div class="investor-card">
+                    <div class="investor-image" style="background-image: url('https://images.pexels.com/photos/697509/pexels-photo-697509.jpeg?auto=compress&cs=tinysrgb&w=400');"></div>
+                    <h3 class="investor-name">Warren Buffett</h3>
+                    <div class="investor-title">PDG de Berkshire Hathaway</div>
+                    <div class="investor-quote">"Le risque vient de ne pas savoir ce que vous faites."</div>
+                    <div class="investor-advice">
+                        <strong>Conseil :</strong> "Ne regardez pas la VAN sur 1 an, regardez sur 10 ans. L'immobilier est un investissement à long terme."
+                    </div>
+                </div>
+
+                <div class="investor-card">
+                    <div class="investor-image" style="background-image: url('https://images.pexels.com/photos/3785077/pexels-photo-3785077.jpeg?auto=compress&cs=tinysrgb&w=400');"></div>
+                    <h3 class="investor-name">Robert Kiyosaki</h3>
+                    <div class="investor-title">Auteur de "Père riche, Père pauvre"</div>
+                    <div class="investor-quote">"L'immobilier est la base de la richesse."</div>
+                    <div class="investor-advice">
+                        <strong>Conseil :</strong> "Calculez toujours le cash-flow, pas seulement la VAN. Un investissement qui paye chaque mois est plus sûr."
+                    </div>
+                </div>
+
+                <div class="investor-card">
+                    <div class="investor-image" style="background-image: url('https://images.pexels.com/photos/3778694/pexels-photo-3778694.jpeg?auto=compress&cs=tinysrgb&w=400');"></div>
+                    <h3 class="investor-name">Barbara Corcoran</h3>
+                    <div class="investor-title">Investisseur, "Shark Tank"</div>
+                    <div class="investor-quote">"Les meilleurs deals sont ceux que vous comprenez."</div>
+                    <div class="investor-advice">
+                        <strong>Conseil :</strong> "Un TRI de 15% est excellent, mais assurez-vous que vos calculs incluent tous les coûts cachés."
+                    </div>
+                </div>
+
+                <div class="investor-card">
+                    <div class="investor-image" style="background-image: url('https://images.pexels.com/photos/3789888/pexels-photo-3789888.jpeg?auto=compress&cs=tinysrgb&w=400');"></div>
+                    <h3 class="investor-name">Ray Dalio</h3>
+                    <div class="investor-title">Fondateur de Bridgewater Associates</div>
+                    <div class="investor-quote">"Diversifiez pour survivre."</div>
+                    <div class="investor-advice">
+                        <strong>Conseil :</strong> "Ne mettez pas tout votre capital dans un seul projet. La VAN est un outil, pas une garantie."
+                    </div>
+                </div>
+
+                <div class="investor-card">
+                    <div class="investor-image" style="background-image: url('https://images.pexels.com/photos/3785426/pexels-photo-3785426.jpeg?auto=compress&cs=tinysrgb&w=400');"></div>
+                    <h3 class="investor-name">Howard Marks</h3>
+                    <div class="investor-title">Co-fondateur d'Oaktree Capital</div>
+                    <div class="investor-quote">"La qualité, c'est ce qui reste quand on enlève le risque."</div>
+                    <div class="investor-advice">
+                        <strong>Conseil :</strong> "Un délai de récupération court est plus important qu'une VAN élevée dans un marché incertain."
+                    </div>
+                </div>
+
+                <div class="investor-card">
+                    <div class="investor-image" style="background-image: url('https://images.pexels.com/photos/3768916/pexels-photo-3768916.jpeg?auto=compress&cs=tinysrgb&w=400');"></div>
+                    <h3 class="investor-name">Charlie Munger</h3>
+                    <div class="investor-title">Vice-président de Berkshire Hathaway</div>
+                    <div class="investor-quote">"Un investissement intelligent, c'est éviter les erreurs stupides."</div>
+                    <div class="investor-advice">
+                        <strong>Conseil :</strong> "Ne vous fiez pas qu'au TRI. Regardez la cohérence des flux sur toute la période."
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>RentaPro</h4>
+                <a href="/">Accueil</a>
+                <a href="/pages/simulateur.html">Simulateur</a>
+                <a href="/pages/guide.html">Guide</a>
+                <a href="/pages/investissement-mondial.html">🌍 Monde</a>
+                <a href="/pages/analyse-financiere.html">📊 Finance</a>
+                <a href="/pages/contact.html">Contact</a>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p style="color: #94a3b8;">📧 rubenmukend287@gmail.com</p>
+                <p style="color: #94a3b8;">📞 +243 974 843 721</p>
+            </div>
+        </div>
+        <div class="copyright">
+            © 2026 RentaPro - Analyse financière avancée pour investisseurs intelligents
+        </div>
+    </footer>
+
+    <script>
+        function calculerFinance() {
+            // Récupération des valeurs
+            const investInitial = parseFloat(document.getElementById('investInitial').value) || 0;
+            const fluxAnnuel = parseFloat(document.getElementById('fluxAnnuel').value) || 0;
+            const tauxActualisation = parseFloat(document.getElementById('tauxActualisation').value) || 0;
+            const duree = parseFloat(document.getElementById('duree').value) || 0;
+            const valeurResiduelle = parseFloat(document.getElementById('valeurResiduelle').value) || 0;
+
+            // Calcul de la VAN
+            let van = -investInitial;
+            let fluxActualises = [];
+            
+            for (let an = 1; an <= duree; an++) {
+                const fluxActuel = fluxAnnuel / Math.pow(1 + tauxActualisation/100, an);
+                fluxActualises.push(fluxActuel);
+                van += fluxActuel;
+            }
+            
+            // Ajouter la valeur résiduelle
+            const valeurResiduelleActualisee = valeurResiduelle / Math.pow(1 + tauxActualisation/100, duree);
+            van += valeurResiduelleActualisee;
+
+            // Calcul du TRI (approximation)
+            let tri = 0;
+            let essaiTaux = 0;
+            let precision = 0.1;
+            
+            for (let tauxTest = 0; tauxTest <= 100; tauxTest += precision) {
+                let vanTest = -investInitial;
+                for (let an = 1; an <= duree; an++) {
+                    vanTest += fluxAnnuel / Math.pow(1 + tauxTest/100, an);
+                }
+                vanTest += valeurResiduelle / Math.pow(1 + tauxTest/100, duree);
+                
+                if (vanTest >= 0) {
+                    tri = tauxTest;
+                } else {
+                    break;
+                }
+            }
+
+            // Délai de récupération simple
+            let cumulFlux = 0;
+            let delaiSimple = duree;
+            for (let an = 1; an <= duree; an++) {
+                cumulFlux += fluxAnnuel;
+                if (cumulFlux >= investInitial) {
+                    delaiSimple = an + (investInitial - (cumulFlux - fluxAnnuel)) / fluxAnnuel;
+                    break;
+                }
+            }
+
+            // Délai de récupération actualisé
+            let cumulActualise = -investInitial;
+            let delaiActualise = duree;
+            for (let an = 1; an <= duree; an++) {
+                cumulActualise += fluxActualises[an-1];
+                if (cumulActualise >= 0) {
+                    delaiActualise = an;
+                    break;
+                }
+            }
+
+            // Flux minimum pour VAN positive
+            let fluxMinimum = investInitial;
+            if (duree > 0) {
+                let facteur = 0;
+                for (let an = 1; an <= duree; an++) {
+                    facteur += 1 / Math.pow(1 + tauxActualisation/100, an);
+                }
+                facteur += 1 / Math.pow(1 + tauxActualisation/100, duree) * (valeurResiduelle / investInitial);
+                fluxMinimum = investInitial / facteur;
+            }
+
+            // Mise à jour des résultats
+            document.getElementById('van').innerHTML = '$' + van.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+            document.getElementById('tri').innerHTML = tri.toFixed(2) + '%';
+            document.getElementById('delaiSimple').innerHTML = delaiSimple.toFixed(1) + ' ans';
+            document.getElementById('delaiActualise').innerHTML = delaiActualise.toFixed(1) + ' ans';
+            document.getElementById('fluxMinimum').innerHTML = '$' + fluxMinimum.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+            // Interprétation VAN
+            const vanInterpretation = document.getElementById('vanInterpretation');
+            if (van > 0) {
+                vanInterpretation.innerHTML = '✅ Projet rentable (VAN positive)';
+                vanInterpretation.style.color = '#059669';
+            } else if (van < 0) {
+                vanInterpretation.innerHTML = '❌ Projet non rentable (VAN négative)';
+                vanInterpretation.style.color = '#dc2626';
+            } else {
+                vanInterpretation.innerHTML = '⚖️ Projet à l\'équilibre';
+                vanInterpretation.style.color = '#eab308';
+            }
+
+            // Coloration du TRI
+            const triSpan = document.getElementById('tri');
+            if (tri > tauxActualisation) {
+                triSpan.classList.add('positive');
+                triSpan.classList.remove('negative');
+            } else {
+                triSpan.classList.add('negative');
+                triSpan.classList.remove('positive');
+            }
+        }
+
+        // Calcul au chargement
+        document.addEventListener('DOMContentLoaded', function() {
+            calculerFinance();
+        });
+    </script>
+</body>
+</html>

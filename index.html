@@ -18,7 +18,6 @@
             line-height: 1.5;
         }
 
-        /* Navigation */
         .navbar {
             background: white;
             padding: 1rem 5%;
@@ -63,6 +62,8 @@
         .nav-links {
             display: flex;
             gap: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
         .nav-links a {
@@ -94,7 +95,6 @@
             border-radius: 3px 3px 0 0;
         }
 
-        /* Hero Section */
         .hero {
             min-height: 600px;
             background: linear-gradient(rgba(15,23,42,0.7), rgba(15,23,42,0.8)), url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1973&q=80');
@@ -181,7 +181,6 @@
             transform: translateY(-3px);
         }
 
-        /* Stats Section */
         .stats {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -213,7 +212,6 @@
             font-size: 1.1rem;
         }
 
-        /* Features Section */
         .features {
             padding: 5rem 5%;
             max-width: 1200px;
@@ -289,7 +287,6 @@
             gap: 0.8rem;
         }
 
-        /* CTA Section */
         .cta {
             background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
             padding: 5rem 5%;
@@ -352,7 +349,6 @@
             transform: translateY(-3px);
         }
 
-        /* Newsletter */
         .newsletter {
             padding: 4rem 5%;
             background: white;
@@ -412,7 +408,6 @@
             background: #1e293b;
         }
 
-        /* Footer */
         .footer {
             background: #0f172a;
             color: white;
@@ -467,26 +462,19 @@
                 flex-direction: column;
                 gap: 1rem;
             }
-
             .nav-links {
-                flex-wrap: wrap;
-                justify-content: center;
                 gap: 1rem;
             }
-
             .stats {
                 margin-top: -40px;
             }
-
             .hero-buttons {
                 flex-direction: column;
                 align-items: center;
             }
-
             .btn {
                 width: 100%;
                 max-width: 300px;
-                text-align: center;
             }
         }
     </style>
@@ -502,6 +490,7 @@
             <a href="/pages/simulateur.html">Simulateur</a>
             <a href="/pages/guide.html">Guide</a>
             <a href="/pages/investissement-mondial.html">🌍 Monde</a>
+            <a href="/pages/analyse-financiere.html">📊 Finance</a>
             <a href="/pages/contact.html">Contact</a>
         </div>
     </nav>
@@ -531,8 +520,8 @@
             <div class="stat-label">Continents analysés</div>
         </div>
         <div class="stat-item">
-            <div class="stat-number">24/7</div>
-            <div class="stat-label">Accessible</div>
+            <div class="stat-number">6</div>
+            <div class="stat-label">Indicateurs financiers</div>
         </div>
     </div>
 
@@ -554,28 +543,28 @@
                 <a href="/pages/investissement-mondial.html" class="feature-link">Explorer →</a>
             </div>
             <div class="feature-card">
+                <div class="feature-icon">📈</div>
+                <h3>Analyse financière</h3>
+                <p>VAN, TRI, délai de récupération... Tous les indicateurs pour une décision éclairée.</p>
+                <a href="/pages/analyse-financiere.html" class="feature-link">Analyser →</a>
+            </div>
+            <div class="feature-card">
                 <div class="feature-icon">📚</div>
                 <h3>Guide complet</h3>
                 <p>De la recherche du bien à la gestion locative, tout ce qu'il faut savoir pour réussir.</p>
                 <a href="/pages/guide.html" class="feature-link">Lire le guide →</a>
             </div>
             <div class="feature-card">
-                <div class="feature-icon">📈</div>
-                <h3>Version Premium</h3>
-                <p>Simulations illimitées, export PDF, comparaisons avancées. À partir de 2,99€/mois.</p>
-                <a href="/pages/simulateur.html#premium" class="feature-link">Voir les offres →</a>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🏢</div>
-                <h3>REITs et autres</h3>
-                <p>Explorez différentes façons d'investir sans achat direct.</p>
-                <a href="/pages/investissement-mondial.html#categories" class="feature-link">Découvrir →</a>
-            </div>
-            <div class="feature-card">
                 <div class="feature-icon">💡</div>
                 <h3>Conseils d'experts</h3>
                 <p>Les stratégies des plus grands investisseurs immobiliers.</p>
                 <a href="/pages/investissement-mondial.html#investors" class="feature-link">Apprendre →</a>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💰</div>
+                <h3>Version Premium</h3>
+                <p>Simulations illimitées, export PDF, comparaisons avancées. À partir de 2,99€/mois.</p>
+                <a href="/pages/simulateur.html#premium" class="feature-link">Voir les offres →</a>
             </div>
         </div>
     </section>
@@ -607,7 +596,8 @@
                 <a href="/">Accueil</a>
                 <a href="/pages/simulateur.html">Simulateur</a>
                 <a href="/pages/guide.html">Guide</a>
-                <a href="/pages/investissement-mondial.html">🌍 Investissement mondial</a>
+                <a href="/pages/investissement-mondial.html">🌍 Monde</a>
+                <a href="/pages/analyse-financiere.html">📊 Finance</a>
                 <a href="/pages/contact.html">Contact</a>
             </div>
             <div class="footer-section">
@@ -635,14 +625,5 @@
             © 2026 RentaPro - Votre guide pour investir dans l'immobilier à travers le monde
         </div>
     </footer>
-
-    <script>
-        // Gestionnaire pour le formulaire newsletter
-        document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('✅ Merci de votre inscription ! Vous recevrez bientôt nos conseils.');
-            this.reset();
-        });
-    </script>
 </body>
 </html>
