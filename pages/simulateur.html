@@ -1,271 +1,903 @@
-<script>
-    // ============================================
-    // SYSTÈME DE PAIEMENT SÉCURISÉ
-    // ============================================
-    
-    // État initial
-    let simulationsRestantes = 3;
-    let isPremium = false;
-    let premiumExpiration = null;
-    
-    // Vérifier le statut premium depuis le serveur (simulé ici)
-    function checkPremiumStatus() {
-        const premiumData = localStorage.getItem('rentapro_premium');
-        if (premiumData) {
-            try {
-                const data = JSON.parse(premiumData);
-                // Vérifier si le premium est toujours valide
-                if (data.expiration && new Date(data.expiration) > new Date()) {
-                    isPremium = true;
-                    premiumExpiration = data.expiration;
-                } else {
-                    // Premium expiré
-                    localStorage.removeItem('rentapro_premium');
-                    isPremium = false;
-                }
-            } catch (e) {
-                // Données corrompues
-                localStorage.removeItem('rentapro_premium');
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulateur de rentabilité locative - RentaPro</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            background: #f8fafc;
+            color: #1e293b;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .navbar {
+            background: white;
+            padding: 1rem 5%;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .logo-icon {
+            font-size: 2rem;
+            background: linear-gradient(135deg, #0f172a 0%, #334155 100%);
+            color: #eab308;
+            width: 50px;
+            height: 50px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .logo-text {
+            background: linear-gradient(135deg, #0f172a 0%, #334155 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #475569;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 0.5rem 0;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #0f172a;
+        }
+
+        .nav-links a.active {
+            color: #0f172a;
+            font-weight: 600;
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: #eab308;
+            border-radius: 3px 3px 0 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            width: 100%;
+            flex: 1;
+        }
+
+        .header-center {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: clamp(2rem, 5vw, 2.8rem);
+            color: #0f172a;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            color: #64748b;
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .trial-counter {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            display: inline-block;
+            margin: 1rem auto;
+            font-weight: 600;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .trial-counter span {
+            color: #eab308;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 0.3rem;
+        }
+
+        .simulator-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .card {
+            background: white;
+            border-radius: 30px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border: 1px solid rgba(0,0,0,0.03);
+        }
+
+        .input-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            color: #334155;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #eab308;
+            box-shadow: 0 0 0 3px rgba(234,179,8,0.1);
+        }
+
+        .currency-input {
+            position: relative;
+        }
+
+        .currency-input:before {
+            content: "$";
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #64748b;
+            font-weight: 600;
+            z-index: 1;
+        }
+
+        .currency-input input {
+            padding-left: 2rem;
+        }
+
+        .result-section {
+            background: #f8fafc;
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .result-section h3 {
+            color: #0f172a;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .result-item:last-child {
+            border-bottom: none;
+        }
+
+        .result-label {
+            color: #64748b;
+        }
+
+        .result-value {
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        .positive {
+            color: #059669;
+        }
+
+        .negative {
+            color: #dc2626;
+        }
+
+        .highlight {
+            background: #fef9e7;
+            padding: 1rem;
+            border-radius: 12px;
+            border-left: 4px solid #eab308;
+        }
+
+        .btn {
+            padding: 1rem;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            width: 100%;
+        }
+
+        .btn-primary {
+            background: #0f172a;
+            color: white;
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            background: #1e293b;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .btn-save {
+            background: white;
+            color: #0f172a;
+            border: 2px solid #e2e8f0;
+            margin-top: 1rem;
+        }
+
+        .btn-save:hover:not(:disabled) {
+            border-color: #eab308;
+            background: #fef9e7;
+        }
+
+        .premium-banner {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            border-radius: 30px;
+            padding: 3rem;
+            margin: 2rem 0;
+            text-align: center;
+            color: white;
+        }
+
+        .premium-banner h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .premium-banner p {
+            color: #cbd5e1;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .premium-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .feature-item {
+            background: rgba(255,255,255,0.1);
+            padding: 1rem;
+            border-radius: 16px;
+        }
+
+        .premium-pricing {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .pricing-card {
+            background: white;
+            color: #0f172a;
+            padding: 2rem;
+            border-radius: 20px;
+            min-width: 250px;
+            text-align: center;
+        }
+
+        .pricing-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .pricing-card .price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #eab308;
+            margin-bottom: 1rem;
+        }
+
+        .btn-premium {
+            background: #eab308;
+            color: #0f172a;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+        }
+
+        .btn-premium:hover {
+            background: #fbbf24;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(234,179,8,0.3);
+        }
+
+        .footer {
+            background: #0f172a;
+            color: white;
+            padding: 3rem 5% 2rem;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+        }
+
+        .footer-section h4 {
+            color: #eab308;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-section a {
+            color: #94a3b8;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-section a:hover {
+            color: #eab308;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #334155;
+            color: #64748b;
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .simulator-grid {
+                grid-template-columns: 1fr;
+            }
+            .input-group {
+                grid-template-columns: 1fr;
+            }
+            .premium-pricing {
+                flex-direction: column;
             }
         }
-        
-        // Vérifier aussi les essais gratuits
-        const trialData = localStorage.getItem('rentapro_trials');
-        if (trialData) {
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <div class="logo-icon">🏠</div>
+            <span class="logo-text">RentaPro</span>
+        </div>
+        <div class="nav-links">
+            <a href="/">Accueil</a>
+            <a href="/pages/simulateur.html" class="active">Simulateur</a>
+            <a href="/pages/guide.html">Guide</a>
+            <a href="/pages/investissement-mondial.html">🌍 Monde</a>
+            <a href="/pages/contact.html">Contact</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="header-center">
+            <h1>📊 Simulateur de rentabilité locative</h1>
+            <p class="subtitle">Analysez vos investissements en quelques clics. 3 simulations gratuites par jour.</p>
+            <div class="trial-counter">
+                🔄 Simulations restantes aujourd'hui : <span id="trialCount">3</span>
+            </div>
+        </div>
+
+        <div class="simulator-grid">
+            <!-- Formulaire -->
+            <div class="card">
+                <h2 style="margin-bottom: 1.5rem;">💰 Paramètres du bien</h2>
+
+                <div class="input-group">
+                    <div class="form-group">
+                        <label>Prix d'achat ($)</label>
+                        <div class="currency-input">
+                            <input type="number" id="prixAchat" value="250000" step="1000">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Frais de notaire (%)</label>
+                        <input type="number" id="fraisNotaire" value="8" step="0.1">
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <div class="form-group">
+                        <label>Travaux ($)</label>
+                        <div class="currency-input">
+                            <input type="number" id="travaux" value="15000" step="1000">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Apport personnel ($)</label>
+                        <div class="currency-input">
+                            <input type="number" id="apport" value="50000" step="1000">
+                        </div>
+                    </div>
+                </div>
+
+                <h2 style="margin: 1.5rem 0 1rem;">🏦 Financement</h2>
+
+                <div class="input-group">
+                    <div class="form-group">
+                        <label>Taux d'intérêt (%)</label>
+                        <input type="number" id="taux" value="4.5" step="0.1">
+                    </div>
+                    <div class="form-group">
+                        <label>Durée (années)</label>
+                        <select id="duree">
+                            <option value="10">10 ans</option>
+                            <option value="15">15 ans</option>
+                            <option value="20" selected>20 ans</option>
+                            <option value="25">25 ans</option>
+                        </select>
+                    </div>
+                </div>
+
+                <h2 style="margin: 1.5rem 0 1rem;">🏘️ Revenus & charges</h2>
+
+                <div class="input-group">
+                    <div class="form-group">
+                        <label>Loyer mensuel ($)</label>
+                        <div class="currency-input">
+                            <input type="number" id="loyer" value="1200" step="50">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Charges mensuelles ($)</label>
+                        <div class="currency-input">
+                            <input type="number" id="charges" value="250" step="10">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <div class="form-group">
+                        <label>Taxe foncière annuelle ($)</label>
+                        <div class="currency-input">
+                            <input type="number" id="taxeFonciere" value="800" step="50">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Vacance locative (%)</label>
+                        <input type="number" id="vacance" value="5" step="0.5">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Taux d'imposition global (%)</label>
+                    <input type="number" id="tauxImposition" value="30" step="1">
+                </div>
+
+                <button class="btn btn-primary" id="calculBtn" onclick="calculer()">Calculer la rentabilité</button>
+                <button class="btn btn-save" id="saveBtn" onclick="sauvegarderSimulation()">💾 Sauvegarder cette simulation</button>
+            </div>
+
+            <!-- Résultats -->
+            <div class="card" id="results">
+                <h2 style="margin-bottom: 1.5rem;">📈 Résultats</h2>
+
+                <div class="result-section">
+                    <h3>💰 Coût total d'acquisition</h3>
+                    <div class="result-item">
+                        <span class="result-label">Prix + frais + travaux</span>
+                        <span class="result-value" id="totalAchat">$0</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Montant emprunté</span>
+                        <span class="result-value" id="montantEmprunte">$0</span>
+                    </div>
+                </div>
+
+                <div class="result-section">
+                    <h3>📊 Rentabilité</h3>
+                    <div class="result-item">
+                        <span class="result-label">Rendement brut</span>
+                        <span class="result-value" id="rendementBrut">0%</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Rendement net</span>
+                        <span class="result-value" id="rendementNet">0%</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Rendement net-net</span>
+                        <span class="result-value" id="rendementNetNet">0%</span>
+                    </div>
+                </div>
+
+                <div class="result-section">
+                    <h3>💵 Cash-flow</h3>
+                    <div class="result-item">
+                        <span class="result-label">Mensualité</span>
+                        <span class="result-value" id="mensualite">$0</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Revenus nets annuels</span>
+                        <span class="result-value" id="revenusNets">$0</span>
+                    </div>
+                    <div class="result-item highlight">
+                        <span class="result-label">Cash-flow mensuel</span>
+                        <span class="result-value" id="cashflow">$0</span>
+                    </div>
+                </div>
+
+                <div class="result-section">
+                    <h3>⏱️ Seuil de rentabilité</h3>
+                    <div class="result-item">
+                        <span class="result-label">Retour sur investissement</span>
+                        <span class="result-value" id="retourInvestissement">0 ans</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bannière Premium -->
+        <div class="premium-banner" id="premiumBanner">
+            <h2>✨ Passez à RentaPro Premium ✨</h2>
+            <p>Profitez de toutes les fonctionnalités sans limitation et boostez vos analyses immobilières</p>
+
+            <div class="premium-features">
+                <div class="feature-item">✅ Simulations illimitées</div>
+                <div class="feature-item">📊 Export PDF détaillé</div>
+                <div class="feature-item">🔄 Comparateur avancé</div>
+                <div class="feature-item">💾 Sauvegardes illimitées</div>
+            </div>
+
+            <div class="premium-pricing">
+                <div class="pricing-card">
+                    <h3>Mensuel</h3>
+                    <div class="price">2,99$ <small>/mois</small></div>
+                    <button class="btn-premium" onclick="acheterPremium('monthly')">Choisir</button>
+                </div>
+                <div class="pricing-card">
+                    <h3>Annuel</h3>
+                    <div class="price">29,99$ <small>/an</small></div>
+                    <button class="btn-premium" onclick="acheterPremium('yearly')">Choisir</button>
+                    <p style="margin-top: 0.5rem; color: #059669;">Économisez 16%</p>
+                </div>
+                <div class="pricing-card">
+                    <h3>À vie</h3>
+                    <div class="price">49,99$</div>
+                    <button class="btn-premium" onclick="acheterPremium('lifetime')">Choisir</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>RentaPro</h4>
+                <a href="/">Accueil</a>
+                <a href="/pages/simulateur.html">Simulateur</a>
+                <a href="/pages/guide.html">Guide</a>
+                <a href="/pages/investissement-mondial.html">🌍 Monde</a>
+                <a href="/pages/contact.html">Contact</a>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p style="color: #94a3b8;">📧 rubenmukend287@gmail.com</p>
+                <p style="color: #94a3b8;">📞 +243 974 843 721</p>
+            </div>
+        </div>
+        <div class="copyright">
+            © 2026 RentaPro - Tous droits réservés
+        </div>
+    </footer>
+
+    <script>
+        // ============================================
+        // SIMULATEUR DE RENTABILITÉ - VERSION CORRIGÉE
+        // ============================================
+
+        // État initial
+        let simulationsRestantes = 3;
+        let isPremium = false;
+        let premiumExpiration = null;
+
+        // Vérifier le statut premium
+        function checkPremiumStatus() {
             try {
-                const data = JSON.parse(trialData);
-                // Réinitialiser si c'est un nouveau jour
-                const lastReset = new Date(data.lastReset);
-                const today = new Date();
-                if (lastReset.toDateString() !== today.toDateString()) {
-                    // Nouveau jour : réinitialiser les essais
-                    simulationsRestantes = 3;
+                const premiumData = localStorage.getItem('rentapro_premium');
+                if (premiumData) {
+                    const data = JSON.parse(premiumData);
+                    if (data.expiration && new Date(data.expiration) > new Date()) {
+                        isPremium = true;
+                        premiumExpiration = data.expiration;
+                    } else {
+                        localStorage.removeItem('rentapro_premium');
+                        isPremium = false;
+                    }
+                }
+
+                const trialData = localStorage.getItem('rentapro_trials');
+                if (trialData) {
+                    const data = JSON.parse(trialData);
+                    const lastReset = new Date(data.lastReset);
+                    const today = new Date();
+                    if (lastReset.toDateString() !== today.toDateString()) {
+                        simulationsRestantes = 3;
+                        localStorage.setItem('rentapro_trials', JSON.stringify({
+                            count: 3,
+                            lastReset: today.toISOString()
+                        }));
+                    } else {
+                        simulationsRestantes = data.count;
+                    }
+                } else {
                     localStorage.setItem('rentapro_trials', JSON.stringify({
                         count: 3,
-                        lastReset: today.toISOString()
+                        lastReset: new Date().toISOString()
                     }));
-                } else {
-                    simulationsRestantes = data.count;
                 }
             } catch (e) {
-                simulationsRestantes = 3;
-            }
-        } else {
-            // Premier démarrage
-            localStorage.setItem('rentapro_trials', JSON.stringify({
-                count: 3,
-                lastReset: new Date().toISOString()
-            }));
-        }
-    }
-    
-    // Mettre à jour l'affichage
-    function updateDisplay() {
-        const trialSpan = document.getElementById('trialCount');
-        const calculBtn = document.getElementById('calculBtn');
-        const saveBtn = document.getElementById('saveBtn');
-        const premiumBanner = document.getElementById('premiumBanner');
-        
-        if (isPremium) {
-            trialSpan.textContent = '∞';
-            trialSpan.style.color = '#eab308';
-            trialSpan.style.fontWeight = 'bold';
-            calculBtn.disabled = false;
-            saveBtn.disabled = false;
-            if (premiumBanner) premiumBanner.style.display = 'none';
-            
-            // Afficher un message de bienvenue premium
-            const expiryDate = premiumExpiration ? new Date(premiumExpiration).toLocaleDateString() : 'à vie';
-            console.log(`✅ Mode Premium actif jusqu'au ${expiryDate}`);
-        } else {
-            trialSpan.textContent = simulationsRestantes;
-            trialSpan.style.color = '';
-            trialSpan.style.fontWeight = '';
-            calculBtn.disabled = simulationsRestantes <= 0;
-            saveBtn.disabled = simulationsRestantes <= 0;
-            if (premiumBanner) premiumBanner.style.display = 'block';
-        }
-    }
-    
-    // Fonction de calcul (inchangée)
-    function calculer() {
-        // Vérifier les droits d'accès
-        if (!isPremium && simulationsRestantes <= 0) {
-            alert('❌ Vous avez utilisé vos 3 simulations gratuites.\n\n' +
-                  'Pour continuer à utiliser le simulateur, choisissez une formule Premium ci-dessous !');
-            document.getElementById('premiumBanner').scrollIntoView({ behavior: 'smooth' });
-            return;
-        }
-        
-        // Récupération des valeurs
-        const prixAchat = parseFloat(document.getElementById('prixAchat').value) || 0;
-        const fraisNotaire = parseFloat(document.getElementById('fraisNotaire').value) || 0;
-        const travaux = parseFloat(document.getElementById('travaux').value) || 0;
-        const apport = parseFloat(document.getElementById('apport').value) || 0;
-        const taux = parseFloat(document.getElementById('taux').value) || 0;
-        const duree = parseFloat(document.getElementById('duree').value) || 0;
-        const loyer = parseFloat(document.getElementById('loyer').value) || 0;
-        const charges = parseFloat(document.getElementById('charges').value) || 0;
-        const taxeFonciere = parseFloat(document.getElementById('taxeFonciere').value) || 0;
-        const vacance = parseFloat(document.getElementById('vacance').value) || 0;
-        const tauxImposition = parseFloat(document.getElementById('tauxImposition').value) || 30;
-
-        // Calculs
-        const fraisMontant = prixAchat * (fraisNotaire / 100);
-        const totalAcquisition = prixAchat + fraisMontant + travaux;
-        const montantEmprunt = totalAcquisition - apport;
-
-        // Mensualité
-        let mensualite = 0;
-        if (montantEmprunt > 0 && taux > 0 && duree > 0) {
-            const tauxMensuel = taux / 100 / 12;
-            const nbMois = duree * 12;
-            mensualite = montantEmprunt * tauxMensuel * Math.pow(1 + tauxMensuel, nbMois) / (Math.pow(1 + tauxMensuel, nbMois) - 1);
-        }
-
-        // Revenus et charges
-        const loyerAnnuel = loyer * 12;
-        const chargesAnnuel = charges * 12;
-        const perteVacance = loyerAnnuel * (vacance / 100);
-        const revenusNetsAnnuel = loyerAnnuel - chargesAnnuel - perteVacance - taxeFonciere;
-        const cashflowMensuel = (revenusNetsAnnuel / 12) - mensualite;
-
-        // Rendements
-        const rendementBrut = (loyerAnnuel / prixAchat) * 100;
-        const rendementNet = (revenusNetsAnnuel / totalAcquisition) * 100;
-        const rendementNetNet = rendementNet * (1 - tauxImposition/100);
-
-        // Retour sur investissement
-        const retourInvestissement = apport > 0 ? apport / (revenusNetsAnnuel - mensualite * 12) : 0;
-
-        // Affichage
-        document.getElementById('totalAchat').innerText = '$' + totalAcquisition.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
-        document.getElementById('montantEmprunte').innerText = '$' + montantEmprunt.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
-        document.getElementById('mensualite').innerText = '$' + mensualite.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
-        document.getElementById('revenusNets').innerText = '$' + revenusNetsAnnuel.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
-        document.getElementById('cashflow').innerText = '$' + cashflowMensuel.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
-        document.getElementById('rendementBrut').innerText = rendementBrut.toFixed(2) + '%';
-        document.getElementById('rendementNet').innerText = rendementNet.toFixed(2) + '%';
-        document.getElementById('rendementNetNet').innerText = rendementNetNet.toFixed(2) + '%';
-        document.getElementById('retourInvestissement').innerText = retourInvestissement.toFixed(1) + ' ans';
-
-        // Coloration cash-flow
-        const cashflowSpan = document.getElementById('cashflow');
-        if (cashflowMensuel < 0) {
-            cashflowSpan.classList.add('negative');
-            cashflowSpan.classList.remove('positive');
-        } else {
-            cashflowSpan.classList.add('positive');
-            cashflowSpan.classList.remove('negative');
-        }
-
-        // Décrémenter les essais si pas premium
-        if (!isPremium) {
-            simulationsRestantes--;
-            // Sauvegarder dans localStorage
-            const trialData = {
-                count: simulationsRestantes,
-                lastReset: new Date().toISOString()
-            };
-            localStorage.setItem('rentapro_trials', JSON.stringify(trialData));
-            updateDisplay();
-            
-            if (simulationsRestantes === 0) {
-                alert('✅ Vous avez utilisé vos 3 simulations gratuites.\n\n' +
-                      '✨ Passez à Premium pour continuer à utiliser le simulateur sans limitation !');
+                console.log("Erreur de lecture localStorage", e);
             }
         }
-    }
-    
-    // Fonction de sauvegarde
-    function sauvegarderSimulation() {
-        if (!isPremium) {
-            alert('❌ La sauvegarde des simulations est réservée aux membres Premium.\n\n' +
-                  'Passez à Premium pour sauvegarder vos simulations et y accéder plus tard !');
-            return;
+
+        // Mettre à jour l'affichage
+        function updateDisplay() {
+            const trialSpan = document.getElementById('trialCount');
+            const calculBtn = document.getElementById('calculBtn');
+            const saveBtn = document.getElementById('saveBtn');
+            const premiumBanner = document.getElementById('premiumBanner');
+
+            if (isPremium) {
+                trialSpan.textContent = '∞';
+                trialSpan.style.color = '#eab308';
+                trialSpan.style.fontWeight = 'bold';
+                if (calculBtn) calculBtn.disabled = false;
+                if (saveBtn) saveBtn.disabled = false;
+                if (premiumBanner) premiumBanner.style.display = 'none';
+            } else {
+                trialSpan.textContent = simulationsRestantes;
+                trialSpan.style.color = '';
+                trialSpan.style.fontWeight = '';
+                if (calculBtn) calculBtn.disabled = simulationsRestantes <= 0;
+                if (saveBtn) saveBtn.disabled = simulationsRestantes <= 0;
+                if (premiumBanner) premiumBanner.style.display = 'block';
+            }
         }
-        alert('✅ Simulation sauvegardée ! (Fonctionnalité Premium)');
-    }
-    
-    // FONCTION D'ACHAT SÉCURISÉE (plus de bug)
-    function acheterPremium(type) {
-        // Définir les prix
-        let montant, duree, libelle;
-        
-        switch(type) {
-            case 'monthly':
-                montant = 2.99;
-                duree = 30; // jours
-                libelle = 'Mensuel';
-                break;
-            case 'yearly':
-                montant = 29.99;
-                duree = 365; // jours
-                libelle = 'Annuel';
-                break;
-            case 'lifetime':
-                montant = 49.99;
-                duree = 36500; // ~100 ans
-                libelle = 'À vie';
-                break;
-            default:
+
+        // Fonction de calcul principale
+        function calculer() {
+            console.log("Calcul lancé");
+            
+            if (!isPremium && simulationsRestantes <= 0) {
+                alert('❌ Vous avez utilisé vos 3 simulations gratuites.\n\nPour continuer, choisissez une formule Premium ci-dessous !');
+                document.getElementById('premiumBanner').scrollIntoView({ behavior: 'smooth' });
                 return;
+            }
+
+            // Récupération des valeurs
+            const prixAchat = parseFloat(document.getElementById('prixAchat').value) || 0;
+            const fraisNotaire = parseFloat(document.getElementById('fraisNotaire').value) || 0;
+            const travaux = parseFloat(document.getElementById('travaux').value) || 0;
+            const apport = parseFloat(document.getElementById('apport').value) || 0;
+            const taux = parseFloat(document.getElementById('taux').value) || 0;
+            const duree = parseFloat(document.getElementById('duree').value) || 0;
+            const loyer = parseFloat(document.getElementById('loyer').value) || 0;
+            const charges = parseFloat(document.getElementById('charges').value) || 0;
+            const taxeFonciere = parseFloat(document.getElementById('taxeFonciere').value) || 0;
+            const vacance = parseFloat(document.getElementById('vacance').value) || 0;
+            const tauxImposition = parseFloat(document.getElementById('tauxImposition').value) || 30;
+
+            // Calculs
+            const fraisMontant = prixAchat * (fraisNotaire / 100);
+            const totalAcquisition = prixAchat + fraisMontant + travaux;
+            const montantEmprunt = totalAcquisition - apport;
+
+            // Mensualité (formule de crédit)
+            let mensualite = 0;
+            if (montantEmprunt > 0 && taux > 0 && duree > 0) {
+                const tauxMensuel = taux / 100 / 12;
+                const nbMois = duree * 12;
+                if (tauxMensuel > 0) {
+                    mensualite = montantEmprunt * tauxMensuel * Math.pow(1 + tauxMensuel, nbMois) / (Math.pow(1 + tauxMensuel, nbMois) - 1);
+                }
+            }
+
+            // Revenus et charges
+            const loyerAnnuel = loyer * 12;
+            const chargesAnnuel = charges * 12;
+            const perteVacance = loyerAnnuel * (vacance / 100);
+            const revenusNetsAnnuel = loyerAnnuel - chargesAnnuel - perteVacance - taxeFonciere;
+            const cashflowMensuel = (revenusNetsAnnuel / 12) - mensualite;
+
+            // Rendements
+            const rendementBrut = prixAchat > 0 ? (loyerAnnuel / prixAchat) * 100 : 0;
+            const rendementNet = totalAcquisition > 0 ? (revenusNetsAnnuel / totalAcquisition) * 100 : 0;
+            const rendementNetNet = rendementNet * (1 - tauxImposition / 100);
+
+            // Retour sur investissement
+            let retourInvestissement = 0;
+            if (apport > 0 && (revenusNetsAnnuel - mensualite * 12) > 0) {
+                retourInvestissement = apport / (revenusNetsAnnuel - mensualite * 12);
+            }
+
+            // Mise à jour des résultats
+            document.getElementById('totalAchat').innerText = '$' + totalAcquisition.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+            document.getElementById('montantEmprunte').innerText = '$' + montantEmprunt.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+            document.getElementById('mensualite').innerText = '$' + mensualite.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+            document.getElementById('revenusNets').innerText = '$' + revenusNetsAnnuel.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+            document.getElementById('cashflow').innerText = '$' + cashflowMensuel.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+            document.getElementById('rendementBrut').innerText = rendementBrut.toFixed(2) + '%';
+            document.getElementById('rendementNet').innerText = rendementNet.toFixed(2) + '%';
+            document.getElementById('rendementNetNet').innerText = rendementNetNet.toFixed(2) + '%';
+            document.getElementById('retourInvestissement').innerText = retourInvestissement.toFixed(1) + ' ans';
+
+            // Coloration cash-flow
+            const cashflowSpan = document.getElementById('cashflow');
+            if (cashflowMensuel < 0) {
+                cashflowSpan.classList.add('negative');
+                cashflowSpan.classList.remove('positive');
+            } else {
+                cashflowSpan.classList.add('positive');
+                cashflowSpan.classList.remove('negative');
+            }
+
+            // Décrémenter les essais si pas premium
+            if (!isPremium) {
+                simulationsRestantes--;
+                localStorage.setItem('rentapro_trials', JSON.stringify({
+                    count: simulationsRestantes,
+                    lastReset: new Date().toISOString()
+                }));
+                updateDisplay();
+
+                if (simulationsRestantes === 0) {
+                    alert('✅ Vous avez utilisé vos 3 simulations gratuites.\n\n✨ Passez à Premium pour continuer !');
+                }
+            }
         }
-        
-        // Simuler une vérification de paiement (À REMPLACER par vrai PayPal)
-        const confirmation = confirm(
-            `🔒 Redirection vers PayPal\n\n` +
-            `Formule choisie : ${libelle}\n` +
-            `Montant : ${montant}$\n\n` +
-            `Cliquez sur OK pour simuler un paiement réussi.\n` +
-            `(En production, ceci serait un vrai paiement PayPal)`
-        );
-        
-        if (confirmation) {
-            // Calculer la date d'expiration
-            const expiration = new Date();
-            expiration.setDate(expiration.getDate() + duree);
-            
-            // Sauvegarder le statut premium AVEC date d'expiration
-            const premiumData = {
-                active: true,
-                type: type,
-                expiration: expiration.toISOString(),
-                purchaseDate: new Date().toISOString()
-            };
-            
-            localStorage.setItem('rentapro_premium', JSON.stringify(premiumData));
-            
-            // Mettre à jour l'état
-            isPremium = true;
-            premiumExpiration = expiration.toISOString();
-            
-            // Mettre à jour l'affichage
+
+        function sauvegarderSimulation() {
+            if (!isPremium) {
+                alert('❌ La sauvegarde est réservée aux membres Premium.\n\nPassez à Premium pour sauvegarder vos simulations !');
+                return;
+            }
+            alert('✅ Simulation sauvegardée !');
+        }
+
+        function acheterPremium(type) {
+            let montant, duree, libelle, lienPaypal;
+
+            switch(type) {
+                case 'monthly':
+                    montant = 2.99;
+                    duree = 30;
+                    libelle = 'Mensuel';
+                    lienPaypal = 'https://www.paypal.me/KevinMukendi669/2.99';
+                    break;
+                case 'yearly':
+                    montant = 29.99;
+                    duree = 365;
+                    libelle = 'Annuel';
+                    lienPaypal = 'https://www.paypal.me/KevinMukendi669/29.99';
+                    break;
+                case 'lifetime':
+                    montant = 49.99;
+                    duree = 36500;
+                    libelle = 'À vie';
+                    lienPaypal = 'https://www.paypal.me/KevinMukendi669/49.99';
+                    break;
+                default:
+                    return;
+            }
+
+            window.open(lienPaypal, '_blank');
+            alert(`🔒 Redirection vers PayPal pour un paiement de ${montant}$ (formule ${libelle})`);
+
+            setTimeout(() => {
+                if(confirm("✅ Votre paiement a-t-il été effectué ? Cliquez sur OK pour activer votre compte Premium")) {
+                    const expiration = new Date();
+                    expiration.setDate(expiration.getDate() + duree);
+
+                    localStorage.setItem('rentapro_premium', JSON.stringify({
+                        active: true,
+                        type: type,
+                        expiration: expiration.toISOString()
+                    }));
+
+                    alert(`🎉 FÉLICITATIONS !\n\nAccès Premium ${libelle} activé jusqu'au ${expiration.toLocaleDateString()}`);
+                    location.reload();
+                }
+            }, 5000);
+        }
+
+        // Initialisation au chargement de la page
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log("Page chargée, initialisation...");
+            checkPremiumStatus();
             updateDisplay();
             
-            // Message de confirmation
-            const expiryDate = expiration.toLocaleDateString();
-            alert(`🎉 FÉLICITATIONS !\n\n` +
-                  `Vous êtes maintenant membre Premium (formule ${libelle}).\n` +
-                  `Accès illimité jusqu'au ${expiryDate}.\n\n` +
-                  `Merci pour votre soutien ! 🙏`);
-        } else {
-            alert('❌ Paiement annulé. Vous pouvez réessayer quand vous voulez.');
-        }
-    }
-    
-    // Initialisation
-    checkPremiumStatus();
-    updateDisplay();
-    
-    // Calcul automatique au chargement (ne compte pas comme essai)
-    window.onload = function() {
-        if (isPremium || simulationsRestantes > 0) {
-            calculer();
-        }
-    };
-    
-    // Pour le débogage (optionnel, à retirer en production)
-    console.log('Statut Premium:', isPremium);
-    console.log('Simulations restantes:', simulationsRestantes);
-</script>
+            // Lancer un premier calcul avec les valeurs par défaut
+            setTimeout(() => {
+                calculer();
+            }, 100);
+        });
+    </script>
+</body>
+</html>
