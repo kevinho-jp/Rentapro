@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investissement mondial par continent - RentaPro</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            background: #f8fafc;
+            color: #1e293b;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: white;
+            padding: 1rem 5%;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .logo-icon {
+            font-size: 2rem;
+            background: linear-gradient(135deg, #0f172a 0%, #334155 100%);
+            color: #eab308;
+            width: 50px;
+            height: 50px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .logo-text {
+            background: linear-gradient(135deg, #0f172a 0%, #334155 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #475569;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 0.5rem 0;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #0f172a;
+        }
+
+        .nav-links a.active {
+            color: #0f172a;
+            font-weight: 600;
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: #eab308;
+            border-radius: 3px 3px 0 0;
+        }
+
+        /* Conteneur principal */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+            width: 100%;
+            flex: 1;
+        }
+
+        /* En-tête */
+        .header-center {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            border-radius: 40px;
+            color: white;
+        }
+
+        .header-center h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: 1rem;
+            text-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .header-center p {
+            color: #cbd5e1;
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Grille des continents */
+        .continent-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .continent-card {
+            background: white;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border: 1px solid rgba(0,0,0,0.03);
+            transition: all 0.3s;
+        }
+
+        .continent-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 50px rgba(0,0,0,0.1);
+        }
+
+        .continent-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .continent-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.7) 100%);
+        }
+
+        .continent-icon {
+            position: absolute;
+            bottom: 1rem;
+            left: 1rem;
+            font-size: 3rem;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+        }
+
+        .continent-content {
+            padding: 2rem;
+        }
+
+        .continent-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .continent-header h2 {
+            font-size: 1.8rem;
+            color: #0f172a;
+        }
+
+        .continent-badge {
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .badge-europe {
+            background: #1e3c72;
+            color: white;
+        }
+
+        .badge-america {
+            background: #b91c1c;
+            color: white;
+        }
+
+        .badge-asia {
+            background: #b45309;
+            color: white;
+        }
+
+        .badge-africa {
+            background: #065f46;
+            color: white;
+        }
+
+        .badge-oceania {
+            background: #1e4b6e;
+            color: white;
+        }
+
+        .continent-description {
+            color: #64748b;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .continent-stats {
+            background: #f8fafc;
+            border-radius: 16px;
+            padding: 1.2rem;
+            margin: 1.5rem 0;
+        }
+
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .stat-row:last-child {
+            border-bottom: none;
+        }
+
+        .stat-label {
+            color: #64748b;
+            font-size: 0.95rem;
+        }
+
+        .stat-value {
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        .continent-features {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .continent-features li {
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #475569;
+        }
+
+        .continent-features li i {
+            color: #eab308;
+            font-weight: bold;
+        }
+
+        .btn-continent {
+            display: inline-block;
+            width: 100%;
+            padding: 1rem;
+            background: #0f172a;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-continent:hover {
+            background: #1e293b;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        /* Section investisseurs célèbres */
+        .investors-section {
+            margin: 5rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            color: #0f172a;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #64748b;
+            margin-bottom: 3rem;
+            font-size: 1.2rem;
+        }
+
+        .investors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .investor-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .investor-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background-size: cover;
+            background-position: center;
+            margin-bottom: 1.5rem;
+            border: 4px solid #eab308;
+        }
+
+        .investor-name {
+            font-size: 1.5rem;
+            color: #0f172a;
+            margin-bottom: 0.3rem;
+        }
+
+        .investor-title {
+            color: #64748b;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .investor-quote {
+            color: #334155;
+            line-height: 1.6;
+            font-size: 1rem;
+            quotes: "“" "”" "‘" "’";
+        }
+
+        .investor-quote::before {
+            content: "“";
+            font-size: 2rem;
+            color: #eab308;
+            margin-right: 0.2rem;
+        }
+
+        .investor-quote::after {
+            content: "”";
+            font-size: 2rem;
+            color: #eab308;
+            margin-left: 0.2rem;
+        }
+
+        .investor-advice {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: #f8fafc;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            color: #475569;
+            width: 100%;
+        }
+
+        /* Autres catégories d'investissement */
+        .other-categories {
+            margin: 5rem 0;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .category-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: 1px solid #e2e8f0;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            border-color: #eab308;
+            box-shadow: 0 15px 30px rgba(234,179,8,0.1);
+        }
+
+        .category-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .category-card h3 {
+            color: #0f172a;
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .category-card p {
+            color: #64748b;
+            font-size: 0.95rem;
+        }
+
+        /* Newsletter */
+        .newsletter {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            border-radius: 30px;
+            padding: 4rem;
+            margin: 4rem 0;
+            text-align: center;
+            color: white;
+        }
+
+        .newsletter h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .newsletter p {
+            color: #cbd5e1;
+            margin-bottom: 2rem;
+            font-size: 1.2rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+            gap: 1rem;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+        }
+
+        .newsletter-button {
+            padding: 1rem 2rem;
+            background: #eab308;
+            color: #0f172a;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .newsletter-button:hover {
+            background: #fbbf24;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(234,179,8,0.3);
+        }
+
+        /* Footer */
+        .footer {
+            background: #0f172a;
+            color: white;
+            padding: 4rem 5% 2rem;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+        }
+
+        .footer-section h4 {
+            color: #eab308;
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-section a {
+            color: #94a3b8;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.8rem;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: #eab308;
+        }
+
+        .footer-contact {
+            margin-top: 1rem;
+            color: #94a3b8;
+        }
+
+        .footer-contact p {
+            margin-bottom: 0.5rem;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid #334155;
+            color: #64748b;
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
+            }
+            .newsletter-form {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <div class="logo-icon">🏠</div>
+            <span class="logo-text">RentaPro</span>
+        </div>
+        <div class="nav-links">
+            <a href="/">Accueil</a>
+            <a href="/pages/simulateur.html">Simulateur</a>
+            <a href="/pages/guide.html">Guide</a>
+            <a href="/pages/investissement-mondial.html" class="active">🌍 Monde</a>
+            <a href="/pages/contact.html">Contact</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- En-tête -->
+        <div class="header-center">
+            <h1>🌍 Investir dans l'immobilier à travers le monde</h1>
+            <p>Découvrez les spécificités de chaque continent, les opportunités uniques et les conseils des plus grands investisseurs pour réussir vos placements internationaux.</p>
+        </div>
+
+        <!-- Grille des continents -->
+        <div class="continent-grid">
+            <!-- EUROPE -->
+            <div class="continent-card">
+                <div class="continent-image" style="background-image: url('https://images.unsplash.com/photo-1491557345352-5929e343eb89?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');">
+                    <div class="continent-overlay"></div>
+                    <div class="continent-icon">🇪🇺</div>
+                </div>
+                <div class="continent-content">
+                    <div class="continent-header">
+                        <h2>Europe</h2>
+                        <span class="continent-badge badge-europe">Marché mature</span>
+                    </div>
+                    <p class="continent-description">L'Europe offre un marché immobilier stable et réglementé, avec des opportunités variées selon les pays.</p>
+                    
+                    <div class="continent-stats">
+                        <div class="stat-row">
+                            <span class="stat-label">Rendement locatif moyen</span>
+                            <span class="stat-value">3-6%</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">Prix au m² (centre)</span>
+                            <span class="stat-value">5 000€ - 15 000€</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">Meilleures villes</span>
+                            <span class="stat-value">Berlin, Lisbonne, Budapest</span>
+                        </div>
+                    </div>
+
+                    <ul class="continent-features">
+                        <li><i>✓</i> Cadre juridique protecteur pour les investisseurs</li>
+                        <li><i>✓</i> Marché locatif très liquide</li>
+                        <li><i>✓</i> Fiscalité variable selon les pays</li>
+                        <li><i>✓</i> Forte demande dans les capitales</li>
+                    </ul>
+
+                    <button class="btn-continent" onclick="alert('Guide Europe bientôt disponible !')">En savoir plus</button>
+                </div>
+            </div>
+
+            <!-- AMÉRIQUE -->
+            <div class="continent-card">
+                <div class="continent-image" style="background-image: url('https://images.unsplash.com/photo-1485738422979-f5c462d49f74?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');">
+                    <div class="continent-overlay"></div>
+                    <div class="continent-icon">🌎</div>
+                </div>
+                <div class="continent-content">
+                    <div class="continent-header">
+                        <h2>Amérique</h2>
+                        <span class="continent-badge badge-america">Marché dynamique</span>
+                    </div>
+                    <p class="continent-description">Du nord au sud, l'Amérique propose des marchés très différents, des REITs américains aux opportunités en Amérique latine.</p>
+                    
+                    <div class="continent-stats">
+                        <div class="stat-row">
+                            <span class="stat-label">Rendement locatif (USA)</span>
+                            <span class="stat-value">4-8%</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">Rendement (Amérique latine)</span>
+                            <span class="stat-value">6-12%</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">Villes clés</span>
+                            <span class="stat-value">Miami, Mexico, São Paulo</span>
+                        </div>
+                    </div>
+
+                    <ul class="continent-features">
+                        <li><i>✓</i> REITs (Real Estate Investment Trusts) très développés</li>
+                        <li><i>✓</i> Forte croissance démographique</li>
+                        <li><i>✓</i> Marché locatif très professionnalisé</li>
+                        <li><i>✓</i> Opportunités en rénovation urbaine</li>
+                    </ul>
+
+                    <button class="btn-continent" onclick="alert('Guide Amérique bientôt disponible !')">En savoir plus</button>
+                </div>
+            </div>
+
+            <!-- ASIE -->
+            <div class="continent-card">
+                <div class="continent-image" style="background-image: url('https://images.unsplash.com/photo-1536599424071-0b215a388ba7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');">
+                    <div class="continent-overlay"></div>
+                    <div class="continent-icon">🌏</div>
+                </div>
+                <div class="continent-content">
+                    <div class="continent-header">
+                        <h2>Asie</h2>
+                        <span class="continent-badge badge-asia">Marché émergent</span>
+                    </div>
+                    <p class="continent-description">L'Asie offre des croissances spectaculaires mais aussi des risques spécifiques à connaître avant d'investir.</p>
+                    
+                    <div class="continent-stats">
+                        <div class="stat-row">
+                            <span class="stat-label">Rendement locatif</span>
+                            <span class="stat-value">2-10% selon pays</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">Croissance prix (moyenne)</span>
+                            <span class="stat-value">5-15% par an</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">Pôles majeurs</span>
+                            <span class="stat-value">Singapour, Tokyo, Bangkok</span>
+                        </div>
+                    </div>
+
+                    <ul class="continent-features">
+                        <li><i>✓</i> Marchés très contrastés (Japon vs Vietnam)</li>
+                        <li><i>✓</i> Forte urbanisation</li>
+                        <li><i>✓</i> Règles d'accès à la propriété complexes</li>
+                        <li><i>✓</i> Potentiel de plus-value important</li>
+                    </ul>
+
+                    <button class="btn-continent" onclick="alert('Guide Asie bientôt disponible !')">En savoir plus</button>
+                </div>
+            </div>
+
+            <!-- AFRIQUE -->
+            <div class="continent-card">
+                <div class="continent-image" style="background-image: url('https://images.unsplash.com/photo-1489392191911-3c0c7a1cdd13?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');">
+                    <div class="continent-overlay"></div>
+                    <div class="continent-icon">🌍</div>
+                </div>
+                <div class="continent-content">
+                    <div class="continent-header">
+                        <h2>Afrique</h2>
+                        <span class="continent-badge badge-africa">Marché en développement</span>
+                    </div>
+                    <p class="continent-description">Le continent africain offre des opportunités uniques avec une démographie explosive et des besoins immenses en logement.</p>
+                    
+                    <div class="continent-stats">
+                        <div class="stat-row">
+                            <span class="stat-label">Rendement locatif</span>
+                            <span class="stat-value">8-15%</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">Croissance démographique</span>
+                            <span class="stat-value">2.5% par an</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">Villes clés</span>
+                            <span class="stat-value">Casablanca, Nairobi, Kinshasa</span>
+                        </div>
+                    </div>
+
+                    <ul class="continent-features">
+                        <li><i>✓</i> Très forte demande locative</li>
+                        <li><i>✓</i> Rendements attractifs</li>
+                        <li><i>✓</i> Cadre juridique en construction</li>
+                        <li><i>✓</i> Opportunités en logement social</li>
+                    </ul>
+
+                    <button class="btn-continent" onclick="alert('Guide Afrique bientôt disponible !')">En savoir plus</button>
+                </div>
+            </div>
+
+            <!-- OCÉANIE -->
+            <div class="continent-card">
+                <div class="continent-image" style="background-image: url('https://images.unsplash.com/photo-1523482580672-f109ba8c8226?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');">
+                    <div class="continent-overlay"></div>
+                    <div class="continent-icon">🌏</div>
+                </div>
+                <div class="continent-content">
+                    <div class="continent-header">
+                        <h2>Océanie</h2>
+                        <span class="continent-badge badge-oceania">Marché mature</span>
+                    </div>
+                    <p class="continent-description">Australie et Nouvelle-Zélande offrent des marchés stables, très réglementés, avec une forte demande locative.</p>
+                    
+                    <div class="continent-stats">
+                        <div class="stat-row">
+                            <span class="stat-label">Rendement locatif</span>
+                            <span class="stat-value">3-5%</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">Prix au m² (Sydney)</span>
+                            <span class="stat-value">12 000 AUD</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">Villes clés</span>
+                            <span class="stat-value">Sydney, Melbourne, Auckland</span>
+                        </div>
+                    </div>
+
+                    <ul class="continent-features">
+                        <li><i>✓</i> Marché très transparent</li>
+                        <li><i>✓</i> Forte immigration</li>
+                        <li><i>✓</i> Crédit accessible aux non-résidents</li>
+                        <li><i>✓</i> Qualité de vie exceptionnelle</li>
+                    </ul>
+
+                    <button class="btn-continent" onclick="alert('Guide Océanie bientôt disponible !')">En savoir plus</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section investisseurs célèbres -->
+        <div class="investors-section">
+            <h2 class="section-title">💡 Conseils des plus grands investisseurs</h2>
+            <p class="section-subtitle">Leurs stratégies et philosophies pour réussir dans l'immobilier</p>
+
+            <div class="investors-grid">
+                <div class="investor-card">
+                    <div class="investor-image" style="background-image: url('https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');"></div>
+                    <h3 class="investor-name">Warren Buffett</h3>
+                    <div class="investor-title">Investisseur légendaire, Berkshire Hathaway</div>
+                    <div class="investor-quote">Le moment d'acheter est quand il y a du sang dans les rues.</div>
+                    <div class="investor-advice">
+                        <strong>Conseil immobilier :</strong> "Achetez des actifs de qualité dans des emplacements de premier choix, et gardez-les pour toujours. La patience est la clé."
+                    </div>
+                </div>
+
+                <div class="investor-card">
+                    <div class="investor-image" style="background-image: url('https://images.unsplash.com/photo-1573497019940-1c28c88b4f9e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');"></div>
+                    <h3 class="investor-name">Robert Kiyosaki</h3>
+                    <div class="investor-title">Auteur de "Père riche, Père pauvre"</div>
+                    <div class="investor-quote">Les actifs mettent de l'argent dans ma poche. Les passifs en retirent.</div>
+                    <div class="investor-advice">
+                        <strong>Conseil immobilier :</strong> "L'immobilier est le véhicule le plus sûr pour bâtir sa richesse. Cherchez le cash-flow, pas la plus-value."
+                    </div>
+                </div>
+
+                <div class="investor-card">
+                    <div class="investor-image" style="background-image: url('https://images.unsplash.com/photo-1564564321837-a57b7070ac4f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');"></div>
+                    <h3 class="investor-name">Donald Trump</h3>
+                    <div class="investor-title">Promoteur immobilier</div>
+                    <div class="investor-quote">Ne vous contentez pas de rêver de votre vie, vivez vos rêves.</div>
+                    <div class="investor-advice">
+                        <strong>Conseil immobilier :</strong> "L'emplacement, l'emplacement, l'emplacement. Et négociez toujours comme si votre vie en dépendait."
+                    </div>
+                </div>
+
+                <div class="investor-card">
+                    <div class="investor-image" style="background-image: url('https://images.unsplash.com/photo-1556157382-97eda2f9e2bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');"></div>
+                    <h3 class="investor-name">Barbara Corcoran</h3>
+                    <div class="investor-title">Investisseur "Shark Tank", magnat immobilier</div>
+                    <div class="investor-quote">N'ayez pas peur de prendre des risques calculés.</div>
+                    <div class="investor-advice">
+                        <strong>Conseil immobilier :</strong> "Regardez le potentiel, pas seulement l'état actuel. La valeur est dans ce que le bien peut devenir."
+                    </div>
+                </div>
+
+                <div class="investor-card">
+                    <div class="investor-image" style="background-image: url('https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');"></div>
+                    <h3 class="investor-name">Sam Zell</h3>
+                    <div class="investor-title">Pionnier des REITs</div>
+                    <div class="investor-quote">L'immobilier est une affaire de personnes, pas seulement de briques.</div>
+                    <div class="investor-advice">
+                        <strong>Conseil immobilier :</strong> "Diversifiez géographiquement et par type d'actifs. Ne mettez pas tous vos œufs dans le même panier."
+                    </div>
+                </div>
+
+                <div class="investor-card">
+                    <div class="investor-image" style="background-image: url('https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');"></div>
+                    <h3 class="investor-name">Grant Cardone</h3>
+                    <div class="investor-title">Auteur, investisseur multi-millionnaire</div>
+                    <div class="investor-quote">Le succès est votre devoir, votre obligation, votre responsabilité.</div>
+                    <div class="investor-advice">
+                        <strong>Conseil immobilier :</strong> "Visez grand, achetez des immeubles entiers, pas juste des appartements. L'effet de levier est votre ami."
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Autres catégories d'investissement -->
+        <div class="other-categories">
+            <h2 class="section-title">📋 Autres catégories d'investissement</h2>
+            <p class="section-subtitle">Explorez différentes façons d'investir dans l'immobilier</p>
+
+            <div class="categories-grid">
+                <div class="category-card">
+                    <div class="category-icon">🏢</div>
+                    <h3>REITs</h3>
+                    <p>Investissez dans l'immobilier coté en bourse, sans les contraintes de gestion</p>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">🏭</div>
+                    <h3>Logistique</h3>
+                    <p>Entrepôts et plateformes, portés par l'explosion du e-commerce</p>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">🏨</div>
+                    <h3>Hôtellerie</h3>
+                    <p>Investissement dans l'hôtellerie, du budget au luxe</p>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">📚</div>
+                    <h3>Résidences étudiantes</h3>
+                    <p>Demande stable, rendements attractifs</p>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">👵</div>
+                    <h3>Senior living</h3>
+                    <p>Résidences pour personnes âgées, marché d'avenir</p>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">🌱</div>
+                    <h3>Immobilier vert</h3>
+                    <p>Bâtiments écologiques, certification environnementale</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Newsletter -->
+        <div class="newsletter">
+            <h2>📬 Recevez notre guide complet</h2>
+            <p>Inscrivez-vous pour recevoir gratuitement l'analyse détaillée de chaque continent</p>
+            <form class="newsletter-form" action="#" method="POST">
+                <input type="email" class="newsletter-input" placeholder="Votre adresse email" required>
+                <button type="submit" class="newsletter-button">Recevoir le guide</button>
+            </form>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>RentaPro</h4>
+                <a href="/">Accueil</a>
+                <a href="/pages/simulateur.html">Simulateur</a>
+                <a href="/pages/guide.html">Guide</a>
+                <a href="/pages/investissement-mondial.html">🌍 Investissement mondial</a>
+                <a href="/pages/contact.html">Contact</a>
+            </div>
+            <div class="footer-section">
+                <h4>Ressources</h4>
+                <a href="#">Blog</a>
+                <a href="#">FAQ</a>
+                <a href="#">Calculateurs</a>
+                <a href="#">Guides par pays</a>
+            </div>
+            <div class="footer-section">
+                <h4>Légal</h4>
+                <a href="#">Mentions légales</a>
+                <a href="#">CGU</a>
+                <a href="#">Politique de confidentialité</a>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <div class="footer-contact">
+                    <p>📧 rubenmukend287@gmail.com</p>
+                    <p>📞 +243 974 843 721</p>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            © 2026 RentaPro - Votre guide pour investir dans l'immobilier à travers le monde
+        </div>
+    </footer>
+
+    <script>
+        // Animation smooth scroll pour les ancres
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Gestionnaire pour le formulaire newsletter
+        document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('✅ Merci de votre inscription ! Vous recevrez bientôt notre guide.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>

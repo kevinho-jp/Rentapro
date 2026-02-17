@@ -9,10 +9,10 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: #f8fafc;
             color: #1e293b;
             line-height: 1.5;
@@ -23,18 +23,38 @@
             background: white;
             padding: 1rem 5%;
             box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
             position: sticky;
             top: 0;
             z-index: 100;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
         }
 
         .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
             font-size: 1.8rem;
             font-weight: 700;
+        }
+
+        .logo-icon {
+            font-size: 2rem;
+            background: linear-gradient(135deg, #0f172a 0%, #334155 100%);
+            color: #eab308;
+            width: 50px;
+            height: 50px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .logo-text {
             background: linear-gradient(135deg, #0f172a 0%, #334155 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -110,7 +130,6 @@
             font-weight: 700;
             margin-bottom: 1.5rem;
             line-height: 1.2;
-            text-shadow: 0 4px 12px rgba(0,0,0,0.2);
         }
 
         .hero p {
@@ -142,7 +161,6 @@
         .btn-primary {
             background: #eab308;
             color: #0f172a;
-            box-shadow: 0 8px 20px rgba(234,179,8,0.3);
         }
 
         .btn-primary:hover {
@@ -229,9 +247,6 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.05);
             transition: all 0.3s;
             text-align: center;
-            border: 1px solid rgba(0,0,0,0.03);
-            position: relative;
-            overflow: hidden;
         }
 
         .feature-card:hover {
@@ -272,62 +287,6 @@
 
         .feature-link:hover {
             gap: 0.8rem;
-        }
-
-        /* Testimonials Section */
-        .testimonials {
-            background: #f1f5f9;
-            padding: 5rem 5%;
-        }
-
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .testimonial-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
-        }
-
-        .testimonial-text {
-            color: #334155;
-            font-style: italic;
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
-        }
-
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .author-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: #eab308;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
-        }
-
-        .author-info h4 {
-            color: #0f172a;
-            margin-bottom: 0.2rem;
-        }
-
-        .author-info p {
-            color: #64748b;
-            font-size: 0.9rem;
         }
 
         /* CTA Section */
@@ -507,7 +466,6 @@
             .navbar {
                 flex-direction: column;
                 gap: 1rem;
-                padding: 1rem;
             }
 
             .nav-links {
@@ -518,7 +476,6 @@
 
             .stats {
                 margin-top: -40px;
-                padding: 2rem 5%;
             }
 
             .hero-buttons {
@@ -536,11 +493,15 @@
 </head>
 <body>
     <nav class="navbar">
-        <div class="logo">🏠 RentaPro</div>
+        <div class="logo">
+            <div class="logo-icon">🏠</div>
+            <span class="logo-text">RentaPro</span>
+        </div>
         <div class="nav-links">
             <a href="/" class="active">Accueil</a>
             <a href="/pages/simulateur.html">Simulateur</a>
             <a href="/pages/guide.html">Guide</a>
+            <a href="/pages/investissement-mondial.html">🌍 Monde</a>
             <a href="/pages/contact.html">Contact</a>
         </div>
     </nav>
@@ -548,7 +509,7 @@
     <section class="hero">
         <div class="hero-content">
             <h1>Investissez dans l'immobilier avec les bons chiffres</h1>
-            <p>Notre simulateur gratuit vous donne toutes les clés pour analyser la rentabilité de vos projets locatifs en quelques secondes.</p>
+            <p>Notre simulateur gratuit vous donne toutes les clés pour analyser la rentabilité de vos projets locatifs en quelques secondes. 3 simulations gratuites par jour.</p>
             <div class="hero-buttons">
                 <a href="/pages/simulateur.html" class="btn btn-primary">📊 Essayer le simulateur</a>
                 <a href="/pages/guide.html" class="btn btn-outline">📚 Découvrir le guide</a>
@@ -566,8 +527,8 @@
             <div class="stat-label">Note des utilisateurs</div>
         </div>
         <div class="stat-item">
-            <div class="stat-number">100%</div>
-            <div class="stat-label">Gratuit</div>
+            <div class="stat-number">5</div>
+            <div class="stat-label">Continents analysés</div>
         </div>
         <div class="stat-item">
             <div class="stat-number">24/7</div>
@@ -583,58 +544,38 @@
             <div class="feature-card">
                 <div class="feature-icon">📊</div>
                 <h3>Simulateur avancé</h3>
-                <p>Calculez rendement brut, net, cash-flow et mensualités. Prenez en compte tous les paramètres (frais, travaux, fiscalité).</p>
+                <p>Calculez rendement brut, net, cash-flow et mensualités. 3 simulations gratuites par jour.</p>
                 <a href="/pages/simulateur.html" class="feature-link">Essayer maintenant →</a>
             </div>
             <div class="feature-card">
-                <div class="feature-icon">📈</div>
-                <h3>Comparateur de biens</h3>
-                <p>Comparez jusqu'à 3 investissements côte à côte pour identifier le plus rentable. Visualisez les différences.</p>
-                <a href="/pages/simulateur.html" class="feature-link">Comparer des biens →</a>
+                <div class="feature-icon">🌍</div>
+                <h3>Investissement mondial</h3>
+                <p>Découvrez les spécificités de chaque continent et les conseils des plus grands investisseurs.</p>
+                <a href="/pages/investissement-mondial.html" class="feature-link">Explorer →</a>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">📚</div>
                 <h3>Guide complet</h3>
-                <p>De la recherche du bien à la gestion locative, tout ce qu'il faut savoir pour réussir votre investissement.</p>
+                <p>De la recherche du bien à la gestion locative, tout ce qu'il faut savoir pour réussir.</p>
                 <a href="/pages/guide.html" class="feature-link">Lire le guide →</a>
             </div>
-        </div>
-    </section>
-
-    <section class="testimonials">
-        <h2 class="section-title">Ils nous font confiance</h2>
-        <p class="section-subtitle">Des milliers d'investisseurs utilisent RentaPro au quotidien</p>
-        
-        <div class="testimonials-grid">
-            <div class="testimonial-card">
-                <div class="testimonial-text">"Grâce à ce simulateur, j'ai pu comparer plusieurs biens et choisir le plus rentable. Mon premier investissement est un succès !"</div>
-                <div class="testimonial-author">
-                    <div class="author-avatar">📱</div>
-                    <div class="author-info">
-                        <h4>Thomas M.</h4>
-                        <p>Investisseur débutant</p>
-                    </div>
-                </div>
+            <div class="feature-card">
+                <div class="feature-icon">📈</div>
+                <h3>Version Premium</h3>
+                <p>Simulations illimitées, export PDF, comparaisons avancées. À partir de 2,99€/mois.</p>
+                <a href="/pages/simulateur.html#premium" class="feature-link">Voir les offres →</a>
             </div>
-            <div class="testimonial-card">
-                <div class="testimonial-text">"Le guide est incroyablement complet. J'ai appris des choses que je n'avais vues nulle part ailleurs. Je recommande vivement."</div>
-                <div class="testimonial-author">
-                    <div class="author-avatar">📊</div>
-                    <div class="author-info">
-                        <h4>Sophie L.</h4>
-                        <p>Agent immobilier</p>
-                    </div>
-                </div>
+            <div class="feature-card">
+                <div class="feature-icon">🏢</div>
+                <h3>REITs et autres</h3>
+                <p>Explorez différentes façons d'investir sans achat direct.</p>
+                <a href="/pages/investissement-mondial.html#categories" class="feature-link">Découvrir →</a>
             </div>
-            <div class="testimonial-card">
-                <div class="testimonial-text">"Enfin un outil gratuit qui ne cache rien ! Les calculs sont précis, l'interface est intuitive. C'est devenu mon outil quotidien."</div>
-                <div class="testimonial-author">
-                    <div class="author-avatar">💼</div>
-                    <div class="author-info">
-                        <h4>Pierre D.</h4>
-                        <p>Investisseur confirmé</p>
-                    </div>
-                </div>
+            <div class="feature-card">
+                <div class="feature-icon">💡</div>
+                <h3>Conseils d'experts</h3>
+                <p>Les stratégies des plus grands investisseurs immobiliers.</p>
+                <a href="/pages/investissement-mondial.html#investors" class="feature-link">Apprendre →</a>
             </div>
         </div>
     </section>
@@ -652,7 +593,7 @@
         <div class="newsletter-container">
             <h3>📬 Ne manquez aucun conseil</h3>
             <p>Recevez chaque semaine nos astuces pour optimiser vos investissements immobiliers</p>
-            <form class="newsletter-form" action="#" method="POST">
+            <form class="newsletter-form" action="#" method="POST" onsubmit="event.preventDefault(); alert('✅ Merci de votre inscription !'); this.reset();">
                 <input type="email" class="newsletter-input" placeholder="Votre adresse email" required>
                 <button type="submit" class="newsletter-button">S'inscrire</button>
             </form>
@@ -666,6 +607,7 @@
                 <a href="/">Accueil</a>
                 <a href="/pages/simulateur.html">Simulateur</a>
                 <a href="/pages/guide.html">Guide</a>
+                <a href="/pages/investissement-mondial.html">🌍 Investissement mondial</a>
                 <a href="/pages/contact.html">Contact</a>
             </div>
             <div class="footer-section">
@@ -673,7 +615,7 @@
                 <a href="#">Blog</a>
                 <a href="#">FAQ</a>
                 <a href="#">Calculateurs</a>
-                <a href="#">Témoignages</a>
+                <a href="#">Guides par pays</a>
             </div>
             <div class="footer-section">
                 <h4>Légal</h4>
@@ -684,15 +626,23 @@
             <div class="footer-section">
                 <h4>Contact</h4>
                 <div class="footer-contact">
-                    <p>📧 mukendikevin668@gmail.com</p>
+                    <p>📧 rubenmukend287@gmail.com</p>
                     <p>📞 +243 974 843 721</p>
-                    <p>⏰ Lun-Ven 9h-18h</p>
                 </div>
             </div>
         </div>
         <div class="copyright">
-            © 2026 RentaPro - Tous droits réservés. Outil gratuit pour investisseurs immobiliers.
+            © 2026 RentaPro - Votre guide pour investir dans l'immobilier à travers le monde
         </div>
     </footer>
+
+    <script>
+        // Gestionnaire pour le formulaire newsletter
+        document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('✅ Merci de votre inscription ! Vous recevrez bientôt nos conseils.');
+            this.reset();
+        });
+    </script>
 </body>
 </html>
