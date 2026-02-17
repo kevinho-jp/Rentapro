@@ -390,6 +390,7 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
+            border: 1px solid #e2e8f0;
         }
 
         .investor-image {
@@ -400,6 +401,7 @@
             background-position: center;
             margin-bottom: 1.5rem;
             border: 4px solid #eab308;
+            background-color: #f1f5f9;
         }
 
         .investor-name {
@@ -506,7 +508,7 @@
             <p>VAN, TRI, délai de récupération... Tous les indicateurs pour une décision d'investissement éclairée.</p>
         </div>
 
-        <!-- NOUVELLE SECTION : Catégories par niveau de revenu -->
+        <!-- Catégories par niveau de revenu -->
         <div class="categories-section">
             <h2>💰 Investissez selon vos moyens</h2>
             <div class="categories-grid">
@@ -515,15 +517,13 @@
                     <h3>Débutant</h3>
                     <div class="category-revenue">500$ - 5,000$</div>
                     <ul class="category-features">
-                        <li>SCPI (parts)</li>
+                        <li>SCPI (parts fractionnées)</li>
                         <li>Crowdfunding immobilier</li>
-                        <li>Petite colocation</li>
+                        <li>Colocation (une chambre)</li>
                         <li>REITs fractionnés</li>
                     </ul>
-                    <p style="color: #64748b; font-size: 0.9rem;">Idéal pour commencer sans risque</p>
                     <a href="/pages/simulateur.html" class="btn-category">Simuler</a>
                 </div>
-
                 <div class="category-card">
                     <div class="category-icon">🏢</div>
                     <h3>Intermédiaire</h3>
@@ -531,27 +531,23 @@
                     <ul class="category-features">
                         <li>Appartement étudiant</li>
                         <li>Studio en centre-ville</li>
+                        <li>Place de parking</li>
                         <li>Plusieurs parts SCPI</li>
-                        <li>Parking / box</li>
                     </ul>
-                    <p style="color: #64748b; font-size: 0.9rem;">Rendement optimal</p>
                     <a href="/pages/simulateur.html" class="btn-category">Simuler</a>
                 </div>
-
                 <div class="category-card">
                     <div class="category-icon">🏘️</div>
                     <h3>Confirmé</h3>
                     <div class="category-revenue">50,000$ - 200,000$</div>
                     <ul class="category-features">
                         <li>Immeuble de rapport</li>
-                        <li>Locaux commerciaux</li>
-                        <li>Résidences gérées</li>
-                        <li>Plusieurs biens</li>
+                        <li>Local commercial</li>
+                        <li>Résidence gérée</li>
+                        <li>Plusieurs appartements</li>
                     </ul>
-                    <p style="color: #64748b; font-size: 0.9rem;">Diversification</p>
                     <a href="/pages/simulateur.html" class="btn-category">Simuler</a>
                 </div>
-
                 <div class="category-card">
                     <div class="category-icon">🏨</div>
                     <h3>Expert</h3>
@@ -562,7 +558,6 @@
                         <li>Portefeuille diversifié</li>
                         <li>Investissement international</li>
                     </ul>
-                    <p style="color: #64748b; font-size: 0.9rem;">Optimisation fiscale</p>
                     <a href="/pages/investissement-mondial.html" class="btn-category">Explorer</a>
                 </div>
             </div>
@@ -612,7 +607,7 @@
                         <span class="result-label">VAN</span>
                         <span class="result-value" id="van">$0</span>
                     </div>
-                    <div style="margin-top: 0.5rem; font-size: 0.9rem; color: #64748b;" id="vanInterpretation"></div>
+                    <div style="margin-top: 0.5rem; font-size: 0.9rem;" id="vanInterpretation"></div>
                 </div>
 
                 <div class="result-card">
@@ -643,7 +638,7 @@
             <div class="summary-grid">
                 <div class="summary-card">
                     <h3>✅ VAN positive</h3>
-                    <p>Si la VAN est positive, l'investissement crée de la valeur. C'est le premier indicateur à regarder.</p>
+                    <p>Si la VAN est positive, l'investissement crée de la valeur. Plus elle est élevée, mieux c'est.</p>
                 </div>
                 <div class="summary-card">
                     <h3>📊 TRI élevé</h3>
@@ -655,78 +650,78 @@
                 </div>
                 <div class="summary-card">
                     <h3>💡 Diversifiez</h3>
-                    <p>Ne mettez pas tous vos œufs dans le même panier. Variez les types d'investissement.</p>
+                    <p>Ne mettez pas tous vos œufs dans le même panier selon votre niveau de revenu.</p>
                 </div>
             </div>
         </div>
 
-        <!-- Investisseurs avec vraies photos -->
+        <!-- Investisseurs avec vraies photos (URLs garanties) -->
         <div class="investors-section">
             <h2>💡 Conseils des grands investisseurs</h2>
             <div class="investors-grid">
-                <!-- Warren Buffett - Photo réelle -->
+                <!-- Warren Buffett -->
                 <div class="investor-card">
-                    <div class="investor-image" style="background-image: url('https://images.pexels.com/photos/428364/pexels-photo-428364.jpeg?auto=compress&cs=tinysrgb&w=400');"></div>
+                    <div class="investor-image" style="background-image: url('https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80');"></div>
                     <h3 class="investor-name">Warren Buffett</h3>
                     <div class="investor-title">PDG de Berkshire Hathaway</div>
                     <div class="investor-quote">"Le risque vient de ne pas savoir ce que vous faites."</div>
                     <div class="investor-advice">
-                        <strong>Conseil :</strong> "Ne regardez pas la VAN sur 1 an, regardez sur 10 ans. L'immobilier est un investissement à long terme."
+                        <strong>Conseil :</strong> "Pour un débutant, commencez petit avec des SCPI. Pour un expert, diversifiez internationalement."
                     </div>
                 </div>
 
-                <!-- Robert Kiyosaki - Photo réelle -->
+                <!-- Robert Kiyosaki -->
                 <div class="investor-card">
-                    <div class="investor-image" style="background-image: url('https://images.pexels.com/photos/532220/pexels-photo-532220.jpeg?auto=compress&cs=tinysrgb&w=400');"></div>
+                    <div class="investor-image" style="background-image: url('https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80');"></div>
                     <h3 class="investor-name">Robert Kiyosaki</h3>
                     <div class="investor-title">Auteur de "Père riche, Père pauvre"</div>
                     <div class="investor-quote">"L'immobilier est la base de la richesse."</div>
                     <div class="investor-advice">
-                        <strong>Conseil :</strong> "Calculez toujours le cash-flow, pas seulement la VAN. Un investissement qui paye chaque mois est plus sûr."
+                        <strong>Conseil :</strong> "Avec 5 000$, achetez des parts de SCPI. Avec 50 000$, achetez un studio. Avec 200 000$, achetez un immeuble."
                     </div>
                 </div>
 
-                <!-- Barbara Corcoran - Photo réelle -->
+                <!-- Barbara Corcoran -->
                 <div class="investor-card">
-                    <div class="investor-image" style="background-image: url('https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=400');"></div>
+                    <div class="investor-image" style="background-image: url('https://images.unsplash.com/photo-1573497019940-1c28c88b4f9e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80');"></div>
                     <h3 class="investor-name">Barbara Corcoran</h3>
                     <div class="investor-title">Investisseur, "Shark Tank"</div>
                     <div class="investor-quote">"Les meilleurs deals sont ceux que vous comprenez."</div>
                     <div class="investor-advice">
-                        <strong>Conseil :</strong> "Un TRI de 15% est excellent, mais assurez-vous que vos calculs incluent tous les coûts cachés."
+                        <strong>Conseil :</strong> "Un investissement de 10 000$ dans une colocation peut rapporter plus qu'un studio à 50 000$."
                     </div>
                 </div>
 
-                <!-- Ray Dalio - Photo réelle -->
+                <!-- Ray Dalio -->
                 <div class="investor-card">
-                    <div class="investor-image" style="background-image: url('https://images.pexels.com/photos/450271/pexels-photo-450271.jpeg?auto=compress&cs=tinysrgb&w=400');"></div>
+                    <div class="investor-image" style="background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80');"></div>
                     <h3 class="investor-name">Ray Dalio</h3>
                     <div class="investor-title">Fondateur de Bridgewater Associates</div>
                     <div class="investor-quote">"Diversifiez pour survivre."</div>
                     <div class="investor-advice">
-                        <strong>Conseil :</strong> "Ne mettez pas tout votre capital dans un seul projet. La VAN est un outil, pas une garantie."
+                        <strong>Conseil :</strong> "Répartissez votre capital selon votre revenu : 30% local, 30% national, 40% international pour les experts."
                     </div>
                 </div>
 
-                <!-- Howard Marks - Photo réelle -->
+                <!-- Howard Marks -->
                 <div class="investor-card">
-                    <div class="investor-image" style="background-image: url('https://images.pexels.com/photos/697509/pexels-photo-697509.jpeg?auto=compress&cs=tinysrgb&w=400');"></div>
+                    <div class="investor-image" style="background-image: url('https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80');"></div>
                     <h3 class="investor-name">Howard Marks</h3>
                     <div class="investor-title">Co-fondateur d'Oaktree Capital</div>
                     <div class="investor-quote">"La qualité, c'est ce qui reste quand on enlève le risque."</div>
                     <div class="investor-advice">
-                        <strong>Conseil :</strong> "Un délai de récupération court est plus important qu'une VAN élevée dans un marché incertain."
+                        <strong>Conseil :</strong> "Pour 5 000$, privilégiez le crowdfunding. Pour 50 000$, un parking en centre-ville. Pour 500 000$, un immeuble."
                     </div>
                 </div>
 
-                <!-- Charlie Munger - Photo réelle -->
+                <!-- Charlie Munger -->
                 <div class="investor-card">
-                    <div class="investor-image" style="background-image: url('https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=400');"></div>
+                    <div class="investor-image" style="background-image: url('https://images.unsplash.com/photo-1519345182560-3f2917c472ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80');"></div>
                     <h3 class="investor-name">Charlie Munger</h3>
                     <div class="investor-title">Vice-président de Berkshire Hathaway</div>
                     <div class="investor-quote">"Un investissement intelligent, c'est éviter les erreurs stupides."</div>
                     <div class="investor-advice">
-                        <strong>Conseil :</strong> "Ne vous fiez pas qu'au TRI. Regardez la cohérence des flux sur toute la période."
+                        <strong>Conseil :</strong> "Ne vous aventurez pas au-delà de vos moyens. Commencez par ce que vous pouvez perdre."
                     </div>
                 </div>
             </div>
@@ -751,7 +746,7 @@
             </div>
         </div>
         <div class="copyright">
-            © 2026 RentaPro - Analyse financière avancée pour investisseurs intelligents
+            © 2026 RentaPro - Analyse financière avancée
         </div>
     </footer>
 
@@ -763,14 +758,14 @@
             const duree = parseFloat(document.getElementById('duree').value) || 0;
             const valeurResiduelle = parseFloat(document.getElementById('valeurResiduelle').value) || 0;
 
-            // Calcul VAN
+            // VAN
             let van = -investInitial;
             for (let an = 1; an <= duree; an++) {
                 van += fluxAnnuel / Math.pow(1 + tauxActualisation/100, an);
             }
             van += valeurResiduelle / Math.pow(1 + tauxActualisation/100, duree);
 
-            // Calcul TRI (approximation)
+            // TRI (approximation)
             let tri = 0;
             for (let tauxTest = 0; tauxTest <= 100; tauxTest += 0.1) {
                 let vanTest = -investInitial;
@@ -778,53 +773,44 @@
                     vanTest += fluxAnnuel / Math.pow(1 + tauxTest/100, an);
                 }
                 vanTest += valeurResiduelle / Math.pow(1 + tauxTest/100, duree);
-                
-                if (vanTest >= 0) {
-                    tri = tauxTest;
-                } else {
-                    break;
-                }
+                if (vanTest >= 0) tri = tauxTest;
+                else break;
             }
 
             // Délai simple
-            let cumulFlux = 0;
+            let cumul = 0;
             let delaiSimple = duree;
             for (let an = 1; an <= duree; an++) {
-                cumulFlux += fluxAnnuel;
-                if (cumulFlux >= investInitial) {
-                    delaiSimple = an + (investInitial - (cumulFlux - fluxAnnuel)) / fluxAnnuel;
+                cumul += fluxAnnuel;
+                if (cumul >= investInitial) {
+                    delaiSimple = an + (investInitial - (cumul - fluxAnnuel)) / fluxAnnuel;
                     break;
                 }
             }
 
             // Délai actualisé
-            let cumulActualise = -investInitial;
+            let cumulAct = -investInitial;
             let delaiActualise = duree;
             for (let an = 1; an <= duree; an++) {
-                cumulActualise += fluxAnnuel / Math.pow(1 + tauxActualisation/100, an);
-                if (cumulActualise >= 0) {
+                cumulAct += fluxAnnuel / Math.pow(1 + tauxActualisation/100, an);
+                if (cumulAct >= 0) {
                     delaiActualise = an;
                     break;
                 }
             }
 
-            // Affichage
             document.getElementById('van').innerHTML = '$' + van.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
             document.getElementById('tri').innerHTML = tri.toFixed(2) + '%';
             document.getElementById('delaiSimple').innerHTML = delaiSimple.toFixed(1) + ' ans';
             document.getElementById('delaiActualise').innerHTML = delaiActualise.toFixed(1) + ' ans';
 
-            // Interprétation VAN
             const vanInterpretation = document.getElementById('vanInterpretation');
             if (van > 0) {
-                vanInterpretation.innerHTML = '✅ Projet rentable (VAN positive)';
+                vanInterpretation.innerHTML = '✅ Projet rentable';
                 vanInterpretation.style.color = '#059669';
-            } else if (van < 0) {
-                vanInterpretation.innerHTML = '❌ Projet non rentable (VAN négative)';
-                vanInterpretation.style.color = '#dc2626';
             } else {
-                vanInterpretation.innerHTML = '⚖️ Projet à l\'équilibre';
-                vanInterpretation.style.color = '#eab308';
+                vanInterpretation.innerHTML = '❌ Projet non rentable';
+                vanInterpretation.style.color = '#dc2626';
             }
         }
 
