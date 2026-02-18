@@ -3,7 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simulateur de rentabilité locative - RentaPro</title>
+    
+    <!-- ========== BALISES SEO ESSENTIELLES ========== -->
+    <title>Simulateur de rentabilité locative gratuit - RentaPro</title>
+    <meta name="description" content="Simulateur de rentabilité locative gratuit. Calculez rendement brut, net, cash-flow, VAN et TRI pour vos investissements immobiliers. 3 simulations gratuites par jour.">
+    <meta name="keywords" content="simulateur immobilier, calcul rentabilité locative, rendement locatif, cash-flow immobilier, investissement locatif, VAN immobilière, TRI immobilier">
+    <meta name="author" content="RentaPro">
+    <meta name="robots" content="index, follow">
+    
+    <!-- ========== OPEN GRAPH (Réseaux sociaux) ========== -->
+    <meta property="og:title" content="RentaPro - Simulateur de rentabilité locative">
+    <meta property="og:description" content="Calculez gratuitement la rentabilité de vos investissements immobiliers en quelques secondes. 3 simulations gratuites par jour.">
+    <meta property="og:image" content="https://rentapro-swart.vercel.app/images/og-simulateur.jpg">
+    <meta property="og:url" content="https://rentapro-swart.vercel.app/pages/simulateur.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="RentaPro">
+    
+    <!-- ========== TWITTER CARD ========== -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="RentaPro - Simulateur immobilier">
+    <meta name="twitter:description" content="Le meilleur simulateur de rentabilité locative gratuit">
+    <meta name="twitter:image" content="https://rentapro-swart.vercel.app/images/og-simulateur.jpg">
+    <meta name="twitter:creator" content="@rentapro">
+    
+    <!-- ========== GOOGLE SEARCH CONSOLE ========== -->
+    <!-- À remplacer par ton code de vérification après inscription -->
+    <meta name="google-site-verification" content="TON_CODE_ICI">
+    
+    <!-- ========== OPTIMISATION PERFORMANCES ========== -->
+    <link rel="preconnect" href="https://images.unsplash.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- ========== FAVICON ========== -->
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    
+    <!-- ========== CANONICAL URL ========== -->
+    <link rel="canonical" href="https://rentapro-swart.vercel.app/pages/simulateur.html">
+    
+    <!-- ========== STYLES CSS ========== -->
     <style>
         * {
             margin: 0;
@@ -64,14 +103,9 @@
         .nav-links {
             display: flex;
             gap: 2rem;
-        }<div class="nav-links">
-    <a href="/">Accueil</a>
-    <a href="/pages/simulateur.html" class="active">Simulateur</a>
-    <a href="/pages/guide.html">Guide</a>
-    <a href="/pages/investissement-mondial.html">🌍 Monde</a>
-    <a href="/pages/analyse-financiere.html">📊 Finance</a>
-    <a href="/pages/contact.html">Contact</a>
-</div>
+            flex-wrap: wrap;
+            justify-content: center;
+        }
 
         .nav-links a {
             color: #475569;
@@ -250,6 +284,7 @@
         .result-value {
             font-weight: 700;
             color: #0f172a;
+            font-size: 1.1rem;
         }
 
         .positive {
@@ -391,7 +426,7 @@
         .footer {
             background: #0f172a;
             color: white;
-            padding: 3rem 5% 2rem;
+            padding: 4rem 5% 2rem;
             margin-top: 3rem;
         }
 
@@ -413,6 +448,7 @@
             text-decoration: none;
             display: block;
             margin-bottom: 0.8rem;
+            transition: color 0.3s;
         }
 
         .footer-section a:hover {
@@ -421,7 +457,7 @@
 
         .copyright {
             text-align: center;
-            margin-top: 3rem;
+            margin-top: 4rem;
             padding-top: 2rem;
             border-top: 1px solid #334155;
             color: #64748b;
@@ -433,8 +469,7 @@
                 gap: 1rem;
             }
             .nav-links {
-                flex-wrap: wrap;
-                justify-content: center;
+                gap: 1rem;
             }
             .simulator-grid {
                 grid-template-columns: 1fr;
@@ -459,6 +494,9 @@
             <a href="/pages/simulateur.html" class="active">Simulateur</a>
             <a href="/pages/guide.html">Guide</a>
             <a href="/pages/investissement-mondial.html">🌍 Monde</a>
+            <a href="/pages/analyse-financiere.html">📊 Finance</a>
+            <a href="/pages/blog.html">📝 Blog</a>
+            <a href="/pages/temoignages.html">🗣️ Témoignages</a>
             <a href="/pages/contact.html">Contact</a>
         </div>
     </nav>
@@ -661,6 +699,9 @@
                 <a href="/pages/simulateur.html">Simulateur</a>
                 <a href="/pages/guide.html">Guide</a>
                 <a href="/pages/investissement-mondial.html">🌍 Monde</a>
+                <a href="/pages/analyse-financiere.html">📊 Finance</a>
+                <a href="/pages/blog.html">📝 Blog</a>
+                <a href="/pages/temoignages.html">🗣️ Témoignages</a>
                 <a href="/pages/contact.html">Contact</a>
             </div>
             <div class="footer-section">
@@ -670,21 +711,19 @@
             </div>
         </div>
         <div class="copyright">
-            © 2026 RentaPro - Tous droits réservés
+            © 2026 RentaPro - Simulateur de rentabilité locative gratuit
         </div>
     </footer>
 
     <script>
         // ============================================
-        // SIMULATEUR DE RENTABILITÉ - VERSION CORRIGÉE
+        // SIMULATEUR DE RENTABILITÉ - VERSION FINALE
         // ============================================
 
-        // État initial
         let simulationsRestantes = 3;
         let isPremium = false;
         let premiumExpiration = null;
 
-        // Vérifier le statut premium
         function checkPremiumStatus() {
             try {
                 const premiumData = localStorage.getItem('rentapro_premium');
@@ -720,11 +759,10 @@
                     }));
                 }
             } catch (e) {
-                console.log("Erreur de lecture localStorage", e);
+                console.log("Erreur de lecture localStorage");
             }
         }
 
-        // Mettre à jour l'affichage
         function updateDisplay() {
             const trialSpan = document.getElementById('trialCount');
             const calculBtn = document.getElementById('calculBtn');
@@ -748,17 +786,13 @@
             }
         }
 
-        // Fonction de calcul principale
         function calculer() {
-            console.log("Calcul lancé");
-            
             if (!isPremium && simulationsRestantes <= 0) {
                 alert('❌ Vous avez utilisé vos 3 simulations gratuites.\n\nPour continuer, choisissez une formule Premium ci-dessous !');
                 document.getElementById('premiumBanner').scrollIntoView({ behavior: 'smooth' });
                 return;
             }
 
-            // Récupération des valeurs
             const prixAchat = parseFloat(document.getElementById('prixAchat').value) || 0;
             const fraisNotaire = parseFloat(document.getElementById('fraisNotaire').value) || 0;
             const travaux = parseFloat(document.getElementById('travaux').value) || 0;
@@ -771,12 +805,10 @@
             const vacance = parseFloat(document.getElementById('vacance').value) || 0;
             const tauxImposition = parseFloat(document.getElementById('tauxImposition').value) || 30;
 
-            // Calculs
             const fraisMontant = prixAchat * (fraisNotaire / 100);
             const totalAcquisition = prixAchat + fraisMontant + travaux;
             const montantEmprunt = totalAcquisition - apport;
 
-            // Mensualité (formule de crédit)
             let mensualite = 0;
             if (montantEmprunt > 0 && taux > 0 && duree > 0) {
                 const tauxMensuel = taux / 100 / 12;
@@ -786,25 +818,21 @@
                 }
             }
 
-            // Revenus et charges
             const loyerAnnuel = loyer * 12;
             const chargesAnnuel = charges * 12;
             const perteVacance = loyerAnnuel * (vacance / 100);
             const revenusNetsAnnuel = loyerAnnuel - chargesAnnuel - perteVacance - taxeFonciere;
             const cashflowMensuel = (revenusNetsAnnuel / 12) - mensualite;
 
-            // Rendements
             const rendementBrut = prixAchat > 0 ? (loyerAnnuel / prixAchat) * 100 : 0;
             const rendementNet = totalAcquisition > 0 ? (revenusNetsAnnuel / totalAcquisition) * 100 : 0;
             const rendementNetNet = rendementNet * (1 - tauxImposition / 100);
 
-            // Retour sur investissement
             let retourInvestissement = 0;
             if (apport > 0 && (revenusNetsAnnuel - mensualite * 12) > 0) {
                 retourInvestissement = apport / (revenusNetsAnnuel - mensualite * 12);
             }
 
-            // Mise à jour des résultats
             document.getElementById('totalAchat').innerText = '$' + totalAcquisition.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
             document.getElementById('montantEmprunte').innerText = '$' + montantEmprunt.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
             document.getElementById('mensualite').innerText = '$' + mensualite.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
@@ -815,7 +843,6 @@
             document.getElementById('rendementNetNet').innerText = rendementNetNet.toFixed(2) + '%';
             document.getElementById('retourInvestissement').innerText = retourInvestissement.toFixed(1) + ' ans';
 
-            // Coloration cash-flow
             const cashflowSpan = document.getElementById('cashflow');
             if (cashflowMensuel < 0) {
                 cashflowSpan.classList.add('negative');
@@ -825,7 +852,6 @@
                 cashflowSpan.classList.remove('negative');
             }
 
-            // Décrémenter les essais si pas premium
             if (!isPremium) {
                 simulationsRestantes--;
                 localStorage.setItem('rentapro_trials', JSON.stringify({
@@ -894,13 +920,9 @@
             }, 5000);
         }
 
-        // Initialisation au chargement de la page
         document.addEventListener('DOMContentLoaded', function() {
-            console.log("Page chargée, initialisation...");
             checkPremiumStatus();
             updateDisplay();
-            
-            // Lancer un premier calcul avec les valeurs par défaut
             setTimeout(() => {
                 calculer();
             }, 100);
