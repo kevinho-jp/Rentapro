@@ -3,7 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RentaPro - Investissement immobilier intelligent</title>
+    
+    <!-- Balises SEO essentielles -->
+    <title>RentaPro - Simulateur de rentabilité locative gratuit</title>
+    <meta name="description" content="Simulateur de rentabilité locative gratuit. Calculez rendement brut, net, cash-flow et VAN pour vos investissements immobiliers. 3 simulations gratuites par jour.">
+    <meta name="keywords" content="investissement locatif, calcul rentabilité, simulateur immobilier, rendement locatif, cash-flow immobilier, VAN immobilière">
+    <meta name="author" content="RentaPro">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph (pour les réseaux sociaux) -->
+    <meta property="og:title" content="RentaPro - Simulateur de rentabilité locative">
+    <meta property="og:description" content="Calculez gratuitement la rentabilité de vos investissements immobiliers en quelques secondes.">
+    <meta property="og:image" content="https://rentapro-swart.vercel.app/images/og-image.jpg">
+    <meta property="og:url" content="https://rentapro-swart.vercel.app">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="RentaPro - Simulateur immobilier">
+    <meta name="twitter:description" content="Le meilleur simulateur de rentabilité locative gratuit">
+    <meta name="twitter:image" content="https://rentapro-swart.vercel.app/images/og-image.jpg">
+    
+    <!-- Google AdSense (à remplacer par ton code après approbation) -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+    
+    <!-- Google Search Console (à remplacer par ton code) -->
+    <meta name="google-site-verification" content="TON_CODE_ICI">
+    
+    <!-- Préconnexion pour améliorer les performances -->
+    <link rel="preconnect" href="https://images.unsplash.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/favicon.png">
+
     <style>
         * {
             margin: 0;
@@ -18,7 +51,6 @@
             line-height: 1.5;
         }
 
-        /* Navigation */
         .navbar {
             background: white;
             padding: 1rem 5%;
@@ -96,7 +128,6 @@
             border-radius: 3px 3px 0 0;
         }
 
-        /* Hero Section */
         .hero {
             min-height: 600px;
             background: linear-gradient(rgba(15,23,42,0.7), rgba(15,23,42,0.8)), url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1973&q=80');
@@ -183,7 +214,6 @@
             transform: translateY(-3px);
         }
 
-        /* Stats Section */
         .stats {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -215,7 +245,6 @@
             font-size: 1.1rem;
         }
 
-        /* Features Section */
         .features {
             padding: 5rem 5%;
             max-width: 1200px;
@@ -291,7 +320,6 @@
             gap: 0.8rem;
         }
 
-        /* CTA Section */
         .cta {
             background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
             padding: 5rem 5%;
@@ -354,7 +382,6 @@
             transform: translateY(-3px);
         }
 
-        /* Newsletter */
         .newsletter {
             padding: 4rem 5%;
             background: white;
@@ -414,7 +441,6 @@
             background: #1e293b;
         }
 
-        /* Footer */
         .footer {
             background: #0f172a;
             color: white;
@@ -456,9 +482,27 @@
             margin-bottom: 0.5rem;
         }
 
+        .footer-legal {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-legal a {
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .footer-legal a:hover {
+            color: #eab308;
+        }
+
         .copyright {
             text-align: center;
-            margin-top: 4rem;
+            margin-top: 2rem;
             padding-top: 2rem;
             border-top: 1px solid #334155;
             color: #64748b;
@@ -620,12 +664,6 @@
                 <a href="/pages/investissement-mondial.html">Guides par pays</a>
             </div>
             <div class="footer-section">
-                <h4>Légal</h4>
-                <a href="#">Mentions légales</a>
-                <a href="#">CGU</a>
-                <a href="#">Politique de confidentialité</a>
-            </div>
-            <div class="footer-section">
                 <h4>Contact</h4>
                 <div class="footer-contact">
                     <p>📧 rubenmukend287@gmail.com</p>
@@ -633,8 +671,16 @@
                 </div>
             </div>
         </div>
+
+        <!-- Liens légaux -->
+        <div class="footer-legal">
+            <a href="/pages/mentions-legales.html">Mentions légales</a>
+            <a href="/pages/confidentialite.html">Politique de confidentialité</a>
+            <a href="/pages/cgu.html">CGU</a>
+        </div>
+
         <div class="copyright">
-            © 2026 RentaPro - Votre guide pour investir dans l'immobilier à travers le monde
+            © 2026 RentaPro - Tous droits réservés
         </div>
     </footer>
 </body>

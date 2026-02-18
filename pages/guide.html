@@ -3,7 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guide de l'investisseur locatif - RentaPro</title>
+    
+    <!-- ========== BALISES SEO ========== -->
+    <title>Guide complet de l'investisseur locatif - RentaPro</title>
+    <meta name="description" content="Guide gratuit pour investir dans l'immobilier locatif. De la recherche du bien à la gestion locative, toutes les étapes pour réussir votre investissement.">
+    <meta name="keywords" content="guide investissement locatif, investir dans l'immobilier, conseils investisseur, achat immobilier, gestion locative">
+    <meta name="author" content="RentaPro">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Guide complet de l'investisseur locatif - RentaPro">
+    <meta property="og:description" content="Guide gratuit pour réussir vos investissements immobiliers. Toutes les étapes expliquées simplement.">
+    <meta property="og:image" content="https://rentapro-swart.vercel.app/images/og-guide.jpg">
+    <meta property="og:url" content="https://rentapro-swart.vercel.app/pages/guide.html">
+    <meta property="og:type" content="article">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Guide investissement locatif - RentaPro">
+    <meta name="twitter:description" content="Le guide complet pour investir dans l'immobilier">
+    <meta name="twitter:image" content="https://rentapro-swart.vercel.app/images/og-guide.jpg">
+    
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+    
+    <!-- Google Search Console -->
+    <meta name="google-site-verification" content="TON_CODE_ICI">
+    
+    <!-- Préconnexion -->
+    <link rel="preconnect" href="https://images.unsplash.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    
+    <!-- Canonical -->
+    <link rel="canonical" href="https://rentapro-swart.vercel.app/pages/guide.html">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/favicon.png">
+
     <style>
         * {
             margin: 0;
@@ -35,8 +71,27 @@
         }
 
         .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
             font-size: 1.8rem;
             font-weight: 700;
+        }
+
+        .logo-icon {
+            font-size: 2rem;
+            background: linear-gradient(135deg, #0f172a 0%, #334155 100%);
+            color: #eab308;
+            width: 50px;
+            height: 50px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .logo-text {
             background: linear-gradient(135deg, #0f172a 0%, #334155 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -45,14 +100,9 @@
         .nav-links {
             display: flex;
             gap: 2rem;
-        } <div class="nav-links">
-    <a href="/">Accueil</a>
-    <a href="/pages/simulateur.html">Simulateur</a>
-    <a href="/pages/guide.html" class="active">Guide</a>
-    <a href="/pages/investissement-mondial.html">🌍 Monde</a>
-    <a href="/pages/analyse-financiere.html">📊 Finance</a>
-    <a href="/pages/contact.html">Contact</a>
-</div>
+            flex-wrap: wrap;
+            justify-content: center;
+        }
 
         .nav-links a {
             color: #475569;
@@ -60,6 +110,7 @@
             font-weight: 500;
             transition: color 0.3s;
             padding: 0.5rem 0;
+            position: relative;
         }
 
         .nav-links a:hover {
@@ -69,7 +120,17 @@
         .nav-links a.active {
             color: #0f172a;
             font-weight: 600;
-            border-bottom: 3px solid #eab308;
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: #eab308;
+            border-radius: 3px 3px 0 0;
         }
 
         .container {
@@ -80,7 +141,6 @@
             flex: 1;
         }
 
-        /* Hero centré */
         .guide-hero {
             background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
             border-radius: 30px;
@@ -119,7 +179,6 @@
             box-shadow: 0 10px 20px rgba(234,179,8,0.3);
         }
 
-        /* Chapitres centrés */
         .chapters {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -158,7 +217,6 @@
             font-size: 0.9rem;
         }
 
-        /* Sections centrées */
         .guide-section {
             background: white;
             border-radius: 30px;
@@ -199,15 +257,81 @@
             margin-bottom: 0.5rem;
         }
 
+        /* Section affiliation Amazon */
+        .affiliation-section {
+            margin: 3rem 0;
+            padding: 2rem;
+            background: white;
+            border-radius: 30px;
+            border: 2px solid #eab308;
+        }
+
+        .affiliation-section h3 {
+            text-align: center;
+            font-size: 1.8rem;
+            color: #0f172a;
+            margin-bottom: 2rem;
+        }
+
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .book-card {
+            text-align: center;
+            padding: 1.5rem;
+            background: #f8fafc;
+            border-radius: 16px;
+        }
+
+        .book-image {
+            width: 150px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .book-title {
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 0.5rem;
+        }
+
+        .book-price {
+            color: #eab308;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .btn-amazon {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: #ff9900;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn-amazon:hover {
+            background: #e68900;
+            transform: translateY(-2px);
+        }
+
         .footer {
             background: #0f172a;
             color: white;
-            padding: 3rem 5% 2rem;
+            padding: 4rem 5% 2rem;
             margin-top: 3rem;
         }
 
         .footer-content {
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -230,9 +354,27 @@
             color: #eab308;
         }
 
+        .footer-legal {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin: 2rem 0 1rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-legal a {
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .footer-legal a:hover {
+            color: #eab308;
+        }
+
         .copyright {
             text-align: center;
-            margin-top: 3rem;
+            margin-top: 2rem;
             padding-top: 2rem;
             border-top: 1px solid #334155;
             color: #64748b;
@@ -243,12 +385,9 @@
                 flex-direction: column;
                 gap: 1rem;
             }
-
             .nav-links {
-                flex-wrap: wrap;
-                justify-content: center;
+                gap: 1rem;
             }
-
             .guide-section {
                 padding: 2rem;
             }
@@ -257,24 +396,29 @@
 </head>
 <body>
     <nav class="navbar">
-        <div class="logo">🏠 RentaPro</div>
+        <div class="logo">
+            <div class="logo-icon">🏠</div>
+            <span class="logo-text">RentaPro</span>
+        </div>
         <div class="nav-links">
             <a href="/">Accueil</a>
             <a href="/pages/simulateur.html">Simulateur</a>
             <a href="/pages/guide.html" class="active">Guide</a>
+            <a href="/pages/investissement-mondial.html">🌍 Monde</a>
+            <a href="/pages/analyse-financiere.html">📊 Finance</a>
+            <a href="/pages/blog.html">📝 Blog</a>
+            <a href="/pages/temoignages.html">🗣️ Témoignages</a>
             <a href="/pages/contact.html">Contact</a>
         </div>
     </nav>
 
     <div class="container">
-        <!-- Hero centré -->
         <div class="guide-hero">
             <h1>📚 Guide de l'investisseur locatif</h1>
             <p>Que vous soyez débutant ou confirmé, ce guide vous accompagne pas à pas pour réussir vos investissements immobiliers.</p>
             <a href="#section1" class="btn">Commencer la lecture →</a>
         </div>
 
-        <!-- Chapitres -->
         <div class="chapters">
             <div class="chapter-card" onclick="document.getElementById('section1').scrollIntoView({behavior: 'smooth'})">
                 <div class="chapter-icon">🏠</div>
@@ -298,7 +442,6 @@
             </div>
         </div>
 
-        <!-- Section 1 -->
         <section id="section1" class="guide-section">
             <div class="section-header">
                 <h2>1. Les bases de l'investissement locatif</h2>
@@ -316,7 +459,6 @@
             </div>
         </section>
 
-        <!-- Section 2 -->
         <section id="section2" class="guide-section">
             <div class="section-header">
                 <h2>2. Comment financer son achat</h2>
@@ -332,7 +474,6 @@
             </div>
         </section>
 
-        <!-- Section 3 -->
         <section id="section3" class="guide-section">
             <div class="section-header">
                 <h2>3. Calculer la rentabilité</h2>
@@ -346,7 +487,6 @@
             </div>
         </section>
 
-        <!-- Section 4 -->
         <section id="section4" class="guide-section">
             <div class="section-header">
                 <h2>4. Choisir le bon bien</h2>
@@ -361,6 +501,31 @@
                 </ul>
             </div>
         </section>
+
+        <!-- Section affiliation Amazon -->
+        <div class="affiliation-section">
+            <h3>📚 Les meilleurs livres pour investir</h3>
+            <div class="books-grid">
+                <div class="book-card">
+                    <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Livre investissement" class="book-image">
+                    <div class="book-title">Investir dans l'immobilier pour les nuls</div>
+                    <div class="book-price">24,99$</div>
+                    <a href="https://www.amazon.fr/dp/2416008746?tag=TON_TAG_ICI" target="_blank" class="btn-amazon">Voir sur Amazon</a>
+                </div>
+                <div class="book-card">
+                    <img src="https://images.unsplash.com/photo-1554224154-26032ffc0d07?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Livre finance" class="book-image">
+                    <div class="book-title">Père riche, Père pauvre</div>
+                    <div class="book-price">19,99$</div>
+                    <a href="https://www.amazon.fr/dp/2290152491?tag=TON_TAG_ICI" target="_blank" class="btn-amazon">Voir sur Amazon</a>
+                </div>
+                <div class="book-card">
+                    <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Livre stratégie" class="book-image">
+                    <div class="book-title">L'immobilier locatif pour les nuls</div>
+                    <div class="book-price">22,99$</div>
+                    <a href="https://www.amazon.fr/dp/2412058767?tag=TON_TAG_ICI" target="_blank" class="btn-amazon">Voir sur Amazon</a>
+                </div>
+            </div>
+        </div>
     </div>
 
     <footer class="footer">
@@ -370,14 +535,25 @@
                 <a href="/">Accueil</a>
                 <a href="/pages/simulateur.html">Simulateur</a>
                 <a href="/pages/guide.html">Guide</a>
+                <a href="/pages/investissement-mondial.html">🌍 Monde</a>
+                <a href="/pages/analyse-financiere.html">📊 Finance</a>
+                <a href="/pages/blog.html">📝 Blog</a>
+                <a href="/pages/temoignages.html">🗣️ Témoignages</a>
                 <a href="/pages/contact.html">Contact</a>
             </div>
             <div class="footer-section">
                 <h4>Contact</h4>
-                <p style="color: #94a3b8;">📧 mukendikevin668@gmail.com</p>
+                <p style="color: #94a3b8;">📧 rubenmukend287@gmail.com</p>
                 <p style="color: #94a3b8;">📞 +243 974 843 721</p>
             </div>
         </div>
+
+        <div class="footer-legal">
+            <a href="/pages/mentions-legales.html">Mentions légales</a>
+            <a href="/pages/confidentialite.html">Politique de confidentialité</a>
+            <a href="/pages/cgu.html">CGU</a>
+        </div>
+
         <div class="copyright">
             © 2026 RentaPro - Guide gratuit pour investisseurs immobiliers
         </div>

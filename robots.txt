@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://rentapro-swart.vercel.app/sitemap.xml

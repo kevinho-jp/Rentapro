@@ -24,14 +24,22 @@
     <meta name="twitter:description" content="Contactez l'équipe RentaPro">
     <meta name="twitter:image" content="https://rentapro-swart.vercel.app/images/og-contact.jpg">
     
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+    
     <!-- Google Search Console -->
     <meta name="google-site-verification" content="TON_CODE_ICI">
     
-    <!-- Optimisation -->
+    <!-- Préconnexion -->
     <link rel="preconnect" href="https://images.unsplash.com">
-    <link rel="canonical" href="https://rentapro-swart.vercel.app/pages/contact.html">
-    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     
+    <!-- Canonical -->
+    <link rel="canonical" href="https://rentapro-swart.vercel.app/pages/contact.html">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/favicon.png">
+
     <style>
         * {
             margin: 0;
@@ -268,11 +276,52 @@
             margin-right: auto;
         }
 
+        .donation-section {
+            margin-top: 3rem;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            border-radius: 30px;
+            padding: 3rem;
+            text-align: center;
+            color: white;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .donation-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .donation-section p {
+            color: #cbd5e1;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn-donate {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: #0070ba;
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn-donate:hover {
+            background: #005ea6;
+            transform: translateY(-3px);
+        }
+
         .footer {
             background: #0f172a;
             color: white;
             padding: 4rem 5% 2rem;
-            margin-top: 3rem;
+            margin-top: 4rem;
         }
 
         .footer-content {
@@ -299,9 +348,27 @@
             color: #eab308;
         }
 
+        .footer-legal {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin: 2rem 0 1rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-legal a {
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .footer-legal a:hover {
+            color: #eab308;
+        }
+
         .copyright {
             text-align: center;
-            margin-top: 4rem;
+            margin-top: 2rem;
             padding-top: 2rem;
             border-top: 1px solid #334155;
             color: #64748b;
@@ -396,6 +463,7 @@
                             <option>Question sur le simulateur</option>
                             <option>Demande de partenariat</option>
                             <option>Support technique</option>
+                            <option>Ajouter un témoignage</option>
                             <option>Autre</option>
                         </select>
                     </div>
@@ -408,6 +476,13 @@
                     <button type="submit" class="btn-submit">Envoyer le message</button>
                 </form>
             </div>
+        </div>
+
+        <!-- Section don PayPal -->
+        <div class="donation-section">
+            <h2>💝 Soutenez RentaPro</h2>
+            <p>Ce site est 100% gratuit et le restera. Si mon travail vous aide, vous pouvez me soutenir par un petit don.</p>
+            <a href="https://www.paypal.me/KevinMukendi669" target="_blank" class="btn-donate">💳 Faire un don PayPal</a>
         </div>
     </div>
 
@@ -430,6 +505,13 @@
                 <p style="color: #94a3b8;">📞 +243 974 843 721</p>
             </div>
         </div>
+
+        <div class="footer-legal">
+            <a href="/pages/mentions-legales.html">Mentions légales</a>
+            <a href="/pages/confidentialite.html">Politique de confidentialité</a>
+            <a href="/pages/cgu.html">CGU</a>
+        </div>
+
         <div class="copyright">
             © 2026 RentaPro - Tous droits réservés
         </div>
