@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Témoignages - RentaPro</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            background: #f8fafc;
+            color: #1e293b;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .navbar {
+            background: white;
+            padding: 1rem 5%;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .logo-icon {
+            font-size: 2rem;
+            background: linear-gradient(135deg, #0f172a 0%, #334155 100%);
+            color: #eab308;
+            width: 50px;
+            height: 50px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .logo-text {
+            background: linear-gradient(135deg, #0f172a 0%, #334155 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .nav-links a {
+            color: #475569;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 0.5rem 0;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #0f172a;
+        }
+
+        .nav-links a.active {
+            color: #0f172a;
+            font-weight: 600;
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: #eab308;
+            border-radius: 3px 3px 0 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            width: 100%;
+            flex: 1;
+        }
+
+        .header-center {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            border-radius: 40px;
+            color: white;
+        }
+
+        .header-center h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 1rem;
+        }
+
+        .header-center p {
+            color: #cbd5e1;
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #eab308;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: #64748b;
+            font-size: 1.1rem;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .testimonial-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+            transition: transform 0.3s;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            border-color: #eab308;
+        }
+
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .testimonial-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-size: cover;
+            background-position: center;
+            border: 3px solid #eab308;
+        }
+
+        .testimonial-info h3 {
+            color: #0f172a;
+            margin-bottom: 0.3rem;
+            font-size: 1.2rem;
+        }
+
+        .testimonial-info p {
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        .testimonial-rating {
+            color: #eab308;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .testimonial-text {
+            color: #475569;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .testimonial-date {
+            color: #94a3b8;
+            font-size: 0.9rem;
+            text-align: right;
+        }
+
+        .add-testimonial {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            border-radius: 30px;
+            padding: 3rem;
+            margin: 4rem 0;
+            text-align: center;
+            color: white;
+        }
+
+        .add-testimonial h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .add-testimonial p {
+            color: #cbd5e1;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: #eab308;
+            color: #0f172a;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn-primary:hover {
+            background: #fbbf24;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(234,179,8,0.3);
+        }
+
+        .footer {
+            background: #0f172a;
+            color: white;
+            padding: 4rem 5% 2rem;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+        }
+
+        .footer-section h4 {
+            color: #eab308;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-section a {
+            color: #94a3b8;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.8rem;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: #eab308;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid #334155;
+            color: #64748b;
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .nav-links {
+                gap: 1rem;
+            }
+            .stats {
+                grid-template-columns: 1fr;
+            }
+            .testimonial-header {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <div class="logo-icon">🏠</div>
+            <span class="logo-text">RentaPro</span>
+        </div>
+        <div class="nav-links">
+            <a href="/">Accueil</a>
+            <a href="/pages/simulateur.html">Simulateur</a>
+            <a href="/pages/guide.html">Guide</a>
+            <a href="/pages/investissement-mondial.html">🌍 Monde</a>
+            <a href="/pages/analyse-financiere.html">📊 Finance</a>
+            <a href="/pages/blog.html">📝 Blog</a>
+            <a href="/pages/temoignages.html" class="active">🗣️ Témoignages</a>
+            <a href="/pages/contact.html">Contact</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="header-center">
+            <h1>🗣️ Témoignages</h1>
+            <p>Ce que nos utilisateurs disent de RentaPro</p>
+        </div>
+
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-number">15K+</div>
+                <div class="stat-label">Utilisateurs</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">4.8/5</div>
+                <div class="stat-label">Note moyenne</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">500+</div>
+                <div class="stat-label">Témoignages</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">30+</div>
+                <div class="stat-label">Pays</div>
+            </div>
+        </div>
+
+        <div class="testimonials-grid">
+            <!-- Témoignage 1 -->
+            <div class="testimonial-card">
+                <div class="testimonial-header">
+                    <div class="testimonial-avatar" style="background-image: url('https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80');"></div>
+                    <div class="testimonial-info">
+                        <h3>Thomas Martin</h3>
+                        <p>Investisseur débutant, France</p>
+                    </div>
+                </div>
+                <div class="testimonial-rating">★★★★★</div>
+                <div class="testimonial-text">
+                    "Grâce au simulateur, j'ai pu analyser 3 biens différents et choisir le plus rentable. J'ai acheté mon premier appartement à Lyon et le cash-flow est exactement celui annoncé !"
+                </div>
+                <div class="testimonial-date">Achat réalisé il y a 3 mois</div>
+            </div>
+
+            <!-- Témoignage 2 -->
+            <div class="testimonial-card">
+                <div class="testimonial-header">
+                    <div class="testimonial-avatar" style="background-image: url('https://images.unsplash.com/photo-1573497019940-1c28c88b4f9e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80');"></div>
+                    <div class="testimonial-info">
+                        <h3>Sophie Dubois</h3>
+                        <p>Agent immobilier, Belgique</p>
+                    </div>
+                </div>
+                <div class="testimonial-rating">★★★★★</div>
+                <div class="testimonial-text">
+                    "Je recommande RentaPro à tous mes clients. L'analyse financière est précise et le guide est incroyablement complet. Un outil indispensable pour tout investisseur."
+                </div>
+                <div class="testimonial-date">Utilisatrice depuis 6 mois</div>
+            </div>
+
+            <!-- Témoignage 3 -->
+            <div class="testimonial-card">
+                <div class="testimonial-header">
+                    <div class="testimonial-avatar" style="background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80');"></div>
+                    <div class="testimonial-info">
+                        <h3>Marc Lambert</h3>
+                        <p>Investisseur confirmé, Canada</p>
+                    </div>
+                </div>
+                <div class="testimonial-rating">★★★★★</div>
+                <div class="testimonial-text">
+                    "J'ai 15 ans d'expérience et je dois dire que la section 'Investissement mondial' est une mine d'or. Les conseils par continent m'ont aidé à diversifier mon portefeuille."
+                </div>
+                <div class="testimonial-date">Membre Premium</div>
+            </div>
+
+            <!-- Témoignage 4 -->
+            <div class="testimonial-card">
+                <div class="testimonial-header">
+                    <div class="testimonial-avatar" style="background-image: url('https://images.unsplash.com/photo-1519345182560-3f2917c472ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80');"></div>
+                    <div class="testimonial-info">
+                        <h3>Jean-Pierre Rousseau</h3>
+                        <p>Retraité, Suisse</p>
+                    </div>
+                </div>
+                <div class="testimonial-rating">★★★★★</div>
+                <div class="testimonial-text">
+                    "À 68 ans, j'ai enfin compris comment calculer la rentabilité grâce au simulateur. J'ai investi dans un petit immeuble et je ne regrette pas !"
+                </div>
+                <div class="testimonial-date">Investissement réussi</div>
+            </div>
+
+            <!-- Témoignage 5 -->
+            <div class="testimonial-card">
+                <div class="testimonial-header">
+                    <div class="testimonial-avatar" style="background-image: url('https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80');"></div>
+                    <div class="testimonial-info">
+                        <h3>Marie-Claire Dupont</h3>
+                        <p>Jeune investisseuse, France</p>
+                    </div>
+                </div>
+                <div class="testimonial-rating">★★★★★</div>
+                <div class="testimonial-text">
+                    "Avec seulement 5000€, je ne savais pas par où commencer. Les catégories par revenu m'ont guidée vers le crowdfunding immobilier. Un super site !"
+                </div>
+                <div class="testimonial-date">Premier investissement</div>
+            </div>
+
+            <!-- Témoignage 6 -->
+            <div class="testimonial-card">
+                <div class="testimonial-header">
+                    <div class="testimonial-avatar" style="background-image: url('https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80');"></div>
+                    <div class="testimonial-info">
+                        <h3>Pierre Durand</h3>
+                        <p>Expert-comptable, Luxembourg</p>
+                    </div>
+                </div>
+                <div class="testimonial-rating">★★★★★</div>
+                <div class="testimonial-text">
+                    "La partie analyse financière avec la VAN et le TRI est excellente. Je l'utilise maintenant pour tous mes clients investisseurs."
+                </div>
+                <div class="testimonial-date">Utilisateur pro</div>
+            </div>
+        </div>
+
+        <div class="add-testimonial">
+            <h2>💬 Partagez votre expérience</h2>
+            <p>Vous avez utilisé RentaPro ? Laissez-nous votre témoignage et aidez d'autres investisseurs !</p>
+            <a href="/pages/contact.html" class="btn-primary">Ajouter mon témoignage</a>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>RentaPro</h4>
+                <a href="/">Accueil</a>
+                <a href="/pages/simulateur.html">Simulateur</a>
+                <a href="/pages/guide.html">Guide</a>
+                <a href="/pages/investissement-mondial.html">🌍 Monde</a>
+                <a href="/pages/analyse-financiere.html">📊 Finance</a>
+                <a href="/pages/blog.html">📝 Blog</a>
+                <a href="/pages/temoignages.html">🗣️ Témoignages</a>
+                <a href="/pages/contact.html">Contact</a>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p style="color: #94a3b8;">📧 rubenmukend287@gmail.com</p>
+                <p style="color: #94a3b8;">📞 +243 974 843 721</p>
+            </div>
+        </div>
+        <div class="copyright">
+            © 2026 RentaPro - Témoignages d'investisseurs immobiliers
+        </div>
+    </footer>
+</body>
+</html>
