@@ -30,19 +30,22 @@
     <!-- Google Search Console -->
     <meta name="google-site-verification" content="TON_CODE_ICI">
     
-    <!-- Optimisation des performances -->
+    <!-- Optimisation -->
     <link rel="preconnect" href="https://images.unsplash.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Google Fonts enrichies -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Canonical -->
     <link rel="canonical" href="https://rentapro-swart.vercel.app/pages/guide.html">
     
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="/favicon.png">
+    
+    <!-- Assistant IA CSS -->
+    <link rel="stylesheet" href="/assistant-ia.css">
 
     <style>
         :root {
@@ -58,7 +61,8 @@
             --shadow-sm: 0 4px 6px -1px rgb(0 0 0 / 0.05);
             --shadow-md: 0 10px 15px -3px rgb(0 0 0 / 0.05);
             --shadow-lg: 0 20px 25px -5px rgb(0 0 0 / 0.05);
-            --transition: all 0.3s ease;
+            --shadow-xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         * {
@@ -74,6 +78,20 @@
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+        }
+
+        .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .font-montserrat {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            letter-spacing: -0.02em;
         }
 
         .navbar {
@@ -98,6 +116,7 @@
             gap: 0.5rem;
             font-size: 1.8rem;
             font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .logo-icon {
@@ -151,7 +170,7 @@
             left: 0;
             width: 100%;
             height: 3px;
-            background: var(--accent);
+            background: linear-gradient(90deg, var(--accent), var(--accent-hover));
             border-radius: 3px 3px 0 0;
         }
 
@@ -170,11 +189,30 @@
             margin-bottom: 3rem;
             color: white;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .guide-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(234,179,8,0.1) 0%, transparent 70%);
+            animation: rotate 30s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
 
         .guide-hero h1 {
             font-size: clamp(2rem, 5vw, 2.8rem);
             margin-bottom: 1rem;
+            position: relative;
         }
 
         .guide-hero p {
@@ -182,6 +220,7 @@
             font-size: 1.2rem;
             max-width: 700px;
             margin: 0 auto 2rem;
+            position: relative;
         }
 
         .btn {
@@ -195,6 +234,27 @@
             transition: var(--transition);
             border: none;
             cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn:hover::after {
+            width: 300px;
+            height: 300px;
         }
 
         .btn:hover {
@@ -224,6 +284,7 @@
         .chapter-card:hover {
             transform: translateY(-5px);
             border-color: var(--accent);
+            box-shadow: var(--shadow-md);
         }
 
         .chapter-icon {
@@ -248,6 +309,7 @@
             margin-bottom: 3rem;
             box-shadow: var(--shadow-md);
             scroll-margin-top: 100px;
+            border: 1px solid var(--border);
         }
 
         .section-header {
@@ -259,6 +321,16 @@
             font-size: 2rem;
             color: var(--primary-dark);
             margin-bottom: 1rem;
+        }
+
+        .section-header h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-hover));
+            margin: 1rem auto;
+            border-radius: 2px;
         }
 
         .section-content {
@@ -281,7 +353,106 @@
             margin-bottom: 0.5rem;
         }
 
-        /* Section affiliation Amazon avec liens directs */
+        /* Grille des types d'investissement */
+        .types-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .type-card {
+            background: var(--bg-light);
+            padding: 1.5rem;
+            border-radius: 20px;
+            transition: var(--transition);
+            border: 1px solid var(--border);
+        }
+
+        .type-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--accent);
+        }
+
+        .type-card h3 {
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .type-card p {
+            margin-bottom: 0.5rem;
+            color: var(--text-light);
+        }
+
+        /* Tableau fiscalité */
+        .table-container {
+            overflow-x: auto;
+            margin: 1.5rem 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+
+        thead {
+            background: var(--primary-dark);
+            color: white;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        tbody tr:hover {
+            background: var(--bg-light);
+        }
+
+        /* Checklist */
+        .checklist-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem;
+            background: #fef2f2;
+            border-radius: 8px;
+            border-left: 4px solid #dc2626;
+        }
+
+        /* Stratégies */
+        .strategy-card {
+            margin-bottom: 1.5rem;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, #f8fafc, #ffffff);
+            border-radius: 16px;
+            border-left: 4px solid var(--accent);
+            transition: var(--transition);
+        }
+
+        .strategy-card:hover {
+            transform: translateX(10px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .strategy-card h3 {
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+        }
+
         .affiliation-section {
             margin: 3rem 0;
             padding: 2rem;
@@ -308,6 +479,12 @@
             padding: 1.5rem;
             background: var(--bg-light);
             border-radius: 16px;
+            transition: var(--transition);
+        }
+
+        .book-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
         }
 
         .book-image {
@@ -345,6 +522,7 @@
         .btn-amazon:hover {
             background: #e68900;
             transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255,153,0,0.3);
         }
 
         .footer {
@@ -365,6 +543,7 @@
         .footer-section h4 {
             color: var(--accent);
             margin-bottom: 1.5rem;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .footer-section a {
@@ -377,6 +556,7 @@
 
         .footer-section a:hover {
             color: var(--accent);
+            transform: translateX(5px);
         }
 
         .footer-legal {
@@ -391,6 +571,7 @@
             color: #94a3b8;
             text-decoration: none;
             font-size: 0.9rem;
+            transition: var(--transition);
         }
 
         .footer-legal a:hover {
@@ -446,7 +627,7 @@
 
     <div class="container">
         <div class="guide-hero">
-            <h1>📚 Guide de l'investisseur locatif</h1>
+            <h1>📚 Guide de <span class="font-serif">l'investisseur locatif</span></h1>
             <p>Que vous soyez débutant ou confirmé, ce guide vous accompagne pas à pas pour réussir vos investissements immobiliers.</p>
             <a href="#section1" class="btn">Commencer la lecture →</a>
         </div>
@@ -471,6 +652,26 @@
                 <div class="chapter-icon">🔍</div>
                 <h3>4. Choisir un bien</h3>
                 <p>Critères de sélection</p>
+            </div>
+            <div class="chapter-card" onclick="document.getElementById('section5').scrollIntoView({behavior: 'smooth'})">
+                <div class="chapter-icon">🏢</div>
+                <h3>5. Types d'investissement</h3>
+                <p>Location vide, meublée...</p>
+            </div>
+            <div class="chapter-card" onclick="document.getElementById('section6').scrollIntoView({behavior: 'smooth'})">
+                <div class="chapter-icon">📝</div>
+                <h3>6. Fiscalité</h3>
+                <p>Résumé des régimes</p>
+            </div>
+            <div class="chapter-card" onclick="document.getElementById('section7').scrollIntoView({behavior: 'smooth'})">
+                <div class="chapter-icon">❌</div>
+                <h3>7. Erreurs à éviter</h3>
+                <p>Checklist des pièges</p>
+            </div>
+            <div class="chapter-card" onclick="document.getElementById('section8').scrollIntoView({behavior: 'smooth'})">
+                <div class="chapter-icon">💡</div>
+                <h3>8. Stratégies gagnantes</h3>
+                <p>Top 5 des méthodes</p>
             </div>
         </div>
 
@@ -515,7 +716,7 @@
                 <p><strong>Rentabilité brute :</strong> (Loyer annuel / Prix d'achat) × 100</p>
                 <p><strong>Rentabilité nette :</strong> (Loyer annuel - charges) / (Prix d'achat + frais) × 100</p>
                 <p><strong>Cash-flow :</strong> Loyer - charges - mensualité</p>
-                <p style="margin-top: 1.5rem;">👉 Utilisez notre <a href="/pages/simulateur.html">simulateur gratuit</a> pour des calculs précis.</p>
+                <p style="margin-top: 1.5rem;">👉 Utilisez notre <a href="/pages/simulateur.html" style="color: var(--accent);">simulateur gratuit</a> pour des calculs précis.</p>
             </div>
         </section>
 
@@ -534,7 +735,149 @@
             </div>
         </section>
 
-        <!-- Section affiliation Amazon avec LIENS DIRECTS qui fonctionnent -->
+        <!-- Section 5 : Les différents types d'investissement -->
+        <section id="section5" class="guide-section">
+            <div class="section-header">
+                <h2>5. Les différents types d'investissement</h2>
+            </div>
+            <div class="types-grid">
+                <div class="type-card">
+                    <h3>🏢 Location vide</h3>
+                    <p><strong>Avantages :</strong> Gestion simple, marché important</p>
+                    <p><strong>Inconvénients :</strong> Rendement plus faible</p>
+                    <p><strong>Rendement :</strong> 3-5%</p>
+                </div>
+                <div class="type-card">
+                    <h3>🛋️ Location meublée</h3>
+                    <p><strong>Avantages :</strong> Rendement plus élevé, fiscalité LMNP</p>
+                    <p><strong>Inconvénients :</strong> Gestion plus lourde</p>
+                    <p><strong>Rendement :</strong> 5-7%</p>
+                </div>
+                <div class="type-card">
+                    <h3>📚 Investissement étudiant</h3>
+                    <p><strong>Avantages :</strong> Demande stable, petites surfaces</p>
+                    <p><strong>Inconvénients :</strong> Turnover annuel</p>
+                    <p><strong>Rendement :</strong> 6-8%</p>
+                </div>
+                <div class="type-card">
+                    <h3>🏘️ Colocation</h3>
+                    <p><strong>Avantages :</strong> Rendement très élevé</p>
+                    <p><strong>Inconvénients :</strong> Gestion complexe</p>
+                    <p><strong>Rendement :</strong> 8-12%</p>
+                </div>
+                <div class="type-card">
+                    <h3>🏨 Résidence gérée</h3>
+                    <p><strong>Avantages :</strong> Gestion déléguée</p>
+                    <p><strong>Inconvénients :</strong> Rendement plus faible</p>
+                    <p><strong>Rendement :</strong> 4-5%</p>
+                </div>
+                <div class="type-card">
+                    <h3>📦 SCPI</h3>
+                    <p><strong>Avantages :</strong> Investissement sans gestion</p>
+                    <p><strong>Inconvénients :</strong> Liquidité moindre</p>
+                    <p><strong>Rendement :</strong> 4-5%</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6 : Résumé fiscalité -->
+        <section id="section6" class="guide-section">
+            <div class="section-header">
+                <h2>6. Résumé fiscalité immobilière</h2>
+            </div>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Régime</th>
+                            <th>Type de bien</th>
+                            <th>Avantage</th>
+                            <th>Limite</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Micro-foncier</strong></td>
+                            <td>Location vide</td>
+                            <td>Abattement 30%</td>
+                            <td>15 000€ de revenus</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Régime réel</strong></td>
+                            <td>Location vide</td>
+                            <td>Déduction charges</td>
+                            <td>Comptabilité obligatoire</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Micro-BIC</strong></td>
+                            <td>Location meublée</td>
+                            <td>Abattement 50%</td>
+                            <td>70 000€ de revenus</td>
+                        </tr>
+                        <tr>
+                            <td><strong>LMNP réel</strong></td>
+                            <td>Location meublée</td>
+                            <td>Amortissement</td>
+                            <td>Comptabilité obligatoire</td>
+                        </tr>
+                        <tr>
+                            <td><strong>LMP</strong></td>
+                            <td>Location meublée</td>
+                            <td>Statut professionnel</td>
+                            <td>Plus de 23 000€</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Section 7 : Les erreurs à éviter -->
+        <section id="section7" class="guide-section">
+            <div class="section-header">
+                <h2>7. Checklist : 10 erreurs à éviter</h2>
+            </div>
+            <div class="checklist-grid">
+                <div class="checklist-item"><span style="color: #dc2626;">❌</span> Ne pas calculer la rentabilité</div>
+                <div class="checklist-item"><span style="color: #dc2626;">❌</span> Sous-estimer les charges</div>
+                <div class="checklist-item"><span style="color: #dc2626;">❌</span> Mauvais emplacement</div>
+                <div class="checklist-item"><span style="color: #dc2626;">❌</span> Sur-endettement</div>
+                <div class="checklist-item"><span style="color: #dc2626;">❌</span> Ignorer la fiscalité</div>
+                <div class="checklist-item"><span style="color: #dc2626;">❌</span> Négliger les travaux</div>
+                <div class="checklist-item"><span style="color: #dc2626;">❌</span> Mauvaise sélection locataires</div>
+                <div class="checklist-item"><span style="color: #dc2626;">❌</span> Pas d'assurance loyers impayés</div>
+                <div class="checklist-item"><span style="color: #dc2626;">❌</span> Surestimer la plus-value</div>
+                <div class="checklist-item"><span style="color: #dc2626;">❌</span> Se précipiter sans comparer</div>
+            </div>
+        </section>
+
+        <!-- Section 8 : Les meilleures stratégies -->
+        <section id="section8" class="guide-section">
+            <div class="section-header">
+                <h2>8. Top 5 des stratégies gagnantes</h2>
+            </div>
+            <div class="strategy-card">
+                <h3>🥇 Stratégie #1 : L'achat revente (flip)</h3>
+                <p>Acheter un bien à rénover, le rénover et le revendre rapidement. Nécessite de bonnes compétences en rénovation et une connaissance du marché local. Marge potentielle : 15-30%.</p>
+            </div>
+            <div class="strategy-card">
+                <h3>🥈 Stratégie #2 : La colocation</h3>
+                <p>Louer un grand appartement à plusieurs locataires. Rendement élevé (8-12%) mais gestion plus complexe. Idéal pour les zones étudiantes.</p>
+            </div>
+            <div class="strategy-card">
+                <h3>🥉 Stratégie #3 : Le LMNP</h3>
+                <p>Louer en meublé pour bénéficier du régime LMNP. Amortissement du bien possible, fiscalité avantageuse. Idéal pour les petites surfaces.</p>
+            </div>
+            <div class="strategy-card">
+                <h3>4️⃣ Stratégie #4 : Le leasing immobilier</h3>
+                <p>Acheter avec un crédit in fine pour déduire les intérêts et se constituer un patrimoine sans effort de trésorerie.</p>
+            </div>
+            <div class="strategy-card">
+                <h3>5️⃣ Stratégie #5 : L'investissement dans les SCPI</h3>
+                <p>Investir dans l'immobilier sans les contraintes de gestion. Idéal pour débuter avec un petit budget ou diversifier.</p>
+            </div>
+        </section>
+
+        <!-- Section affiliation Amazon -->
         <div class="affiliation-section">
             <h3>📚 Les meilleurs livres pour investir</h3>
             <div class="books-grid">
@@ -595,7 +938,106 @@
         </div>
     </footer>
 
+    <!-- Assistant IA -->
+    <div class="chat-button" id="chatButton" onclick="toggleChat()">💬</div>
+    <div class="chat-window" id="chatWindow">
+        <div class="chat-header">
+            <h3><i>🏠</i> Assistant RentaPro</h3>
+            <button class="close-chat" onclick="toggleChat()">✕</button>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            <div class="message bot">
+                👋 Bonjour ! Je suis l'assistant IA de RentaPro. 
+                Posez-moi vos questions sur l'investissement immobilier !
+            </div>
+        </div>
+        <div class="chat-input-area">
+            <input type="text" class="chat-input" id="userInput" placeholder="Votre question..." onkeypress="if(event.key==='Enter') sendMessage()">
+            <button class="send-message" onclick="sendMessage()">➤</button>
+        </div>
+        <div class="suggestions">
+            <span class="suggestion-chip" onclick="useSuggestion('Comment calculer le rendement locatif ?')">📊 Rendement</span>
+            <span class="suggestion-chip" onclick="useSuggestion('C\'est quoi le cash-flow ?')">💰 Cash-flow</span>
+            <span class="suggestion-chip" onclick="useSuggestion('Comment financer mon premier achat ?')">🏦 Financement</span>
+            <span class="suggestion-chip" onclick="useSuggestion('LMNP ou location vide ?')">🏢 LMNP</span>
+        </div>
+    </div>
+
+    <script src="/assistant-ia.js"></script>
     <script>
+        let chatVisible = false;
+
+        function toggleChat() {
+            const chatWindow = document.getElementById('chatWindow');
+            const chatButton = document.getElementById('chatButton');
+            chatVisible = !chatVisible;
+            
+            if (chatVisible) {
+                chatWindow.style.display = 'flex';
+                chatButton.style.opacity = '0';
+                chatButton.style.pointerEvents = 'none';
+            } else {
+                chatWindow.style.display = 'none';
+                chatButton.style.opacity = '1';
+                chatButton.style.pointerEvents = 'auto';
+            }
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('userInput');
+            const message = input.value.trim();
+            if (!message) return;
+            
+            addMessage(message, 'user');
+            input.value = '';
+            showTypingIndicator();
+            
+            setTimeout(() => {
+                removeTypingIndicator();
+                const reponse = assistantIA.repondre(message);
+                addMessage(reponse, 'bot');
+            }, 1000);
+        }
+
+        function addMessage(text, sender) {
+            const messages = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}`;
+            messageDiv.textContent = text;
+            messages.appendChild(messageDiv);
+            messages.scrollTop = messages.scrollHeight;
+        }
+
+        function showTypingIndicator() {
+            const messages = document.getElementById('chatMessages');
+            const indicator = document.createElement('div');
+            indicator.className = 'typing-indicator';
+            indicator.id = 'typingIndicator';
+            indicator.innerHTML = '<span></span><span></span><span></span>';
+            messages.appendChild(indicator);
+            messages.scrollTop = messages.scrollHeight;
+        }
+
+        function removeTypingIndicator() {
+            const indicator = document.getElementById('typingIndicator');
+            if (indicator) indicator.remove();
+        }
+
+        function useSuggestion(text) {
+            document.getElementById('userInput').value = text;
+            sendMessage();
+        }
+
+        document.addEventListener('click', function(event) {
+            const chatWindow = document.getElementById('chatWindow');
+            const chatButton = document.getElementById('chatButton');
+            
+            if (chatVisible && !chatWindow.contains(event.target) && !chatButton.contains(event.target)) {
+                toggleChat();
+            }
+        });
+
+        // Smooth scroll pour les ancres
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();

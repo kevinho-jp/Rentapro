@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- ========== BALISES SEO OPTIMISÉES ========== -->
+    <!-- ========== BALISES SEO ========== -->
     <title>Blog immobilier - Conseils et stratégies d'investissement - RentaPro</title>
     <meta name="description" content="Blog immobilier RentaPro : conseils, analyses et stratégies pour réussir vos investissements locatifs. Articles mis à jour chaque semaine.">
     <meta name="keywords" content="blog immobilier, conseils investissement locatif, stratégies immobilières, actualité immobilière">
@@ -34,13 +34,16 @@
     <link rel="preconnect" href="https://images.unsplash.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Canonical -->
     <link rel="canonical" href="https://rentapro-swart.vercel.app/pages/blog.html">
     
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="/favicon.png">
+    
+    <!-- Assistant IA CSS -->
+    <link rel="stylesheet" href="/assistant-ia.css">
 
     <style>
         :root {
@@ -56,7 +59,8 @@
             --shadow-sm: 0 4px 6px -1px rgb(0 0 0 / 0.05);
             --shadow-md: 0 10px 15px -3px rgb(0 0 0 / 0.05);
             --shadow-lg: 0 20px 25px -5px rgb(0 0 0 / 0.05);
-            --transition: all 0.3s ease;
+            --shadow-xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         * {
@@ -72,6 +76,20 @@
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+        }
+
+        .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .font-montserrat {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            letter-spacing: -0.02em;
         }
 
         .navbar {
@@ -96,6 +114,7 @@
             gap: 0.5rem;
             font-size: 1.8rem;
             font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .logo-icon {
@@ -149,7 +168,7 @@
             left: 0;
             width: 100%;
             height: 3px;
-            background: var(--accent);
+            background: linear-gradient(90deg, var(--accent), var(--accent-hover));
             border-radius: 3px 3px 0 0;
         }
 
@@ -164,15 +183,34 @@
         .header-center {
             text-align: center;
             margin-bottom: 3rem;
-            padding: 2rem;
+            padding: 3rem;
             background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-light) 100%);
             border-radius: 40px;
             color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-center::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(234,179,8,0.1) 0%, transparent 70%);
+            animation: rotate 30s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
 
         .header-center h1 {
             font-size: clamp(2rem, 5vw, 3rem);
             margin-bottom: 1rem;
+            position: relative;
         }
 
         .header-center p {
@@ -180,6 +218,7 @@
             font-size: 1.2rem;
             max-width: 800px;
             margin: 0 auto;
+            position: relative;
         }
 
         .blog-categories {
@@ -199,6 +238,7 @@
             font-weight: 500;
             cursor: pointer;
             transition: var(--transition);
+            font-family: 'Montserrat', sans-serif;
         }
 
         .category-tag:hover,
@@ -206,6 +246,8 @@
             background: var(--accent);
             border-color: var(--accent);
             color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-sm);
         }
 
         .blog-grid {
@@ -226,7 +268,7 @@
 
         .blog-card:hover {
             transform: translateY(-10px);
-            box-shadow: var(--shadow-lg);
+            box-shadow: var(--shadow-xl);
             border-color: var(--accent);
         }
 
@@ -247,6 +289,7 @@
             border-radius: 50px;
             font-weight: 600;
             font-size: 0.8rem;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .blog-content {
@@ -319,15 +362,33 @@
             gap: 0.5rem;
         }
 
+        .affiliate-link {
+            margin: 1rem 0;
+            padding: 1rem;
+            background: var(--bg-light);
+            border-radius: 12px;
+            border-left: 4px solid var(--accent);
+        }
+
         .popular-section {
             margin: 4rem 0;
         }
 
         .popular-section h2 {
+            text-align: center;
             font-size: 2rem;
             color: var(--primary-dark);
             margin-bottom: 2rem;
-            text-align: center;
+        }
+
+        .popular-section h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-hover));
+            margin: 1rem auto;
+            border-radius: 2px;
         }
 
         .popular-grid {
@@ -344,6 +405,13 @@
             border-radius: 16px;
             box-shadow: var(--shadow-sm);
             align-items: center;
+            transition: var(--transition);
+        }
+
+        .popular-card:hover {
+            transform: translateX(5px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--accent);
         }
 
         .popular-number {
@@ -373,17 +441,32 @@
             margin: 4rem 0;
             text-align: center;
             color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .newsletter-banner::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(234,179,8,0.1) 0%, transparent 70%);
+            animation: rotate 30s linear infinite;
         }
 
         .newsletter-banner h3 {
             font-size: 2rem;
             margin-bottom: 1rem;
+            position: relative;
         }
 
         .newsletter-banner p {
             color: #cbd5e1;
             margin-bottom: 2rem;
             font-size: 1.1rem;
+            position: relative;
         }
 
         .newsletter-form {
@@ -391,6 +474,7 @@
             max-width: 500px;
             margin: 0 auto;
             gap: 1rem;
+            position: relative;
         }
 
         .newsletter-input {
@@ -399,7 +483,7 @@
             border: none;
             border-radius: 50px;
             font-size: 1rem;
-            font-family: inherit;
+            font-family: 'Inter', sans-serif;
         }
 
         .newsletter-input:focus {
@@ -415,12 +499,13 @@
             font-weight: 600;
             cursor: pointer;
             transition: var(--transition);
-            font-family: inherit;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .newsletter-button:hover {
             background: var(--accent-hover);
             transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(234,179,8,0.3);
         }
 
         .footer {
@@ -441,6 +526,7 @@
         .footer-section h4 {
             color: var(--accent);
             margin-bottom: 1.5rem;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .footer-section a {
@@ -453,6 +539,7 @@
 
         .footer-section a:hover {
             color: var(--accent);
+            transform: translateX(5px);
         }
 
         .footer-legal {
@@ -467,6 +554,7 @@
             color: #94a3b8;
             text-decoration: none;
             font-size: 0.9rem;
+            transition: var(--transition);
         }
 
         .footer-legal a:hover {
@@ -522,7 +610,7 @@
 
     <div class="container">
         <div class="header-center">
-            <h1>📝 Blog immobilier RentaPro</h1>
+            <h1>📝 Blog immobilier <span class="font-serif">RentaPro</span></h1>
             <p>Conseils, analyses et stratégies pour réussir vos investissements immobiliers</p>
         </div>
 
@@ -545,6 +633,9 @@
                     <div class="blog-date">15 Février 2026</div>
                     <h3 class="blog-title">Les 5 erreurs à éviter quand on achète son premier bien locatif</h3>
                     <p class="blog-excerpt">Découvrez les pièges les plus courants qui guettent les investisseurs débutants et comment les éviter pour réussir votre premier achat.</p>
+                    <div class="affiliate-link">
+                        📖 Pour approfondir : <a href="https://www.amazon.fr/dp/2809520097?tag=rentapro-21" target="_blank" style="color: #eab308; text-decoration: none;">Le guide de l'acheteur immobilier →</a>
+                    </div>
                     <div class="blog-meta">
                         <div class="blog-author">
                             <div class="author-avatar">KM</div>
@@ -564,6 +655,9 @@
                     <div class="blog-date">10 Février 2026</div>
                     <h3 class="blog-title">Comment obtenir le meilleur taux pour votre prêt immobilier</h3>
                     <p class="blog-excerpt">Les banques ne se valent pas. Découvrez nos astuces pour négocier un taux avantageux et économiser des milliers d'euros.</p>
+                    <div class="affiliate-link">
+                        📖 Pour approfondir : <a href="https://www.amazon.fr/s?k=crédit+immobilier&tag=rentapro-21" target="_blank" style="color: #eab308; text-decoration: none;">Livres sur le financement →</a>
+                    </div>
                     <div class="blog-meta">
                         <div class="blog-author">
                             <div class="author-avatar">KM</div>
@@ -583,6 +677,9 @@
                     <div class="blog-date">5 Février 2026</div>
                     <h3 class="blog-title">Trouver et fidéliser de bons locataires : le guide complet</h3>
                     <p class="blog-excerpt">Un bon locataire est la clé d'un investissement réussi. Apprenez à les sélectionner et à les garder sur la durée.</p>
+                    <div class="affiliate-link">
+                        📖 Pour approfondir : <a href="https://www.amazon.fr/dp/2290152491?tag=rentapro-21" target="_blank" style="color: #eab308; text-decoration: none;">Père riche, Père pauvre →</a>
+                    </div>
                     <div class="blog-meta">
                         <div class="blog-author">
                             <div class="author-avatar">KM</div>
@@ -602,6 +699,9 @@
                     <div class="blog-date">28 Janvier 2026</div>
                     <h3 class="blog-title">LMNP vs Location vide : quel régime choisir ?</h3>
                     <p class="blog-excerpt">Comparaison détaillée des deux régimes fiscaux pour optimiser vos revenus locatifs et réduire vos impôts.</p>
+                    <div class="affiliate-link">
+                        📖 Pour approfondir : <a href="https://www.amazon.fr/s?k=fiscalité+immobilière&tag=rentapro-21" target="_blank" style="color: #eab308; text-decoration: none;">Guides fiscaux →</a>
+                    </div>
                     <div class="blog-meta">
                         <div class="blog-author">
                             <div class="author-avatar">KM</div>
@@ -621,6 +721,9 @@
                     <div class="blog-date">20 Janvier 2026</div>
                     <h3 class="blog-title">Comment investir dans l'immobilier avec moins de 5000$</h3>
                     <p class="blog-excerpt">Pas besoin d'être riche pour commencer. Découvrez les stratégies accessibles avec un petit budget.</p>
+                    <div class="affiliate-link">
+                        📖 Pour approfondir : <a href="https://www.amazon.fr/dp/2412058767?tag=rentapro-21" target="_blank" style="color: #eab308; text-decoration: none;">L'immobilier locatif pour les nuls →</a>
+                    </div>
                     <div class="blog-meta">
                         <div class="blog-author">
                             <div class="author-avatar">KM</div>
@@ -640,6 +743,9 @@
                     <div class="blog-date">15 Janvier 2026</div>
                     <h3 class="blog-title">Les meilleures villes pour investir en 2026</h3>
                     <p class="blog-excerpt">Notre sélection des villes les plus prometteuses pour un investissement locatif rentable cette année.</p>
+                    <div class="affiliate-link">
+                        📖 Pour approfondir : <a href="https://www.amazon.fr/s?k=investissement+immobilier+2026&tag=rentapro-21" target="_blank" style="color: #eab308; text-decoration: none;">Prévisions immobilières →</a>
+                    </div>
                     <div class="blog-meta">
                         <div class="blog-author">
                             <div class="author-avatar">KM</div>
@@ -729,5 +835,105 @@
             © 2026 RentaPro - Blog immobilier pour investisseurs
         </div>
     </footer>
+
+    <!-- Assistant IA -->
+    <div class="chat-button" id="chatButton" onclick="toggleChat()">💬</div>
+    <div class="chat-window" id="chatWindow">
+        <div class="chat-header">
+            <h3><i>🏠</i> Assistant RentaPro</h3>
+            <button class="close-chat" onclick="toggleChat()">✕</button>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            <div class="message bot">
+                👋 Bonjour ! Je suis l'assistant IA de RentaPro. 
+                Posez-moi vos questions sur l'investissement immobilier !
+            </div>
+        </div>
+        <div class="chat-input-area">
+            <input type="text" class="chat-input" id="userInput" placeholder="Votre question..." onkeypress="if(event.key==='Enter') sendMessage()">
+            <button class="send-message" onclick="sendMessage()">➤</button>
+        </div>
+        <div class="suggestions">
+            <span class="suggestion-chip" onclick="useSuggestion('Comment calculer le rendement locatif ?')">📊 Rendement</span>
+            <span class="suggestion-chip" onclick="useSuggestion('C\'est quoi le cash-flow ?')">💰 Cash-flow</span>
+            <span class="suggestion-chip" onclick="useSuggestion('Comment financer mon premier achat ?')">🏦 Financement</span>
+            <span class="suggestion-chip" onclick="useSuggestion('LMNP ou location vide ?')">🏢 LMNP</span>
+        </div>
+    </div>
+
+    <script src="/assistant-ia.js"></script>
+    <script>
+        let chatVisible = false;
+
+        function toggleChat() {
+            const chatWindow = document.getElementById('chatWindow');
+            const chatButton = document.getElementById('chatButton');
+            chatVisible = !chatVisible;
+            
+            if (chatVisible) {
+                chatWindow.style.display = 'flex';
+                chatButton.style.opacity = '0';
+                chatButton.style.pointerEvents = 'none';
+            } else {
+                chatWindow.style.display = 'none';
+                chatButton.style.opacity = '1';
+                chatButton.style.pointerEvents = 'auto';
+            }
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('userInput');
+            const message = input.value.trim();
+            if (!message) return;
+            
+            addMessage(message, 'user');
+            input.value = '';
+            showTypingIndicator();
+            
+            setTimeout(() => {
+                removeTypingIndicator();
+                const reponse = assistantIA.repondre(message);
+                addMessage(reponse, 'bot');
+            }, 1000);
+        }
+
+        function addMessage(text, sender) {
+            const messages = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}`;
+            messageDiv.textContent = text;
+            messages.appendChild(messageDiv);
+            messages.scrollTop = messages.scrollHeight;
+        }
+
+        function showTypingIndicator() {
+            const messages = document.getElementById('chatMessages');
+            const indicator = document.createElement('div');
+            indicator.className = 'typing-indicator';
+            indicator.id = 'typingIndicator';
+            indicator.innerHTML = '<span></span><span></span><span></span>';
+            messages.appendChild(indicator);
+            messages.scrollTop = messages.scrollHeight;
+        }
+
+        function removeTypingIndicator() {
+            const indicator = document.getElementById('typingIndicator');
+            if (indicator) indicator.remove();
+        }
+
+        function useSuggestion(text) {
+            document.getElementById('userInput').value = text;
+            sendMessage();
+        }
+
+        document.addEventListener('click', function(event) {
+            const chatWindow = document.getElementById('chatWindow');
+            const chatButton = document.getElementById('chatButton');
+            
+            if (chatVisible && !chatWindow.contains(event.target) && !chatButton.contains(event.target)) {
+                toggleChat();
+            }
+        });
+    </script>
 </body>
 </html>

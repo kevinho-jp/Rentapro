@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- ========== BALISES SEO OPTIMISÉES ========== -->
+    <!-- ========== BALISES SEO ========== -->
     <title>Investissement immobilier par continent - RentaPro</title>
     <meta name="description" content="Guide complet de l'investissement immobilier par continent : Europe, Amérique, Asie, Afrique, Océanie. Opportunités, rendements et conseils par région.">
     <meta name="keywords" content="investissement immobilier international, immobilier Europe, immobilier Amérique, immobilier Asie, immobilier Afrique, investir à l'étranger">
@@ -34,13 +34,16 @@
     <link rel="preconnect" href="https://images.unsplash.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Canonical -->
     <link rel="canonical" href="https://rentapro-swart.vercel.app/pages/investissement-mondial.html">
     
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="/favicon.png">
+    
+    <!-- Assistant IA CSS -->
+    <link rel="stylesheet" href="/assistant-ia.css">
 
     <style>
         :root {
@@ -56,7 +59,8 @@
             --shadow-sm: 0 4px 6px -1px rgb(0 0 0 / 0.05);
             --shadow-md: 0 10px 15px -3px rgb(0 0 0 / 0.05);
             --shadow-lg: 0 20px 25px -5px rgb(0 0 0 / 0.05);
-            --transition: all 0.3s ease;
+            --shadow-xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         * {
@@ -72,6 +76,20 @@
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+        }
+
+        .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .font-montserrat {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            letter-spacing: -0.02em;
         }
 
         .navbar {
@@ -96,6 +114,7 @@
             gap: 0.5rem;
             font-size: 1.8rem;
             font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .logo-icon {
@@ -149,7 +168,7 @@
             left: 0;
             width: 100%;
             height: 3px;
-            background: var(--accent);
+            background: linear-gradient(90deg, var(--accent), var(--accent-hover));
             border-radius: 3px 3px 0 0;
         }
 
@@ -164,15 +183,34 @@
         .header-center {
             text-align: center;
             margin-bottom: 3rem;
-            padding: 2rem;
+            padding: 3rem;
             background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-light) 100%);
             border-radius: 40px;
             color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-center::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(234,179,8,0.1) 0%, transparent 70%);
+            animation: rotate 30s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
 
         .header-center h1 {
             font-size: clamp(2rem, 5vw, 3rem);
             margin-bottom: 1rem;
+            position: relative;
         }
 
         .header-center p {
@@ -180,6 +218,7 @@
             font-size: 1.2rem;
             max-width: 800px;
             margin: 0 auto;
+            position: relative;
         }
 
         .continent-grid {
@@ -200,7 +239,7 @@
 
         .continent-card:hover {
             transform: translateY(-10px);
-            box-shadow: var(--shadow-lg);
+            box-shadow: var(--shadow-xl);
             border-color: var(--accent);
         }
 
@@ -343,12 +382,13 @@
             transition: var(--transition);
             border: none;
             cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .btn-continent:hover {
             background: var(--primary-light);
             transform: translateY(-2px);
-            box-shadow: var(--shadow-sm);
+            box-shadow: var(--shadow-md);
         }
 
         .btn-seloger {
@@ -382,6 +422,16 @@
             margin-bottom: 2rem;
         }
 
+        .investors-section h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-hover));
+            margin: 1rem auto;
+            border-radius: 2px;
+        }
+
         .investors-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -398,6 +448,13 @@
             align-items: center;
             text-align: center;
             border: 1px solid var(--border);
+            transition: var(--transition);
+        }
+
+        .investor-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--accent);
         }
 
         .investor-image {
@@ -457,6 +514,7 @@
         .footer-section h4 {
             color: var(--accent);
             margin-bottom: 1.5rem;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .footer-section a {
@@ -469,6 +527,7 @@
 
         .footer-section a:hover {
             color: var(--accent);
+            transform: translateX(5px);
         }
 
         .footer-legal {
@@ -483,6 +542,7 @@
             color: #94a3b8;
             text-decoration: none;
             font-size: 0.9rem;
+            transition: var(--transition);
         }
 
         .footer-legal a:hover {
@@ -535,7 +595,7 @@
 
     <div class="container">
         <div class="header-center">
-            <h1>🌍 Investir dans l'immobilier à travers le monde</h1>
+            <h1>🌍 Investir dans <span class="font-serif">l'immobilier</span> à travers le monde</h1>
             <p>Découvrez les spécificités de chaque continent, les opportunités uniques et les conseils des plus grands investisseurs pour réussir vos placements internationaux.</p>
         </div>
 
@@ -732,24 +792,7 @@
                     </ul>
 
                     <button class="btn-continent" onclick="alert('Guide Océanie bientôt disponible !')">En savoir plus</button>
-                </div><!-- Section livres sur l'investissement international avec tag Amazon -->
-<div style="margin: 3rem 0; padding: 2rem; background: white; border-radius: 30px; border: 2px solid #eab308;">
-    <h3 style="text-align: center; margin-bottom: 2rem;">📚 Investir à l'international</h3>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
-        <div style="text-align: center;">
-            <h4>Investir en Europe</h4>
-            <a href="https://www.amazon.fr/dp/2416008746?tag=rentapro-21" target="_blank" style="display: inline-block; background: #ff9900; color: white; padding: 0.5rem 1.5rem; border-radius: 50px; text-decoration: none;">Voir le livre</a>
-        </div>
-        <div style="text-align: center;">
-            <h4>Investir aux USA</h4>
-            <a href="https://www.amazon.fr/dp/2290152491?tag=rentapro-21" target="_blank" style="display: inline-block; background: #ff9900; color: white; padding: 0.5rem 1.5rem; border-radius: 50px; text-decoration: none;">Voir le livre</a>
-        </div>
-        <div style="text-align: center;">
-            <h4>Investir en Asie</h4>
-            <a href="https://www.amazon.fr/dp/2412058767?tag=rentapro-21" target="_blank" style="display: inline-block; background: #ff9900; color: white; padding: 0.5rem 1.5rem; border-radius: 50px; text-decoration: none;">Voir le livre</a>
-        </div>
-    </div>
-</div>
+                </div>
             </div>
         </div>
 
@@ -757,6 +800,25 @@
             <a href="https://www.seloger.com/?utm_source=rentapro" target="_blank" class="btn-seloger">
                 🔍 Rechercher un bien sur SeLoger
             </a>
+        </div>
+
+        <!-- Section livres sur l'investissement international -->
+        <div style="margin: 3rem 0; padding: 2rem; background: white; border-radius: 30px; border: 2px solid #eab308;">
+            <h3 style="text-align: center; font-size: 1.8rem; color: #0f172a; margin-bottom: 2rem;">📚 Investir à l'international</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
+                <div style="text-align: center;">
+                    <h4>Investir en Europe</h4>
+                    <a href="https://www.amazon.fr/dp/2416008746?tag=rentapro-21" target="_blank" style="display: inline-block; background: #ff9900; color: white; padding: 0.5rem 1.5rem; border-radius: 50px; text-decoration: none; margin-top: 1rem;">Voir le livre</a>
+                </div>
+                <div style="text-align: center;">
+                    <h4>Investir aux USA</h4>
+                    <a href="https://www.amazon.fr/dp/2290152491?tag=rentapro-21" target="_blank" style="display: inline-block; background: #ff9900; color: white; padding: 0.5rem 1.5rem; border-radius: 50px; text-decoration: none; margin-top: 1rem;">Voir le livre</a>
+                </div>
+                <div style="text-align: center;">
+                    <h4>Investir en Asie</h4>
+                    <a href="https://www.amazon.fr/dp/2412058767?tag=rentapro-21" target="_blank" style="display: inline-block; background: #ff9900; color: white; padding: 0.5rem 1.5rem; border-radius: 50px; text-decoration: none; margin-top: 1rem;">Voir le livre</a>
+                </div>
+            </div>
         </div>
 
         <!-- Investisseurs -->
@@ -830,5 +892,105 @@
             © 2026 RentaPro - Investissement immobilier mondial
         </div>
     </footer>
+
+    <!-- Assistant IA -->
+    <div class="chat-button" id="chatButton" onclick="toggleChat()">💬</div>
+    <div class="chat-window" id="chatWindow">
+        <div class="chat-header">
+            <h3><i>🏠</i> Assistant RentaPro</h3>
+            <button class="close-chat" onclick="toggleChat()">✕</button>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            <div class="message bot">
+                👋 Bonjour ! Je suis l'assistant IA de RentaPro. 
+                Posez-moi vos questions sur l'investissement immobilier !
+            </div>
+        </div>
+        <div class="chat-input-area">
+            <input type="text" class="chat-input" id="userInput" placeholder="Votre question..." onkeypress="if(event.key==='Enter') sendMessage()">
+            <button class="send-message" onclick="sendMessage()">➤</button>
+        </div>
+        <div class="suggestions">
+            <span class="suggestion-chip" onclick="useSuggestion('Comment calculer le rendement locatif ?')">📊 Rendement</span>
+            <span class="suggestion-chip" onclick="useSuggestion('C\'est quoi le cash-flow ?')">💰 Cash-flow</span>
+            <span class="suggestion-chip" onclick="useSuggestion('Comment financer mon premier achat ?')">🏦 Financement</span>
+            <span class="suggestion-chip" onclick="useSuggestion('Investir en Afrique')">🌍 Afrique</span>
+        </div>
+    </div>
+
+    <script src="/assistant-ia.js"></script>
+    <script>
+        let chatVisible = false;
+
+        function toggleChat() {
+            const chatWindow = document.getElementById('chatWindow');
+            const chatButton = document.getElementById('chatButton');
+            chatVisible = !chatVisible;
+            
+            if (chatVisible) {
+                chatWindow.style.display = 'flex';
+                chatButton.style.opacity = '0';
+                chatButton.style.pointerEvents = 'none';
+            } else {
+                chatWindow.style.display = 'none';
+                chatButton.style.opacity = '1';
+                chatButton.style.pointerEvents = 'auto';
+            }
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('userInput');
+            const message = input.value.trim();
+            if (!message) return;
+            
+            addMessage(message, 'user');
+            input.value = '';
+            showTypingIndicator();
+            
+            setTimeout(() => {
+                removeTypingIndicator();
+                const reponse = assistantIA.repondre(message);
+                addMessage(reponse, 'bot');
+            }, 1000);
+        }
+
+        function addMessage(text, sender) {
+            const messages = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}`;
+            messageDiv.textContent = text;
+            messages.appendChild(messageDiv);
+            messages.scrollTop = messages.scrollHeight;
+        }
+
+        function showTypingIndicator() {
+            const messages = document.getElementById('chatMessages');
+            const indicator = document.createElement('div');
+            indicator.className = 'typing-indicator';
+            indicator.id = 'typingIndicator';
+            indicator.innerHTML = '<span></span><span></span><span></span>';
+            messages.appendChild(indicator);
+            messages.scrollTop = messages.scrollHeight;
+        }
+
+        function removeTypingIndicator() {
+            const indicator = document.getElementById('typingIndicator');
+            if (indicator) indicator.remove();
+        }
+
+        function useSuggestion(text) {
+            document.getElementById('userInput').value = text;
+            sendMessage();
+        }
+
+        document.addEventListener('click', function(event) {
+            const chatWindow = document.getElementById('chatWindow');
+            const chatButton = document.getElementById('chatButton');
+            
+            if (chatVisible && !chatWindow.contains(event.target) && !chatButton.contains(event.target)) {
+                toggleChat();
+            }
+        });
+    </script>
 </body>
 </html>

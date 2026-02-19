@@ -30,22 +30,24 @@
     <!-- Google Search Console -->
     <meta name="google-site-verification" content="TON_CODE_ICI">
     
-    <!-- Optimisation des performances -->
+    <!-- Optimisation -->
     <link rel="preconnect" href="https://images.unsplash.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Google Fonts enrichies -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Canonical -->
     <link rel="canonical" href="https://rentapro-swart.vercel.app/pages/simulateur.html">
     
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="/favicon.png">
+    
+    <!-- Assistant IA CSS -->
+    <link rel="stylesheet" href="/assistant-ia.css">
 
     <style>
-        /* ========== VARIABLES CSS ========== */
         :root {
             --primary-dark: #0f172a;
             --primary-light: #1e293b;
@@ -61,7 +63,8 @@
             --shadow-sm: 0 4px 6px -1px rgb(0 0 0 / 0.05);
             --shadow-md: 0 10px 15px -3px rgb(0 0 0 / 0.05);
             --shadow-lg: 0 20px 25px -5px rgb(0 0 0 / 0.05);
-            --transition: all 0.3s ease;
+            --shadow-xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         * {
@@ -71,7 +74,7 @@
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Inter', sans-serif;
             background: var(--bg-light);
             color: var(--text-dark);
             display: flex;
@@ -79,7 +82,22 @@
             min-height: 100vh;
         }
 
-        /* Navigation */
+        /* Nouvelles polices */
+        .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .font-montserrat {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* Titres améliorés */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+
         .navbar {
             background: var(--bg-white);
             padding: 1rem 5%;
@@ -102,6 +120,7 @@
             gap: 0.5rem;
             font-size: 1.8rem;
             font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .logo-icon {
@@ -155,11 +174,10 @@
             left: 0;
             width: 100%;
             height: 3px;
-            background: var(--accent);
+            background: linear-gradient(90deg, var(--accent), var(--accent-hover));
             border-radius: 3px 3px 0 0;
         }
 
-        /* Conteneur principal */
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -168,7 +186,6 @@
             flex: 1;
         }
 
-        /* En-tête */
         .header-center {
             text-align: center;
             margin-bottom: 2rem;
@@ -196,6 +213,7 @@
             margin: 1rem auto;
             font-weight: 600;
             box-shadow: var(--shadow-md);
+            font-family: 'Montserrat', sans-serif;
         }
 
         .trial-counter span {
@@ -205,7 +223,6 @@
             margin: 0 0.3rem;
         }
 
-        /* Grille du simulateur */
         .simulator-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -238,6 +255,7 @@
             color: var(--primary-dark);
             margin-bottom: 0.5rem;
             font-size: 0.95rem;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .form-group input,
@@ -248,7 +266,7 @@
             border-radius: 12px;
             font-size: 1rem;
             transition: var(--transition);
-            font-family: inherit;
+            font-family: 'Inter', sans-serif;
         }
 
         .form-group input:focus,
@@ -277,7 +295,6 @@
             padding-left: 2rem;
         }
 
-        /* Résultats */
         .result-section {
             background: var(--bg-light);
             border-radius: 20px;
@@ -313,6 +330,7 @@
             font-weight: 700;
             color: var(--primary-dark);
             font-size: 1.1rem;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .positive {
@@ -330,7 +348,6 @@
             border-left: 4px solid var(--accent);
         }
 
-        /* Boutons */
         .btn {
             padding: 1rem;
             border-radius: 12px;
@@ -340,7 +357,7 @@
             transition: var(--transition);
             border: none;
             width: 100%;
-            font-family: inherit;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .btn-primary {
@@ -371,7 +388,6 @@
             background: #fef9e7;
         }
 
-        /* Bannière Premium */
         .premium-banner {
             background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-light) 100%);
             border-radius: 30px;
@@ -446,7 +462,7 @@
             cursor: pointer;
             transition: var(--transition);
             width: 100%;
-            font-family: inherit;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .btn-premium:hover {
@@ -455,7 +471,6 @@
             box-shadow: 0 10px 20px rgba(234,179,8,0.3);
         }
 
-        /* Footer */
         .footer {
             background: var(--primary-dark);
             color: white;
@@ -474,6 +489,7 @@
         .footer-section h4 {
             color: var(--accent);
             margin-bottom: 1.5rem;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .footer-section a {
@@ -486,6 +502,7 @@
 
         .footer-section a:hover {
             color: var(--accent);
+            transform: translateX(5px);
         }
 
         .footer-legal {
@@ -500,6 +517,7 @@
             color: #94a3b8;
             text-decoration: none;
             font-size: 0.9rem;
+            transition: var(--transition);
         }
 
         .footer-legal a:hover {
@@ -521,7 +539,6 @@
             color: #64748b;
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
             .navbar {
                 flex-direction: column;
@@ -539,19 +556,6 @@
             .premium-pricing {
                 flex-direction: column;
             }
-        }
-
-        /* Accessibilité */
-        .sr-only {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
-            overflow: hidden;
-            clip: rect(0, 0, 0, 0);
-            white-space: nowrap;
-            border-width: 0;
         }
     </style>
 </head>
@@ -575,7 +579,7 @@
 
     <div class="container">
         <div class="header-center">
-            <h1>📊 Simulateur de rentabilité locative</h1>
+            <h1>📊 <span class="font-serif">Simulateur</span> de rentabilité locative</h1>
             <p class="subtitle">Analysez vos investissements en quelques clics. 3 simulations gratuites par jour.</p>
             <div class="trial-counter">
                 🔄 Simulations restantes aujourd'hui : <span id="trialCount">3</span>
@@ -732,7 +736,7 @@
 
         <!-- Bannière Premium -->
         <div class="premium-banner" id="premiumBanner">
-            <h2>✨ Passez à RentaPro Premium ✨</h2>
+            <h2>✨ Passez à <span class="font-serif">RentaPro Premium</span> ✨</h2>
             <p>Profitez de toutes les fonctionnalités sans limitation et boostez vos analyses immobilières</p>
 
             <div class="premium-features">
@@ -798,14 +802,107 @@
         </div>
     </footer>
 
-    <script>
-        // ============================================
-        // SIMULATEUR DE RENTABILITÉ - VERSION OPTIMISÉE
-        // ============================================
+    <!-- Assistant IA -->
+    <div class="chat-button" id="chatButton" onclick="toggleChat()">💬</div>
+    <div class="chat-window" id="chatWindow">
+        <div class="chat-header">
+            <h3><i>🏠</i> Assistant RentaPro</h3>
+            <button class="close-chat" onclick="toggleChat()">✕</button>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            <div class="message bot">
+                👋 Bonjour ! Je suis l'assistant IA de RentaPro. 
+                Posez-moi vos questions sur l'investissement immobilier !
+            </div>
+        </div>
+        <div class="chat-input-area">
+            <input type="text" class="chat-input" id="userInput" placeholder="Votre question..." onkeypress="if(event.key==='Enter') sendMessage()">
+            <button class="send-message" onclick="sendMessage()">➤</button>
+        </div>
+        <div class="suggestions">
+            <span class="suggestion-chip" onclick="useSuggestion('Comment calculer le rendement locatif ?')">📊 Rendement</span>
+            <span class="suggestion-chip" onclick="useSuggestion('C\'est quoi le cash-flow ?')">💰 Cash-flow</span>
+            <span class="suggestion-chip" onclick="useSuggestion('Comment financer mon premier achat ?')">🏦 Financement</span>
+            <span class="suggestion-chip" onclick="useSuggestion('LMNP ou location vide ?')">🏢 LMNP</span>
+        </div>
+    </div>
 
+    <script src="/assistant-ia.js"></script>
+    <script>
         let simulationsRestantes = 3;
         let isPremium = false;
         let premiumExpiration = null;
+        let chatVisible = false;
+
+        function toggleChat() {
+            const chatWindow = document.getElementById('chatWindow');
+            const chatButton = document.getElementById('chatButton');
+            chatVisible = !chatVisible;
+            
+            if (chatVisible) {
+                chatWindow.style.display = 'flex';
+                chatButton.style.opacity = '0';
+                chatButton.style.pointerEvents = 'none';
+            } else {
+                chatWindow.style.display = 'none';
+                chatButton.style.opacity = '1';
+                chatButton.style.pointerEvents = 'auto';
+            }
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('userInput');
+            const message = input.value.trim();
+            if (!message) return;
+            
+            addMessage(message, 'user');
+            input.value = '';
+            showTypingIndicator();
+            
+            setTimeout(() => {
+                removeTypingIndicator();
+                const reponse = assistantIA.repondre(message);
+                addMessage(reponse, 'bot');
+            }, 1000);
+        }
+
+        function addMessage(text, sender) {
+            const messages = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}`;
+            messageDiv.textContent = text;
+            messages.appendChild(messageDiv);
+            messages.scrollTop = messages.scrollHeight;
+        }
+
+        function showTypingIndicator() {
+            const messages = document.getElementById('chatMessages');
+            const indicator = document.createElement('div');
+            indicator.className = 'typing-indicator';
+            indicator.id = 'typingIndicator';
+            indicator.innerHTML = '<span></span><span></span><span></span>';
+            messages.appendChild(indicator);
+            messages.scrollTop = messages.scrollHeight;
+        }
+
+        function removeTypingIndicator() {
+            const indicator = document.getElementById('typingIndicator');
+            if (indicator) indicator.remove();
+        }
+
+        function useSuggestion(text) {
+            document.getElementById('userInput').value = text;
+            sendMessage();
+        }
+
+        document.addEventListener('click', function(event) {
+            const chatWindow = document.getElementById('chatWindow');
+            const chatButton = document.getElementById('chatButton');
+            
+            if (chatVisible && !chatWindow.contains(event.target) && !chatButton.contains(event.target)) {
+                toggleChat();
+            }
+        });
 
         function checkPremiumStatus() {
             try {

@@ -15,7 +15,7 @@
     <!-- Optimisation -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Canonical -->
     <link rel="canonical" href="https://rentapro-swart.vercel.app/pages/mentions-legales.html">
@@ -26,14 +26,12 @@
     <style>
         :root {
             --primary-dark: #0f172a;
-            --primary-light: #1e293b;
             --accent: #eab308;
             --text-light: #64748b;
             --bg-light: #f8fafc;
             --bg-white: #ffffff;
             --border: #e2e8f0;
             --shadow-sm: 0 4px 6px -1px rgb(0 0 0 / 0.05);
-            --transition: all 0.3s ease;
         }
 
         * {
@@ -63,8 +61,6 @@
             position: sticky;
             top: 0;
             z-index: 100;
-            backdrop-filter: blur(10px);
-            background: rgba(255, 255, 255, 0.9);
         }
 
         .logo {
@@ -73,11 +69,12 @@
             gap: 0.5rem;
             font-size: 1.8rem;
             font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .logo-icon {
             font-size: 2rem;
-            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-light) 100%);
+            background: linear-gradient(135deg, var(--primary-dark) 0%, #1e293b 100%);
             color: var(--accent);
             width: 50px;
             height: 50px;
@@ -89,7 +86,7 @@
         }
 
         .logo-text {
-            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-light) 100%);
+            background: linear-gradient(135deg, var(--primary-dark) 0%, #1e293b 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -105,7 +102,7 @@
             color: var(--text-light);
             text-decoration: none;
             font-weight: 500;
-            transition: var(--transition);
+            transition: color 0.3s;
         }
 
         .nav-links a:hover {
@@ -133,12 +130,14 @@
             color: var(--primary-dark);
             margin-bottom: 2rem;
             text-align: center;
+            font-family: 'Montserrat', sans-serif;
         }
 
         h2 {
             font-size: 1.5rem;
             color: var(--primary-dark);
             margin: 2rem 0 1rem;
+            font-family: 'Montserrat', sans-serif;
         }
 
         p {
