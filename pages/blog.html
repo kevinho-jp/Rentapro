@@ -3,27 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog immobilier - RentaPro</title>
+    
+    <!-- ========== BALISES SEO OPTIMISÉES ========== -->
+    <title>Blog immobilier - Conseils et stratégies d'investissement - RentaPro</title>
+    <meta name="description" content="Blog immobilier RentaPro : conseils, analyses et stratégies pour réussir vos investissements locatifs. Articles mis à jour chaque semaine.">
+    <meta name="keywords" content="blog immobilier, conseils investissement locatif, stratégies immobilières, actualité immobilière">
+    <meta name="author" content="RentaPro">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Blog immobilier - RentaPro">
+    <meta property="og:description" content="Conseils et stratégies pour investir dans l'immobilier">
+    <meta property="og:image" content="https://rentapro-swart.vercel.app/images/og-blog.jpg">
+    <meta property="og:url" content="https://rentapro-swart.vercel.app/pages/blog.html">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Blog immobilier - RentaPro">
+    <meta name="twitter:description" content="Conseils pour investisseurs immobiliers">
+    <meta name="twitter:image" content="https://rentapro-swart.vercel.app/images/og-blog.jpg">
+    
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+    
+    <!-- Google Search Console -->
+    <meta name="google-site-verification" content="TON_CODE_ICI">
+    
+    <!-- Optimisation -->
+    <link rel="preconnect" href="https://images.unsplash.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Canonical -->
+    <link rel="canonical" href="https://rentapro-swart.vercel.app/pages/blog.html">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/favicon.png">
+
     <style>
+        :root {
+            --primary-dark: #0f172a;
+            --primary-light: #1e293b;
+            --accent: #eab308;
+            --accent-hover: #fbbf24;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+            --bg-light: #f8fafc;
+            --bg-white: #ffffff;
+            --border: #e2e8f0;
+            --shadow-sm: 0 4px 6px -1px rgb(0 0 0 / 0.05);
+            --shadow-md: 0 10px 15px -3px rgb(0 0 0 / 0.05);
+            --shadow-lg: 0 20px 25px -5px rgb(0 0 0 / 0.05);
+            --transition: all 0.3s ease;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
 
         body {
-            background: #f8fafc;
-            color: #1e293b;
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-light);
+            color: var(--text-dark);
             display: flex;
             flex-direction: column;
             min-height: 100vh;
         }
 
         .navbar {
-            background: white;
+            background: var(--bg-white);
             padding: 1rem 5%;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+            box-shadow: var(--shadow-sm);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -32,6 +86,8 @@
             position: sticky;
             top: 0;
             z-index: 100;
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.9);
         }
 
         .logo {
@@ -44,19 +100,19 @@
 
         .logo-icon {
             font-size: 2rem;
-            background: linear-gradient(135deg, #0f172a 0%, #334155 100%);
-            color: #eab308;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-light) 100%);
+            color: var(--accent);
             width: 50px;
             height: 50px;
             border-radius: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            box-shadow: var(--shadow-sm);
         }
 
         .logo-text {
-            background: linear-gradient(135deg, #0f172a 0%, #334155 100%);
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-light) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -69,20 +125,20 @@
         }
 
         .nav-links a {
-            color: #475569;
+            color: var(--text-light);
             text-decoration: none;
             font-weight: 500;
-            transition: color 0.3s;
+            transition: var(--transition);
             padding: 0.5rem 0;
             position: relative;
         }
 
         .nav-links a:hover {
-            color: #0f172a;
+            color: var(--primary-dark);
         }
 
         .nav-links a.active {
-            color: #0f172a;
+            color: var(--primary-dark);
             font-weight: 600;
         }
 
@@ -93,7 +149,7 @@
             left: 0;
             width: 100%;
             height: 3px;
-            background: #eab308;
+            background: var(--accent);
             border-radius: 3px 3px 0 0;
         }
 
@@ -109,7 +165,7 @@
             text-align: center;
             margin-bottom: 3rem;
             padding: 2rem;
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-light) 100%);
             border-radius: 40px;
             color: white;
         }
@@ -136,20 +192,20 @@
 
         .category-tag {
             padding: 0.5rem 1.5rem;
-            background: white;
-            border: 2px solid #e2e8f0;
+            background: var(--bg-white);
+            border: 2px solid var(--border);
             border-radius: 50px;
-            color: #475569;
+            color: var(--text-light);
             font-weight: 500;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: var(--transition);
         }
 
         .category-tag:hover,
         .category-tag.active {
-            background: #eab308;
-            border-color: #eab308;
-            color: #0f172a;
+            background: var(--accent);
+            border-color: var(--accent);
+            color: var(--primary-dark);
         }
 
         .blog-grid {
@@ -160,17 +216,18 @@
         }
 
         .blog-card {
-            background: white;
+            background: var(--bg-white);
             border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            transition: transform 0.3s;
-            border: 1px solid #e2e8f0;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            border: 1px solid var(--border);
         }
 
         .blog-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--accent);
         }
 
         .blog-image {
@@ -184,8 +241,8 @@
             position: absolute;
             top: 1rem;
             left: 1rem;
-            background: #eab308;
-            color: #0f172a;
+            background: var(--accent);
+            color: var(--primary-dark);
             padding: 0.3rem 1rem;
             border-radius: 50px;
             font-weight: 600;
@@ -197,20 +254,20 @@
         }
 
         .blog-date {
-            color: #64748b;
+            color: var(--text-light);
             font-size: 0.9rem;
             margin-bottom: 0.5rem;
         }
 
         .blog-title {
             font-size: 1.3rem;
-            color: #0f172a;
+            color: var(--primary-dark);
             margin-bottom: 1rem;
             line-height: 1.4;
         }
 
         .blog-excerpt {
-            color: #475569;
+            color: var(--text-light);
             line-height: 1.6;
             margin-bottom: 1.5rem;
         }
@@ -221,7 +278,7 @@
             align-items: center;
             margin-top: 1rem;
             padding-top: 1rem;
-            border-top: 1px solid #e2e8f0;
+            border-top: 1px solid var(--border);
         }
 
         .blog-author {
@@ -234,7 +291,7 @@
             width: 30px;
             height: 30px;
             border-radius: 50%;
-            background: #eab308;
+            background: var(--accent);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -244,15 +301,15 @@
         }
 
         .author-name {
-            color: #64748b;
+            color: var(--text-light);
             font-size: 0.9rem;
         }
 
         .blog-read-more {
-            color: #eab308;
+            color: var(--accent);
             text-decoration: none;
             font-weight: 600;
-            transition: gap 0.3s;
+            transition: var(--transition);
             display: flex;
             align-items: center;
             gap: 0.3rem;
@@ -268,7 +325,7 @@
 
         .popular-section h2 {
             font-size: 2rem;
-            color: #0f172a;
+            color: var(--primary-dark);
             margin-bottom: 2rem;
             text-align: center;
         }
@@ -282,35 +339,35 @@
         .popular-card {
             display: flex;
             gap: 1rem;
-            background: white;
+            background: var(--bg-white);
             padding: 1.5rem;
             border-radius: 16px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+            box-shadow: var(--shadow-sm);
             align-items: center;
         }
 
         .popular-number {
             font-size: 2.5rem;
             font-weight: 700;
-            color: #eab308;
+            color: var(--accent);
             opacity: 0.3;
             min-width: 50px;
             text-align: center;
         }
 
         .popular-content h4 {
-            color: #0f172a;
+            color: var(--primary-dark);
             margin-bottom: 0.3rem;
             font-size: 1.1rem;
         }
 
         .popular-content p {
-            color: #64748b;
+            color: var(--text-light);
             font-size: 0.9rem;
         }
 
         .newsletter-banner {
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-light) 100%);
             border-radius: 30px;
             padding: 3rem;
             margin: 4rem 0;
@@ -342,26 +399,32 @@
             border: none;
             border-radius: 50px;
             font-size: 1rem;
+            font-family: inherit;
+        }
+
+        .newsletter-input:focus {
+            outline: 2px solid var(--accent);
         }
 
         .newsletter-button {
             padding: 1rem 2rem;
-            background: #eab308;
-            color: #0f172a;
+            background: var(--accent);
+            color: var(--primary-dark);
             border: none;
             border-radius: 50px;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: var(--transition);
+            font-family: inherit;
         }
 
         .newsletter-button:hover {
-            background: #fbbf24;
+            background: var(--accent-hover);
             transform: translateY(-3px);
         }
 
         .footer {
-            background: #0f172a;
+            background: var(--primary-dark);
             color: white;
             padding: 4rem 5% 2rem;
             margin-top: 3rem;
@@ -376,7 +439,7 @@
         }
 
         .footer-section h4 {
-            color: #eab308;
+            color: var(--accent);
             margin-bottom: 1.5rem;
         }
 
@@ -385,16 +448,41 @@
             text-decoration: none;
             display: block;
             margin-bottom: 0.8rem;
-            transition: color 0.3s;
+            transition: var(--transition);
         }
 
         .footer-section a:hover {
-            color: #eab308;
+            color: var(--accent);
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin: 2rem 0 1rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-legal a {
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .footer-legal a:hover {
+            color: var(--accent);
+        }
+
+        .amazon-disclaimer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #94a3b8;
+            margin-top: 1rem;
         }
 
         .copyright {
             text-align: center;
-            margin-top: 4rem;
+            margin-top: 2rem;
             padding-top: 2rem;
             border-top: 1px solid #334155;
             color: #64748b;
@@ -410,10 +498,6 @@
             }
             .newsletter-form {
                 flex-direction: column;
-            }
-            .popular-card {
-                flex-direction: column;
-                text-align: center;
             }
         }
     </style>
@@ -630,6 +714,17 @@
                 <p style="color: #94a3b8;">📞 +243 974 843 721</p>
             </div>
         </div>
+
+        <div class="footer-legal">
+            <a href="/pages/mentions-legales.html">Mentions légales</a>
+            <a href="/pages/confidentialite.html">Politique de confidentialité</a>
+            <a href="/pages/cgu.html">CGU</a>
+        </div>
+
+        <div class="amazon-disclaimer">
+            En tant que Partenaire Amazon, je réalise un bénéfice sur les achats remplissant les conditions requises.
+        </div>
+
         <div class="copyright">
             © 2026 RentaPro - Blog immobilier pour investisseurs
         </div>

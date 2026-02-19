@@ -3,27 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Analyse financière avancée - RentaPro</title>
+    
+    <!-- ========== BALISES SEO OPTIMISÉES ========== -->
+    <title>Analyse financière immobilière - VAN, TRI, délai de récupération - RentaPro</title>
+    <meta name="description" content="Analyse financière avancée pour investissement immobilier : calculez la VAN, le TRI, le délai de récupération et le seuil de rentabilité de vos projets.">
+    <meta name="keywords" content="VAN immobilière, TRI investissement, délai de récupération, analyse financière immobilier, indicateurs financiers">
+    <meta name="author" content="RentaPro">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Analyse financière immobilière - RentaPro">
+    <meta property="og:description" content="Calculez la VAN, le TRI et le délai de récupération de vos investissements immobiliers">
+    <meta property="og:image" content="https://rentapro-swart.vercel.app/images/og-finance.jpg">
+    <meta property="og:url" content="https://rentapro-swart.vercel.app/pages/analyse-financiere.html">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Analyse financière immobilière - RentaPro">
+    <meta name="twitter:description" content="VAN, TRI, délai de récupération pour vos investissements">
+    <meta name="twitter:image" content="https://rentapro-swart.vercel.app/images/og-finance.jpg">
+    
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+    
+    <!-- Google Search Console -->
+    <meta name="google-site-verification" content="TON_CODE_ICI">
+    
+    <!-- Optimisation -->
+    <link rel="preconnect" href="https://images.unsplash.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Canonical -->
+    <link rel="canonical" href="https://rentapro-swart.vercel.app/pages/analyse-financiere.html">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/favicon.png">
+
     <style>
+        :root {
+            --primary-dark: #0f172a;
+            --primary-light: #1e293b;
+            --accent: #eab308;
+            --accent-hover: #fbbf24;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+            --bg-light: #f8fafc;
+            --bg-white: #ffffff;
+            --border: #e2e8f0;
+            --success: #059669;
+            --danger: #dc2626;
+            --shadow-sm: 0 4px 6px -1px rgb(0 0 0 / 0.05);
+            --shadow-md: 0 10px 15px -3px rgb(0 0 0 / 0.05);
+            --shadow-lg: 0 20px 25px -5px rgb(0 0 0 / 0.05);
+            --transition: all 0.3s ease;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
 
         body {
-            background: #f8fafc;
-            color: #1e293b;
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-light);
+            color: var(--text-dark);
             display: flex;
             flex-direction: column;
             min-height: 100vh;
         }
 
         .navbar {
-            background: white;
+            background: var(--bg-white);
             padding: 1rem 5%;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+            box-shadow: var(--shadow-sm);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -32,6 +88,8 @@
             position: sticky;
             top: 0;
             z-index: 100;
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.9);
         }
 
         .logo {
@@ -44,19 +102,19 @@
 
         .logo-icon {
             font-size: 2rem;
-            background: linear-gradient(135deg, #0f172a 0%, #334155 100%);
-            color: #eab308;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-light) 100%);
+            color: var(--accent);
             width: 50px;
             height: 50px;
             border-radius: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            box-shadow: var(--shadow-sm);
         }
 
         .logo-text {
-            background: linear-gradient(135deg, #0f172a 0%, #334155 100%);
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-light) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -69,20 +127,20 @@
         }
 
         .nav-links a {
-            color: #475569;
+            color: var(--text-light);
             text-decoration: none;
             font-weight: 500;
-            transition: color 0.3s;
+            transition: var(--transition);
             padding: 0.5rem 0;
             position: relative;
         }
 
         .nav-links a:hover {
-            color: #0f172a;
+            color: var(--primary-dark);
         }
 
         .nav-links a.active {
-            color: #0f172a;
+            color: var(--primary-dark);
             font-weight: 600;
         }
 
@@ -93,7 +151,7 @@
             left: 0;
             width: 100%;
             height: 3px;
-            background: #eab308;
+            background: var(--accent);
             border-radius: 3px 3px 0 0;
         }
 
@@ -109,7 +167,7 @@
             text-align: center;
             margin-bottom: 3rem;
             padding: 2rem;
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-light) 100%);
             border-radius: 40px;
             color: white;
         }
@@ -126,98 +184,6 @@
             margin: 0 auto;
         }
 
-        /* Catégories par revenu */
-        .categories-section {
-            margin: 3rem 0;
-        }
-
-        .categories-section h2 {
-            text-align: center;
-            font-size: 2.2rem;
-            color: #0f172a;
-            margin-bottom: 2rem;
-        }
-
-        .categories-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .category-card {
-            background: white;
-            border-radius: 20px;
-            padding: 2rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            border: 1px solid #e2e8f0;
-            transition: transform 0.3s;
-        }
-
-        .category-card:hover {
-            transform: translateY(-5px);
-            border-color: #eab308;
-        }
-
-        .category-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .category-card h3 {
-            color: #0f172a;
-            margin-bottom: 0.5rem;
-            font-size: 1.5rem;
-        }
-
-        .category-revenue {
-            display: inline-block;
-            padding: 0.3rem 1rem;
-            background: #eab308;
-            color: #0f172a;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            margin: 1rem 0;
-        }
-
-        .category-features {
-            list-style: none;
-            margin: 1rem 0;
-        }
-
-        .category-features li {
-            margin-bottom: 0.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: #475569;
-        }
-
-        .category-features li::before {
-            content: "✓";
-            color: #eab308;
-            font-weight: bold;
-        }
-
-        .btn-category {
-            display: inline-block;
-            width: 100%;
-            padding: 0.8rem;
-            background: #0f172a;
-            color: white;
-            text-align: center;
-            text-decoration: none;
-            border-radius: 12px;
-            font-weight: 600;
-            transition: all 0.3s;
-            margin-top: 1rem;
-        }
-
-        .btn-category:hover {
-            background: #1e293b;
-            transform: translateY(-2px);
-        }
-
         .finance-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -226,15 +192,15 @@
         }
 
         .card {
-            background: white;
+            background: var(--bg-white);
             border-radius: 30px;
             padding: 2rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            border: 1px solid rgba(0,0,0,0.03);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border);
         }
 
         .card h2 {
-            color: #0f172a;
+            color: var(--primary-dark);
             margin-bottom: 1.5rem;
             font-size: 1.8rem;
         }
@@ -253,27 +219,28 @@
         .form-group label {
             display: block;
             font-weight: 600;
-            color: #334155;
+            color: var(--primary-dark);
             margin-bottom: 0.5rem;
         }
 
         .form-group input {
             width: 100%;
             padding: 0.8rem 1rem;
-            border: 2px solid #e2e8f0;
+            border: 2px solid var(--border);
             border-radius: 12px;
             font-size: 1rem;
-            transition: all 0.3s;
+            transition: var(--transition);
+            font-family: inherit;
         }
 
         .form-group input:focus {
             outline: none;
-            border-color: #eab308;
+            border-color: var(--accent);
             box-shadow: 0 0 0 3px rgba(234,179,8,0.1);
         }
 
         .btn-calculate {
-            background: #0f172a;
+            background: var(--primary-dark);
             color: white;
             border: none;
             padding: 1rem;
@@ -282,17 +249,18 @@
             font-weight: 600;
             cursor: pointer;
             width: 100%;
-            transition: all 0.3s;
+            transition: var(--transition);
+            font-family: inherit;
         }
 
         .btn-calculate:hover {
-            background: #1e293b;
+            background: var(--primary-light);
             transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            box-shadow: var(--shadow-sm);
         }
 
         .result-card {
-            background: #f8fafc;
+            background: var(--bg-light);
             border-radius: 20px;
             padding: 1.5rem;
             margin-bottom: 1rem;
@@ -302,7 +270,7 @@
             display: flex;
             justify-content: space-between;
             padding: 0.8rem 0;
-            border-bottom: 1px solid #e2e8f0;
+            border-bottom: 1px solid var(--border);
         }
 
         .result-item:last-child {
@@ -310,33 +278,33 @@
         }
 
         .result-label {
-            color: #64748b;
+            color: var(--text-light);
         }
 
         .result-value {
             font-weight: 700;
-            color: #0f172a;
+            color: var(--primary-dark);
             font-size: 1.1rem;
         }
 
         .positive {
-            color: #059669;
+            color: var(--success);
         }
 
         .negative {
-            color: #dc2626;
+            color: var(--danger);
         }
 
         .summary-section {
-            background: white;
+            background: var(--bg-white);
             border-radius: 30px;
             padding: 2rem;
             margin: 2rem 0;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            box-shadow: var(--shadow-md);
         }
 
         .summary-section h2 {
-            color: #0f172a;
+            color: var(--primary-dark);
             margin-bottom: 1.5rem;
         }
 
@@ -347,20 +315,20 @@
         }
 
         .summary-card {
-            background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+            background: linear-gradient(135deg, var(--bg-light) 0%, var(--bg-white) 100%);
             padding: 1.5rem;
             border-radius: 20px;
-            border-left: 4px solid #eab308;
+            border-left: 4px solid var(--accent);
         }
 
         .summary-card h3 {
-            color: #0f172a;
+            color: var(--primary-dark);
             margin-bottom: 0.5rem;
             font-size: 1.2rem;
         }
 
         .summary-card p {
-            color: #64748b;
+            color: var(--text-light);
             line-height: 1.6;
         }
 
@@ -371,7 +339,7 @@
         .investors-section h2 {
             text-align: center;
             font-size: 2.2rem;
-            color: #0f172a;
+            color: var(--primary-dark);
             margin-bottom: 2rem;
         }
 
@@ -382,15 +350,15 @@
         }
 
         .investor-card {
-            background: white;
+            background: var(--bg-white);
             border-radius: 20px;
             padding: 2rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            box-shadow: var(--shadow-sm);
             display: flex;
             flex-direction: column;
             align-items: center;
             text-align: center;
-            border: 1px solid #e2e8f0;
+            border: 1px solid var(--border);
         }
 
         .investor-image {
@@ -400,41 +368,40 @@
             background-size: cover;
             background-position: center;
             margin-bottom: 1.5rem;
-            border: 4px solid #eab308;
-            background-color: #f1f5f9;
+            border: 4px solid var(--accent);
         }
 
         .investor-name {
             font-size: 1.5rem;
-            color: #0f172a;
+            color: var(--primary-dark);
             margin-bottom: 0.3rem;
         }
 
         .investor-title {
-            color: #64748b;
+            color: var(--text-light);
             font-size: 0.95rem;
             margin-bottom: 1rem;
         }
 
         .investor-quote {
-            color: #334155;
+            color: var(--text-dark);
             font-style: italic;
             line-height: 1.6;
             margin-bottom: 1rem;
         }
 
         .investor-advice {
-            background: #f8fafc;
+            background: var(--bg-light);
             padding: 1rem;
             border-radius: 12px;
             font-size: 0.95rem;
-            color: #475569;
+            color: var(--text-light);
             width: 100%;
             text-align: left;
         }
 
         .footer {
-            background: #0f172a;
+            background: var(--primary-dark);
             color: white;
             padding: 4rem 5% 2rem;
             margin-top: 3rem;
@@ -449,7 +416,7 @@
         }
 
         .footer-section h4 {
-            color: #eab308;
+            color: var(--accent);
             margin-bottom: 1.5rem;
         }
 
@@ -458,15 +425,41 @@
             text-decoration: none;
             display: block;
             margin-bottom: 0.8rem;
+            transition: var(--transition);
         }
 
         .footer-section a:hover {
-            color: #eab308;
+            color: var(--accent);
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin: 2rem 0 1rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-legal a {
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .footer-legal a:hover {
+            color: var(--accent);
+        }
+
+        .amazon-disclaimer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #94a3b8;
+            margin-top: 1rem;
         }
 
         .copyright {
             text-align: center;
-            margin-top: 4rem;
+            margin-top: 2rem;
             padding-top: 2rem;
             border-top: 1px solid #334155;
             color: #64748b;
@@ -498,6 +491,8 @@
             <a href="/pages/guide.html">Guide</a>
             <a href="/pages/investissement-mondial.html">🌍 Monde</a>
             <a href="/pages/analyse-financiere.html" class="active">📊 Finance</a>
+            <a href="/pages/blog.html">📝 Blog</a>
+            <a href="/pages/temoignages.html">🗣️ Témoignages</a>
             <a href="/pages/contact.html">Contact</a>
         </div>
     </nav>
@@ -508,89 +503,34 @@
             <p>VAN, TRI, délai de récupération... Tous les indicateurs pour une décision d'investissement éclairée.</p>
         </div>
 
-        <!-- Catégories par niveau de revenu -->
-        <div class="categories-section">
-            <h2>💰 Investissez selon vos moyens</h2>
-            <div class="categories-grid">
-                <div class="category-card">
-                    <div class="category-icon">🌱</div>
-                    <h3>Débutant</h3>
-                    <div class="category-revenue">500$ - 5,000$</div>
-                    <ul class="category-features">
-                        <li>SCPI (parts fractionnées)</li>
-                        <li>Crowdfunding immobilier</li>
-                        <li>Colocation (une chambre)</li>
-                        <li>REITs fractionnés</li>
-                    </ul>
-                    <a href="/pages/simulateur.html" class="btn-category">Simuler</a>
-                </div>
-                <div class="category-card">
-                    <div class="category-icon">🏢</div>
-                    <h3>Intermédiaire</h3>
-                    <div class="category-revenue">5,000$ - 50,000$</div>
-                    <ul class="category-features">
-                        <li>Appartement étudiant</li>
-                        <li>Studio en centre-ville</li>
-                        <li>Place de parking</li>
-                        <li>Plusieurs parts SCPI</li>
-                    </ul>
-                    <a href="/pages/simulateur.html" class="btn-category">Simuler</a>
-                </div>
-                <div class="category-card">
-                    <div class="category-icon">🏘️</div>
-                    <h3>Confirmé</h3>
-                    <div class="category-revenue">50,000$ - 200,000$</div>
-                    <ul class="category-features">
-                        <li>Immeuble de rapport</li>
-                        <li>Local commercial</li>
-                        <li>Résidence gérée</li>
-                        <li>Plusieurs appartements</li>
-                    </ul>
-                    <a href="/pages/simulateur.html" class="btn-category">Simuler</a>
-                </div>
-                <div class="category-card">
-                    <div class="category-icon">🏨</div>
-                    <h3>Expert</h3>
-                    <div class="category-revenue">200,000$ +</div>
-                    <ul class="category-features">
-                        <li>Hôtellerie</li>
-                        <li>Résidences de luxe</li>
-                        <li>Portefeuille diversifié</li>
-                        <li>Investissement international</li>
-                    </ul>
-                    <a href="/pages/investissement-mondial.html" class="btn-category">Explorer</a>
-                </div>
-            </div>
-        </div>
-
         <div class="finance-grid">
             <!-- Formulaire -->
             <div class="card">
                 <h2>💰 Paramètres d'investissement</h2>
                 
                 <div class="form-group">
-                    <label>Investissement initial ($)</label>
+                    <label for="investInitial">Investissement initial ($)</label>
                     <input type="number" id="investInitial" value="250000" step="1000">
                 </div>
 
                 <div class="form-group">
-                    <label>Flux de trésorerie annuel ($)</label>
+                    <label for="fluxAnnuel">Flux de trésorerie annuel ($)</label>
                     <input type="number" id="fluxAnnuel" value="15000" step="500">
                 </div>
 
                 <div class="input-group">
                     <div class="form-group">
-                        <label>Taux d'actualisation (%)</label>
+                        <label for="tauxActualisation">Taux d'actualisation (%)</label>
                         <input type="number" id="tauxActualisation" value="5" step="0.1">
                     </div>
                     <div class="form-group">
-                        <label>Durée (années)</label>
+                        <label for="duree">Durée (années)</label>
                         <input type="number" id="duree" value="10" min="1" max="30">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label>Valeur résiduelle ($)</label>
+                    <label for="valeurResiduelle">Valeur résiduelle ($)</label>
                     <input type="number" id="valeurResiduelle" value="300000" step="1000">
                 </div>
 
@@ -655,73 +595,37 @@
             </div>
         </div>
 
-        <!-- Investisseurs avec vraies photos (URLs garanties) -->
+        <!-- Investisseurs -->
         <div class="investors-section">
             <h2>💡 Conseils des grands investisseurs</h2>
             <div class="investors-grid">
-                <!-- Warren Buffett -->
                 <div class="investor-card">
                     <div class="investor-image" style="background-image: url('https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80');"></div>
                     <h3 class="investor-name">Warren Buffett</h3>
                     <div class="investor-title">PDG de Berkshire Hathaway</div>
                     <div class="investor-quote">"Le risque vient de ne pas savoir ce que vous faites."</div>
                     <div class="investor-advice">
-                        <strong>Conseil :</strong> "Pour un débutant, commencez petit avec des SCPI. Pour un expert, diversifiez internationalement."
+                        <strong>Conseil :</strong> "Pour un débutant, commencez petit. Pour un expert, diversifiez."
                     </div>
                 </div>
 
-                <!-- Robert Kiyosaki -->
                 <div class="investor-card">
                     <div class="investor-image" style="background-image: url('https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80');"></div>
                     <h3 class="investor-name">Robert Kiyosaki</h3>
                     <div class="investor-title">Auteur de "Père riche, Père pauvre"</div>
                     <div class="investor-quote">"L'immobilier est la base de la richesse."</div>
                     <div class="investor-advice">
-                        <strong>Conseil :</strong> "Avec 5 000$, achetez des parts de SCPI. Avec 50 000$, achetez un studio. Avec 200 000$, achetez un immeuble."
+                        <strong>Conseil :</strong> "Un bon investissement doit avoir une VAN positive et un TRI supérieur à 15%."
                     </div>
                 </div>
 
-                <!-- Barbara Corcoran -->
                 <div class="investor-card">
                     <div class="investor-image" style="background-image: url('https://images.unsplash.com/photo-1573497019940-1c28c88b4f9e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80');"></div>
                     <h3 class="investor-name">Barbara Corcoran</h3>
                     <div class="investor-title">Investisseur, "Shark Tank"</div>
                     <div class="investor-quote">"Les meilleurs deals sont ceux que vous comprenez."</div>
                     <div class="investor-advice">
-                        <strong>Conseil :</strong> "Un investissement de 10 000$ dans une colocation peut rapporter plus qu'un studio à 50 000$."
-                    </div>
-                </div>
-
-                <!-- Ray Dalio -->
-                <div class="investor-card">
-                    <div class="investor-image" style="background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80');"></div>
-                    <h3 class="investor-name">Ray Dalio</h3>
-                    <div class="investor-title">Fondateur de Bridgewater Associates</div>
-                    <div class="investor-quote">"Diversifiez pour survivre."</div>
-                    <div class="investor-advice">
-                        <strong>Conseil :</strong> "Répartissez votre capital selon votre revenu : 30% local, 30% national, 40% international pour les experts."
-                    </div>
-                </div>
-
-                <!-- Howard Marks -->
-                <div class="investor-card">
-                    <div class="investor-image" style="background-image: url('https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80');"></div>
-                    <h3 class="investor-name">Howard Marks</h3>
-                    <div class="investor-title">Co-fondateur d'Oaktree Capital</div>
-                    <div class="investor-quote">"La qualité, c'est ce qui reste quand on enlève le risque."</div>
-                    <div class="investor-advice">
-                        <strong>Conseil :</strong> "Pour 5 000$, privilégiez le crowdfunding. Pour 50 000$, un parking en centre-ville. Pour 500 000$, un immeuble."
-                    </div>
-                </div>
-
-                <!-- Charlie Munger -->
-                <div class="investor-card">
-                    <div class="investor-image" style="background-image: url('https://images.unsplash.com/photo-1519345182560-3f2917c472ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80');"></div>
-                    <h3 class="investor-name">Charlie Munger</h3>
-                    <div class="investor-title">Vice-président de Berkshire Hathaway</div>
-                    <div class="investor-quote">"Un investissement intelligent, c'est éviter les erreurs stupides."</div>
-                    <div class="investor-advice">
-                        <strong>Conseil :</strong> "Ne vous aventurez pas au-delà de vos moyens. Commencez par ce que vous pouvez perdre."
+                        <strong>Conseil :</strong> "Un délai de récupération inférieur à 5 ans est excellent."
                     </div>
                 </div>
             </div>
@@ -737,6 +641,8 @@
                 <a href="/pages/guide.html">Guide</a>
                 <a href="/pages/investissement-mondial.html">🌍 Monde</a>
                 <a href="/pages/analyse-financiere.html">📊 Finance</a>
+                <a href="/pages/blog.html">📝 Blog</a>
+                <a href="/pages/temoignages.html">🗣️ Témoignages</a>
                 <a href="/pages/contact.html">Contact</a>
             </div>
             <div class="footer-section">
@@ -745,6 +651,17 @@
                 <p style="color: #94a3b8;">📞 +243 974 843 721</p>
             </div>
         </div>
+
+        <div class="footer-legal">
+            <a href="/pages/mentions-legales.html">Mentions légales</a>
+            <a href="/pages/confidentialite.html">Politique de confidentialité</a>
+            <a href="/pages/cgu.html">CGU</a>
+        </div>
+
+        <div class="amazon-disclaimer">
+            En tant que Partenaire Amazon, je réalise un bénéfice sur les achats remplissant les conditions requises.
+        </div>
+
         <div class="copyright">
             © 2026 RentaPro - Analyse financière avancée
         </div>

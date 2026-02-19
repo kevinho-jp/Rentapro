@@ -4,57 +4,108 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- Balises SEO essentielles -->
+    <!-- ========== BALISES SEO OPTIMISÉES ========== -->
     <title>RentaPro - Simulateur de rentabilité locative gratuit</title>
     <meta name="description" content="Simulateur de rentabilité locative gratuit. Calculez rendement brut, net, cash-flow et VAN pour vos investissements immobiliers. 3 simulations gratuites par jour.">
     <meta name="keywords" content="investissement locatif, calcul rentabilité, simulateur immobilier, rendement locatif, cash-flow immobilier, VAN immobilière">
     <meta name="author" content="RentaPro">
     <meta name="robots" content="index, follow">
+    <meta name="language" content="fr">
+    <meta name="revisit-after" content="7 days">
     
-    <!-- Open Graph (pour les réseaux sociaux) -->
+    <!-- Open Graph optimisé -->
     <meta property="og:title" content="RentaPro - Simulateur de rentabilité locative">
     <meta property="og:description" content="Calculez gratuitement la rentabilité de vos investissements immobiliers en quelques secondes.">
     <meta property="og:image" content="https://rentapro-swart.vercel.app/images/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
     <meta property="og:url" content="https://rentapro-swart.vercel.app">
     <meta property="og:type" content="website">
+    <meta property="og:site_name" content="RentaPro">
+    <meta property="og:locale" content="fr_FR">
     
-    <!-- Twitter Card -->
+    <!-- Twitter Card optimisé -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="RentaPro - Simulateur immobilier">
     <meta name="twitter:description" content="Le meilleur simulateur de rentabilité locative gratuit">
     <meta name="twitter:image" content="https://rentapro-swart.vercel.app/images/og-image.jpg">
+    <meta name="twitter:site" content="@rentapro">
     
-    <!-- Google AdSense (à remplacer par ton code après approbation) -->
+    <!-- Google AdSense (à remplacer) -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
     
-    <!-- Google Search Console (à remplacer par ton code) -->
+    <!-- Google Search Console (à remplacer) -->
     <meta name="google-site-verification" content="TON_CODE_ICI">
     
-    <!-- Préconnexion pour améliorer les performances -->
+    <!-- Google Analytics (à ajouter plus tard) -->
+    
+    <!-- Optimisation des performances -->
     <link rel="preconnect" href="https://images.unsplash.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://images.unsplash.com">
     
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="/favicon.png">
+    <!-- Fonts optimisées -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://rentapro-swart.vercel.app">
+    
+    <!-- Favicon et icônes -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    
+    <!-- Thème couleur pour les navigateurs mobiles -->
+    <meta name="theme-color" content="#0f172a">
+    <meta name="msapplication-TileColor" content="#0f172a">
 
     <style>
+        /* ========== VARIABLES CSS ========== */
+        :root {
+            --primary-dark: #0f172a;
+            --primary-light: #1e293b;
+            --accent: #eab308;
+            --accent-hover: #fbbf24;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+            --bg-light: #f8fafc;
+            --bg-white: #ffffff;
+            --border: #e2e8f0;
+            --success: #059669;
+            --danger: #dc2626;
+            --shadow-sm: 0 4px 6px -1px rgb(0 0 0 / 0.05);
+            --shadow-md: 0 10px 15px -3px rgb(0 0 0 / 0.05);
+            --shadow-lg: 0 20px 25px -5px rgb(0 0 0 / 0.05);
+            --transition: all 0.3s ease;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
-            background: #f8fafc;
-            color: #1e293b;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-light);
+            color: var(--text-dark);
             line-height: 1.5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
+        /* ========== NAVIGATION ========== */
         .navbar {
-            background: white;
+            background: var(--bg-white);
             padding: 1rem 5%;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+            box-shadow: var(--shadow-sm);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -63,6 +114,8 @@
             position: sticky;
             top: 0;
             z-index: 100;
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.9);
         }
 
         .logo {
@@ -75,19 +128,19 @@
 
         .logo-icon {
             font-size: 2rem;
-            background: linear-gradient(135deg, #0f172a 0%, #334155 100%);
-            color: #eab308;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-light) 100%);
+            color: var(--accent);
             width: 50px;
             height: 50px;
             border-radius: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            box-shadow: var(--shadow-sm);
         }
 
         .logo-text {
-            background: linear-gradient(135deg, #0f172a 0%, #334155 100%);
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-light) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -100,20 +153,20 @@
         }
 
         .nav-links a {
-            color: #475569;
+            color: var(--text-light);
             text-decoration: none;
             font-weight: 500;
-            transition: color 0.3s;
+            transition: var(--transition);
             padding: 0.5rem 0;
             position: relative;
         }
 
         .nav-links a:hover {
-            color: #0f172a;
+            color: var(--primary-dark);
         }
 
         .nav-links a.active {
-            color: #0f172a;
+            color: var(--primary-dark);
             font-weight: 600;
         }
 
@@ -124,16 +177,14 @@
             left: 0;
             width: 100%;
             height: 3px;
-            background: #eab308;
+            background: var(--accent);
             border-radius: 3px 3px 0 0;
         }
 
+        /* ========== HERO SECTION ========== */
         .hero {
             min-height: 600px;
-            background: linear-gradient(rgba(15,23,42,0.7), rgba(15,23,42,0.8)), url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1973&q=80');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
+            background: linear-gradient(rgba(15,23,42,0.7), rgba(15,23,42,0.8)), url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1973&q=80') center/cover fixed;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -181,23 +232,26 @@
             flex-wrap: wrap;
         }
 
+        /* ========== BOUTONS ========== */
         .btn {
             display: inline-block;
             padding: 1rem 2.5rem;
             border-radius: 50px;
             font-weight: 600;
             text-decoration: none;
-            transition: all 0.3s;
+            transition: var(--transition);
             font-size: 1.1rem;
+            border: none;
+            cursor: pointer;
         }
 
         .btn-primary {
-            background: #eab308;
-            color: #0f172a;
+            background: var(--accent);
+            color: var(--primary-dark);
         }
 
         .btn-primary:hover {
-            background: #fbbf24;
+            background: var(--accent-hover);
             transform: translateY(-3px);
             box-shadow: 0 12px 25px rgba(234,179,8,0.4);
         }
@@ -210,20 +264,21 @@
 
         .btn-outline:hover {
             background: white;
-            color: #0f172a;
+            color: var(--primary-dark);
             transform: translateY(-3px);
         }
 
+        /* ========== STATISTIQUES ========== */
         .stats {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 2rem;
             padding: 4rem 5%;
-            background: white;
+            background: var(--bg-white);
             max-width: 1200px;
             margin: -80px auto 0;
             border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+            box-shadow: var(--shadow-lg);
             position: relative;
             z-index: 10;
         }
@@ -236,15 +291,16 @@
         .stat-number {
             font-size: 2.5rem;
             font-weight: 700;
-            color: #eab308;
+            color: var(--accent);
             margin-bottom: 0.5rem;
         }
 
         .stat-label {
-            color: #64748b;
+            color: var(--text-light);
             font-size: 1.1rem;
         }
 
+        /* ========== FONCTIONNALITÉS ========== */
         .features {
             padding: 5rem 5%;
             max-width: 1200px;
@@ -255,12 +311,12 @@
             text-align: center;
             font-size: clamp(2rem, 5vw, 2.5rem);
             margin-bottom: 1rem;
-            color: #0f172a;
+            color: var(--primary-dark);
         }
 
         .section-subtitle {
             text-align: center;
-            color: #64748b;
+            color: var(--text-light);
             margin-bottom: 4rem;
             font-size: 1.2rem;
         }
@@ -272,42 +328,44 @@
         }
 
         .feature-card {
-            background: white;
+            background: var(--bg-white);
             padding: 2.5rem 2rem;
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            transition: all 0.3s;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
             text-align: center;
+            border: 1px solid var(--border);
         }
 
         .feature-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--accent);
         }
 
         .feature-icon {
             font-size: 3.5rem;
             margin-bottom: 1.5rem;
             display: inline-block;
-            background: #f8fafc;
+            background: var(--bg-light);
             padding: 1rem;
             border-radius: 50%;
         }
 
         .feature-card h3 {
             font-size: 1.5rem;
-            color: #0f172a;
+            color: var(--primary-dark);
             margin-bottom: 1rem;
         }
 
         .feature-card p {
-            color: #64748b;
+            color: var(--text-light);
             margin-bottom: 1.5rem;
             line-height: 1.6;
         }
 
         .feature-link {
-            color: #eab308;
+            color: var(--accent);
             text-decoration: none;
             font-weight: 600;
             display: inline-flex;
@@ -320,8 +378,9 @@
             gap: 0.8rem;
         }
 
+        /* ========== CTA SECTION ========== */
         .cta {
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-light) 100%);
             padding: 5rem 5%;
             text-align: center;
             color: white;
@@ -349,18 +408,20 @@
         }
 
         .btn-cta {
-            background: #eab308;
-            color: #0f172a;
+            background: var(--accent);
+            color: var(--primary-dark);
             padding: 1rem 3rem;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
             font-size: 1.2rem;
-            transition: all 0.3s;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
         }
 
         .btn-cta:hover {
-            background: #fbbf24;
+            background: var(--accent-hover);
             transform: translateY(-3px);
             box-shadow: 0 10px 25px rgba(234,179,8,0.4);
         }
@@ -373,18 +434,21 @@
             text-decoration: none;
             font-weight: 600;
             font-size: 1.2rem;
-            transition: all 0.3s;
+            transition: var(--transition);
+            background: transparent;
+            cursor: pointer;
         }
 
         .btn-cta-outline:hover {
             background: white;
-            color: #0f172a;
+            color: var(--primary-dark);
             transform: translateY(-3px);
         }
 
+        /* ========== NEWSLETTER ========== */
         .newsletter {
             padding: 4rem 5%;
-            background: white;
+            background: var(--bg-white);
             text-align: center;
         }
 
@@ -395,12 +459,12 @@
 
         .newsletter h3 {
             font-size: 2rem;
-            color: #0f172a;
+            color: var(--primary-dark);
             margin-bottom: 1rem;
         }
 
         .newsletter p {
-            color: #64748b;
+            color: var(--text-light);
             margin-bottom: 2rem;
         }
 
@@ -415,36 +479,40 @@
             flex: 1;
             min-width: 250px;
             padding: 1rem 1.5rem;
-            border: 2px solid #e2e8f0;
+            border: 2px solid var(--border);
             border-radius: 50px;
             font-size: 1rem;
-            transition: border-color 0.3s;
+            transition: var(--transition);
         }
 
         .newsletter-input:focus {
             outline: none;
-            border-color: #eab308;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(234,179,8,0.1);
         }
 
         .newsletter-button {
             padding: 1rem 2rem;
-            background: #0f172a;
+            background: var(--primary-dark);
             color: white;
             border: none;
             border-radius: 50px;
             font-weight: 600;
             cursor: pointer;
-            transition: background 0.3s;
+            transition: var(--transition);
         }
 
         .newsletter-button:hover {
-            background: #1e293b;
+            background: var(--primary-light);
+            transform: translateY(-2px);
         }
 
+        /* ========== FOOTER ========== */
         .footer {
-            background: #0f172a;
+            background: var(--primary-dark);
             color: white;
             padding: 4rem 5% 2rem;
+            margin-top: auto;
         }
 
         .footer-content {
@@ -456,7 +524,7 @@
         }
 
         .footer-section h4 {
-            color: #eab308;
+            color: var(--accent);
             margin-bottom: 1.5rem;
             font-size: 1.2rem;
         }
@@ -466,11 +534,12 @@
             text-decoration: none;
             display: block;
             margin-bottom: 0.8rem;
-            transition: color 0.3s;
+            transition: var(--transition);
         }
 
         .footer-section a:hover {
-            color: #eab308;
+            color: var(--accent);
+            transform: translateX(5px);
         }
 
         .footer-contact {
@@ -486,7 +555,7 @@
             display: flex;
             gap: 1rem;
             justify-content: center;
-            margin-top: 2rem;
+            margin: 2rem 0 1rem;
             flex-wrap: wrap;
         }
 
@@ -494,10 +563,11 @@
             color: #94a3b8;
             text-decoration: none;
             font-size: 0.9rem;
+            transition: var(--transition);
         }
 
         .footer-legal a:hover {
-            color: #eab308;
+            color: var(--accent);
         }
 
         .copyright {
@@ -508,6 +578,15 @@
             color: #64748b;
         }
 
+        /* ========== MENTION AMAZON ========== */
+        .amazon-disclaimer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #94a3b8;
+            margin-top: 1rem;
+        }
+
+        /* ========== RESPONSIVE ========== */
         @media (max-width: 768px) {
             .navbar {
                 flex-direction: column;
@@ -518,6 +597,7 @@
             }
             .stats {
                 margin-top: -40px;
+                padding: 2rem 5%;
             }
             .hero-buttons {
                 flex-direction: column;
@@ -526,122 +606,153 @@
             .btn {
                 width: 100%;
                 max-width: 300px;
-                text-align: center;
             }
+        }
+
+        /* ========== ACCESSIBILITÉ ========== */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
         }
     </style>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="logo">
-            <div class="logo-icon">🏠</div>
-            <span class="logo-text">RentaPro</span>
-        </div>
-        <div class="nav-links">
-            <a href="/" class="active">Accueil</a>
-            <a href="/pages/simulateur.html">Simulateur</a>
-            <a href="/pages/guide.html">Guide</a>
-            <a href="/pages/investissement-mondial.html">🌍 Monde</a>
-            <a href="/pages/analyse-financiere.html">📊 Finance</a>
-            <a href="/pages/blog.html">📝 Blog</a>
-            <a href="/pages/temoignages.html">🗣️ Témoignages</a>
-            <a href="/pages/contact.html">Contact</a>
-        </div>
-    </nav>
+    <header>
+        <nav class="navbar" aria-label="Navigation principale">
+            <div class="logo" aria-label="RentaPro">
+                <div class="logo-icon" aria-hidden="true">🏠</div>
+                <span class="logo-text">RentaPro</span>
+            </div>
+            <div class="nav-links">
+                <a href="/" class="active" aria-current="page">Accueil</a>
+                <a href="/pages/simulateur.html">Simulateur</a>
+                <a href="/pages/guide.html">Guide</a>
+                <a href="/pages/investissement-mondial.html">🌍 Monde</a>
+                <a href="/pages/analyse-financiere.html">📊 Finance</a>
+                <a href="/pages/blog.html">📝 Blog</a>
+                <a href="/pages/temoignages.html">🗣️ Témoignages</a>
+                <a href="/pages/contact.html">Contact</a>
+            </div>
+        </nav>
+    </header>
 
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Investissez dans l'immobilier avec les bons chiffres</h1>
-            <p>Notre simulateur gratuit vous donne toutes les clés pour analyser la rentabilité de vos projets locatifs en quelques secondes. 3 simulations gratuites par jour.</p>
-            <div class="hero-buttons">
-                <a href="/pages/simulateur.html" class="btn btn-primary">📊 Essayer le simulateur</a>
-                <a href="/pages/guide.html" class="btn btn-outline">📚 Découvrir le guide</a>
+    <main>
+        <section class="hero" aria-labelledby="hero-title">
+            <div class="hero-content">
+                <h1 id="hero-title">Investissez dans l'immobilier avec les bons chiffres</h1>
+                <p>Notre simulateur gratuit vous donne toutes les clés pour analyser la rentabilité de vos projets locatifs en quelques secondes. 3 simulations gratuites par jour.</p>
+                <div class="hero-buttons">
+                    <a href="/pages/simulateur.html" class="btn btn-primary" aria-label="Essayer le simulateur">📊 Essayer le simulateur</a>
+                    <a href="/pages/guide.html" class="btn btn-outline" aria-label="Découvrir le guide">📚 Découvrir le guide</a>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <div class="stats">
-        <div class="stat-item">
-            <div class="stat-number">15K+</div>
-            <div class="stat-label">Simulations réalisées</div>
+        <div class="stats" aria-label="Statistiques clés">
+            <div class="stat-item">
+                <div class="stat-number">15K+</div>
+                <div class="stat-label">Simulations réalisées</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">4.8/5</div>
+                <div class="stat-label">Note des utilisateurs</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">5</div>
+                <div class="stat-label">Continents analysés</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">6</div>
+                <div class="stat-label">Indicateurs financiers</div>
+            </div>
         </div>
-        <div class="stat-item">
-            <div class="stat-number">4.8/5</div>
-            <div class="stat-label">Note des utilisateurs</div>
-        </div>
-        <div class="stat-item">
-            <div class="stat-number">5</div>
-            <div class="stat-label">Continents analysés</div>
-        </div>
-        <div class="stat-item">
-            <div class="stat-number">6</div>
-            <div class="stat-label">Indicateurs financiers</div>
-        </div>
-    </div>
 
-    <section class="features">
-        <h2 class="section-title">Des outils complets pour investir sereinement</h2>
-        <p class="section-subtitle">Tout ce dont vous avez besoin pour analyser vos projets immobiliers</p>
-        
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon">📊</div>
-                <h3>Simulateur avancé</h3>
-                <p>Calculez rendement brut, net, cash-flow et mensualités. 3 simulations gratuites par jour.</p>
-                <a href="/pages/simulateur.html" class="feature-link">Essayer maintenant →</a>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🌍</div>
-                <h3>Investissement mondial</h3>
-                <p>Découvrez les spécificités de chaque continent et les conseils des plus grands investisseurs.</p>
-                <a href="/pages/investissement-mondial.html" class="feature-link">Explorer →</a>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">📈</div>
-                <h3>Analyse financière</h3>
-                <p>VAN, TRI, délai de récupération... Tous les indicateurs pour une décision éclairée.</p>
-                <a href="/pages/analyse-financiere.html" class="feature-link">Analyser →</a>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">📚</div>
-                <h3>Guide complet</h3>
-                <p>De la recherche du bien à la gestion locative, tout ce qu'il faut savoir pour réussir.</p>
-                <a href="/pages/guide.html" class="feature-link">Lire le guide →</a>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">📝</div>
-                <h3>Blog immobilier</h3>
-                <p>Conseils, analyses et stratégies pour optimiser vos investissements.</p>
-                <a href="/pages/blog.html" class="feature-link">Lire les articles →</a>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🗣️</div>
-                <h3>Témoignages</h3>
-                <p>Découvrez ce que nos utilisateurs disent de RentaPro.</p>
-                <a href="/pages/temoignages.html" class="feature-link">Lire les témoignages →</a>
-            </div>
-        </div>
-    </section>
+        <section class="features" aria-labelledby="features-title">
+            <h2 id="features-title" class="section-title">Des outils complets pour investir sereinement</h2>
+            <p class="section-subtitle">Tout ce dont vous avez besoin pour analyser vos projets immobiliers</p>
+            
+            <div class="features-grid">
+                <article class="feature-card">
+                    <div class="feature-icon" aria-hidden="true">📊</div>
+                    <h3>Simulateur avancé</h3>
+                    <p>Calculez rendement brut, net, cash-flow et mensualités. 3 simulations gratuites par jour.</p>
+                    <a href="/pages/simulateur.html" class="feature-link" aria-label="Essayer le simulateur">Essayer maintenant →</a>
+                </article>
 
-    <section class="cta">
-        <h2>Prêt à analyser votre prochain investissement ?</h2>
-        <p>Rejoignez les milliers d'investisseurs qui utilisent RentaPro pour prendre les bonnes décisions.</p>
-        <div class="cta-buttons">
-            <a href="/pages/simulateur.html" class="btn-cta">Commencer maintenant</a>
-            <a href="/pages/contact.html" class="btn-cta-outline">Contactez-nous</a>
-        </div>
-    </section>
+                <article class="feature-card">
+                    <div class="feature-icon" aria-hidden="true">🌍</div>
+                    <h3>Investissement mondial</h3>
+                    <p>Découvrez les spécificités de chaque continent et les conseils des plus grands investisseurs.</p>
+                    <a href="/pages/investissement-mondial.html" class="feature-link" aria-label="Explorer les continents">Explorer →</a>
+                </article>
 
-    <section class="newsletter">
-        <div class="newsletter-container">
-            <h3>📬 Ne manquez aucun conseil</h3>
-            <p>Recevez chaque semaine nos astuces pour optimiser vos investissements immobiliers</p>
-            <form class="newsletter-form" action="#" method="POST" onsubmit="event.preventDefault(); alert('✅ Merci de votre inscription !'); this.reset();">
-                <input type="email" class="newsletter-input" placeholder="Votre adresse email" required>
-                <button type="submit" class="newsletter-button">S'inscrire</button>
-            </form>
-        </div>
-    </section>
+                <article class="feature-card">
+                    <div class="feature-icon" aria-hidden="true">📈</div>
+                    <h3>Analyse financière</h3>
+                    <p>VAN, TRI, délai de récupération... Tous les indicateurs pour une décision éclairée.</p>
+                    <a href="/pages/analyse-financiere.html" class="feature-link" aria-label="Analyser financièrement">Analyser →</a>
+                </article>
+
+                <article class="feature-card">
+                    <div class="feature-icon" aria-hidden="true">📚</div>
+                    <h3>Guide complet</h3>
+                    <p>De la recherche du bien à la gestion locative, tout ce qu'il faut savoir pour réussir.</p>
+                    <a href="/pages/guide.html" class="feature-link" aria-label="Lire le guide">Lire le guide →</a>
+                </article>
+
+                <article class="feature-card">
+                    <div class="feature-icon" aria-hidden="true">📝</div>
+                    <h3>Blog immobilier</h3>
+                    <p>Conseils, analyses et stratégies pour optimiser vos investissements.</p>
+                    <a href="/pages/blog.html" class="feature-link" aria-label="Lire le blog">Lire les articles →</a>
+                </article>
+
+                <article class="feature-card">
+                    <div class="feature-icon" aria-hidden="true">🗣️</div>
+                    <h3>Témoignages</h3>
+                    <p>Découvrez ce que nos utilisateurs disent de RentaPro.</p>
+                    <a href="/pages/temoignages.html" class="feature-link" aria-label="Lire les témoignages">Lire les témoignages →</a>
+                </article>
+            </div>
+        </section>
+
+        <section class="cta" aria-labelledby="cta-title">
+            <h2 id="cta-title">Prêt à analyser votre prochain investissement ?</h2>
+            <p>Rejoignez les milliers d'investisseurs qui utilisent RentaPro pour prendre les bonnes décisions.</p>
+            <div class="cta-buttons">
+                <a href="/pages/simulateur.html" class="btn-cta" aria-label="Commencer maintenant">Commencer maintenant</a>
+                <a href="/pages/contact.html" class="btn-cta-outline" aria-label="Nous contacter">Contactez-nous</a>
+            </div>
+        </section>
+
+        <section class="newsletter" aria-labelledby="newsletter-title">
+            <div class="newsletter-container">
+                <h3 id="newsletter-title">📬 Ne manquez aucun conseil</h3>
+                <p>Recevez chaque semaine nos astuces pour optimiser vos investissements immobiliers</p>
+                <form class="newsletter-form" action="#" method="POST" onsubmit="event.preventDefault(); alert('✅ Merci de votre inscription !'); this.reset();">
+                    <label for="newsletter-email" class="sr-only">Votre adresse email</label>
+                    <input type="email" id="newsletter-email" class="newsletter-input" placeholder="Votre adresse email" required>
+                    <button type="submit" class="newsletter-button">S'inscrire</button>
+                </form>
+            </div>
+        </section>
+    </main>
 
     <footer class="footer">
         <div class="footer-content">
@@ -672,19 +783,20 @@
             </div>
         </div>
 
-        <!-- Liens légaux -->
         <div class="footer-legal">
             <a href="/pages/mentions-legales.html">Mentions légales</a>
             <a href="/pages/confidentialite.html">Politique de confidentialité</a>
             <a href="/pages/cgu.html">CGU</a>
         </div>
 
+        <!-- Mention légale Amazon obligatoire -->
+        <div class="amazon-disclaimer">
+            En tant que Partenaire Amazon, je réalise un bénéfice sur les achats remplissant les conditions requises.
+        </div>
+
         <div class="copyright">
             © 2026 RentaPro - Tous droits réservés
         </div>
-    </footer><!-- Mention légale Amazon (à ajouter avant le copyright) -->
-<p style="text-align: center; color: #94a3b8; font-size: 0.8rem; margin: 1rem 0;">
-    En tant que Partenaire Amazon, je réalise un bénéfice sur les achats remplissant les conditions requises.
-</p>
+    </footer>
 </body>
 </html>
