@@ -2,6 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <meta name="google-site-verification" content="googlef746d504e2f887e6" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- ========== BALISES SEO OPTIMISÉES ========== -->
@@ -34,9 +35,6 @@
     <!-- Google AdSense (à remplacer) -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
     
-    <!-- Google Search Console (à remplacer) -->
-    <meta name="google-site-verification" content="TON_CODE_ICI">
-    
     <!-- Google Analytics (à ajouter plus tard) -->
     
     <!-- Optimisation des performances -->
@@ -60,6 +58,9 @@
     <!-- Thème couleur pour les navigateurs mobiles -->
     <meta name="theme-color" content="#0f172a">
     <meta name="msapplication-TileColor" content="#0f172a">
+    
+    <!-- Assistant IA CSS -->
+    <link rel="stylesheet" href="/assistant-ia.css">
 
     <style>
         /* ========== VARIABLES CSS ========== */
@@ -661,6 +662,7 @@
             color: var(--accent);
             margin-bottom: 1.5rem;
             font-size: 1.2rem;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .footer-section a {
@@ -739,6 +741,7 @@
             .btn {
                 width: 100%;
                 max-width: 300px;
+                text-align: center;
             }
         }
 
@@ -985,14 +988,10 @@
             const message = input.value.trim();
             if (!message) return;
             
-            // Afficher le message de l'utilisateur
             addMessage(message, 'user');
             input.value = '';
-            
-            // Afficher l'indicateur de frappe
             showTypingIndicator();
             
-            // Simuler une réponse de l'assistant
             setTimeout(() => {
                 removeTypingIndicator();
                 const reponse = assistantIA.repondre(message);
