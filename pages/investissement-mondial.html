@@ -1,10 +1,8 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8"><head>
     <meta charset="UTF-8">
     <meta name="google-site-verification" content="googlef746d504e2f887e6" />
-    <!-- reste du code -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- ========== BALISES SEO ========== -->
@@ -30,42 +28,13 @@
     <!-- Google AdSense -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
     
-    <!-- Google Search Console -->
-    <meta name="google-site-verification" content="TON_CODE_ICI">
-    
-    <!-- Optimisation -->
-    <link rel="preconnect" href="https://images.unsplash.com">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Canonical -->
-    <link rel="canonical" href="https://rentapro-swart.vercel.app/pages/investissement-mondial.html">
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="/favicon.png">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Assistant IA CSS -->
     <link rel="stylesheet" href="/assistant-ia.css">
 
     <style>
-        :root {
-            --primary-dark: #0f172a;
-            --primary-light: #1e293b;
-            --accent: #eab308;
-            --accent-hover: #fbbf24;
-            --text-dark: #1e293b;
-            --text-light: #64748b;
-            --bg-light: #f8fafc;
-            --bg-white: #ffffff;
-            --border: #e2e8f0;
-            --shadow-sm: 0 4px 6px -1px rgb(0 0 0 / 0.05);
-            --shadow-md: 0 10px 15px -3px rgb(0 0 0 / 0.05);
-            --shadow-lg: 0 20px 25px -5px rgb(0 0 0 / 0.05);
-            --shadow-xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
         * {
             margin: 0;
             padding: 0;
@@ -74,31 +43,17 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: var(--bg-light);
-            color: var(--text-dark);
+            background: #f8fafc;
+            color: #1e293b;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
         }
 
-        .font-serif {
-            font-family: 'Playfair Display', serif;
-        }
-
-        .font-montserrat {
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-            letter-spacing: -0.02em;
-        }
-
         .navbar {
-            background: var(--bg-white);
+            background: white;
             padding: 1rem 5%;
-            box-shadow: var(--shadow-sm);
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -122,19 +77,19 @@
 
         .logo-icon {
             font-size: 2rem;
-            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-light) 100%);
-            color: var(--accent);
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #eab308;
             width: 50px;
             height: 50px;
             border-radius: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: var(--shadow-sm);
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
         }
 
         .logo-text {
-            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-light) 100%);
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -147,20 +102,20 @@
         }
 
         .nav-links a {
-            color: var(--text-light);
+            color: #64748b;
             text-decoration: none;
             font-weight: 500;
-            transition: var(--transition);
+            transition: color 0.3s;
             padding: 0.5rem 0;
             position: relative;
         }
 
         .nav-links a:hover {
-            color: var(--primary-dark);
+            color: #0f172a;
         }
 
         .nav-links a.active {
-            color: var(--primary-dark);
+            color: #0f172a;
             font-weight: 600;
         }
 
@@ -171,7 +126,7 @@
             left: 0;
             width: 100%;
             height: 3px;
-            background: linear-gradient(90deg, var(--accent), var(--accent-hover));
+            background: #eab308;
             border-radius: 3px 3px 0 0;
         }
 
@@ -187,7 +142,7 @@
             text-align: center;
             margin-bottom: 3rem;
             padding: 3rem;
-            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-light) 100%);
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
             border-radius: 40px;
             color: white;
             position: relative;
@@ -214,6 +169,7 @@
             font-size: clamp(2rem, 5vw, 3rem);
             margin-bottom: 1rem;
             position: relative;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .header-center p {
@@ -232,18 +188,18 @@
         }
 
         .continent-card {
-            background: var(--bg-white);
+            background: white;
             border-radius: 30px;
             overflow: hidden;
-            box-shadow: var(--shadow-md);
-            border: 1px solid var(--border);
-            transition: var(--transition);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.05);
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s;
         }
 
         .continent-card:hover {
             transform: translateY(-10px);
-            box-shadow: var(--shadow-xl);
-            border-color: var(--accent);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+            border-color: #eab308;
         }
 
         .continent-image {
@@ -283,7 +239,7 @@
 
         .continent-header h2 {
             font-size: 1.8rem;
-            color: var(--primary-dark);
+            color: #0f172a;
         }
 
         .continent-badge {
@@ -320,13 +276,13 @@
         }
 
         .continent-description {
-            color: var(--text-light);
+            color: #64748b;
             line-height: 1.6;
             margin-bottom: 1.5rem;
         }
 
         .continent-stats {
-            background: var(--bg-light);
+            background: #f8fafc;
             border-radius: 16px;
             padding: 1.2rem;
             margin: 1.5rem 0;
@@ -336,7 +292,7 @@
             display: flex;
             justify-content: space-between;
             padding: 0.5rem 0;
-            border-bottom: 1px solid var(--border);
+            border-bottom: 1px solid #e2e8f0;
         }
 
         .stat-row:last-child {
@@ -344,13 +300,13 @@
         }
 
         .stat-label {
-            color: var(--text-light);
+            color: #64748b;
             font-size: 0.95rem;
         }
 
         .stat-value {
             font-weight: 700;
-            color: var(--primary-dark);
+            color: #0f172a;
         }
 
         .continent-features {
@@ -363,12 +319,12 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            color: var(--text-light);
+            color: #64748b;
         }
 
         .continent-features li::before {
             content: "✓";
-            color: var(--accent);
+            color: #eab308;
             font-weight: bold;
         }
 
@@ -376,22 +332,22 @@
             display: inline-block;
             width: 100%;
             padding: 1rem;
-            background: var(--primary-dark);
+            background: #0f172a;
             color: white;
             text-align: center;
             text-decoration: none;
             border-radius: 12px;
             font-weight: 600;
-            transition: var(--transition);
+            transition: all 0.3s;
             border: none;
             cursor: pointer;
             font-family: 'Montserrat', sans-serif;
         }
 
         .btn-continent:hover {
-            background: var(--primary-light);
+            background: #1e293b;
             transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.05);
         }
 
         .btn-seloger {
@@ -403,7 +359,7 @@
             border-radius: 50px;
             font-weight: 700;
             font-size: 1.2rem;
-            transition: var(--transition);
+            transition: all 0.3s;
             box-shadow: 0 5px 15px rgba(227,6,19,0.3);
             margin: 2rem 0;
         }
@@ -421,8 +377,9 @@
         .investors-section h2 {
             text-align: center;
             font-size: 2.2rem;
-            color: var(--primary-dark);
+            color: #0f172a;
             margin-bottom: 2rem;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .investors-section h2::after {
@@ -430,7 +387,7 @@
             display: block;
             width: 60px;
             height: 3px;
-            background: linear-gradient(90deg, var(--accent), var(--accent-hover));
+            background: linear-gradient(90deg, #eab308, #fbbf24);
             margin: 1rem auto;
             border-radius: 2px;
         }
@@ -442,22 +399,22 @@
         }
 
         .investor-card {
-            background: var(--bg-white);
+            background: white;
             border-radius: 20px;
             padding: 2rem;
-            box-shadow: var(--shadow-sm);
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
             display: flex;
             flex-direction: column;
             align-items: center;
             text-align: center;
-            border: 1px solid var(--border);
-            transition: var(--transition);
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s;
         }
 
         .investor-card:hover {
             transform: translateY(-5px);
-            box-shadow: var(--shadow-md);
-            border-color: var(--accent);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.05);
+            border-color: #eab308;
         }
 
         .investor-image {
@@ -467,40 +424,40 @@
             background-size: cover;
             background-position: center;
             margin-bottom: 1.5rem;
-            border: 4px solid var(--accent);
+            border: 4px solid #eab308;
         }
 
         .investor-name {
             font-size: 1.5rem;
-            color: var(--primary-dark);
+            color: #0f172a;
             margin-bottom: 0.3rem;
         }
 
         .investor-title {
-            color: var(--text-light);
+            color: #64748b;
             font-size: 0.95rem;
             margin-bottom: 1rem;
         }
 
         .investor-quote {
-            color: var(--text-dark);
+            color: #1e293b;
             font-style: italic;
             line-height: 1.6;
             margin-bottom: 1rem;
         }
 
         .investor-advice {
-            background: var(--bg-light);
+            background: #f8fafc;
             padding: 1rem;
             border-radius: 12px;
             font-size: 0.95rem;
-            color: var(--text-light);
+            color: #64748b;
             width: 100%;
             text-align: left;
         }
 
         .footer {
-            background: var(--primary-dark);
+            background: #0f172a;
             color: white;
             padding: 4rem 5% 2rem;
             margin-top: 3rem;
@@ -515,7 +472,7 @@
         }
 
         .footer-section h4 {
-            color: var(--accent);
+            color: #eab308;
             margin-bottom: 1.5rem;
             font-family: 'Montserrat', sans-serif;
         }
@@ -525,11 +482,11 @@
             text-decoration: none;
             display: block;
             margin-bottom: 0.8rem;
-            transition: var(--transition);
+            transition: color 0.3s;
         }
 
         .footer-section a:hover {
-            color: var(--accent);
+            color: #eab308;
             transform: translateX(5px);
         }
 
@@ -545,11 +502,10 @@
             color: #94a3b8;
             text-decoration: none;
             font-size: 0.9rem;
-            transition: var(--transition);
         }
 
         .footer-legal a:hover {
-            color: var(--accent);
+            color: #eab308;
         }
 
         .amazon-disclaimer {
@@ -598,7 +554,7 @@
 
     <div class="container">
         <div class="header-center">
-            <h1>🌍 Investir dans <span class="font-serif">l'immobilier</span> à travers le monde</h1>
+            <h1>🌍 Investir dans l'immobilier à travers le monde</h1>
             <p>Découvrez les spécificités de chaque continent, les opportunités uniques et les conseils des plus grands investisseurs pour réussir vos placements internationaux.</p>
         </div>
 
@@ -905,8 +861,7 @@
         </div>
         <div class="chat-messages" id="chatMessages">
             <div class="message bot">
-                👋 Bonjour ! Je suis l'assistant IA de RentaPro. 
-                Posez-moi vos questions sur l'investissement immobilier !
+                👋 Bonjour ! Je suis l'assistant IA de RentaPro. Posez-moi vos questions sur l'investissement immobilier !
             </div>
         </div>
         <div class="chat-input-area">
@@ -948,11 +903,9 @@
             
             addMessage(message, 'user');
             input.value = '';
-            showTypingIndicator();
             
             setTimeout(() => {
-                removeTypingIndicator();
-                const reponse = assistantIA.repondre(message);
+                const reponse = assistantIA ? assistantIA.repondre(message) : "Merci pour votre question ! Un conseiller vous répondra bientôt.";
                 addMessage(reponse, 'bot');
             }, 1000);
         }
@@ -964,21 +917,6 @@
             messageDiv.textContent = text;
             messages.appendChild(messageDiv);
             messages.scrollTop = messages.scrollHeight;
-        }
-
-        function showTypingIndicator() {
-            const messages = document.getElementById('chatMessages');
-            const indicator = document.createElement('div');
-            indicator.className = 'typing-indicator';
-            indicator.id = 'typingIndicator';
-            indicator.innerHTML = '<span></span><span></span><span></span>';
-            messages.appendChild(indicator);
-            messages.scrollTop = messages.scrollHeight;
-        }
-
-        function removeTypingIndicator() {
-            const indicator = document.getElementById('typingIndicator');
-            if (indicator) indicator.remove();
         }
 
         function useSuggestion(text) {

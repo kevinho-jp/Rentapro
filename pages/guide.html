@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">  <head>
     <meta charset="UTF-8">
     <meta name="google-site-verification" content="googlef746d504e2f887e6" />
-    <!-- reste du code -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- ========== BALISES SEO OPTIMISÉES ========== -->
+    <!-- ========== BALISES SEO ========== -->
     <title>Guide complet de l'investisseur locatif - RentaPro</title>
     <meta name="description" content="Guide gratuit pour investir dans l'immobilier locatif. De la recherche du bien à la gestion locative, toutes les étapes pour réussir votre investissement.">
     <meta name="keywords" content="guide investissement locatif, investir dans l'immobilier, conseils investisseur, achat immobilier, gestion locative">
@@ -30,44 +28,13 @@
     <!-- Google AdSense -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
     
-    <!-- Google Search Console -->
-    <meta name="google-site-verification" content="TON_CODE_ICI">
-    
-    <!-- Optimisation -->
-    <link rel="preconnect" href="https://images.unsplash.com">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
-    <!-- Google Fonts enrichies -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Canonical -->
-    <link rel="canonical" href="https://rentapro-swart.vercel.app/pages/guide.html">
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="/favicon.png">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Assistant IA CSS -->
     <link rel="stylesheet" href="/assistant-ia.css">
 
     <style>
-        :root {
-            --primary-dark: #0f172a;
-            --primary-light: #1e293b;
-            --accent: #eab308;
-            --accent-hover: #fbbf24;
-            --text-dark: #1e293b;
-            --text-light: #64748b;
-            --bg-light: #f8fafc;
-            --bg-white: #ffffff;
-            --border: #e2e8f0;
-            --shadow-sm: 0 4px 6px -1px rgb(0 0 0 / 0.05);
-            --shadow-md: 0 10px 15px -3px rgb(0 0 0 / 0.05);
-            --shadow-lg: 0 20px 25px -5px rgb(0 0 0 / 0.05);
-            --shadow-xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
         * {
             margin: 0;
             padding: 0;
@@ -76,31 +43,17 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: var(--bg-light);
-            color: var(--text-dark);
+            background: #f8fafc;
+            color: #1e293b;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
         }
 
-        .font-serif {
-            font-family: 'Playfair Display', serif;
-        }
-
-        .font-montserrat {
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-            letter-spacing: -0.02em;
-        }
-
         .navbar {
-            background: var(--bg-white);
+            background: white;
             padding: 1rem 5%;
-            box-shadow: var(--shadow-sm);
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -124,19 +77,19 @@
 
         .logo-icon {
             font-size: 2rem;
-            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-light) 100%);
-            color: var(--accent);
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #eab308;
             width: 50px;
             height: 50px;
             border-radius: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: var(--shadow-sm);
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
         }
 
         .logo-text {
-            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-light) 100%);
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -149,20 +102,20 @@
         }
 
         .nav-links a {
-            color: var(--text-light);
+            color: #64748b;
             text-decoration: none;
             font-weight: 500;
-            transition: var(--transition);
+            transition: color 0.3s;
             padding: 0.5rem 0;
             position: relative;
         }
 
         .nav-links a:hover {
-            color: var(--primary-dark);
+            color: #0f172a;
         }
 
         .nav-links a.active {
-            color: var(--primary-dark);
+            color: #0f172a;
             font-weight: 600;
         }
 
@@ -173,7 +126,7 @@
             left: 0;
             width: 100%;
             height: 3px;
-            background: linear-gradient(90deg, var(--accent), var(--accent-hover));
+            background: #eab308;
             border-radius: 3px 3px 0 0;
         }
 
@@ -186,36 +139,18 @@
         }
 
         .guide-hero {
-            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-light) 100%);
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
             border-radius: 30px;
             padding: 3rem;
             margin-bottom: 3rem;
             color: white;
             text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .guide-hero::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(234,179,8,0.1) 0%, transparent 70%);
-            animation: rotate 30s linear infinite;
-        }
-
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
         }
 
         .guide-hero h1 {
             font-size: clamp(2rem, 5vw, 2.8rem);
             margin-bottom: 1rem;
-            position: relative;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .guide-hero p {
@@ -223,45 +158,24 @@
             font-size: 1.2rem;
             max-width: 700px;
             margin: 0 auto 2rem;
-            position: relative;
         }
 
         .btn {
             display: inline-block;
             padding: 1rem 2.5rem;
-            background: var(--accent);
-            color: var(--primary-dark);
+            background: #eab308;
+            color: #0f172a;
             text-decoration: none;
             border-radius: 50px;
             font-weight: 600;
-            transition: var(--transition);
+            transition: all 0.3s;
             border: none;
             cursor: pointer;
-            position: relative;
-            overflow: hidden;
             font-family: 'Montserrat', sans-serif;
         }
 
-        .btn::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.3);
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
-        }
-
-        .btn:hover::after {
-            width: 300px;
-            height: 300px;
-        }
-
         .btn:hover {
-            background: var(--accent-hover);
+            background: #fbbf24;
             transform: translateY(-3px);
             box-shadow: 0 10px 20px rgba(234,179,8,0.3);
         }
@@ -274,20 +188,19 @@
         }
 
         .chapter-card {
-            background: var(--bg-white);
+            background: white;
             padding: 1.5rem;
             border-radius: 16px;
-            box-shadow: var(--shadow-sm);
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
             text-align: center;
             cursor: pointer;
-            transition: var(--transition);
-            border: 1px solid var(--border);
+            transition: all 0.3s;
+            border: 1px solid #e2e8f0;
         }
 
         .chapter-card:hover {
             transform: translateY(-5px);
-            border-color: var(--accent);
-            box-shadow: var(--shadow-md);
+            border-color: #eab308;
         }
 
         .chapter-icon {
@@ -296,23 +209,22 @@
         }
 
         .chapter-card h3 {
-            color: var(--primary-dark);
+            color: #0f172a;
             margin-bottom: 0.3rem;
         }
 
         .chapter-card p {
-            color: var(--text-light);
+            color: #64748b;
             font-size: 0.9rem;
         }
 
         .guide-section {
-            background: var(--bg-white);
+            background: white;
             border-radius: 30px;
             padding: 3rem;
             margin-bottom: 3rem;
-            box-shadow: var(--shadow-md);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.05);
             scroll-margin-top: 100px;
-            border: 1px solid var(--border);
         }
 
         .section-header {
@@ -322,24 +234,15 @@
 
         .section-header h2 {
             font-size: 2rem;
-            color: var(--primary-dark);
+            color: #0f172a;
             margin-bottom: 1rem;
-        }
-
-        .section-header h2::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 3px;
-            background: linear-gradient(90deg, var(--accent), var(--accent-hover));
-            margin: 1rem auto;
-            border-radius: 2px;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .section-content {
             max-width: 800px;
             margin: 0 auto;
-            color: var(--text-light);
+            color: #64748b;
             line-height: 1.7;
         }
 
@@ -356,7 +259,6 @@
             margin-bottom: 0.5rem;
         }
 
-        /* Grille des types d'investissement */
         .types-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -365,31 +267,30 @@
         }
 
         .type-card {
-            background: var(--bg-light);
+            background: #f8fafc;
             padding: 1.5rem;
             border-radius: 20px;
-            transition: var(--transition);
-            border: 1px solid var(--border);
+            transition: all 0.3s;
+            border: 1px solid #e2e8f0;
         }
 
         .type-card:hover {
             transform: translateY(-5px);
-            box-shadow: var(--shadow-md);
-            border-color: var(--accent);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.05);
+            border-color: #eab308;
         }
 
         .type-card h3 {
-            color: var(--primary-dark);
+            color: #0f172a;
             margin-bottom: 0.5rem;
             font-size: 1.3rem;
         }
 
         .type-card p {
             margin-bottom: 0.5rem;
-            color: var(--text-light);
+            color: #64748b;
         }
 
-        /* Tableau fiscalité */
         .table-container {
             overflow-x: auto;
             margin: 1.5rem 0;
@@ -401,25 +302,24 @@
             background: white;
             border-radius: 16px;
             overflow: hidden;
-            box-shadow: var(--shadow-sm);
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
         }
 
         thead {
-            background: var(--primary-dark);
+            background: #0f172a;
             color: white;
         }
 
         th, td {
             padding: 1rem;
             text-align: left;
-            border-bottom: 1px solid var(--border);
+            border-bottom: 1px solid #e2e8f0;
         }
 
         tbody tr:hover {
-            background: var(--bg-light);
+            background: #f8fafc;
         }
 
-        /* Checklist */
         .checklist-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -436,38 +336,37 @@
             border-left: 4px solid #dc2626;
         }
 
-        /* Stratégies */
         .strategy-card {
             margin-bottom: 1.5rem;
             padding: 1.5rem;
             background: linear-gradient(135deg, #f8fafc, #ffffff);
             border-radius: 16px;
-            border-left: 4px solid var(--accent);
-            transition: var(--transition);
+            border-left: 4px solid #eab308;
+            transition: all 0.3s;
         }
 
         .strategy-card:hover {
             transform: translateX(10px);
-            box-shadow: var(--shadow-md);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.05);
         }
 
         .strategy-card h3 {
-            color: var(--primary-dark);
+            color: #0f172a;
             margin-bottom: 0.5rem;
         }
 
         .affiliation-section {
             margin: 3rem 0;
             padding: 2rem;
-            background: var(--bg-white);
+            background: white;
             border-radius: 30px;
-            border: 2px solid var(--accent);
+            border: 2px solid #eab308;
         }
 
         .affiliation-section h3 {
             text-align: center;
             font-size: 1.8rem;
-            color: var(--primary-dark);
+            color: #0f172a;
             margin-bottom: 2rem;
         }
 
@@ -480,14 +379,14 @@
         .book-card {
             text-align: center;
             padding: 1.5rem;
-            background: var(--bg-light);
+            background: #f8fafc;
             border-radius: 16px;
-            transition: var(--transition);
+            transition: all 0.3s;
         }
 
         .book-card:hover {
             transform: translateY(-5px);
-            box-shadow: var(--shadow-md);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.05);
         }
 
         .book-image {
@@ -496,17 +395,17 @@
             object-fit: cover;
             border-radius: 10px;
             margin-bottom: 1rem;
-            box-shadow: var(--shadow-sm);
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
         }
 
         .book-title {
             font-weight: 600;
-            color: var(--primary-dark);
+            color: #0f172a;
             margin-bottom: 0.5rem;
         }
 
         .book-price {
-            color: var(--accent);
+            color: #eab308;
             font-weight: 700;
             margin-bottom: 1rem;
         }
@@ -519,17 +418,16 @@
             text-decoration: none;
             border-radius: 50px;
             font-weight: 600;
-            transition: var(--transition);
+            transition: all 0.3s;
         }
 
         .btn-amazon:hover {
             background: #e68900;
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255,153,0,0.3);
         }
 
         .footer {
-            background: var(--primary-dark);
+            background: #0f172a;
             color: white;
             padding: 4rem 5% 2rem;
             margin-top: 3rem;
@@ -544,7 +442,7 @@
         }
 
         .footer-section h4 {
-            color: var(--accent);
+            color: #eab308;
             margin-bottom: 1.5rem;
             font-family: 'Montserrat', sans-serif;
         }
@@ -554,11 +452,11 @@
             text-decoration: none;
             display: block;
             margin-bottom: 0.8rem;
-            transition: var(--transition);
+            transition: color 0.3s;
         }
 
         .footer-section a:hover {
-            color: var(--accent);
+            color: #eab308;
             transform: translateX(5px);
         }
 
@@ -574,11 +472,10 @@
             color: #94a3b8;
             text-decoration: none;
             font-size: 0.9rem;
-            transition: var(--transition);
         }
 
         .footer-legal a:hover {
-            color: var(--accent);
+            color: #eab308;
         }
 
         .amazon-disclaimer {
@@ -630,7 +527,7 @@
 
     <div class="container">
         <div class="guide-hero">
-            <h1>📚 Guide de <span class="font-serif">l'investisseur locatif</span></h1>
+            <h1>📚 Guide de l'investisseur locatif</h1>
             <p>Que vous soyez débutant ou confirmé, ce guide vous accompagne pas à pas pour réussir vos investissements immobiliers.</p>
             <a href="#section1" class="btn">Commencer la lecture →</a>
         </div>
@@ -719,7 +616,7 @@
                 <p><strong>Rentabilité brute :</strong> (Loyer annuel / Prix d'achat) × 100</p>
                 <p><strong>Rentabilité nette :</strong> (Loyer annuel - charges) / (Prix d'achat + frais) × 100</p>
                 <p><strong>Cash-flow :</strong> Loyer - charges - mensualité</p>
-                <p style="margin-top: 1.5rem;">👉 Utilisez notre <a href="/pages/simulateur.html" style="color: var(--accent);">simulateur gratuit</a> pour des calculs précis.</p>
+                <p style="margin-top: 1.5rem;">👉 Utilisez notre <a href="/pages/simulateur.html" style="color: #eab308;">simulateur gratuit</a> pour des calculs précis.</p>
             </div>
         </section>
 
@@ -768,18 +665,6 @@
                     <p><strong>Inconvénients :</strong> Gestion complexe</p>
                     <p><strong>Rendement :</strong> 8-12%</p>
                 </div>
-                <div class="type-card">
-                    <h3>🏨 Résidence gérée</h3>
-                    <p><strong>Avantages :</strong> Gestion déléguée</p>
-                    <p><strong>Inconvénients :</strong> Rendement plus faible</p>
-                    <p><strong>Rendement :</strong> 4-5%</p>
-                </div>
-                <div class="type-card">
-                    <h3>📦 SCPI</h3>
-                    <p><strong>Avantages :</strong> Investissement sans gestion</p>
-                    <p><strong>Inconvénients :</strong> Liquidité moindre</p>
-                    <p><strong>Rendement :</strong> 4-5%</p>
-                </div>
             </div>
         </section>
 
@@ -823,12 +708,6 @@
                             <td>Amortissement</td>
                             <td>Comptabilité obligatoire</td>
                         </tr>
-                        <tr>
-                            <td><strong>LMP</strong></td>
-                            <td>Location meublée</td>
-                            <td>Statut professionnel</td>
-                            <td>Plus de 23 000€</td>
-                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -860,23 +739,23 @@
             </div>
             <div class="strategy-card">
                 <h3>🥇 Stratégie #1 : L'achat revente (flip)</h3>
-                <p>Acheter un bien à rénover, le rénover et le revendre rapidement. Nécessite de bonnes compétences en rénovation et une connaissance du marché local. Marge potentielle : 15-30%.</p>
+                <p>Acheter un bien à rénover, le rénover et le revendre rapidement. Marge potentielle : 15-30%.</p>
             </div>
             <div class="strategy-card">
                 <h3>🥈 Stratégie #2 : La colocation</h3>
-                <p>Louer un grand appartement à plusieurs locataires. Rendement élevé (8-12%) mais gestion plus complexe. Idéal pour les zones étudiantes.</p>
+                <p>Louer un grand appartement à plusieurs locataires. Rendement élevé (8-12%).</p>
             </div>
             <div class="strategy-card">
                 <h3>🥉 Stratégie #3 : Le LMNP</h3>
-                <p>Louer en meublé pour bénéficier du régime LMNP. Amortissement du bien possible, fiscalité avantageuse. Idéal pour les petites surfaces.</p>
+                <p>Louer en meublé pour bénéficier du régime LMNP. Amortissement du bien possible.</p>
             </div>
             <div class="strategy-card">
                 <h3>4️⃣ Stratégie #4 : Le leasing immobilier</h3>
-                <p>Acheter avec un crédit in fine pour déduire les intérêts et se constituer un patrimoine sans effort de trésorerie.</p>
+                <p>Acheter avec un crédit in fine pour déduire les intérêts.</p>
             </div>
             <div class="strategy-card">
                 <h3>5️⃣ Stratégie #5 : L'investissement dans les SCPI</h3>
-                <p>Investir dans l'immobilier sans les contraintes de gestion. Idéal pour débuter avec un petit budget ou diversifier.</p>
+                <p>Investir dans l'immobilier sans les contraintes de gestion.</p>
             </div>
         </section>
 
@@ -885,19 +764,19 @@
             <h3>📚 Les meilleurs livres pour investir</h3>
             <div class="books-grid">
                 <div class="book-card">
-                    <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Livre Acheter son logement" class="book-image">
+                    <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Livre immobilier" class="book-image">
                     <div class="book-title">Acheter son logement 2025</div>
                     <div class="book-price">24,99$</div>
                     <a href="https://www.amazon.fr/dp/2809520097?tag=rentapro-21" target="_blank" class="btn-amazon">Voir sur Amazon</a>
                 </div>
                 <div class="book-card">
-                    <img src="https://images.unsplash.com/photo-1554224154-26032ffc0d07?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Guide immobilier" class="book-image">
-                    <div class="book-title">Guide de l'investissement locatif</div>
-                    <div class="book-price">À partir de 19,99$</div>
-                    <a href="https://www.amazon.fr/s?k=investissement+immobilier+locatif&tag=rentapro-21" target="_blank" class="btn-amazon">Voir les livres</a>
+                    <img src="https://images.unsplash.com/photo-1554224154-26032ffc0d07?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Livre finance" class="book-image">
+                    <div class="book-title">Père riche, Père pauvre</div>
+                    <div class="book-price">19,99$</div>
+                    <a href="https://www.amazon.fr/dp/2290152491?tag=rentapro-21" target="_blank" class="btn-amazon">Voir sur Amazon</a>
                 </div>
                 <div class="book-card">
-                    <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Calculatrice financière" class="book-image">
+                    <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Calculatrice" class="book-image">
                     <div class="book-title">Calculatrice financière Casio</div>
                     <div class="book-price">22,99$</div>
                     <a href="https://www.amazon.fr/dp/B004NBZB2M?tag=rentapro-21" target="_blank" class="btn-amazon">Voir sur Amazon</a>
@@ -950,8 +829,7 @@
         </div>
         <div class="chat-messages" id="chatMessages">
             <div class="message bot">
-                👋 Bonjour ! Je suis l'assistant IA de RentaPro. 
-                Posez-moi vos questions sur l'investissement immobilier !
+                👋 Bonjour ! Je suis l'assistant IA de RentaPro. Posez-moi vos questions sur l'investissement immobilier !
             </div>
         </div>
         <div class="chat-input-area">
@@ -993,11 +871,9 @@
             
             addMessage(message, 'user');
             input.value = '';
-            showTypingIndicator();
             
             setTimeout(() => {
-                removeTypingIndicator();
-                const reponse = assistantIA.repondre(message);
+                const reponse = assistantIA ? assistantIA.repondre(message) : "Merci pour votre question ! Un conseiller vous répondra bientôt.";
                 addMessage(reponse, 'bot');
             }, 1000);
         }
@@ -1009,21 +885,6 @@
             messageDiv.textContent = text;
             messages.appendChild(messageDiv);
             messages.scrollTop = messages.scrollHeight;
-        }
-
-        function showTypingIndicator() {
-            const messages = document.getElementById('chatMessages');
-            const indicator = document.createElement('div');
-            indicator.className = 'typing-indicator';
-            indicator.id = 'typingIndicator';
-            indicator.innerHTML = '<span></span><span></span><span></span>';
-            messages.appendChild(indicator);
-            messages.scrollTop = messages.scrollHeight;
-        }
-
-        function removeTypingIndicator() {
-            const indicator = document.getElementById('typingIndicator');
-            if (indicator) indicator.remove();
         }
 
         function useSuggestion(text) {
@@ -1040,7 +901,6 @@
             }
         });
 
-        // Smooth scroll pour les ancres
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();

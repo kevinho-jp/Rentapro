@@ -2,10 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-<head>
-    <meta charset="UTF-8">
     <meta name="google-site-verification" content="googlef746d504e2f887e6" />
-    <!-- reste du code -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- ========== BALISES SEO ========== -->
@@ -31,42 +28,13 @@
     <!-- Google AdSense -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
     
-    <!-- Google Search Console -->
-    <meta name="google-site-verification" content="TON_CODE_ICI">
-    
-    <!-- Optimisation -->
-    <link rel="preconnect" href="https://images.unsplash.com">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Canonical -->
-    <link rel="canonical" href="https://rentapro-swart.vercel.app/pages/temoignages.html">
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="/favicon.png">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Assistant IA CSS -->
     <link rel="stylesheet" href="/assistant-ia.css">
 
     <style>
-        :root {
-            --primary-dark: #0f172a;
-            --primary-light: #1e293b;
-            --accent: #eab308;
-            --accent-hover: #fbbf24;
-            --text-dark: #1e293b;
-            --text-light: #64748b;
-            --bg-light: #f8fafc;
-            --bg-white: #ffffff;
-            --border: #e2e8f0;
-            --shadow-sm: 0 4px 6px -1px rgb(0 0 0 / 0.05);
-            --shadow-md: 0 10px 15px -3px rgb(0 0 0 / 0.05);
-            --shadow-lg: 0 20px 25px -5px rgb(0 0 0 / 0.05);
-            --shadow-xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
         * {
             margin: 0;
             padding: 0;
@@ -75,31 +43,17 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: var(--bg-light);
-            color: var(--text-dark);
+            background: #f8fafc;
+            color: #1e293b;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
         }
 
-        .font-serif {
-            font-family: 'Playfair Display', serif;
-        }
-
-        .font-montserrat {
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-            letter-spacing: -0.02em;
-        }
-
         .navbar {
-            background: var(--bg-white);
+            background: white;
             padding: 1rem 5%;
-            box-shadow: var(--shadow-sm);
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -123,19 +77,19 @@
 
         .logo-icon {
             font-size: 2rem;
-            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-light) 100%);
-            color: var(--accent);
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #eab308;
             width: 50px;
             height: 50px;
             border-radius: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: var(--shadow-sm);
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
         }
 
         .logo-text {
-            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-light) 100%);
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -148,20 +102,20 @@
         }
 
         .nav-links a {
-            color: var(--text-light);
+            color: #64748b;
             text-decoration: none;
             font-weight: 500;
-            transition: var(--transition);
+            transition: color 0.3s;
             padding: 0.5rem 0;
             position: relative;
         }
 
         .nav-links a:hover {
-            color: var(--primary-dark);
+            color: #0f172a;
         }
 
         .nav-links a.active {
-            color: var(--primary-dark);
+            color: #0f172a;
             font-weight: 600;
         }
 
@@ -172,7 +126,7 @@
             left: 0;
             width: 100%;
             height: 3px;
-            background: linear-gradient(90deg, var(--accent), var(--accent-hover));
+            background: #eab308;
             border-radius: 3px 3px 0 0;
         }
 
@@ -188,7 +142,7 @@
             text-align: center;
             margin-bottom: 3rem;
             padding: 3rem;
-            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-light) 100%);
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
             border-radius: 40px;
             color: white;
             position: relative;
@@ -215,6 +169,7 @@
             font-size: clamp(2rem, 5vw, 3rem);
             margin-bottom: 1rem;
             position: relative;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .header-center p {
@@ -233,31 +188,31 @@
         }
 
         .stat-card {
-            background: var(--bg-white);
+            background: white;
             padding: 2rem;
             border-radius: 20px;
             text-align: center;
-            box-shadow: var(--shadow-sm);
-            transition: var(--transition);
-            border: 1px solid var(--border);
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
+            transition: all 0.3s;
+            border: 1px solid #e2e8f0;
         }
 
         .stat-card:hover {
             transform: translateY(-5px);
-            box-shadow: var(--shadow-md);
-            border-color: var(--accent);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.05);
+            border-color: #eab308;
         }
 
         .stat-number {
             font-size: 2.5rem;
             font-weight: 700;
-            color: var(--accent);
+            color: #eab308;
             margin-bottom: 0.5rem;
             font-family: 'Montserrat', sans-serif;
         }
 
         .stat-label {
-            color: var(--text-light);
+            color: #64748b;
             font-size: 1.1rem;
         }
 
@@ -269,18 +224,18 @@
         }
 
         .testimonial-card {
-            background: var(--bg-white);
+            background: white;
             border-radius: 20px;
             padding: 2rem;
-            box-shadow: var(--shadow-sm);
-            border: 1px solid var(--border);
-            transition: var(--transition);
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s;
         }
 
         .testimonial-card:hover {
             transform: translateY(-5px);
-            box-shadow: var(--shadow-md);
-            border-color: var(--accent);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.05);
+            border-color: #eab308;
         }
 
         .testimonial-header {
@@ -296,28 +251,28 @@
             border-radius: 50%;
             background-size: cover;
             background-position: center;
-            border: 3px solid var(--accent);
+            border: 3px solid #eab308;
         }
 
         .testimonial-info h3 {
-            color: var(--primary-dark);
+            color: #0f172a;
             margin-bottom: 0.3rem;
             font-size: 1.2rem;
         }
 
         .testimonial-info p {
-            color: var(--text-light);
+            color: #64748b;
             font-size: 0.9rem;
         }
 
         .testimonial-rating {
-            color: var(--accent);
+            color: #eab308;
             margin-bottom: 1rem;
             font-size: 1.2rem;
         }
 
         .testimonial-text {
-            color: var(--text-light);
+            color: #64748b;
             line-height: 1.6;
             margin-bottom: 1.5rem;
             font-style: italic;
@@ -330,7 +285,7 @@
         }
 
         .add-testimonial {
-            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-light) 100%);
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
             border-radius: 30px;
             padding: 3rem;
             margin: 4rem 0;
@@ -355,6 +310,7 @@
             font-size: 2rem;
             margin-bottom: 1rem;
             position: relative;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .add-testimonial p {
@@ -367,12 +323,12 @@
         .btn-primary {
             display: inline-block;
             padding: 1rem 2.5rem;
-            background: var(--accent);
-            color: var(--primary-dark);
+            background: #eab308;
+            color: #0f172a;
             text-decoration: none;
             border-radius: 50px;
             font-weight: 600;
-            transition: var(--transition);
+            transition: all 0.3s;
             border: none;
             cursor: pointer;
             font-family: 'Montserrat', sans-serif;
@@ -399,13 +355,13 @@
         }
 
         .btn-primary:hover {
-            background: var(--accent-hover);
+            background: #fbbf24;
             transform: translateY(-3px);
             box-shadow: 0 10px 20px rgba(234,179,8,0.3);
         }
 
         .footer {
-            background: var(--primary-dark);
+            background: #0f172a;
             color: white;
             padding: 4rem 5% 2rem;
             margin-top: 3rem;
@@ -420,7 +376,7 @@
         }
 
         .footer-section h4 {
-            color: var(--accent);
+            color: #eab308;
             margin-bottom: 1.5rem;
             font-family: 'Montserrat', sans-serif;
         }
@@ -430,11 +386,11 @@
             text-decoration: none;
             display: block;
             margin-bottom: 0.8rem;
-            transition: var(--transition);
+            transition: color 0.3s;
         }
 
         .footer-section a:hover {
-            color: var(--accent);
+            color: #eab308;
             transform: translateX(5px);
         }
 
@@ -450,11 +406,10 @@
             color: #94a3b8;
             text-decoration: none;
             font-size: 0.9rem;
-            transition: var(--transition);
         }
 
         .footer-legal a:hover {
-            color: var(--accent);
+            color: #eab308;
         }
 
         .amazon-disclaimer {
@@ -510,7 +465,7 @@
 
     <div class="container">
         <div class="header-center">
-            <h1>🗣️ Témoignages <span class="font-serif">d'investisseurs</span></h1>
+            <h1>🗣️ Témoignages d'investisseurs</h1>
             <p>Ce que nos utilisateurs disent de RentaPro</p>
         </div>
 
@@ -682,8 +637,7 @@
         </div>
         <div class="chat-messages" id="chatMessages">
             <div class="message bot">
-                👋 Bonjour ! Je suis l'assistant IA de RentaPro. 
-                Posez-moi vos questions sur l'investissement immobilier !
+                👋 Bonjour ! Je suis l'assistant IA de RentaPro. Posez-moi vos questions sur l'investissement immobilier !
             </div>
         </div>
         <div class="chat-input-area">
@@ -725,11 +679,9 @@
             
             addMessage(message, 'user');
             input.value = '';
-            showTypingIndicator();
             
             setTimeout(() => {
-                removeTypingIndicator();
-                const reponse = assistantIA.repondre(message);
+                const reponse = assistantIA ? assistantIA.repondre(message) : "Merci pour votre question ! Un conseiller vous répondra bientôt.";
                 addMessage(reponse, 'bot');
             }, 1000);
         }
@@ -741,21 +693,6 @@
             messageDiv.textContent = text;
             messages.appendChild(messageDiv);
             messages.scrollTop = messages.scrollHeight;
-        }
-
-        function showTypingIndicator() {
-            const messages = document.getElementById('chatMessages');
-            const indicator = document.createElement('div');
-            indicator.className = 'typing-indicator';
-            indicator.id = 'typingIndicator';
-            indicator.innerHTML = '<span></span><span></span><span></span>';
-            messages.appendChild(indicator);
-            messages.scrollTop = messages.scrollHeight;
-        }
-
-        function removeTypingIndicator() {
-            const indicator = document.getElementById('typingIndicator');
-            if (indicator) indicator.remove();
         }
 
         function useSuggestion(text) {

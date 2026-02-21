@@ -1,10 +1,8 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8"><head>
     <meta charset="UTF-8">
     <meta name="google-site-verification" content="googlef746d504e2f887e6" />
-    <!-- reste du code -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- ========== BALISES SEO ========== -->
@@ -30,42 +28,13 @@
     <!-- Google AdSense -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
     
-    <!-- Google Search Console -->
-    <meta name="google-site-verification" content="TON_CODE_ICI">
-    
-    <!-- Optimisation -->
-    <link rel="preconnect" href="https://images.unsplash.com">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Canonical -->
-    <link rel="canonical" href="https://rentapro-swart.vercel.app/pages/blog.html">
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="/favicon.png">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Assistant IA CSS -->
     <link rel="stylesheet" href="/assistant-ia.css">
 
     <style>
-        :root {
-            --primary-dark: #0f172a;
-            --primary-light: #1e293b;
-            --accent: #eab308;
-            --accent-hover: #fbbf24;
-            --text-dark: #1e293b;
-            --text-light: #64748b;
-            --bg-light: #f8fafc;
-            --bg-white: #ffffff;
-            --border: #e2e8f0;
-            --shadow-sm: 0 4px 6px -1px rgb(0 0 0 / 0.05);
-            --shadow-md: 0 10px 15px -3px rgb(0 0 0 / 0.05);
-            --shadow-lg: 0 20px 25px -5px rgb(0 0 0 / 0.05);
-            --shadow-xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
         * {
             margin: 0;
             padding: 0;
@@ -74,31 +43,17 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: var(--bg-light);
-            color: var(--text-dark);
+            background: #f8fafc;
+            color: #1e293b;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
         }
 
-        .font-serif {
-            font-family: 'Playfair Display', serif;
-        }
-
-        .font-montserrat {
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-            letter-spacing: -0.02em;
-        }
-
         .navbar {
-            background: var(--bg-white);
+            background: white;
             padding: 1rem 5%;
-            box-shadow: var(--shadow-sm);
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -122,19 +77,19 @@
 
         .logo-icon {
             font-size: 2rem;
-            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-light) 100%);
-            color: var(--accent);
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #eab308;
             width: 50px;
             height: 50px;
             border-radius: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: var(--shadow-sm);
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
         }
 
         .logo-text {
-            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-light) 100%);
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -147,20 +102,20 @@
         }
 
         .nav-links a {
-            color: var(--text-light);
+            color: #64748b;
             text-decoration: none;
             font-weight: 500;
-            transition: var(--transition);
+            transition: color 0.3s;
             padding: 0.5rem 0;
             position: relative;
         }
 
         .nav-links a:hover {
-            color: var(--primary-dark);
+            color: #0f172a;
         }
 
         .nav-links a.active {
-            color: var(--primary-dark);
+            color: #0f172a;
             font-weight: 600;
         }
 
@@ -171,7 +126,7 @@
             left: 0;
             width: 100%;
             height: 3px;
-            background: linear-gradient(90deg, var(--accent), var(--accent-hover));
+            background: #eab308;
             border-radius: 3px 3px 0 0;
         }
 
@@ -187,7 +142,7 @@
             text-align: center;
             margin-bottom: 3rem;
             padding: 3rem;
-            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-light) 100%);
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
             border-radius: 40px;
             color: white;
             position: relative;
@@ -214,6 +169,7 @@
             font-size: clamp(2rem, 5vw, 3rem);
             margin-bottom: 1rem;
             position: relative;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .header-center p {
@@ -234,23 +190,23 @@
 
         .category-tag {
             padding: 0.5rem 1.5rem;
-            background: var(--bg-white);
-            border: 2px solid var(--border);
+            background: white;
+            border: 2px solid #e2e8f0;
             border-radius: 50px;
-            color: var(--text-light);
+            color: #64748b;
             font-weight: 500;
             cursor: pointer;
-            transition: var(--transition);
+            transition: all 0.3s;
             font-family: 'Montserrat', sans-serif;
         }
 
         .category-tag:hover,
         .category-tag.active {
-            background: var(--accent);
-            border-color: var(--accent);
-            color: var(--primary-dark);
+            background: #eab308;
+            border-color: #eab308;
+            color: #0f172a;
             transform: translateY(-2px);
-            box-shadow: var(--shadow-sm);
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
         }
 
         .blog-grid {
@@ -261,18 +217,18 @@
         }
 
         .blog-card {
-            background: var(--bg-white);
+            background: white;
             border-radius: 20px;
             overflow: hidden;
-            box-shadow: var(--shadow-sm);
-            transition: var(--transition);
-            border: 1px solid var(--border);
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
+            transition: all 0.3s;
+            border: 1px solid #e2e8f0;
         }
 
         .blog-card:hover {
             transform: translateY(-10px);
-            box-shadow: var(--shadow-xl);
-            border-color: var(--accent);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+            border-color: #eab308;
         }
 
         .blog-image {
@@ -286,8 +242,8 @@
             position: absolute;
             top: 1rem;
             left: 1rem;
-            background: var(--accent);
-            color: var(--primary-dark);
+            background: #eab308;
+            color: #0f172a;
             padding: 0.3rem 1rem;
             border-radius: 50px;
             font-weight: 600;
@@ -300,22 +256,31 @@
         }
 
         .blog-date {
-            color: var(--text-light);
+            color: #64748b;
             font-size: 0.9rem;
             margin-bottom: 0.5rem;
         }
 
         .blog-title {
             font-size: 1.3rem;
-            color: var(--primary-dark);
+            color: #0f172a;
             margin-bottom: 1rem;
             line-height: 1.4;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .blog-excerpt {
-            color: var(--text-light);
+            color: #64748b;
             line-height: 1.6;
             margin-bottom: 1.5rem;
+        }
+
+        .affiliate-link {
+            margin: 1rem 0;
+            padding: 1rem;
+            background: #f8fafc;
+            border-radius: 12px;
+            border-left: 4px solid #eab308;
         }
 
         .blog-meta {
@@ -324,7 +289,7 @@
             align-items: center;
             margin-top: 1rem;
             padding-top: 1rem;
-            border-top: 1px solid var(--border);
+            border-top: 1px solid #e2e8f0;
         }
 
         .blog-author {
@@ -337,7 +302,7 @@
             width: 30px;
             height: 30px;
             border-radius: 50%;
-            background: var(--accent);
+            background: #eab308;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -347,15 +312,15 @@
         }
 
         .author-name {
-            color: var(--text-light);
+            color: #64748b;
             font-size: 0.9rem;
         }
 
         .blog-read-more {
-            color: var(--accent);
+            color: #eab308;
             text-decoration: none;
             font-weight: 600;
-            transition: var(--transition);
+            transition: all 0.3s;
             display: flex;
             align-items: center;
             gap: 0.3rem;
@@ -365,14 +330,6 @@
             gap: 0.5rem;
         }
 
-        .affiliate-link {
-            margin: 1rem 0;
-            padding: 1rem;
-            background: var(--bg-light);
-            border-radius: 12px;
-            border-left: 4px solid var(--accent);
-        }
-
         .popular-section {
             margin: 4rem 0;
         }
@@ -380,8 +337,9 @@
         .popular-section h2 {
             text-align: center;
             font-size: 2rem;
-            color: var(--primary-dark);
+            color: #0f172a;
             margin-bottom: 2rem;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .popular-section h2::after {
@@ -389,7 +347,7 @@
             display: block;
             width: 60px;
             height: 3px;
-            background: linear-gradient(90deg, var(--accent), var(--accent-hover));
+            background: linear-gradient(90deg, #eab308, #fbbf24);
             margin: 1rem auto;
             border-radius: 2px;
         }
@@ -403,42 +361,42 @@
         .popular-card {
             display: flex;
             gap: 1rem;
-            background: var(--bg-white);
+            background: white;
             padding: 1.5rem;
             border-radius: 16px;
-            box-shadow: var(--shadow-sm);
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
             align-items: center;
-            transition: var(--transition);
+            transition: all 0.3s;
         }
 
         .popular-card:hover {
             transform: translateX(5px);
-            box-shadow: var(--shadow-md);
-            border-color: var(--accent);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.05);
+            border-color: #eab308;
         }
 
         .popular-number {
             font-size: 2.5rem;
             font-weight: 700;
-            color: var(--accent);
+            color: #eab308;
             opacity: 0.3;
             min-width: 50px;
             text-align: center;
         }
 
         .popular-content h4 {
-            color: var(--primary-dark);
+            color: #0f172a;
             margin-bottom: 0.3rem;
             font-size: 1.1rem;
         }
 
         .popular-content p {
-            color: var(--text-light);
+            color: #64748b;
             font-size: 0.9rem;
         }
 
         .newsletter-banner {
-            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-light) 100%);
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
             border-radius: 30px;
             padding: 3rem;
             margin: 4rem 0;
@@ -463,6 +421,7 @@
             font-size: 2rem;
             margin-bottom: 1rem;
             position: relative;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .newsletter-banner p {
@@ -490,29 +449,29 @@
         }
 
         .newsletter-input:focus {
-            outline: 2px solid var(--accent);
+            outline: 2px solid #eab308;
         }
 
         .newsletter-button {
             padding: 1rem 2rem;
-            background: var(--accent);
-            color: var(--primary-dark);
+            background: #eab308;
+            color: #0f172a;
             border: none;
             border-radius: 50px;
             font-weight: 600;
             cursor: pointer;
-            transition: var(--transition);
+            transition: all 0.3s;
             font-family: 'Montserrat', sans-serif;
         }
 
         .newsletter-button:hover {
-            background: var(--accent-hover);
+            background: #fbbf24;
             transform: translateY(-3px);
             box-shadow: 0 10px 20px rgba(234,179,8,0.3);
         }
 
         .footer {
-            background: var(--primary-dark);
+            background: #0f172a;
             color: white;
             padding: 4rem 5% 2rem;
             margin-top: 3rem;
@@ -527,7 +486,7 @@
         }
 
         .footer-section h4 {
-            color: var(--accent);
+            color: #eab308;
             margin-bottom: 1.5rem;
             font-family: 'Montserrat', sans-serif;
         }
@@ -537,11 +496,11 @@
             text-decoration: none;
             display: block;
             margin-bottom: 0.8rem;
-            transition: var(--transition);
+            transition: color 0.3s;
         }
 
         .footer-section a:hover {
-            color: var(--accent);
+            color: #eab308;
             transform: translateX(5px);
         }
 
@@ -557,11 +516,10 @@
             color: #94a3b8;
             text-decoration: none;
             font-size: 0.9rem;
-            transition: var(--transition);
         }
 
         .footer-legal a:hover {
-            color: var(--accent);
+            color: #eab308;
         }
 
         .amazon-disclaimer {
@@ -613,7 +571,7 @@
 
     <div class="container">
         <div class="header-center">
-            <h1>📝 Blog immobilier <span class="font-serif">RentaPro</span></h1>
+            <h1>📝 Blog immobilier RentaPro</h1>
             <p>Conseils, analyses et stratégies pour réussir vos investissements immobiliers</p>
         </div>
 
@@ -848,8 +806,7 @@
         </div>
         <div class="chat-messages" id="chatMessages">
             <div class="message bot">
-                👋 Bonjour ! Je suis l'assistant IA de RentaPro. 
-                Posez-moi vos questions sur l'investissement immobilier !
+                👋 Bonjour ! Je suis l'assistant IA de RentaPro. Posez-moi vos questions sur l'investissement immobilier !
             </div>
         </div>
         <div class="chat-input-area">
@@ -891,11 +848,9 @@
             
             addMessage(message, 'user');
             input.value = '';
-            showTypingIndicator();
             
             setTimeout(() => {
-                removeTypingIndicator();
-                const reponse = assistantIA.repondre(message);
+                const reponse = assistantIA ? assistantIA.repondre(message) : "Merci pour votre question ! Un conseiller vous répondra bientôt.";
                 addMessage(reponse, 'bot');
             }, 1000);
         }
@@ -907,21 +862,6 @@
             messageDiv.textContent = text;
             messages.appendChild(messageDiv);
             messages.scrollTop = messages.scrollHeight;
-        }
-
-        function showTypingIndicator() {
-            const messages = document.getElementById('chatMessages');
-            const indicator = document.createElement('div');
-            indicator.className = 'typing-indicator';
-            indicator.id = 'typingIndicator';
-            indicator.innerHTML = '<span></span><span></span><span></span>';
-            messages.appendChild(indicator);
-            messages.scrollTop = messages.scrollHeight;
-        }
-
-        function removeTypingIndicator() {
-            const indicator = document.getElementById('typingIndicator');
-            if (indicator) indicator.remove();
         }
 
         function useSuggestion(text) {
