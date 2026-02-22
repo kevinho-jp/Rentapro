@@ -315,5 +315,182 @@
         width: 60px;
         height: 60px;
         font-size: 1.8rem;
+/* ============================================
+   MODE SOMBRE
+   ============================================ */
+
+@media (prefers-color-scheme: dark) {
+    body.dark-mode {
+        background: #0f172a;
+        color: #f8fafc;
+    }
+    
+    body.dark-mode .navbar {
+        background: #1e293b;
+        border-bottom: 1px solid #334155;
+    }
+    
+    body.dark-mode .nav-links a {
+        color: #94a3b8;
+    }
+    
+    body.dark-mode .nav-links a:hover {
+        color: #eab308;
+    }
+    
+    body.dark-mode .card,
+    body.dark-mode .feature-card,
+    body.dark-mode .guide-section,
+    body.dark-mode .investor-card,
+    body.dark-mode .testimonial-card,
+    body.dark-mode .contact-info,
+    body.dark-mode .contact-form {
+        background: #1e293b;
+        border-color: #334155;
+        color: #f8fafc;
+    }
+    
+    body.dark-mode .result-section,
+    body.dark-mode .continent-stats,
+    body.dark-mode .book-card,
+    body.dark-mode .type-card {
+        background: #0f172a;
+    }
+    
+    body.dark-mode .footer {
+        background: #0f172a;
+        border-top: 1px solid #334155;
+    }
+    
+    body.dark-mode h1,
+    body.dark-mode h2,
+    body.dark-mode h3,
+    body.dark-mode h4 {
+        color: #f8fafc;
+    }
+    
+    body.dark-mode p,
+    body.dark-mode .result-label,
+    body.dark-mode .stat-label,
+    body.dark-mode .blog-excerpt {
+        color: #94a3b8;
+    }
+    
+    body.dark-mode .result-value {
+        color: #eab308;
+    }
+    
+    body.dark-mode input,
+    body.dark-mode select,
+    body.dark-mode textarea {
+        background: #0f172a;
+        border-color: #334155;
+        color: #f8fafc;
+    }
+    
+    body.dark-mode input:focus,
+    body.dark-mode select:focus,
+    body.dark-mode textarea:focus {
+        border-color: #eab308;
+    }
+    
+    body.dark-mode .btn-primary {
+        background: #eab308;
+        color: #0f172a;
+    }
+    
+    body.dark-mode .btn-primary:hover {
+        background: #fbbf24;
+    }
+    
+    body.dark-mode .btn-save {
+        background: transparent;
+        border-color: #334155;
+        color: #f8fafc;
+    }
+}
+
+/* Bouton de basculement mode sombre */
+.theme-toggle {
+    position: fixed;
+    bottom: 110px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #0f172a;
+    color: #eab308;
+    border: 2px solid #eab308;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    z-index: 999;
+    transition: all 0.3s;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.theme-toggle:hover {
+    transform: scale(1.1);
+    background: #eab308;
+    color: #0f172a;
+}
+
+body.dark-mode .theme-toggle {
+    background: #eab308;
+    color: #0f172a;
+}
+
+body.dark-mode .theme-toggle:hover {
+    background: #0f172a;
+    color: #eab308;
+}
+
+/* Ajustements pour l'assistant IA en mode sombre */
+body.dark-mode .chat-window {
+    background: #1e293b;
+    border-color: #334155;
+}
+
+body.dark-mode .chat-header {
+    background: #0f172a;
+}
+
+body.dark-mode .chat-messages {
+    background: #0f172a;
+}
+
+body.dark-mode .message.bot {
+    background: #1e293b;
+    color: #f8fafc;
+    border-color: #334155;
+}
+
+body.dark-mode .message.user {
+    background: #eab308;
+    color: #0f172a;
+}
+
+body.dark-mode .chat-input {
+    background: #0f172a;
+    border-color: #334155;
+    color: #f8fafc;
+}
+
+body.dark-mode .chat-input:focus {
+    border-color: #eab308;
+}
+
+body.dark-mode .suggestion-chip {
+    background: #0f172a;
+    color: #94a3b8;
+    border-color: #334155;
+}
+
+body.dark-mode .suggestion-chip:hover {
+    background: #eab308;
+    color: #0f172a;
+}
     }
 }

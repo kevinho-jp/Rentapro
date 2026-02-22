@@ -878,5 +878,35 @@
             }
         });
     </script>
+<!-- Bouton mode sombre -->
+<div class="theme-toggle" id="themeToggle" onclick="toggleTheme()">🌙</div>
+
+<script>
+function toggleTheme() {
+    const body = document.body;
+    const toggle = document.getElementById("themeToggle");
+    body.classList.toggle("dark-mode");
+    
+    if (body.classList.contains("dark-mode")) {
+        toggle.textContent = "☀️";
+        localStorage.setItem("theme", "dark");
+    } else {
+        toggle.textContent = "🌙";
+        localStorage.setItem("theme", "light");
+    }
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    const savedTheme = localStorage.getItem("theme");
+    const toggle = document.getElementById("themeToggle");
+    
+    if (savedTheme === "dark") {
+        document.body.classList.add("dark-mode");
+        if (toggle) toggle.textContent = "☀️";
+    } else {
+        if (toggle) toggle.textContent = "🌙";
+    }
+});
+</script>
 </body>
 </html>

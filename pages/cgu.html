@@ -207,6 +207,72 @@
             }
         }
     </style>
+<style>
+    /* Mode sombre */
+    body.dark-mode {
+        background: #0f172a;
+        color: #f8fafc;
+    }
+    body.dark-mode .navbar {
+        background: #1e293b;
+        border-bottom: 1px solid #334155;
+    }
+    body.dark-mode .nav-links a {
+        color: #94a3b8;
+    }
+    body.dark-mode .nav-links a:hover,
+    body.dark-mode .nav-links a.active {
+        color: #eab308;
+    }
+    body.dark-mode .legal-card {
+        background: #1e293b;
+        border-color: #334155;
+    }
+    body.dark-mode h1,
+    body.dark-mode h2,
+    body.dark-mode h3 {
+        color: #f8fafc;
+    }
+    body.dark-mode p,
+    body.dark-mode li,
+    body.dark-mode .date {
+        color: #94a3b8;
+    }
+    body.dark-mode .footer {
+        background: #0a0f1a;
+    }
+    .theme-toggle {
+        position: fixed;
+        bottom: 110px;
+        right: 30px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: #0f172a;
+        color: #eab308;
+        border: 2px solid #eab308;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        z-index: 999;
+        transition: all 0.3s;
+    }
+    .theme-toggle:hover {
+        transform: scale(1.1);
+        background: #eab308;
+        color: #0f172a;
+    }
+    body.dark-mode .theme-toggle {
+        background: #eab308;
+        color: #0f172a;
+    }
+    body.dark-mode .theme-toggle:hover {
+        background: #0f172a;
+        color: #eab308;
+    }
+</style>
 </head>
 <body>
     <nav class="navbar">
@@ -276,5 +342,35 @@
             © 2026 RentaPro - Tous droits réservés
         </div>
     </footer>
+<!-- Bouton mode sombre -->
+<div class="theme-toggle" id="themeToggle" onclick="toggleTheme()">🌙</div>
+
+<script>
+function toggleTheme() {
+    const body = document.body;
+    const toggle = document.getElementById("themeToggle");
+    body.classList.toggle("dark-mode");
+    
+    if (body.classList.contains("dark-mode")) {
+        toggle.textContent = "☀️";
+        localStorage.setItem("theme", "dark");
+    } else {
+        toggle.textContent = "🌙";
+        localStorage.setItem("theme", "light");
+    }
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    const savedTheme = localStorage.getItem("theme");
+    const toggle = document.getElementById("themeToggle");
+    
+    if (savedTheme === "dark") {
+        document.body.classList.add("dark-mode");
+        if (toggle) toggle.textContent = "☀️";
+    } else {
+        if (toggle) toggle.textContent = "🌙";
+    }
+});
+</script>
 </body>
 </html>

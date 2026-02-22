@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Étude de cas : Achat d'un studio étudiant à Lyon - RentaPro</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+        body {
+            background: #f8fafc;
+            color: #1e293b;
+            padding: 2rem;
+        }
+        .navbar {
+            background: white;
+            padding: 1rem 5%;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 50px;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        .logo-icon {
+            font-size: 2rem;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #eab308;
+            width: 50px;
+            height: 50px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .logo-text {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .nav-links a {
+            color: #64748b;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .nav-links a:hover {
+            color: #0f172a;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 30px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+        h1 {
+            color: #0f172a;
+            margin-bottom: 1rem;
+        }
+        .subtitle {
+            color: #64748b;
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+        .case-section {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: #f8fafc;
+            border-radius: 15px;
+        }
+        .case-section h2 {
+            color: #0f172a;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+        .case-section p {
+            color: #64748b;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        .highlight {
+            background: #eab30820;
+            padding: 0.2rem 0.5rem;
+            border-radius: 5px;
+            font-weight: 600;
+            color: #0f172a;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        .stat-box {
+            background: white;
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid #e2e8f0;
+        }
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #eab308;
+        }
+        .stat-label {
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: #0f172a;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            margin-top: 1rem;
+        }
+        .btn:hover {
+            background: #1e293b;
+        }
+        .footer {
+            margin-top: 2rem;
+            text-align: center;
+            color: #64748b;
+        }
+    </style>
+<style>
+    /* Mode sombre */
+    body.dark-mode {
+        background: #0f172a;
+        color: #f8fafc;
+    }
+    body.dark-mode .navbar {
+        background: #1e293b;
+        border-bottom: 1px solid #334155;
+    }
+    body.dark-mode .nav-links a {
+        color: #94a3b8;
+    }
+    body.dark-mode .nav-links a:hover,
+    body.dark-mode .nav-links a.active {
+        color: #eab308;
+    }
+    body.dark-mode .legal-card {
+        background: #1e293b;
+        border-color: #334155;
+    }
+    body.dark-mode h1,
+    body.dark-mode h2,
+    body.dark-mode h3 {
+        color: #f8fafc;
+    }
+    body.dark-mode p,
+    body.dark-mode li,
+    body.dark-mode .date {
+        color: #94a3b8;
+    }
+    body.dark-mode .footer {
+        background: #0a0f1a;
+    }
+    .theme-toggle {
+        position: fixed;
+        bottom: 110px;
+        right: 30px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: #0f172a;
+        color: #eab308;
+        border: 2px solid #eab308;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        z-index: 999;
+        transition: all 0.3s;
+    }
+    .theme-toggle:hover {
+        transform: scale(1.1);
+        background: #eab308;
+        color: #0f172a;
+    }
+    body.dark-mode .theme-toggle {
+        background: #eab308;
+        color: #0f172a;
+    }
+    body.dark-mode .theme-toggle:hover {
+        background: #0f172a;
+        color: #eab308;
+    }
+</style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <div class="logo-icon">🏠</div>
+            <span class="logo-text">RentaPro</span>
+        </div>
+        <div class="nav-links">
+            <a href="/">Accueil</a>
+            <a href="/pages/simulateur.html">Simulateur</a>
+            <a href="/pages/guide.html">Guide</a>
+            <a href="/pages/etude-cas-1.html" class="active">📋 Étude de cas</a>
+            <a href="/pages/contact.html">Contact</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>📋 Étude de cas : Studio étudiant à Lyon</h1>
+        <p class="subtitle">Comment Thomas a acheté son premier investissement locatif avec 15 000€ d'apport</p>
+
+        <div class="case-section">
+            <h2>🏠 Le bien</h2>
+            <p>Studio de <span class="highlight">22m²</span> situé à proximité de l'Université Lyon 2, dans le 7ème arrondissement. Le bien est en bon état général, avec une petite cuisine équipée et une salle d'eau refaite il y a 3 ans.</p>
+            <p><strong>Prix d'achat :</strong> 85 000 €</p>
+            <p><strong>Frais de notaire :</strong> 6 800 €</p>
+            <p><strong>Total acquisition :</strong> 91 800 €</p>
+        </div>
+
+        <div class="case-section">
+            <h2>💰 Le financement</h2>
+            <p><strong>Apport personnel :</strong> 15 000 €</p>
+            <p><strong>Crédit immobilier :</strong> 76 800 € sur 20 ans</p>
+            <p><strong>Taux d'intérêt :</strong> 3.8%</p>
+            <p><strong>Mensualité :</strong> 457 €</p>
+        </div>
+
+        <div class="case-section">
+            <h2>📊 La rentabilité</h2>
+            
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-value">580 €</div>
+                    <div class="stat-label">Loyer mensuel</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value">6.8%</div>
+                    <div class="stat-label">Rendement brut</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value">123 €</div>
+                    <div class="stat-label">Cash-flow mensuel</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value">4.5%</div>
+                    <div class="stat-label">Rendement net</div>
+                </div>
+            </div>
+
+            <p><strong>Détail des charges :</strong></p>
+            <ul style="margin-left: 1.5rem; color: #64748b;">
+                <li>Charges de copropriété : 45 €</li>
+                <li>Taxe foncière : 35 € (mensualisé)</li>
+                <li>Assurance PNO : 10 €</li>
+                <li>Gestion locative : 58 € (10% des loyers)</li>
+            </ul>
+        </div>
+
+        <div class="case-section">
+            <h2>🎯 Le résultat après 2 ans</h2>
+            <p>Thomas a perçu <strong>13 920 €</strong> de loyers sur 2 ans (avec une vacance locative de seulement 2 semaines). Après déduction des charges et du crédit, il a dégagé un cash-flow total de <strong>2 952 €</strong>.</p>
+            <p>La valeur du bien a augmenté d'environ 5%, soit une plus-value potentielle de <strong>4 250 €</strong>.</p>
+            <p style="margin-top: 1rem;"><strong>Bilan :</strong> Un investissement rentable qui lui rapporte environ <strong>150 € par mois</strong> en cash-flow + une appréciation du capital.</p>
+        </div>
+
+        <div style="text-align: center;">
+            <a href="/pages/simulateur.html" class="btn">Simuler votre propre investissement</a>
+        </div>
+    </div>
+
+    <footer class="footer">
+        © 2026 RentaPro - Étude de cas réel
+    </footer>
+<!-- Bouton mode sombre -->
+<div class="theme-toggle" id="themeToggle" onclick="toggleTheme()">🌙</div>
+
+<script>
+function toggleTheme() {
+    const body = document.body;
+    const toggle = document.getElementById("themeToggle");
+    body.classList.toggle("dark-mode");
+    
+    if (body.classList.contains("dark-mode")) {
+        toggle.textContent = "☀️";
+        localStorage.setItem("theme", "dark");
+    } else {
+        toggle.textContent = "🌙";
+        localStorage.setItem("theme", "light");
+    }
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    const savedTheme = localStorage.getItem("theme");
+    const toggle = document.getElementById("themeToggle");
+    
+    if (savedTheme === "dark") {
+        document.body.classList.add("dark-mode");
+        if (toggle) toggle.textContent = "☀️";
+    } else {
+        if (toggle) toggle.textContent = "🌙";
+    }
+});
+</script>
+<!-- Bouton mode sombre -->
+<div class="theme-toggle" id="themeToggle" onclick="toggleTheme()">🌙</div>
+
+<script>
+function toggleTheme() {
+    const body = document.body;
+    const toggle = document.getElementById("themeToggle");
+    body.classList.toggle("dark-mode");
+    
+    if (body.classList.contains("dark-mode")) {
+        toggle.textContent = "☀️";
+        localStorage.setItem("theme", "dark");
+    } else {
+        toggle.textContent = "🌙";
+        localStorage.setItem("theme", "light");
+    }
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    const savedTheme = localStorage.getItem("theme");
+    const toggle = document.getElementById("themeToggle");
+    
+    if (savedTheme === "dark") {
+        document.body.classList.add("dark-mode");
+        if (toggle) toggle.textContent = "☀️";
+    } else {
+        if (toggle) toggle.textContent = "🌙";
+    }
+});
+</script>
+</body>
+</html>
