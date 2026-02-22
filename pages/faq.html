@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - Questions fréquentes sur l'investissement locatif - RentaPro</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        body {
+            background: #f8fafc;
+            color: #1e293b;
+            padding: 2rem;
+            transition: all 0.3s;
+        }
+        
+        body.dark-mode {
+            background: #0f172a;
+            color: #f8fafc;
+        }
+        
+        .navbar {
+            background: white;
+            padding: 1rem 5%;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 50px;
+        }
+        
+        body.dark-mode .navbar {
+            background: #1e293b;
+            border-bottom: 1px solid #334155;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        .logo-icon {
+            font-size: 2rem;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #eab308;
+            width: 50px;
+            height: 50px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .logo-text {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .nav-links a {
+            color: #64748b;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .nav-links a:hover {
+            color: #0f172a;
+        }
+        
+        body.dark-mode .nav-links a {
+            color: #94a3b8;
+        }
+        
+        body.dark-mode .nav-links a:hover {
+            color: #eab308;
+        }
+        
+        .nav-links a.active {
+            color: #0f172a;
+            font-weight: 600;
+            border-bottom: 3px solid #eab308;
+        }
+        
+        body.dark-mode .nav-links a.active {
+            color: #eab308;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 30px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+        
+        body.dark-mode .container {
+            background: #1e293b;
+            border-color: #334155;
+        }
+        
+        h1 {
+            color: #0f172a;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        body.dark-mode h1 {
+            color: #f8fafc;
+        }
+        
+        .faq-item {
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 1.5rem;
+        }
+        
+        body.dark-mode .faq-item {
+            border-color: #334155;
+        }
+        
+        .faq-question {
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        body.dark-mode .faq-question {
+            color: #f8fafc;
+        }
+        
+        .faq-question:hover {
+            color: #eab308;
+        }
+        
+        .faq-answer {
+            color: #64748b;
+            line-height: 1.6;
+            display: none;
+            padding-top: 0.5rem;
+        }
+        
+        body.dark-mode .faq-answer {
+            color: #94a3b8;
+        }
+        
+        .faq-answer.show {
+            display: block;
+        }
+        
+        .theme-toggle {
+            position: fixed;
+            bottom: 110px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #0f172a;
+            color: #eab308;
+            border: 2px solid #eab308;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            z-index: 999;
+            transition: all 0.3s;
+        }
+        
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            background: #eab308;
+            color: #0f172a;
+        }
+        
+        body.dark-mode .theme-toggle {
+            background: #eab308;
+            color: #0f172a;
+        }
+        
+        body.dark-mode .theme-toggle:hover {
+            background: #0f172a;
+            color: #eab308;
+        }
+        
+        .footer {
+            margin-top: 2rem;
+            text-align: center;
+            color: #64748b;
+        }
+        
+        body.dark-mode .footer {
+            color: #94a3b8;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <div class="logo-icon">🏠</div>
+            <span class="logo-text">RentaPro</span>
+        </div>
+        <div class="nav-links">
+            <a href="/">Accueil</a>
+            <a href="/pages/simulateur.html">Simulateur</a>
+            <a href="/pages/guide.html">Guide</a>
+            <a href="/pages/faq.html" class="active">❓ FAQ</a>
+            <a href="/pages/contact.html">Contact</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>❓ Questions fréquentes sur l'investissement locatif</h1>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                <span>Quel est le rendement locatif moyen en France ?</span>
+                <span>➕</span>
+            </div>
+            <div class="faq-answer">
+                Le rendement locatif moyen en France varie entre 3% et 8% selon les villes. À Paris, il est plutôt autour de 2-3%, tandis que dans certaines villes de province, on peut atteindre 6-8%. Les studios et petites surfaces offrent généralement les meilleurs rendements.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                <span>Comment calculer le cash-flow d'un investissement locatif ?</span>
+                <span>➕</span>
+            </div>
+            <div class="faq-answer">
+                Le cash-flow = Loyers perçus - (Mensualité de crédit + Charges + Taxe foncière + Assurance). Un cash-flow positif signifie que votre investissement s'autofinance. Utilisez notre simulateur pour le calculer automatiquement !
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                <span>Quel apport personnel est recommandé ?</span>
+                <span>➕</span>
+            </div>
+            <div class="faq-answer">
+                Les banques recommandent généralement un apport de 10 à 20% du prix du bien. Cependant, il est possible d'investir sans apport si le projet est solide et que vous avez une bonne capacité d'épargne. Un apport plus important permet d'obtenir de meilleurs taux.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                <span>Quelle est la différence entre LMNP et LMP ?</span>
+                <span>➕</span>
+            </div>
+            <div class="faq-answer">
+                Le LMNP (Loueur Meublé Non Professionnel) est le statut le plus courant pour la location meublée. Les revenus sont inférieurs à 23 000€ par an et représentent moins de 50% des revenus du foyer. Le LMP (Loueur Meublé Professionnel) offre plus d'avantages fiscaux mais des contraintes supplémentaires.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                <span>Comment choisir entre location vide et meublée ?</span>
+                <span>➕</span>
+            </div>
+            <div class="faq-answer">
+                La location meublée offre un meilleur rendement (5-7% contre 3-5% pour le vide) et des avantages fiscaux (LMNP). La location vide attire un public plus large et a moins de turnover. Le choix dépend de votre objectif et de la demande locale.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                <span>Quels sont les frais à prévoir lors d'un achat immobilier ?</span>
+                <span>➕</span>
+            </div>
+            <div class="faq-answer">
+                Les principaux frais sont : les frais de notaire (7-8% dans l'ancien, 2-3% dans le neuf), les frais de dossier bancaire (environ 1 000€), l'assurance emprunteur, les frais de garantie, et éventuellement les frais d'agence. Prévoyez aussi un budget pour les travaux.
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        © 2026 RentaPro - Questions fréquentes sur l'investissement locatif
+    </footer>
+
+    <!-- Bouton mode sombre -->
+    <div class="theme-toggle" id="themeToggle" onclick="toggleTheme()">🌙</div>
+
+    <script>
+        function toggleFaq(element) {
+            const answer = element.nextElementSibling;
+            const icon = element.querySelector('span:last-child');
+            
+            if (answer.classList.contains('show')) {
+                answer.classList.remove('show');
+                icon.textContent = '➕';
+            } else {
+                answer.classList.add('show');
+                icon.textContent = '➖';
+            }
+        }
+
+        function toggleTheme() {
+            const body = document.body;
+            const toggle = document.getElementById('themeToggle');
+            body.classList.toggle('dark-mode');
+            
+            if (body.classList.contains('dark-mode')) {
+                toggle.textContent = '☀️';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                toggle.textContent = '🌙';
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('theme');
+            const toggle = document.getElementById('themeToggle');
+            
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+                if (toggle) toggle.textContent = '☀️';
+            } else {
+                if (toggle) toggle.textContent = '🌙';
+            }
+        });
+    </script>
+</body>
+</html>

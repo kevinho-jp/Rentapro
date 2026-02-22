@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comparateur de biens immobiliers - RentaPro</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        body {
+            background: #f8fafc;
+            color: #1e293b;
+            padding: 2rem;
+            transition: all 0.3s;
+        }
+        
+        body.dark-mode {
+            background: #0f172a;
+            color: #f8fafc;
+        }
+        
+        .navbar {
+            background: white;
+            padding: 1rem 5%;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 50px;
+        }
+        
+        body.dark-mode .navbar {
+            background: #1e293b;
+            border-bottom: 1px solid #334155;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        .logo-icon {
+            font-size: 2rem;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #eab308;
+            width: 50px;
+            height: 50px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .logo-text {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .nav-links a {
+            color: #64748b;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .nav-links a:hover {
+            color: #0f172a;
+        }
+        
+        body.dark-mode .nav-links a {
+            color: #94a3b8;
+        }
+        
+        body.dark-mode .nav-links a:hover {
+            color: #eab308;
+        }
+        
+        .nav-links a.active {
+            color: #0f172a;
+            font-weight: 600;
+            border-bottom: 3px solid #eab308;
+        }
+        
+        body.dark-mode .nav-links a.active {
+            color: #eab308;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        body.dark-mode h1 {
+            color: #f8fafc;
+        }
+        
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .property-card {
+            background: white;
+            border-radius: 20px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+        }
+        
+        body.dark-mode .property-card {
+            background: #1e293b;
+            border-color: #334155;
+        }
+        
+        .property-card h3 {
+            color: #0f172a;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        body.dark-mode .property-card h3 {
+            color: #f8fafc;
+        }
+        
+        .input-group {
+            margin-bottom: 1rem;
+        }
+        
+        .input-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+            color: #0f172a;
+        }
+        
+        body.dark-mode .input-group label {
+            color: #f8fafc;
+        }
+        
+        .input-group input {
+            width: 100%;
+            padding: 0.5rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+        
+        body.dark-mode .input-group input {
+            background: #0f172a;
+            border-color: #334155;
+            color: #f8fafc;
+        }
+        
+        .input-group input:focus {
+            outline: none;
+            border-color: #eab308;
+        }
+        
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        body.dark-mode .result-item {
+            border-color: #334155;
+        }
+        
+        .result-label {
+            color: #64748b;
+        }
+        
+        body.dark-mode .result-label {
+            color: #94a3b8;
+        }
+        
+        .result-value {
+            font-weight: 700;
+            color: #0f172a;
+        }
+        
+        body.dark-mode .result-value {
+            color: #eab308;
+        }
+        
+        .winner {
+            border: 3px solid #eab308;
+            box-shadow: 0 0 20px rgba(234,179,8,0.3);
+        }
+        
+        .winner-badge {
+            background: #eab308;
+            color: #0f172a;
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        
+        .btn {
+            background: #0f172a;
+            color: white;
+            border: none;
+            padding: 0.8rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 1rem;
+        }
+        
+        body.dark-mode .btn {
+            background: #eab308;
+            color: #0f172a;
+        }
+        
+        .btn:hover {
+            opacity: 0.9;
+        }
+        
+        .theme-toggle {
+            position: fixed;
+            bottom: 110px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #0f172a;
+            color: #eab308;
+            border: 2px solid #eab308;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            z-index: 999;
+            transition: all 0.3s;
+        }
+        
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            background: #eab308;
+            color: #0f172a;
+        }
+        
+        body.dark-mode .theme-toggle {
+            background: #eab308;
+            color: #0f172a;
+        }
+        
+        body.dark-mode .theme-toggle:hover {
+            background: #0f172a;
+            color: #eab308;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 3rem;
+            color: #64748b;
+        }
+        
+        body.dark-mode .footer {
+            color: #94a3b8;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <div class="logo-icon">🏠</div>
+            <span class="logo-text">RentaPro</span>
+        </div>
+        <div class="nav-links">
+            <a href="/">Accueil</a>
+            <a href="/pages/simulateur.html">Simulateur</a>
+            <a href="/pages/guide.html">Guide</a>
+            <a href="/pages/comparateur.html" class="active">🔄 Comparateur</a>
+            <a href="/pages/contact.html">Contact</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>🔄 Comparateur de biens immobiliers</h1>
+        <p style="text-align: center; margin-bottom: 2rem;">Comparez jusqu'à 3 biens pour trouver le plus rentable</p>
+
+        <div class="comparison-grid" id="comparisonGrid">
+            <!-- Bien 1 -->
+            <div class="property-card" id="property1">
+                <h3>Bien 1</h3>
+                <div class="input-group">
+                    <label>Prix d'achat ($)</label>
+                    <input type="number" id="prix1" value="250000" step="1000" oninput="calculerComparaison()">
+                </div>
+                <div class="input-group">
+                    <label>Loyer mensuel ($)</label>
+                    <input type="number" id="loyer1" value="1200" step="50" oninput="calculerComparaison()">
+                </div>
+                <div class="input-group">
+                    <label>Charges mensuelles ($)</label>
+                    <input type="number" id="charges1" value="250" step="10" oninput="calculerComparaison()">
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Rendement brut</span>
+                    <span class="result-value" id="brut1">5.76%</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Rendement net</span>
+                    <span class="result-value" id="net1">4.56%</span>
+                </div>
+            </div>
+
+            <!-- Bien 2 -->
+            <div class="property-card" id="property2">
+                <h3>Bien 2</h3>
+                <div class="input-group">
+                    <label>Prix d'achat ($)</label>
+                    <input type="number" id="prix2" value="200000" step="1000" oninput="calculerComparaison()">
+                </div>
+                <div class="input-group">
+                    <label>Loyer mensuel ($)</label>
+                    <input type="number" id="loyer2" value="1000" step="50" oninput="calculerComparaison()">
+                </div>
+                <div class="input-group">
+                    <label>Charges mensuelles ($)</label>
+                    <input type="number" id="charges2" value="200" step="10" oninput="calculerComparaison()">
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Rendement brut</span>
+                    <span class="result-value" id="brut2">6.00%</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Rendement net</span>
+                    <span class="result-value" id="net2">4.80%</span>
+                </div>
+            </div>
+
+            <!-- Bien 3 -->
+            <div class="property-card" id="property3">
+                <h3>Bien 3</h3>
+                <div class="input-group">
+                    <label>Prix d'achat ($)</label>
+                    <input type="number" id="prix3" value="300000" step="1000" oninput="calculerComparaison()">
+                </div>
+                <div class="input-group">
+                    <label>Loyer mensuel ($)</label>
+                    <input type="number" id="loyer3" value="1400" step="50" oninput="calculerComparaison()">
+                </div>
+                <div class="input-group">
+                    <label>Charges mensuelles ($)</label>
+                    <input type="number" id="charges3" value="300" step="10" oninput="calculerComparaison()">
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Rendement brut</span>
+                    <span class="result-value" id="brut3">5.60%</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Rendement net</span>
+                    <span class="result-value" id="net3">4.40%</span>
+                </div>
+            </div>
+        </div>
+
+        <button class="btn" onclick="calculerComparaison()">🔄 Actualiser la comparaison</button>
+    </div>
+
+    <footer class="footer">
+        © 2026 RentaPro - Comparateur de biens immobiliers
+    </footer>
+
+    <!-- Bouton mode sombre -->
+    <div class="theme-toggle" id="themeToggle" onclick="toggleTheme()">🌙</div>
+
+    <script>
+        function calculerComparaison() {
+            // Récupération des valeurs
+            const prix = [
+                parseFloat(document.getElementById('prix1').value) || 0,
+                parseFloat(document.getElementById('prix2').value) || 0,
+                parseFloat(document.getElementById('prix3').value) || 0
+            ];
+            
+            const loyer = [
+                parseFloat(document.getElementById('loyer1').value) || 0,
+                parseFloat(document.getElementById('loyer2').value) || 0,
+                parseFloat(document.getElementById('loyer3').value) || 0
+            ];
+            
+            const charges = [
+                parseFloat(document.getElementById('charges1').value) || 0,
+                parseFloat(document.getElementById('charges2').value) || 0,
+                parseFloat(document.getElementById('charges3').value) || 0
+            ];
+
+            let meilleurRendement = -1;
+            let meilleurIndice = -1;
+
+            // Calcul pour chaque bien
+            for (let i = 0; i < 3; i++) {
+                if (prix[i] > 0 && loyer[i] > 0) {
+                    const brut = (loyer[i] * 12 / prix[i] * 100).toFixed(2);
+                    const net = ((loyer[i] - charges[i]) * 12 / prix[i] * 100).toFixed(2);
+                    
+                    document.getElementById('brut' + (i+1)).innerText = brut + '%';
+                    document.getElementById('net' + (i+1)).innerText = net + '%';
+                    
+                    // Déterminer le meilleur bien (rendement net)
+                    if (parseFloat(net) > meilleurRendement) {
+                        meilleurRendement = parseFloat(net);
+                        meilleurIndice = i;
+                    }
+                }
+            }
+
+            // Mettre en évidence le meilleur bien
+            for (let i = 0; i < 3; i++) {
+                const card = document.getElementById('property' + (i+1));
+                card.classList.remove('winner');
+                
+                // Supprimer l'ancien badge s'il existe
+                const oldBadge = card.querySelector('.winner-badge');
+                if (oldBadge) oldBadge.remove();
+            }
+
+            if (meilleurIndice >= 0) {
+                const meilleurCard = document.getElementById('property' + (meilleurIndice+1));
+                meilleurCard.classList.add('winner');
+                
+                // Ajouter un badge "Meilleur choix"
+                const badge = document.createElement('div');
+                badge.className = 'winner-badge';
+                badge.innerText = '🏆 Meilleur choix';
+                meilleurCard.insertBefore(badge, meilleurCard.firstChild);
+            }
+        }
+
+        function toggleTheme() {
+            const body = document.body;
+            const toggle = document.getElementById('themeToggle');
+            body.classList.toggle('dark-mode');
+            
+            if (body.classList.contains('dark-mode')) {
+                toggle.textContent = '☀️';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                toggle.textContent = '🌙';
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            calculerComparaison();
+            
+            const savedTheme = localStorage.getItem('theme');
+            const toggle = document.getElementById('themeToggle');
+            
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+                if (toggle) toggle.textContent = '☀️';
+            } else {
+                if (toggle) toggle.textContent = '🌙';
+            }
+        });
+    </script>
+</body>
+</html>
