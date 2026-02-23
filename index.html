@@ -2,13 +2,42 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="google-site-verification" content="googlef746d504e2f887e6" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Google tag (gtag.js) - Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-525423879"></script>
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            const toggle = document.getElementById("themeToggle");
+            body.classList.toggle("dark-mode");
+            
+            if (body.classList.contains("dark-mode")) {
+                toggle.textContent = "☀️";
+                localStorage.setItem("theme", "dark");
+            } else {
+                toggle.textContent = "🌙";
+                localStorage.setItem("theme", "light");
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const savedTheme = localStorage.getItem("theme");
+            const toggle = document.getElementById("themeToggle");
+            
+            if (savedTheme === "dark") {
+                document.body.classList.add("dark-mode");
+                if (toggle) toggle.textContent = "☀️";
+            } else {
+                if (toggle) toggle.textContent = "🌙";
+            }
+        });
+    </script>
     
     <!-- ========== BALISES SEO ========== -->
     <title>RentaPro - Simulateur de rentabilité locative gratuit</title>
-    <meta name="description" content="Simulateur de rentabilité locative gratuit. Calculez rendement brut, net, cash-flow et VAN pour vos investissements immobiliers. 3 simulations gratuites par jour.">
-    <meta name="keywords" content="investissement locatif, calcul rentabilité, simulateur immobilier, rendement locatif, cash-flow immobilier, VAN immobilière">
+    <meta name="description" content="Simulateur de rentabilité locative gratuit. Calculez rendement brut, net, cash-flow et VAN pour vos investissements immobiliers.">
+    <meta name="keywords" content="investissement locatif, calcul rentabilité, simulateur immobilier, rendement locatif, cash-flow immobilier">
     <meta name="author" content="RentaPro">
     <meta name="robots" content="index, follow">
     
@@ -19,12 +48,6 @@
     <meta property="og:url" content="https://rentapro-swart.vercel.app">
     <meta property="og:type" content="website">
     
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="RentaPro - Simulateur immobilier">
-    <meta name="twitter:description" content="Le meilleur simulateur de rentabilité locative gratuit">
-    <meta name="twitter:image" content="https://rentapro-swart.vercel.app/images/og-image.jpg">
-    
     <!-- Google AdSense -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
     
@@ -33,22 +56,118 @@
     
     <!-- Assistant IA CSS -->
     <link rel="stylesheet" href="/assistant-ia.css">
-    
+
     <style>
+        /* ========== VARIABLES CSS ========== */
+        :root {
+            --primary-dark: #0f172a;
+            --primary-light: #1e293b;
+            --accent: #eab308;
+            --accent-hover: #fbbf24;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+            --bg-light: #f8fafc;
+            --bg-white: #ffffff;
+            --border: #e2e8f0;
+            --success: #059669;
+            --danger: #dc2626;
+            --shadow-sm: 0 4px 6px -1px rgb(0 0 0 / 0.05);
+            --shadow-md: 0 10px 15px -3px rgb(0 0 0 / 0.05);
+            --shadow-lg: 0 20px 25px -5px rgb(0 0 0 / 0.05);
+            --shadow-xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        body {
-            font-family: 'Inter', sans-serif;
-            background: #f8fafc;
-            color: #1e293b;
+
+        html {
+            scroll-behavior: smooth;
         }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: var(--transition);
+        }
+
+        /* Mode sombre */
+        body.dark-mode {
+            background: var(--primary-dark);
+            color: #f8fafc;
+        }
+
+        body.dark-mode .navbar {
+            background: var(--primary-light);
+            border-bottom: 1px solid #334155;
+        }
+
+        body.dark-mode .nav-links a {
+            color: #94a3b8;
+        }
+
+        body.dark-mode .nav-links a:hover,
+        body.dark-mode .nav-links a.active {
+            color: var(--accent);
+        }
+
+        body.dark-mode .feature-card,
+        body.dark-mode .stat-item {
+            background: var(--primary-light);
+            border-color: #334155;
+        }
+
+        body.dark-mode .footer {
+            background: #0a0f1a;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            bottom: 110px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--primary-dark);
+            color: var(--accent);
+            border: 2px solid var(--accent);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            z-index: 999;
+            transition: var(--transition);
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            background: var(--accent);
+            color: var(--primary-dark);
+        }
+
+        body.dark-mode .theme-toggle {
+            background: var(--accent);
+            color: var(--primary-dark);
+        }
+
+        body.dark-mode .theme-toggle:hover {
+            background: var(--primary-dark);
+            color: var(--accent);
+        }
+
         .navbar {
-            background: white;
+            background: var(--bg-white);
             padding: 1rem 5%;
-            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
+            box-shadow: var(--shadow-sm);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -57,51 +176,74 @@
             position: sticky;
             top: 0;
             z-index: 100;
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.9);
         }
+
         .logo {
             display: flex;
             align-items: center;
             gap: 0.5rem;
             font-size: 1.8rem;
             font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
         }
+
         .logo-icon {
             font-size: 2rem;
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-            color: #eab308;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-light) 100%);
+            color: var(--accent);
             width: 50px;
             height: 50px;
             border-radius: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
+            box-shadow: var(--shadow-sm);
         }
+
         .logo-text {
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-light) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
+
         .nav-links {
             display: flex;
             gap: 2rem;
             flex-wrap: wrap;
             justify-content: center;
         }
+
         .nav-links a {
-            color: #64748b;
+            color: var(--text-light);
             text-decoration: none;
             font-weight: 500;
-            transition: color 0.3s;
+            transition: var(--transition);
             padding: 0.5rem 0;
+            position: relative;
         }
+
         .nav-links a:hover {
-            color: #0f172a;
+            color: var(--primary-dark);
         }
+
         .nav-links a.active {
-            color: #0f172a;
+            color: var(--primary-dark);
             font-weight: 600;
-            border-bottom: 3px solid #eab308;
         }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-hover));
+            border-radius: 3px 3px 0 0;
+        }
+
         .hero {
             min-height: 600px;
             background: linear-gradient(rgba(15,23,42,0.7), rgba(15,23,42,0.8)), url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1973&q=80') center/cover fixed;
@@ -112,135 +254,136 @@
             color: white;
             padding: 2rem;
         }
+
         .hero-content {
             max-width: 900px;
+            animation: fadeInUp 1s ease-out;
         }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         .hero h1 {
             font-size: clamp(2.5rem, 6vw, 4rem);
             margin-bottom: 1.5rem;
         }
+
         .hero p {
             font-size: clamp(1.1rem, 3vw, 1.3rem);
             margin-bottom: 2.5rem;
         }
+
         .btn {
             display: inline-block;
             padding: 1rem 2.5rem;
             border-radius: 50px;
             font-weight: 600;
             text-decoration: none;
-            transition: all 0.3s;
+            transition: var(--transition);
             font-size: 1.1rem;
         }
+
         .btn-primary {
-            background: #eab308;
-            color: #0f172a;
+            background: var(--accent);
+            color: var(--primary-dark);
         }
+
         .btn-primary:hover {
-            background: #fbbf24;
+            background: var(--accent-hover);
             transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
         }
+
         .btn-outline {
             background: transparent;
             color: white;
             border: 2px solid white;
         }
+
         .btn-outline:hover {
             background: white;
-            color: #0f172a;
+            color: var(--primary-dark);
+            transform: translateY(-3px);
         }
+
         .stats {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 2rem;
             padding: 4rem 5%;
-            background: white;
+            background: var(--bg-white);
             max-width: 1200px;
             margin: -80px auto 0;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+            border-radius: 30px;
+            box-shadow: var(--shadow-xl);
             position: relative;
             z-index: 10;
         }
+
         .stat-item {
             text-align: center;
             padding: 1.5rem;
+            transition: var(--transition);
         }
+
         .stat-number {
             font-size: 2.5rem;
             font-weight: 700;
-            color: #eab308;
+            color: var(--accent);
             margin-bottom: 0.5rem;
         }
+
         .stat-label {
-            color: #64748b;
-            font-size: 1.1rem;
+            color: var(--text-light);
         }
+
         .features {
             padding: 5rem 5%;
             max-width: 1200px;
             margin: 0 auto;
         }
+
         .section-title {
             text-align: center;
             font-size: clamp(2rem, 5vw, 2.5rem);
-            margin-bottom: 1rem;
-            color: #0f172a;
+            color: var(--primary-dark);
         }
+
         .section-subtitle {
             text-align: center;
-            color: #64748b;
+            color: var(--text-light);
             margin-bottom: 4rem;
-            font-size: 1.2rem;
         }
+
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
         }
+
         .feature-card {
-            background: white;
+            background: var(--bg-white);
             padding: 2.5rem 2rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            transition: all 0.3s;
+            border-radius: 30px;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
             text-align: center;
         }
+
         .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
         }
-        .feature-icon {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-            display: inline-block;
-            background: #f8fafc;
-            padding: 1rem;
-            border-radius: 50%;
-        }
-        .feature-card h3 {
-            font-size: 1.5rem;
-            color: #0f172a;
-            margin-bottom: 1rem;
-        }
-        .feature-card p {
-            color: #64748b;
-            margin-bottom: 1.5rem;
-        }
-        .feature-link {
-            color: #eab308;
-            text-decoration: none;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
+
         .footer {
-            background: #0f172a;
+            background: var(--primary-dark);
             color: white;
             padding: 4rem 5% 2rem;
-            margin-top: 3rem;
+            margin-top: auto;
         }
+
         .footer-content {
             max-width: 1200px;
             margin: 0 auto;
@@ -248,10 +391,12 @@
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 3rem;
         }
+
         .footer-section h4 {
-            color: #eab308;
+            color: var(--accent);
             margin-bottom: 1.5rem;
         }
+
         .footer-section a {
             color: #94a3b8;
             text-decoration: none;
@@ -259,9 +404,12 @@
             margin-bottom: 0.8rem;
             transition: color 0.3s;
         }
+
         .footer-section a:hover {
-            color: #eab308;
+            color: var(--accent);
+            transform: translateX(5px);
         }
+
         .footer-legal {
             display: flex;
             gap: 1rem;
@@ -269,20 +417,19 @@
             margin: 2rem 0 1rem;
             flex-wrap: wrap;
         }
+
         .footer-legal a {
             color: #94a3b8;
-            text-decoration: none;
             font-size: 0.9rem;
         }
-        .footer-legal a:hover {
-            color: #eab308;
-        }
+
         .amazon-disclaimer {
             text-align: center;
             font-size: 0.8rem;
             color: #94a3b8;
             margin-top: 1rem;
         }
+
         .copyright {
             text-align: center;
             margin-top: 2rem;
@@ -290,17 +437,118 @@
             border-top: 1px solid #334155;
             color: #64748b;
         }
+
         @media (max-width: 768px) {
-            .navbar {
-                flex-direction: column;
-                gap: 1rem;
-            }
-            .nav-links {
-                gap: 1rem;
-            }
-            .stats {
-                margin-top: -40px;
-            }
+            .navbar { flex-direction: column; }
+            .nav-links { gap: 1rem; }
+            .stats { margin-top: -40px; }
+        }
+    </style>
+ 
+    <style>
+        /* Mode sombre */
+        body.dark-mode {
+            background: #0f172a;
+            color: #f8fafc;
+        }
+        body.dark-mode .navbar {
+            background: #1e293b;
+            border-bottom: 1px solid #334155;
+        }
+        body.dark-mode .nav-links a {
+            color: #94a3b8;
+        }
+        body.dark-mode .nav-links a:hover,
+        body.dark-mode .nav-links a.active {
+            color: #eab308;
+        }
+        body.dark-mode .card,
+        body.dark-mode .feature-card,
+        body.dark-mode .guide-section,
+        body.dark-mode .investor-card,
+        body.dark-mode .testimonial-card,
+        body.dark-mode .contact-info,
+        body.dark-mode .contact-form {
+            background: #1e293b;
+            border-color: #334155;
+        }
+        body.dark-mode .result-section,
+        body.dark-mode .continent-stats,
+        body.dark-mode .book-card,
+        body.dark-mode .type-card {
+            background: #0f172a;
+        }
+        body.dark-mode .footer {
+            background: #0a0f1a;
+        }
+        body.dark-mode h1,
+        body.dark-mode h2,
+        body.dark-mode h3,
+        body.dark-mode h4,
+        body.dark-mode .result-value {
+            color: #f8fafc;
+        }
+        body.dark-mode p,
+        body.dark-mode .result-label,
+        body.dark-mode .stat-label,
+        body.dark-mode .blog-excerpt,
+        body.dark-mode .subtitle {
+            color: #94a3b8;
+        }
+        body.dark-mode input,
+        body.dark-mode select,
+        body.dark-mode textarea {
+            background: #0f172a;
+            border-color: #334155;
+            color: #f8fafc;
+        }
+        body.dark-mode input:focus,
+        body.dark-mode select:focus,
+        body.dark-mode textarea:focus {
+            border-color: #eab308;
+        }
+        body.dark-mode .btn-primary {
+            background: #eab308;
+            color: #0f172a;
+        }
+        body.dark-mode .btn-primary:hover {
+            background: #fbbf24;
+        }
+        body.dark-mode .btn-save {
+            background: transparent;
+            border-color: #334155;
+            color: #f8fafc;
+        }
+        .theme-toggle {
+            position: fixed;
+            bottom: 110px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #0f172a;
+            color: #eab308;
+            border: 2px solid #eab308;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            z-index: 999;
+            transition: all 0.3s;
+        }
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            background: #eab308;
+            color: #0f172a;
+        }
+        body.dark-mode .theme-toggle {
+            background: #eab308;
+            color: #0f172a;
+        }
+        body.dark-mode .theme-toggle:hover {
+            background: #0f172a;
+            color: #eab308;
         }
     </style>
 </head>
@@ -355,43 +603,24 @@
     <section class="features">
         <h2 class="section-title">Des outils complets pour investir sereinement</h2>
         <p class="section-subtitle">Tout ce dont vous avez besoin pour analyser vos projets immobiliers</p>
-        
         <div class="features-grid">
             <div class="feature-card">
                 <div class="feature-icon">📊</div>
                 <h3>Simulateur avancé</h3>
                 <p>Calculez rendement brut, net, cash-flow et mensualités.</p>
-                <a href="/pages/simulateur.html" class="feature-link">Essayer →</a>
+                <a href="/pages/simulateur.html">Essayer →</a>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">🌍</div>
                 <h3>Investissement mondial</h3>
                 <p>Découvrez les spécificités de chaque continent.</p>
-                <a href="/pages/investissement-mondial.html" class="feature-link">Explorer →</a>
+                <a href="/pages/investissement-mondial.html">Explorer →</a>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">📈</div>
                 <h3>Analyse financière</h3>
                 <p>VAN, TRI, délai de récupération.</p>
-                <a href="/pages/analyse-financiere.html" class="feature-link">Analyser →</a>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">📚</div>
-                <h3>Guide complet</h3>
-                <p>Tout pour réussir votre investissement.</p>
-                <a href="/pages/guide.html" class="feature-link">Lire →</a>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">📝</div>
-                <h3>Blog immobilier</h3>
-                <p>Conseils et stratégies.</p>
-                <a href="/pages/blog.html" class="feature-link">Lire →</a>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🗣️</div>
-                <h3>Témoignages</h3>
-                <p>Ce que nos utilisateurs disent.</p>
-                <a href="/pages/temoignages.html" class="feature-link">Lire →</a>
+                <a href="/pages/analyse-financiere.html">Analyser →</a>
             </div>
         </div>
     </section>
@@ -403,122 +632,97 @@
                 <a href="/">Accueil</a>
                 <a href="/pages/simulateur.html">Simulateur</a>
                 <a href="/pages/guide.html">Guide</a>
-                <a href="/pages/investissement-mondial.html">🌍 Monde</a>
-                <a href="/pages/analyse-financiere.html">📊 Finance</a>
-                <a href="/pages/blog.html">📝 Blog</a>
-                <a href="/pages/temoignages.html">🗣️ Témoignages</a>
                 <a href="/pages/contact.html">Contact</a>
             </div>
-            <div class="footer-section">
-                <h4>Contact</h4>
-                <p style="color: #94a3b8;">📧 rubenmukend287@gmail.com</p>
-                <p style="color: #94a3b8;">📞 +243 974 843 721</p>
-            </div>
         </div>
-
         <div class="footer-legal">
             <a href="/pages/mentions-legales.html">Mentions légales</a>
-            <a href="/pages/confidentialite.html">Politique de confidentialité</a>
+            <a href="/pages/confidentialite.html">Confidentialité</a>
             <a href="/pages/cgu.html">CGU</a>
         </div>
-
         <div class="amazon-disclaimer">
             En tant que Partenaire Amazon, je réalise un bénéfice sur les achats remplissant les conditions requises.
         </div>
-
-        <div class="copyright">
-            © 2026 RentaPro - Tous droits réservés
-        </div>
+        <div class="copyright">© 2026 RentaPro</div>
     </footer>
 
     <!-- Assistant IA -->
     <div class="chat-button" id="chatButton" onclick="toggleChat()">💬</div>
     <div class="chat-window" id="chatWindow">
         <div class="chat-header">
-            <h3><i>🏠</i> Assistant RentaPro</h3>
+            <h3>Assistant RentaPro</h3>
             <button class="close-chat" onclick="toggleChat()">✕</button>
         </div>
         <div class="chat-messages" id="chatMessages">
-            <div class="message bot">👋 Bonjour ! Je suis l'assistant IA de RentaPro. Posez-moi vos questions !</div>
+            <div class="message bot">👋 Bonjour ! Posez-moi vos questions !</div>
         </div>
         <div class="chat-input-area">
-            <input type="text" class="chat-input" id="userInput" placeholder="Votre question..." onkeypress="if(event.key==='Enter') sendMessage()">
+            <input type="text" class="chat-input" id="userInput" placeholder="Votre question...">
             <button class="send-message" onclick="sendMessage()">➤</button>
         </div>
     </div>
 
+    <!-- Bouton mode sombre -->
+    <div class="theme-toggle" id="themeToggle" onclick="toggleTheme()">🌙</div>
+
     <script src="/assistant-ia.js"></script>
     <script>
-        let chatVisible = false;
-        function toggleChat() {
-            const chatWindow = document.getElementById('chatWindow');
-            const chatButton = document.getElementById('chatButton');
-            chatVisible = !chatVisible;
-            if (chatVisible) {
-                chatWindow.style.display = 'flex';
-                chatButton.style.opacity = '0';
-                chatButton.style.pointerEvents = 'none';
+        function toggleTheme() {
+            const body = document.body;
+            const toggle = document.getElementById("themeToggle");
+            body.classList.toggle("dark-mode");
+            
+            if (body.classList.contains("dark-mode")) {
+                toggle.textContent = "☀️";
+                localStorage.setItem("theme", "dark");
             } else {
-                chatWindow.style.display = 'none';
-                chatButton.style.opacity = '1';
-                chatButton.style.pointerEvents = 'auto';
+                toggle.textContent = "🌙";
+                localStorage.setItem("theme", "light");
             }
         }
-        function sendMessage() {
-            const input = document.getElementById('userInput');
-            const message = input.value.trim();
-            if (!message) return;
-            addMessage(message, 'user');
-            input.value = '';
-            setTimeout(() => {
-                addMessage("Merci pour votre message ! Un conseiller vous répondra bientôt.", 'bot');
-            }, 1000);
-        }
-        function addMessage(text, sender) {
-            const messages = document.getElementById('chatMessages');
-            const messageDiv = document.createElement('div');
-            messageDiv.className = `message ${sender}`;
-            messageDiv.textContent = text;
-            messages.appendChild(messageDiv);
-            messages.scrollTop = messages.scrollHeight;
-        }
-        document.addEventListener('click', function(event) {
-            const chatWindow = document.getElementById('chatWindow');
-            const chatButton = document.getElementById('chatButton');
-            if (chatVisible && !chatWindow.contains(event.target) && !chatButton.contains(event.target)) {
-                toggleChat();
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const savedTheme = localStorage.getItem("theme");
+            const toggle = document.getElementById("themeToggle");
+            
+            if (savedTheme === "dark") {
+                document.body.classList.add("dark-mode");
+                if (toggle) toggle.textContent = "☀️";
+            } else {
+                if (toggle) toggle.textContent = "🌙";
             }
         });
     </script>
-<!-- Bouton mode sombre -->
-<div class="theme-toggle" id="themeToggle" onclick="toggleTheme()">🌙</div>
+ 
+    <!-- Bouton mode sombre -->
+    <div class="theme-toggle" id="themeToggle" onclick="toggleTheme()">🌙</div>
 
-<script>
-function toggleTheme() {
-    const body = document.body;
-    const toggle = document.getElementById("themeToggle");
-    body.classList.toggle("dark-mode");
-    
-    if (body.classList.contains("dark-mode")) {
-        toggle.textContent = "☀️";
-        localStorage.setItem("theme", "dark");
-    } else {
-        toggle.textContent = "🌙";
-        localStorage.setItem("theme", "light");
-    }
-}
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            const toggle = document.getElementById("themeToggle");
+            body.classList.toggle("dark-mode");
+            
+            if (body.classList.contains("dark-mode")) {
+                toggle.textContent = "☀️";
+                localStorage.setItem("theme", "dark");
+            } else {
+                toggle.textContent = "🌙";
+                localStorage.setItem("theme", "light");
+            }
+        }
 
-document.addEventListener("DOMContentLoaded", function() {
-    const savedTheme = localStorage.getItem("theme");
-    const toggle = document.getElementById("themeToggle");
-    
-    if (savedTheme === "dark") {
-        document.body.classList.add("dark-mode");
-        if (toggle) toggle.textContent = "☀️";
-    } else {
-        if (toggle) toggle.textContent = "🌙";
-    }
-});
-</script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const savedTheme = localStorage.getItem("theme");
+            const toggle = document.getElementById("themeToggle");
+            
+            if (savedTheme === "dark") {
+                document.body.classList.add("dark-mode");
+                if (toggle) toggle.textContent = "☀️";
+            } else {
+                if (toggle) toggle.textContent = "🌙";
+            }
+        });
+    </script>
 </body>
 </html>

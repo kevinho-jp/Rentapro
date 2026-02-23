@@ -1,6 +1,36 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+ 
+    <!-- Google tag (gtag.js) - Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-525423879"></script>
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            const toggle = document.getElementById("themeToggle");
+            body.classList.toggle("dark-mode");
+            
+            if (body.classList.contains("dark-mode")) {
+                toggle.textContent = "☀️";
+                localStorage.setItem("theme", "dark");
+            } else {
+                toggle.textContent = "🌙";
+                localStorage.setItem("theme", "light");
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const savedTheme = localStorage.getItem("theme");
+            const toggle = document.getElementById("themeToggle");
+            
+            if (savedTheme === "dark") {
+                document.body.classList.add("dark-mode");
+                if (toggle) toggle.textContent = "☀️";
+            } else {
+                if (toggle) toggle.textContent = "🌙";
+            }
+        });
+    </script>
     <meta charset="UTF-8">
     <meta name="google-site-verification" content="googlef746d504e2f887e6" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -498,6 +528,113 @@
             }
         }
     </style>
+ 
+    <style>
+        /* Mode sombre */
+        body.dark-mode {
+            background: #0f172a;
+            color: #f8fafc;
+        }
+        body.dark-mode .navbar {
+            background: #1e293b;
+            border-bottom: 1px solid #334155;
+        }
+        body.dark-mode .nav-links a {
+            color: #94a3b8;
+        }
+        body.dark-mode .nav-links a:hover,
+        body.dark-mode .nav-links a.active {
+            color: #eab308;
+        }
+        body.dark-mode .card,
+        body.dark-mode .feature-card,
+        body.dark-mode .guide-section,
+        body.dark-mode .investor-card,
+        body.dark-mode .testimonial-card,
+        body.dark-mode .contact-info,
+        body.dark-mode .contact-form {
+            background: #1e293b;
+            border-color: #334155;
+        }
+        body.dark-mode .result-section,
+        body.dark-mode .continent-stats,
+        body.dark-mode .book-card,
+        body.dark-mode .type-card {
+            background: #0f172a;
+        }
+        body.dark-mode .footer {
+            background: #0a0f1a;
+        }
+        body.dark-mode h1,
+        body.dark-mode h2,
+        body.dark-mode h3,
+        body.dark-mode h4,
+        body.dark-mode .result-value {
+            color: #f8fafc;
+        }
+        body.dark-mode p,
+        body.dark-mode .result-label,
+        body.dark-mode .stat-label,
+        body.dark-mode .blog-excerpt,
+        body.dark-mode .subtitle {
+            color: #94a3b8;
+        }
+        body.dark-mode input,
+        body.dark-mode select,
+        body.dark-mode textarea {
+            background: #0f172a;
+            border-color: #334155;
+            color: #f8fafc;
+        }
+        body.dark-mode input:focus,
+        body.dark-mode select:focus,
+        body.dark-mode textarea:focus {
+            border-color: #eab308;
+        }
+        body.dark-mode .btn-primary {
+            background: #eab308;
+            color: #0f172a;
+        }
+        body.dark-mode .btn-primary:hover {
+            background: #fbbf24;
+        }
+        body.dark-mode .btn-save {
+            background: transparent;
+            border-color: #334155;
+            color: #f8fafc;
+        }
+        .theme-toggle {
+            position: fixed;
+            bottom: 110px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #0f172a;
+            color: #eab308;
+            border: 2px solid #eab308;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            z-index: 999;
+            transition: all 0.3s;
+        }
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            background: #eab308;
+            color: #0f172a;
+        }
+        body.dark-mode .theme-toggle {
+            background: #eab308;
+            color: #0f172a;
+        }
+        body.dark-mode .theme-toggle:hover {
+            background: #0f172a;
+            color: #eab308;
+        }
+    </style>
 </head>
 <body>
     <nav class="navbar">
@@ -713,155 +850,92 @@
 
     <script src="/assistant-ia.js"></script>
     <script>
-        let chatVisible = false;
-
-        function toggleChat() {
-            const chatWindow = document.getElementById('chatWindow');
-            const chatButton = document.getElementById('chatButton');
-            chatVisible = !chatVisible;
+        function toggleTheme() {
+            const body = document.body;
+            const toggle = document.getElementById("themeToggle");
+            body.classList.toggle("dark-mode");
             
-            if (chatVisible) {
-                chatWindow.style.display = 'flex';
-                chatButton.style.opacity = '0';
-                chatButton.style.pointerEvents = 'none';
+            if (body.classList.contains("dark-mode")) {
+                toggle.textContent = "☀️";
+                localStorage.setItem("theme", "dark");
             } else {
-                chatWindow.style.display = 'none';
-                chatButton.style.opacity = '1';
-                chatButton.style.pointerEvents = 'auto';
+                toggle.textContent = "🌙";
+                localStorage.setItem("theme", "light");
             }
         }
 
-        function sendMessage() {
-            const input = document.getElementById('userInput');
-            const message = input.value.trim();
-            if (!message) return;
+        document.addEventListener("DOMContentLoaded", function() {
+            const savedTheme = localStorage.getItem("theme");
+            const toggle = document.getElementById("themeToggle");
             
-            addMessage(message, 'user');
-            input.value = '';
-            
-            setTimeout(() => {
-                const reponse = assistantIA ? assistantIA.repondre(message) : "Merci pour votre question ! Un conseiller vous répondra bientôt.";
-                addMessage(reponse, 'bot');
-            }, 1000);
-        }
-
-        function addMessage(text, sender) {
-            const messages = document.getElementById('chatMessages');
-            const messageDiv = document.createElement('div');
-            messageDiv.className = `message ${sender}`;
-            messageDiv.textContent = text;
-            messages.appendChild(messageDiv);
-            messages.scrollTop = messages.scrollHeight;
-        }
-
-        function useSuggestion(text) {
-            document.getElementById('userInput').value = text;
-            sendMessage();
-        }
-
-        document.addEventListener('click', function(event) {
-            const chatWindow = document.getElementById('chatWindow');
-            const chatButton = document.getElementById('chatButton');
-            
-            if (chatVisible && !chatWindow.contains(event.target) && !chatButton.contains(event.target)) {
-                toggleChat();
+            if (savedTheme === "dark") {
+                document.body.classList.add("dark-mode");
+                if (toggle) toggle.textContent = "☀️";
+            } else {
+                if (toggle) toggle.textContent = "🌙";
             }
         });
-
-        function calculerFinance() {
-            const investInitial = parseFloat(document.getElementById('investInitial').value) || 0;
-            const fluxAnnuel = parseFloat(document.getElementById('fluxAnnuel').value) || 0;
-            const tauxActualisation = parseFloat(document.getElementById('tauxActualisation').value) || 0;
-            const duree = parseFloat(document.getElementById('duree').value) || 0;
-            const valeurResiduelle = parseFloat(document.getElementById('valeurResiduelle').value) || 0;
-
-            // VAN
-            let van = -investInitial;
-            for (let an = 1; an <= duree; an++) {
-                van += fluxAnnuel / Math.pow(1 + tauxActualisation/100, an);
-            }
-            van += valeurResiduelle / Math.pow(1 + tauxActualisation/100, duree);
-
-            // TRI (approximation)
-            let tri = 0;
-            for (let tauxTest = 0; tauxTest <= 100; tauxTest += 0.1) {
-                let vanTest = -investInitial;
-                for (let an = 1; an <= duree; an++) {
-                    vanTest += fluxAnnuel / Math.pow(1 + tauxTest/100, an);
-                }
-                vanTest += valeurResiduelle / Math.pow(1 + tauxTest/100, duree);
-                if (vanTest >= 0) tri = tauxTest;
-                else break;
-            }
-
-            // Délai simple
-            let cumul = 0;
-            let delaiSimple = duree;
-            for (let an = 1; an <= duree; an++) {
-                cumul += fluxAnnuel;
-                if (cumul >= investInitial) {
-                    delaiSimple = an + (investInitial - (cumul - fluxAnnuel)) / fluxAnnuel;
-                    break;
-                }
-            }
-
-            // Délai actualisé
-            let cumulAct = -investInitial;
-            let delaiActualise = duree;
-            for (let an = 1; an <= duree; an++) {
-                cumulAct += fluxAnnuel / Math.pow(1 + tauxActualisation/100, an);
-                if (cumulAct >= 0) {
-                    delaiActualise = an;
-                    break;
-                }
-            }
-
-            document.getElementById('van').innerHTML = '$' + van.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-            document.getElementById('tri').innerHTML = tri.toFixed(2) + '%';
-            document.getElementById('delaiSimple').innerHTML = delaiSimple.toFixed(1) + ' ans';
-            document.getElementById('delaiActualise').innerHTML = delaiActualise.toFixed(1) + ' ans';
-
-            const vanInterpretation = document.getElementById('vanInterpretation');
-            if (van > 0) {
-                vanInterpretation.innerHTML = '✅ Projet rentable';
-                vanInterpretation.style.color = '#059669';
-            } else {
-                vanInterpretation.innerHTML = '❌ Projet non rentable';
-                vanInterpretation.style.color = '#dc2626';
-            }
-        }
-
-        document.addEventListener('DOMContentLoaded', calculerFinance);
     </script>
 <!-- Bouton mode sombre -->
 <div class="theme-toggle" id="themeToggle" onclick="toggleTheme()">🌙</div>
 
-<script>
-function toggleTheme() {
-    const body = document.body;
-    const toggle = document.getElementById("themeToggle");
-    body.classList.toggle("dark-mode");
-    
-    if (body.classList.contains("dark-mode")) {
-        toggle.textContent = "☀️";
-        localStorage.setItem("theme", "dark");
-    } else {
-        toggle.textContent = "🌙";
-        localStorage.setItem("theme", "light");
-    }
-}
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            const toggle = document.getElementById("themeToggle");
+            body.classList.toggle("dark-mode");
+            
+            if (body.classList.contains("dark-mode")) {
+                toggle.textContent = "☀️";
+                localStorage.setItem("theme", "dark");
+            } else {
+                toggle.textContent = "🌙";
+                localStorage.setItem("theme", "light");
+            }
+        }
 
-document.addEventListener("DOMContentLoaded", function() {
-    const savedTheme = localStorage.getItem("theme");
-    const toggle = document.getElementById("themeToggle");
-    
-    if (savedTheme === "dark") {
-        document.body.classList.add("dark-mode");
-        if (toggle) toggle.textContent = "☀️";
-    } else {
-        if (toggle) toggle.textContent = "🌙";
-    }
-});
-</script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const savedTheme = localStorage.getItem("theme");
+            const toggle = document.getElementById("themeToggle");
+            
+            if (savedTheme === "dark") {
+                document.body.classList.add("dark-mode");
+                if (toggle) toggle.textContent = "☀️";
+            } else {
+                if (toggle) toggle.textContent = "🌙";
+            }
+        });
+    </script>
+ 
+    <!-- Bouton mode sombre -->
+    <div class="theme-toggle" id="themeToggle" onclick="toggleTheme()">🌙</div>
+
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            const toggle = document.getElementById("themeToggle");
+            body.classList.toggle("dark-mode");
+            
+            if (body.classList.contains("dark-mode")) {
+                toggle.textContent = "☀️";
+                localStorage.setItem("theme", "dark");
+            } else {
+                toggle.textContent = "🌙";
+                localStorage.setItem("theme", "light");
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const savedTheme = localStorage.getItem("theme");
+            const toggle = document.getElementById("themeToggle");
+            
+            if (savedTheme === "dark") {
+                document.body.classList.add("dark-mode");
+                if (toggle) toggle.textContent = "☀️";
+            } else {
+                if (toggle) toggle.textContent = "🌙";
+            }
+        });
+    </script>
 </body>
 </html>
