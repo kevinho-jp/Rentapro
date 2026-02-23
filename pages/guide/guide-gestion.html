@@ -1,0 +1,31 @@
+cat > pages/guide/guide-gestion.html << 'EOF'
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guide gestion locative - RentaPro</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { background: #f8fafc; color: #1e293b; padding: 2rem; }
+        .container { max-width: 800px; margin: 0 auto; background: white; border-radius: 30px; padding: 3rem; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        h1 { color: #0f172a; margin-bottom: 1.5rem; }
+        h2 { color: #0f172a; margin: 2rem 0 1rem; }
+        p { color: #475569; line-height: 1.6; margin-bottom: 1rem; }
+        .btn { display: inline-block; padding: 1rem 2rem; background: #0f172a; color: white; text-decoration: none; border-radius: 10px; margin-top: 1rem; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>👥 Guide gestion locative</h1>
+        <h2>1. Sélection des locataires</h2>
+        <p>Vérifiez les revenus (3x le loyer), les garanties, et les références.</p>
+        <h2>2. Assurance loyers impayés</h2>
+        <p>Protégez-vous contre les impayés (coût : 2-3% des loyers).</p>
+        <h2>3. Gestion par agence vs auto-gestion</h2>
+        <p>Agence : 6-10% des loyers. Auto-gestion : économies mais plus de travail.</p>
+        <a href="/pages/guide.html" class="btn">← Retour au guide</a>
+    </div>
+</body>
+</html>
+EOF
