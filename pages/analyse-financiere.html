@@ -1,39 +1,17 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
- 
-    <!-- Google tag (gtag.js) - Google Analytics 4 -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-525423879"></script>
     <script>
-        function toggleTheme() {
-            const body = document.body;
-            const toggle = document.getElementById("themeToggle");
-            body.classList.toggle("dark-mode");
-            
-            if (body.classList.contains("dark-mode")) {
-                toggle.textContent = "☀️";
-                localStorage.setItem("theme", "dark");
-            } else {
-                toggle.textContent = "🌙";
-                localStorage.setItem("theme", "light");
-            }
-        }
-
-        document.addEventListener("DOMContentLoaded", function() {
-            const savedTheme = localStorage.getItem("theme");
-            const toggle = document.getElementById("themeToggle");
-            
-            if (savedTheme === "dark") {
-                document.body.classList.add("dark-mode");
-                if (toggle) toggle.textContent = "☀️";
-            } else {
-                if (toggle) toggle.textContent = "🌙";
-            }
-        });
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-525423879');
     </script>
-    <meta charset="UTF-8">
-    <meta name="google-site-verification" content="googlef746d504e2f887e6" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- ========== BALISES SEO ========== -->
     <title>Analyse financière immobilière - VAN, TRI, délai de récupération - RentaPro</title>
@@ -61,10 +39,73 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     
+    <!-- Chart.js pour les graphiques -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Anime.js pour les animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    
     <!-- Assistant IA CSS -->
     <link rel="stylesheet" href="/assistant-ia.css">
 
     <style>
+        /* ============================================
+           STYLES GLOBAUX AMÉLIORÉS - RENTAPRO
+           ============================================ */
+
+        /* Variables et thèmes */
+        :root {
+            --primary-dark: #0f172a;
+            --primary-light: #1e293b;
+            --accent: #eab308;
+            --accent-hover: #fbbf24;
+            --accent-soft: rgba(234, 179, 8, 0.1);
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+            --text-muted: #94a3b8;
+            --bg-light: #f8fafc;
+            --bg-white: #ffffff;
+            --bg-card: #ffffff;
+            --border: #e2e8f0;
+            --success: #059669;
+            --danger: #dc2626;
+            --warning: #d97706;
+            --info: #2563eb;
+            
+            /* Ombres améliorées */
+            --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-sm: 0 4px 6px -1px rgb(0 0 0 / 0.05);
+            --shadow-md: 0 10px 15px -3px rgb(0 0 0 / 0.05);
+            --shadow-lg: 0 20px 25px -5px rgb(0 0 0 / 0.05);
+            --shadow-xl: 0 25px 50px -12px rgb(0 0 0 / 0.1);
+            --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+            
+            /* Animations */
+            --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-base: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+            
+            /* Bordures */
+            --radius-sm: 0.375rem;
+            --radius-base: 0.75rem;
+            --radius-lg: 1.5rem;
+            --radius-xl: 2rem;
+            --radius-full: 9999px;
+        }
+
+        /* Mode sombre */
+        body.dark-mode {
+            --primary-dark: #f8fafc;
+            --primary-light: #e2e8f0;
+            --text-dark: #f8fafc;
+            --text-light: #cbd5e1;
+            --text-muted: #94a3b8;
+            --bg-light: #0f172a;
+            --bg-white: #1e293b;
+            --bg-card: #1e293b;
+            --border: #334155;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -73,17 +114,40 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: #f8fafc;
-            color: #1e293b;
+            background: var(--bg-light);
+            color: var(--text-dark);
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+            transition: background-color var(--transition-base), color var(--transition-base);
         }
 
+        body * {
+            transition: background-color var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+        }
+
+        /* Animations globales */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Navigation */
         .navbar {
-            background: white;
+            background: var(--bg-white);
             padding: 1rem 5%;
-            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
+            box-shadow: var(--shadow-sm);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -108,14 +172,14 @@
         .logo-icon {
             font-size: 2rem;
             background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-            color: #eab308;
+            color: var(--accent);
             width: 50px;
             height: 50px;
-            border-radius: 15px;
+            border-radius: var(--radius-lg);
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
+            box-shadow: var(--shadow-sm);
         }
 
         .logo-text {
@@ -132,20 +196,20 @@
         }
 
         .nav-links a {
-            color: #64748b;
+            color: var(--text-light);
             text-decoration: none;
             font-weight: 500;
-            transition: color 0.3s;
+            transition: color var(--transition-fast);
             padding: 0.5rem 0;
             position: relative;
         }
 
         .nav-links a:hover {
-            color: #0f172a;
+            color: var(--primary-dark);
         }
 
         .nav-links a.active {
-            color: #0f172a;
+            color: var(--primary-dark);
             font-weight: 600;
         }
 
@@ -156,8 +220,8 @@
             left: 0;
             width: 100%;
             height: 3px;
-            background: #eab308;
-            border-radius: 3px 3px 0 0;
+            background: linear-gradient(90deg, var(--accent), var(--accent-hover));
+            border-radius: var(--radius-sm) var(--radius-sm) 0 0;
         }
 
         .container {
@@ -173,7 +237,7 @@
             margin-bottom: 3rem;
             padding: 3rem;
             background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-            border-radius: 40px;
+            border-radius: var(--radius-xl);
             color: white;
             position: relative;
             overflow: hidden;
@@ -210,26 +274,44 @@
             position: relative;
         }
 
+        /* Cards améliorées */
+        .card {
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border);
+            transition: all var(--transition-base);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-hover));
+            transform: scaleX(0);
+            transition: transform var(--transition-base);
+        }
+
+        .card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: var(--shadow-2xl);
+        }
+
         .finance-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 2rem;
             margin: 2rem 0;
-        }
-
-        .card {
-            background: white;
-            border-radius: 30px;
-            padding: 2rem;
-            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.05);
-            border: 1px solid #e2e8f0;
-        }
-
-        .card h2 {
-            color: #0f172a;
-            margin-bottom: 1.5rem;
-            font-size: 1.8rem;
-            font-family: 'Montserrat', sans-serif;
         }
 
         .input-group {
@@ -246,7 +328,7 @@
         .form-group label {
             display: block;
             font-weight: 600;
-            color: #0f172a;
+            color: var(--text-dark);
             margin-bottom: 0.5rem;
             font-family: 'Montserrat', sans-serif;
         }
@@ -254,42 +336,63 @@
         .form-group input {
             width: 100%;
             padding: 0.8rem 1rem;
-            border: 2px solid #e2e8f0;
-            border-radius: 12px;
+            border: 2px solid var(--border);
+            border-radius: var(--radius-base);
             font-size: 1rem;
-            transition: all 0.3s;
-            font-family: 'Inter', sans-serif;
+            transition: all var(--transition-fast);
+            background: var(--bg-white);
+            color: var(--text-dark);
         }
 
         .form-group input:focus {
             outline: none;
-            border-color: #eab308;
-            box-shadow: 0 0 0 3px rgba(234,179,8,0.1);
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px var(--accent-soft);
         }
 
         .btn-calculate {
-            background: #0f172a;
+            background: var(--primary-dark);
             color: white;
             border: none;
             padding: 1rem;
-            border-radius: 12px;
+            border-radius: var(--radius-base);
             font-size: 1.1rem;
             font-weight: 600;
             cursor: pointer;
             width: 100%;
-            transition: all 0.3s;
+            transition: all var(--transition-fast);
             font-family: 'Montserrat', sans-serif;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-calculate::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn-calculate:hover::after {
+            width: 300px;
+            height: 300px;
         }
 
         .btn-calculate:hover {
-            background: #1e293b;
+            background: var(--primary-light);
             transform: translateY(-2px);
-            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.05);
+            box-shadow: var(--shadow-md);
         }
 
         .result-card {
-            background: #f8fafc;
-            border-radius: 20px;
+            background: var(--bg-light);
+            border-radius: var(--radius-base);
             padding: 1.5rem;
             margin-bottom: 1rem;
         }
@@ -298,7 +401,7 @@
             display: flex;
             justify-content: space-between;
             padding: 0.8rem 0;
-            border-bottom: 1px solid #e2e8f0;
+            border-bottom: 1px solid var(--border);
         }
 
         .result-item:last-child {
@@ -306,36 +409,47 @@
         }
 
         .result-label {
-            color: #64748b;
+            color: var(--text-light);
         }
 
         .result-value {
             font-weight: 700;
-            color: #0f172a;
+            color: var(--text-dark);
             font-size: 1.1rem;
             font-family: 'Montserrat', sans-serif;
         }
 
         .positive {
-            color: #059669;
+            color: var(--success);
         }
 
         .negative {
-            color: #dc2626;
+            color: var(--danger);
         }
 
         .summary-section {
-            background: white;
-            border-radius: 30px;
+            background: var(--bg-white);
+            border-radius: var(--radius-xl);
             padding: 2rem;
             margin: 2rem 0;
-            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.05);
+            box-shadow: var(--shadow-md);
         }
 
         .summary-section h2 {
-            color: #0f172a;
+            color: var(--text-dark);
             margin-bottom: 1.5rem;
             font-family: 'Montserrat', sans-serif;
+            text-align: center;
+        }
+
+        .summary-section h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-hover));
+            margin: 1rem auto;
+            border-radius: 2px;
         }
 
         .summary-grid {
@@ -345,21 +459,54 @@
         }
 
         .summary-card {
-            background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+            background: linear-gradient(135deg, var(--bg-light) 0%, var(--bg-white) 100%);
             padding: 1.5rem;
-            border-radius: 20px;
-            border-left: 4px solid #eab308;
+            border-radius: var(--radius-base);
+            border-left: 4px solid var(--accent);
         }
 
         .summary-card h3 {
-            color: #0f172a;
+            color: var(--text-dark);
             margin-bottom: 0.5rem;
             font-size: 1.2rem;
         }
 
         .summary-card p {
-            color: #64748b;
+            color: var(--text-light);
             line-height: 1.6;
+        }
+
+        /* Section graphiques */
+        .graph-section {
+            margin: 3rem 0;
+        }
+
+        .graph-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .graph-container {
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border);
+            transition: all var(--transition-base);
+        }
+
+        .graph-container:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .graph-container h3 {
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .investors-section {
@@ -369,7 +516,7 @@
         .investors-section h2 {
             text-align: center;
             font-size: 2.2rem;
-            color: #0f172a;
+            color: var(--text-dark);
             margin-bottom: 2rem;
             font-family: 'Montserrat', sans-serif;
         }
@@ -378,8 +525,8 @@
             content: '';
             display: block;
             width: 60px;
-            height: 3px;
-            background: linear-gradient(90deg, #eab308, #fbbf24);
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-hover));
             margin: 1rem auto;
             border-radius: 2px;
         }
@@ -391,22 +538,22 @@
         }
 
         .investor-card {
-            background: white;
-            border-radius: 20px;
+            background: var(--bg-white);
+            border-radius: var(--radius-lg);
             padding: 2rem;
-            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
+            box-shadow: var(--shadow-sm);
             display: flex;
             flex-direction: column;
             align-items: center;
             text-align: center;
-            border: 1px solid #e2e8f0;
-            transition: all 0.3s;
+            border: 1px solid var(--border);
+            transition: all var(--transition-base);
         }
 
         .investor-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.05);
-            border-color: #eab308;
+            box-shadow: var(--shadow-md);
+            border-color: var(--accent);
         }
 
         .investor-image {
@@ -416,36 +563,74 @@
             background-size: cover;
             background-position: center;
             margin-bottom: 1.5rem;
-            border: 4px solid #eab308;
+            border: 4px solid var(--accent);
         }
 
         .investor-name {
             font-size: 1.5rem;
-            color: #0f172a;
+            color: var(--text-dark);
             margin-bottom: 0.3rem;
         }
 
         .investor-title {
-            color: #64748b;
+            color: var(--text-light);
             font-size: 0.95rem;
             margin-bottom: 1rem;
         }
 
         .investor-quote {
-            color: #1e293b;
+            color: var(--text-dark);
             font-style: italic;
             line-height: 1.6;
             margin-bottom: 1rem;
         }
 
         .investor-advice {
-            background: #f8fafc;
+            background: var(--bg-light);
             padding: 1rem;
-            border-radius: 12px;
+            border-radius: var(--radius-base);
             font-size: 0.95rem;
-            color: #64748b;
+            color: var(--text-light);
             width: 100%;
             text-align: left;
+        }
+
+        /* Bouton mode sombre amélioré */
+        .theme-toggle {
+            position: fixed;
+            bottom: 110px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--primary-dark);
+            color: var(--accent);
+            border: 2px solid var(--accent);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            z-index: 999;
+            transition: all var(--transition-base);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1) rotate(10deg);
+            background: var(--accent);
+            color: var(--primary-dark);
+            box-shadow: 0 0 20px var(--accent);
+        }
+
+        body.dark-mode .theme-toggle {
+            background: var(--accent);
+            color: var(--primary-dark);
+        }
+
+        body.dark-mode .theme-toggle:hover {
+            background: var(--primary-dark);
+            color: var(--accent);
         }
 
         .footer {
@@ -464,7 +649,7 @@
         }
 
         .footer-section h4 {
-            color: #eab308;
+            color: var(--accent);
             margin-bottom: 1.5rem;
             font-family: 'Montserrat', sans-serif;
         }
@@ -474,11 +659,11 @@
             text-decoration: none;
             display: block;
             margin-bottom: 0.8rem;
-            transition: color 0.3s;
+            transition: color var(--transition-fast);
         }
 
         .footer-section a:hover {
-            color: #eab308;
+            color: var(--accent);
             transform: translateX(5px);
         }
 
@@ -497,7 +682,7 @@
         }
 
         .footer-legal a:hover {
-            color: #eab308;
+            color: var(--accent);
         }
 
         .amazon-disclaimer {
@@ -526,113 +711,28 @@
             .finance-grid {
                 grid-template-columns: 1fr;
             }
+            .graph-grid {
+                grid-template-columns: 1fr;
+            }
         }
-    </style>
- 
-    <style>
-        /* Mode sombre */
-        body.dark-mode {
-            background: #0f172a;
-            color: #f8fafc;
+
+        /* Scrollbar personnalisée */
+        ::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
         }
-        body.dark-mode .navbar {
-            background: #1e293b;
-            border-bottom: 1px solid #334155;
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-light);
         }
-        body.dark-mode .nav-links a {
-            color: #94a3b8;
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: var(--radius-full);
         }
-        body.dark-mode .nav-links a:hover,
-        body.dark-mode .nav-links a.active {
-            color: #eab308;
-        }
-        body.dark-mode .card,
-        body.dark-mode .feature-card,
-        body.dark-mode .guide-section,
-        body.dark-mode .investor-card,
-        body.dark-mode .testimonial-card,
-        body.dark-mode .contact-info,
-        body.dark-mode .contact-form {
-            background: #1e293b;
-            border-color: #334155;
-        }
-        body.dark-mode .result-section,
-        body.dark-mode .continent-stats,
-        body.dark-mode .book-card,
-        body.dark-mode .type-card {
-            background: #0f172a;
-        }
-        body.dark-mode .footer {
-            background: #0a0f1a;
-        }
-        body.dark-mode h1,
-        body.dark-mode h2,
-        body.dark-mode h3,
-        body.dark-mode h4,
-        body.dark-mode .result-value {
-            color: #f8fafc;
-        }
-        body.dark-mode p,
-        body.dark-mode .result-label,
-        body.dark-mode .stat-label,
-        body.dark-mode .blog-excerpt,
-        body.dark-mode .subtitle {
-            color: #94a3b8;
-        }
-        body.dark-mode input,
-        body.dark-mode select,
-        body.dark-mode textarea {
-            background: #0f172a;
-            border-color: #334155;
-            color: #f8fafc;
-        }
-        body.dark-mode input:focus,
-        body.dark-mode select:focus,
-        body.dark-mode textarea:focus {
-            border-color: #eab308;
-        }
-        body.dark-mode .btn-primary {
-            background: #eab308;
-            color: #0f172a;
-        }
-        body.dark-mode .btn-primary:hover {
-            background: #fbbf24;
-        }
-        body.dark-mode .btn-save {
-            background: transparent;
-            border-color: #334155;
-            color: #f8fafc;
-        }
-        .theme-toggle {
-            position: fixed;
-            bottom: 110px;
-            right: 30px;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: #0f172a;
-            color: #eab308;
-            border: 2px solid #eab308;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            z-index: 999;
-            transition: all 0.3s;
-        }
-        .theme-toggle:hover {
-            transform: scale(1.1);
-            background: #eab308;
-            color: #0f172a;
-        }
-        body.dark-mode .theme-toggle {
-            background: #eab308;
-            color: #0f172a;
-        }
-        body.dark-mode .theme-toggle:hover {
-            background: #0f172a;
-            color: #eab308;
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-hover);
         }
     </style>
 </head>
@@ -663,7 +763,7 @@
         <div class="finance-grid">
             <!-- Formulaire -->
             <div class="card">
-                <h2>💰 Paramètres d'investissement</h2>
+                <h2 style="margin-bottom: 1.5rem;">💰 Paramètres d'investissement</h2>
                 
                 <div class="form-group">
                     <label for="investInitial">Investissement initial ($)</label>
@@ -696,7 +796,7 @@
 
             <!-- Résultats -->
             <div class="card">
-                <h2>📈 Indicateurs financiers</h2>
+                <h2 style="margin-bottom: 1.5rem;">📈 Indicateurs financiers</h2>
                 
                 <div class="result-card">
                     <h3 style="margin-bottom: 1rem;">💰 Valeur Actuelle Nette (VAN)</h3>
@@ -726,6 +826,33 @@
                         <span class="result-value" id="delaiActualise">0 ans</span>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <!-- Section graphiques améliorée -->
+        <div class="graph-section">
+            <div class="section-header">
+                <h2 style="text-align: center; font-size: 2rem; margin-bottom: 2rem;">📈 Analyse graphique interactive</h2>
+            </div>
+            
+            <div class="graph-grid">
+                <!-- Graphique 1 : Évolution de la VAN avec animation -->
+                <div class="graph-container">
+                    <h3>Évolution de la VAN</h3>
+                    <canvas id="vanChart" style="width:100%; height:300px;"></canvas>
+                </div>
+                
+                <!-- Graphique 2 : Flux de trésorerie -->
+                <div class="graph-container">
+                    <h3>Flux de trésorerie annuels</h3>
+                    <canvas id="cashflowChart" style="width:100%; height:300px;"></canvas>
+                </div>
+            </div>
+            
+            <!-- Graphique 3 : Comparaison des scénarios -->
+            <div class="graph-container" style="margin-top: 2rem;">
+                <h3>Comparaison des scénarios</h3>
+                <canvas id="comparisonChart" style="width:100%; height:300px;"></canvas>
             </div>
         </div>
 
@@ -848,93 +975,353 @@
         </div>
     </div>
 
+    <!-- Bouton mode sombre amélioré -->
+    <div class="theme-toggle" id="themeToggle" onclick="toggleTheme()">
+        <span class="theme-icon">🌙</span>
+    </div>
+
     <script src="/assistant-ia.js"></script>
     <script>
-        function toggleTheme() {
-            const body = document.body;
-            const toggle = document.getElementById("themeToggle");
-            body.classList.toggle("dark-mode");
+        let chatVisible = false;
+        let vanChart, cashflowChart, comparisonChart;
+
+        function toggleChat() {
+            const chatWindow = document.getElementById('chatWindow');
+            const chatButton = document.getElementById('chatButton');
+            chatVisible = !chatVisible;
             
-            if (body.classList.contains("dark-mode")) {
-                toggle.textContent = "☀️";
-                localStorage.setItem("theme", "dark");
+            if (chatVisible) {
+                chatWindow.style.display = 'flex';
+                chatButton.style.opacity = '0';
+                chatButton.style.pointerEvents = 'none';
             } else {
-                toggle.textContent = "🌙";
-                localStorage.setItem("theme", "light");
+                chatWindow.style.display = 'none';
+                chatButton.style.opacity = '1';
+                chatButton.style.pointerEvents = 'auto';
             }
         }
 
-        document.addEventListener("DOMContentLoaded", function() {
-            const savedTheme = localStorage.getItem("theme");
-            const toggle = document.getElementById("themeToggle");
+        function sendMessage() {
+            const input = document.getElementById('userInput');
+            const message = input.value.trim();
+            if (!message) return;
             
-            if (savedTheme === "dark") {
-                document.body.classList.add("dark-mode");
-                if (toggle) toggle.textContent = "☀️";
-            } else {
-                if (toggle) toggle.textContent = "🌙";
+            addMessage(message, 'user');
+            input.value = '';
+            
+            setTimeout(() => {
+                const reponse = assistantIA ? assistantIA.repondre(message) : "Merci pour votre question ! Un conseiller vous répondra bientôt.";
+                addMessage(reponse, 'bot');
+            }, 1000);
+        }
+
+        function addMessage(text, sender) {
+            const messages = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}`;
+            messageDiv.textContent = text;
+            messages.appendChild(messageDiv);
+            messages.scrollTop = messages.scrollHeight;
+        }
+
+        function useSuggestion(text) {
+            document.getElementById('userInput').value = text;
+            sendMessage();
+        }
+
+        document.addEventListener('click', function(event) {
+            const chatWindow = document.getElementById('chatWindow');
+            const chatButton = document.getElementById('chatButton');
+            
+            if (chatVisible && !chatWindow.contains(event.target) && !chatButton.contains(event.target)) {
+                toggleChat();
             }
         });
-    </script>
-<!-- Bouton mode sombre -->
-<div class="theme-toggle" id="themeToggle" onclick="toggleTheme()">🌙</div>
 
-    <script>
+        // Mode sombre amélioré
         function toggleTheme() {
             const body = document.body;
-            const toggle = document.getElementById("themeToggle");
-            body.classList.toggle("dark-mode");
+            const icon = document.querySelector('.theme-icon');
             
-            if (body.classList.contains("dark-mode")) {
-                toggle.textContent = "☀️";
-                localStorage.setItem("theme", "dark");
+            // Animation de rotation
+            if (window.anime) {
+                anime({
+                    targets: '.theme-toggle',
+                    rotate: '1turn',
+                    duration: 600,
+                    easing: 'easeInOutQuad'
+                });
+            }
+            
+            body.classList.toggle('dark-mode');
+            
+            if (body.classList.contains('dark-mode')) {
+                icon.textContent = '☀️';
+                localStorage.setItem('theme', 'dark');
+                
+                // Animation de fondu
+                if (window.anime) {
+                    anime({
+                        targets: '.container',
+                        opacity: [0.5, 1],
+                        duration: 800,
+                        easing: 'easeInOutQuad'
+                    });
+                }
             } else {
-                toggle.textContent = "🌙";
-                localStorage.setItem("theme", "light");
+                icon.textContent = '🌙';
+                localStorage.setItem('theme', 'light');
+                
+                if (window.anime) {
+                    anime({
+                        targets: '.container',
+                        opacity: [0.5, 1],
+                        duration: 800,
+                        easing: 'easeInOutQuad'
+                    });
+                }
+            }
+            
+            // Mettre à jour les couleurs des graphiques
+            if (vanChart) {
+                vanChart.data.datasets[0].borderColor = body.classList.contains('dark-mode') ? '#eab308' : '#eab308';
+                vanChart.update();
+            }
+            if (cashflowChart) {
+                cashflowChart.data.datasets[0].backgroundColor = body.classList.contains('dark-mode') ? '#eab308' : '#eab308';
+                cashflowChart.update();
             }
         }
 
-        document.addEventListener("DOMContentLoaded", function() {
-            const savedTheme = localStorage.getItem("theme");
-            const toggle = document.getElementById("themeToggle");
-            
-            if (savedTheme === "dark") {
-                document.body.classList.add("dark-mode");
-                if (toggle) toggle.textContent = "☀️";
-            } else {
-                if (toggle) toggle.textContent = "🌙";
-            }
-        });
-    </script>
- 
-    <!-- Bouton mode sombre -->
-    <div class="theme-toggle" id="themeToggle" onclick="toggleTheme()">🌙</div>
+        // Fonction principale de calcul
+        function calculerFinance() {
+            const investInitial = parseFloat(document.getElementById('investInitial').value) || 0;
+            const fluxAnnuel = parseFloat(document.getElementById('fluxAnnuel').value) || 0;
+            const tauxActualisation = parseFloat(document.getElementById('tauxActualisation').value) || 0;
+            const duree = parseFloat(document.getElementById('duree').value) || 0;
+            const valeurResiduelle = parseFloat(document.getElementById('valeurResiduelle').value) || 0;
 
-    <script>
-        function toggleTheme() {
-            const body = document.body;
-            const toggle = document.getElementById("themeToggle");
-            body.classList.toggle("dark-mode");
-            
-            if (body.classList.contains("dark-mode")) {
-                toggle.textContent = "☀️";
-                localStorage.setItem("theme", "dark");
+            // VAN
+            let van = -investInitial;
+            for (let an = 1; an <= duree; an++) {
+                van += fluxAnnuel / Math.pow(1 + tauxActualisation/100, an);
+            }
+            van += valeurResiduelle / Math.pow(1 + tauxActualisation/100, duree);
+
+            // TRI (approximation)
+            let tri = 0;
+            for (let tauxTest = 0; tauxTest <= 100; tauxTest += 0.1) {
+                let vanTest = -investInitial;
+                for (let an = 1; an <= duree; an++) {
+                    vanTest += fluxAnnuel / Math.pow(1 + tauxTest/100, an);
+                }
+                vanTest += valeurResiduelle / Math.pow(1 + tauxTest/100, duree);
+                if (vanTest >= 0) tri = tauxTest;
+                else break;
+            }
+
+            // Délai simple
+            let cumul = 0;
+            let delaiSimple = duree;
+            for (let an = 1; an <= duree; an++) {
+                cumul += fluxAnnuel;
+                if (cumul >= investInitial) {
+                    delaiSimple = an + (investInitial - (cumul - fluxAnnuel)) / fluxAnnuel;
+                    break;
+                }
+            }
+
+            // Délai actualisé
+            let cumulAct = -investInitial;
+            let delaiActualise = duree;
+            for (let an = 1; an <= duree; an++) {
+                cumulAct += fluxAnnuel / Math.pow(1 + tauxActualisation/100, an);
+                if (cumulAct >= 0) {
+                    delaiActualise = an;
+                    break;
+                }
+            }
+
+            document.getElementById('van').innerHTML = '$' + van.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+            document.getElementById('tri').innerHTML = tri.toFixed(2) + '%';
+            document.getElementById('delaiSimple').innerHTML = delaiSimple.toFixed(1) + ' ans';
+            document.getElementById('delaiActualise').innerHTML = delaiActualise.toFixed(1) + ' ans';
+
+            const vanInterpretation = document.getElementById('vanInterpretation');
+            if (van > 0) {
+                vanInterpretation.innerHTML = '✅ Projet rentable';
+                vanInterpretation.style.color = '#059669';
             } else {
-                toggle.textContent = "🌙";
-                localStorage.setItem("theme", "light");
+                vanInterpretation.innerHTML = '❌ Projet non rentable';
+                vanInterpretation.style.color = '#dc2626';
+            }
+
+            // Mettre à jour les graphiques
+            mettreAJourGraphiques(investInitial, fluxAnnuel, valeurResiduelle, duree);
+        }
+
+        // ========== GRAPHIQUES AMÉLIORÉS ==========
+        function mettreAJourGraphiques(investInitial, fluxAnnuel, valeurResiduelle, duree) {
+            
+            // Données pour les graphiques
+            const annees = ['Année 0', ...Array.from({length: duree}, (_, i) => `Année ${i+1}`)];
+            const vanData = [];
+            let cumulVAN = -investInitial;
+            vanData.push(cumulVAN);
+            
+            for (let an = 1; an <= duree; an++) {
+                cumulVAN += fluxAnnuel;
+                if (an === duree) cumulVAN += valeurResiduelle;
+                vanData.push(cumulVAN);
+            }
+
+            const fluxData = Array(duree).fill(fluxAnnuel);
+
+            // Détruire les anciens graphiques s'ils existent
+            if (window.vanChart) window.vanChart.destroy();
+            if (window.cashflowChart) window.cashflowChart.destroy();
+            if (window.comparisonChart) window.comparisonChart.destroy();
+
+            // Graphique 1 : Évolution VAN (line avec animations)
+            const ctxVan = document.getElementById('vanChart').getContext('2d');
+            window.vanChart = new Chart(ctxVan, {
+                type: 'line',
+                data: {
+                    labels: annees,
+                    datasets: [{
+                        label: 'VAN cumulée ($)',
+                        data: vanData,
+                        borderColor: '#eab308',
+                        backgroundColor: 'rgba(234,179,8,0.1)',
+                        borderWidth: 3,
+                        pointBackgroundColor: '#eab308',
+                        pointBorderColor: 'white',
+                        pointBorderWidth: 2,
+                        pointRadius: 4,
+                        pointHoverRadius: 6,
+                        tension: 0.4,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    animation: {
+                        duration: 2000,
+                        easing: 'easeInOutQuart'
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: { enabled: true, mode: 'index', intersect: false }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: false,
+                            grid: { color: 'rgba(0,0,0,0.05)' }
+                        }
+                    }
+                }
+            });
+
+            // Graphique 2 : Flux annuels (bar avec animations)
+            const ctxFlux = document.getElementById('cashflowChart').getContext('2d');
+            window.cashflowChart = new Chart(ctxFlux, {
+                type: 'bar',
+                data: {
+                    labels: annees.slice(1),
+                    datasets: [{
+                        label: 'Flux annuel ($)',
+                        data: fluxData,
+                        backgroundColor: '#eab308',
+                        borderRadius: 8,
+                        barPercentage: 0.7,
+                        categoryPercentage: 0.8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    animation: {
+                        duration: 2000,
+                        easing: 'easeInOutQuart'
+                    },
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: { color: 'rgba(0,0,0,0.05)' }
+                        }
+                    }
+                }
+            });
+
+            // Graphique 3 : Comparaison (doughnut)
+            const ctxComp = document.getElementById('comparisonChart').getContext('2d');
+            window.comparisonChart = new Chart(ctxComp, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Investissement initial', 'Flux cumulés', 'Valeur résiduelle'],
+                    datasets: [{
+                        data: [investInitial, fluxAnnuel * duree, valeurResiduelle],
+                        backgroundColor: ['#eab308', '#fbbf24', '#fde68a'],
+                        borderColor: 'white',
+                        borderWidth: 2,
+                        hoverOffset: 10
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    animation: {
+                        duration: 2000,
+                        easing: 'easeInOutQuart'
+                    },
+                    plugins: {
+                        legend: { position: 'bottom' }
+                    }
+                }
+            });
+
+            // Animation supplémentaire avec Anime.js
+            if (window.anime) {
+                anime({
+                    targets: '.graph-container',
+                    scale: [0.95, 1],
+                    opacity: [0, 1],
+                    duration: 1000,
+                    delay: anime.stagger(200),
+                    easing: 'easeOutElastic(1, .5)'
+                });
             }
         }
 
-        document.addEventListener("DOMContentLoaded", function() {
-            const savedTheme = localStorage.getItem("theme");
-            const toggle = document.getElementById("themeToggle");
+        // Chargement initial
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('theme');
+            const icon = document.querySelector('.theme-icon');
             
-            if (savedTheme === "dark") {
-                document.body.classList.add("dark-mode");
-                if (toggle) toggle.textContent = "☀️";
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+                if (icon) icon.textContent = '☀️';
             } else {
-                if (toggle) toggle.textContent = "🌙";
+                if (icon) icon.textContent = '🌙';
             }
+            
+            // Animation d'entrée
+            if (window.anime) {
+                anime({
+                    targets: '.container, .card, .graph-container',
+                    opacity: [0, 1],
+                    translateY: [20, 0],
+                    duration: 1000,
+                    delay: anime.stagger(100),
+                    easing: 'easeOutQuad'
+                });
+            }
+            
+            calculerFinance();
         });
     </script>
 </body>
