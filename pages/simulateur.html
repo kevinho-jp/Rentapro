@@ -15,7 +15,7 @@
     
     <title>Simulateur de rentabilité locative - RentaPro</title>
     
-    <!-- jsPDF pour l'export PDF -->
+    <!-- IMPORTANT: jsPDF pour l'export PDF -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     
     <style>
@@ -61,6 +61,10 @@
 
         body.dark-mode .result-section {
             background: #0f172a;
+        }
+
+        body.dark-mode .result-value {
+            color: #eab308;
         }
 
         body.dark-mode .footer {
@@ -785,13 +789,14 @@
 
     <script>
         // ============================================
-        // SIMULATEUR DE RENTABILITÉ - VERSION COMPLÈTE
+        // SIMULATEUR DE RENTABILITÉ - VERSION CORRIGÉE
         // ============================================
 
         let simulationsRestantes = 3;
         let isPremium = false;
         let premiumExpiration = null;
 
+        // Mode sombre
         function toggleTheme() {
             document.body.classList.toggle('dark-mode');
             const toggle = document.getElementById('themeToggle');
@@ -799,6 +804,7 @@
             localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
         }
 
+        // Vérifier le statut Premium
         function checkPremiumStatus() {
             try {
                 const premiumData = localStorage.getItem('rentapro_premium');
@@ -833,9 +839,12 @@
                         lastReset: new Date().toISOString()
                     }));
                 }
-            } catch (e) {}
+            } catch (e) {
+                console.log("Erreur de lecture localStorage");
+            }
         }
 
+        // Mettre à jour l'affichage
         function updateDisplay() {
             const trialSpan = document.getElementById('trialCount');
             const calculBtn = document.getElementById('calculBtn');
@@ -859,13 +868,17 @@
             }
         }
 
+        // FONCTION PRINCIPALE DE CALCUL
         function calculer() {
+            console.log("Calcul en cours...");
+            
             if (!isPremium && simulationsRestantes <= 0) {
                 alert('❌ Vous avez utilisé vos 3 simulations gratuites.\n\nPour continuer, choisissez une formule Premium ci-dessous !');
                 document.getElementById('premiumBanner').scrollIntoView({ behavior: 'smooth' });
                 return;
             }
 
+            // Récupération des valeurs
             const prixAchat = parseFloat(document.getElementById('prixAchat').value) || 0;
             const fraisNotaire = parseFloat(document.getElementById('fraisNotaire').value) || 0;
             const travaux = parseFloat(document.getElementById('travaux').value) || 0;
@@ -878,10 +891,12 @@
             const vacance = parseFloat(document.getElementById('vacance').value) || 0;
             const tauxImposition = parseFloat(document.getElementById('tauxImposition').value) || 30;
 
+            // Calculs
             const fraisMontant = prixAchat * (fraisNotaire / 100);
             const totalAcquisition = prixAchat + fraisMontant + travaux;
             const montantEmprunt = totalAcquisition - apport;
 
+            // Mensualité
             let mensualite = 0;
             if (montantEmprunt > 0 && taux > 0 && duree > 0) {
                 const tauxMensuel = taux / 100 / 12;
@@ -891,21 +906,25 @@
                 }
             }
 
+            // Revenus et charges
             const loyerAnnuel = loyer * 12;
             const chargesAnnuel = charges * 12;
             const perteVacance = loyerAnnuel * (vacance / 100);
             const revenusNetsAnnuel = loyerAnnuel - chargesAnnuel - perteVacance - taxeFonciere;
             const cashflowMensuel = (revenusNetsAnnuel / 12) - mensualite;
 
+            // Rendements
             const rendementBrut = prixAchat > 0 ? (loyerAnnuel / prixAchat) * 100 : 0;
             const rendementNet = totalAcquisition > 0 ? (revenusNetsAnnuel / totalAcquisition) * 100 : 0;
             const rendementNetNet = rendementNet * (1 - tauxImposition / 100);
 
+            // Retour sur investissement
             let retourInvestissement = 0;
             if (apport > 0 && (revenusNetsAnnuel - mensualite * 12) > 0) {
                 retourInvestissement = apport / (revenusNetsAnnuel - mensualite * 12);
             }
 
+            // Affichage des résultats
             document.getElementById('totalAchat').innerText = '$' + totalAcquisition.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
             document.getElementById('montantEmprunte').innerText = '$' + montantEmprunt.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
             document.getElementById('mensualite').innerText = '$' + mensualite.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
@@ -916,6 +935,7 @@
             document.getElementById('rendementNetNet').innerText = rendementNetNet.toFixed(2) + '%';
             document.getElementById('retourInvestissement').innerText = retourInvestissement.toFixed(1) + ' ans';
 
+            // Coloration cash-flow
             const cashflowSpan = document.getElementById('cashflow');
             if (cashflowMensuel < 0) {
                 cashflowSpan.classList.add('negative');
@@ -925,6 +945,7 @@
                 cashflowSpan.classList.remove('negative');
             }
 
+            // Décrémenter les essais si pas premium
             if (!isPremium) {
                 simulationsRestantes--;
                 localStorage.setItem('rentapro_trials', JSON.stringify({
@@ -973,13 +994,9 @@
                     return;
             }
 
-            // Ouvrir PayPal dans un nouvel onglet
             window.open(lienPaypal, '_blank');
-            
-            // Message de confirmation
             alert(`🔒 Redirection vers PayPal pour un paiement de ${montant}$ (formule ${libelle})`);
 
-            // Simuler l'activation après 5 secondes
             setTimeout(() => {
                 if(confirm("✅ Votre paiement a-t-il été effectué ? Cliquez sur OK pour activer votre compte Premium")) {
                     const expiration = new Date();
@@ -997,52 +1014,80 @@
             }, 5000);
         }
 
+        // FONCTION D'EXPORT PDF
         function exporterPDF() {
+            // Vérifier que jsPDF est chargé
+            if (typeof window.jspdf === 'undefined') {
+                alert("❌ Erreur de chargement de la bibliothèque PDF. Veuillez réessayer.");
+                return;
+            }
+            
             const { jsPDF } = window.jspdf;
             
+            // Récupérer les valeurs actuelles
             const prix = document.getElementById('prixAchat').value;
             const rendement = document.getElementById('rendementNet').innerText;
             const cashflow = document.getElementById('cashflow').innerText;
             const mensualite = document.getElementById('mensualite').innerText;
+            const totalAchat = document.getElementById('totalAchat').innerText;
             
-            const doc = new jsPDF();
-            
-            doc.setFontSize(22);
-            doc.setTextColor(15, 23, 42);
-            doc.text('RentaPro', 20, 20);
-            
-            doc.setFontSize(16);
-            doc.setTextColor(234, 179, 8);
-            doc.text('Simulation de rentabilité locative', 20, 30);
-            
-            doc.setDrawColor(234, 179, 8);
-            doc.line(20, 35, 190, 35);
-            
-            doc.setFontSize(10);
-            doc.setTextColor(100, 116, 139);
-            const date = new Date();
-            doc.text('Date: ' + date.toLocaleDateString() + ' ' + date.toLocaleTimeString(), 20, 45);
-            
-            doc.setFontSize(14);
-            doc.setTextColor(15, 23, 42);
-            doc.text('Résultats de la simulation', 20, 60);
-            
-            doc.setFontSize(12);
-            doc.text('Prix d\'achat: $' + Number(prix).toLocaleString(), 20, 75);
-            doc.text('Mensualité: ' + mensualite, 20, 85);
-            doc.text('Rendement net: ' + rendement, 20, 95);
-            doc.text('Cash-flow mensuel: ' + cashflow, 20, 105);
-            
-            doc.setFontSize(8);
-            doc.setTextColor(150, 150, 150);
-            doc.text('Ce document est généré à titre indicatif. Les résultats ne constituent pas un conseil en investissement.', 20, 140);
-            doc.text('RentaPro - ' + new Date().getFullYear(), 20, 150);
-            
-            doc.save('simulation-rentapro.pdf');
+            try {
+                // Créer le document PDF
+                const doc = new jsPDF();
+                
+                // En-tête
+                doc.setFontSize(24);
+                doc.setTextColor(15, 23, 42);
+                doc.text('RentaPro', 20, 20);
+                
+                doc.setFontSize(18);
+                doc.setTextColor(234, 179, 8);
+                doc.text('Simulation de rentabilité locative', 20, 35);
+                
+                // Ligne de séparation
+                doc.setDrawColor(234, 179, 8);
+                doc.line(20, 40, 190, 40);
+                
+                // Date
+                doc.setFontSize(11);
+                doc.setTextColor(100, 116, 139);
+                const date = new Date();
+                doc.text('Date: ' + date.toLocaleDateString() + ' à ' + date.toLocaleTimeString(), 20, 50);
+                
+                // Résultats
+                doc.setFontSize(16);
+                doc.setTextColor(15, 23, 42);
+                doc.text('Résultats de votre simulation', 20, 65);
+                
+                doc.setFontSize(12);
+                doc.setTextColor(15, 23, 42);
+                doc.text('Prix d\'achat: $' + Number(prix).toLocaleString(), 20, 80);
+                doc.text('Coût total acquisition: ' + totalAchat, 20, 90);
+                doc.text('Mensualité: ' + mensualite, 20, 100);
+                doc.text('Rendement net: ' + rendement, 20, 110);
+                doc.text('Cash-flow mensuel: ' + cashflow, 20, 120);
+                
+                // Mentions légales
+                doc.setFontSize(9);
+                doc.setTextColor(150, 150, 150);
+                doc.text('Ce document est généré à titre indicatif. Les résultats ne constituent pas un conseil en investissement.', 20, 150);
+                doc.text('RentaPro - ' + new Date().getFullYear(), 20, 160);
+                
+                // Sauvegarder
+                doc.save('simulation-rentapro-' + date.toISOString().slice(0,10) + '.pdf');
+                alert('✅ PDF généré avec succès !');
+                
+            } catch (error) {
+                console.error("Erreur PDF:", error);
+                alert("❌ Une erreur est survenue lors de la génération du PDF.");
+            }
         }
 
-        // Initialisation
+        // Initialisation au chargement de la page
         document.addEventListener('DOMContentLoaded', function() {
+            console.log("Page chargée, initialisation...");
+            
+            // Mode sombre
             const savedTheme = localStorage.getItem('theme');
             const toggle = document.getElementById('themeToggle');
             
@@ -1053,8 +1098,11 @@
                 if (toggle) toggle.textContent = '🌙';
             }
             
+            // Vérifier statut
             checkPremiumStatus();
             updateDisplay();
+            
+            // Lancer un premier calcul
             setTimeout(() => {
                 calculer();
             }, 100);
