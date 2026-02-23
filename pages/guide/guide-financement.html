@@ -3,34 +3,184 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guide du financement immobilier - RentaPro</title>
+    <title>Guide financement immobilier - RentaPro</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-        body { background: #f8fafc; color: #1e293b; line-height: 1.6; padding: 2rem; }
-        .container { max-width: 800px; margin: 0 auto; background: white; border-radius: 30px; padding: 3rem; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
-        h1 { color: #0f172a; margin-bottom: 1.5rem; }
-        h2 { color: #0f172a; margin: 2rem 0 1rem; }
-        p { color: #475569; margin-bottom: 1rem; }
-        ul { margin-left: 1.5rem; color: #475569; margin-bottom: 1rem; }
-        li { margin-bottom: 0.5rem; }
-        .btn { display: inline-block; padding: 1rem 2rem; background: #0f172a; color: white; text-decoration: none; border-radius: 10px; margin-top: 1rem; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+        body {
+            background: #f8fafc;
+            color: #1e293b;
+            padding: 2rem;
+        }
+        .navbar {
+            background: white;
+            padding: 1rem 5%;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 50px;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        .logo-icon {
+            font-size: 2rem;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #eab308;
+            width: 50px;
+            height: 50px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .logo-text {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .nav-links a {
+            color: #64748b;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .nav-links a:hover {
+            color: #0f172a;
+        }
+        .nav-links a.active {
+            color: #0f172a;
+            font-weight: 600;
+            border-bottom: 3px solid #eab308;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 30px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+        h1 {
+            color: #0f172a;
+            margin-bottom: 1.5rem;
+        }
+        h2 {
+            color: #0f172a;
+            margin: 2rem 0 1rem;
+        }
+        p {
+            color: #475569;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        ul {
+            margin-left: 1.5rem;
+            color: #475569;
+            margin-bottom: 1rem;
+        }
+        li {
+            margin-bottom: 0.5rem;
+        }
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: #0f172a;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            margin-top: 1rem;
+        }
+        .footer {
+            margin-top: 2rem;
+            text-align: center;
+            color: #64748b;
+        }
+        .theme-toggle {
+            position: fixed;
+            bottom: 110px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #0f172a;
+            color: #eab308;
+            border: 2px solid #eab308;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            z-index: 999;
+        }
     </style>
 </head>
 <body>
+    <nav class="navbar">
+        <div class="logo">
+            <div class="logo-icon">🏠</div>
+            <span class="logo-text">RentaPro</span>
+        </div>
+        <div class="nav-links">
+            <a href="/">Accueil</a>
+            <a href="/pages/simulateur.html">Simulateur</a>
+            <a href="/pages/guide.html">Guide</a>
+            <a href="/pages/contact.html">Contact</a>
+        </div>
+    </nav>
+
     <div class="container">
-        <h1>🏦 Guide du financement</h1>
-        <p>Comment financer votre investissement locatif ? Découvrez les différentes options.</p>
+        <h1>🏦 Guide financement immobilier</h1>
         
-        <h2>1. Le crédit immobilier classique</h2>
+        <h2>1. Crédit immobilier classique</h2>
         <p>Taux moyens : 3.5% à 4.5% sur 15-25 ans. Nécessite un apport de 10-20%.</p>
         
-        <h2>2. Le prêt à taux zéro (PTZ)</h2>
+        <h2>2. Prêt à taux zéro (PTZ)</h2>
         <p>Pour primo-accédants dans certaines zones. Peut financer jusqu'à 40% du projet.</p>
         
-        <h2>3. Le crédit in fine</h2>
+        <h2>3. Crédit in fine</h2>
         <p>Vous ne remboursez que les intérêts, le capital est remboursé à la fin. Idéal pour défiscaliser.</p>
         
-        <a href="/pages/guide.html" class="btn">← Retour au guide</a>
+        <h2>4. Apport personnel</h2>
+        <p>Idéalement 10-20% du prix du bien. Plus l'apport est élevé, meilleur sera le taux.</p>
+        
+        <a href="/pages/guide.html" class="btn">← Retour au guide principal</a>
     </div>
+
+    <footer class="footer">
+        © 2026 RentaPro - Guide financement
+    </footer>
+
+    <div class="theme-toggle" id="themeToggle" onclick="toggleTheme()">🌙</div>
+
+    <script>
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+            const toggle = document.getElementById('themeToggle');
+            toggle.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+            localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+        }
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-mode');
+            document.getElementById('themeToggle').textContent = '☀️';
+        }
+    </script>
 </body>
 </html>
