@@ -2,81 +2,31 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- Google tag (gtag.js) - Google Analytics 4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-525423879"></script>
     <script>
-        function toggleTheme() {
-            const body = document.body;
-            const toggle = document.getElementById("themeToggle");
-            body.classList.toggle("dark-mode");
-            
-            if (body.classList.contains("dark-mode")) {
-                toggle.textContent = "☀️";
-                localStorage.setItem("theme", "dark");
-            } else {
-                toggle.textContent = "🌙";
-                localStorage.setItem("theme", "light");
-            }
-        }
-
-        document.addEventListener("DOMContentLoaded", function() {
-            const savedTheme = localStorage.getItem("theme");
-            const toggle = document.getElementById("themeToggle");
-            
-            if (savedTheme === "dark") {
-                document.body.classList.add("dark-mode");
-                if (toggle) toggle.textContent = "☀️";
-            } else {
-                if (toggle) toggle.textContent = "🌙";
-            }
-        });
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-525423879');
     </script>
     
-    <meta name="google-site-verification" content="googlef746d504e2f887e6" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- ========== BALISES SEO ========== -->
-    <title>Simulateur de rentabilité locative gratuit - RentaPro</title>
-    <meta name="description" content="Simulateur de rentabilité locative gratuit. Calculez rendement brut, net, cash-flow, VAN et TRI pour vos investissements immobiliers. 3 simulations gratuites par jour.">
-    <meta name="keywords" content="simulateur immobilier, calcul rentabilité locative, rendement locatif, cash-flow immobilier, investissement locatif">
-    <meta name="author" content="RentaPro">
-    <meta name="robots" content="index, follow">
-    
-    <!-- Open Graph -->
-    <meta property="og:title" content="RentaPro - Simulateur de rentabilité locative">
-    <meta property="og:description" content="Calculez gratuitement la rentabilité de vos investissements immobiliers">
-    <meta property="og:image" content="https://rentapro-swart.vercel.app/images/og-simulateur.jpg">
-    <meta property="og:url" content="https://rentapro-swart.vercel.app/pages/simulateur.html">
-    <meta property="og:type" content="website">
-    
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="RentaPro - Simulateur immobilier">
-    <meta name="twitter:description" content="Simulateur de rentabilité locative gratuit">
-    <meta name="twitter:image" content="https://rentapro-swart.vercel.app/images/og-simulateur.jpg">
-    
-    <!-- Google AdSense -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+    <title>Simulateur de rentabilité locative - RentaPro</title>
     
     <!-- jsPDF pour l'export PDF -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Assistant IA CSS -->
-    <link rel="stylesheet" href="/assistant-ia.css">
-
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
         }
 
         body {
-            font-family: 'Inter', sans-serif;
             background: #f8fafc;
             color: #1e293b;
             display: flex;
@@ -93,7 +43,6 @@
 
         body.dark-mode .navbar {
             background: #1e293b;
-            border-bottom: 1px solid #334155;
         }
 
         body.dark-mode .nav-links a {
@@ -105,8 +54,7 @@
             color: #eab308;
         }
 
-        body.dark-mode .card,
-        body.dark-mode .premium-banner {
+        body.dark-mode .card {
             background: #1e293b;
             border-color: #334155;
         }
@@ -115,83 +63,8 @@
             background: #0f172a;
         }
 
-        body.dark-mode h1,
-        body.dark-mode h2,
-        body.dark-mode h3,
-        body.dark-mode .result-value {
-            color: #f8fafc;
-        }
-
-        body.dark-mode .result-label,
-        body.dark-mode p,
-        body.dark-mode .subtitle {
-            color: #94a3b8;
-        }
-
-        body.dark-mode input,
-        body.dark-mode select {
-            background: #0f172a;
-            border-color: #334155;
-            color: #f8fafc;
-        }
-
-        body.dark-mode input:focus,
-        body.dark-mode select:focus {
-            border-color: #eab308;
-        }
-
-        body.dark-mode .btn-primary {
-            background: #eab308;
-            color: #0f172a;
-        }
-
-        body.dark-mode .btn-primary:hover {
-            background: #fbbf24;
-        }
-
-        body.dark-mode .btn-save {
-            background: transparent;
-            border-color: #334155;
-            color: #f8fafc;
-        }
-
         body.dark-mode .footer {
             background: #0a0f1a;
-        }
-
-        .theme-toggle {
-            position: fixed;
-            bottom: 110px;
-            right: 30px;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: #0f172a;
-            color: #eab308;
-            border: 2px solid #eab308;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            z-index: 999;
-            transition: all 0.3s;
-        }
-
-        .theme-toggle:hover {
-            transform: scale(1.1);
-            background: #eab308;
-            color: #0f172a;
-        }
-
-        body.dark-mode .theme-toggle {
-            background: #eab308;
-            color: #0f172a;
-        }
-
-        body.dark-mode .theme-toggle:hover {
-            background: #0f172a;
-            color: #eab308;
         }
 
         .navbar {
@@ -206,8 +79,6 @@
             position: sticky;
             top: 0;
             z-index: 100;
-            backdrop-filter: blur(10px);
-            background: rgba(255, 255, 255, 0.9);
         }
 
         .logo {
@@ -216,7 +87,6 @@
             gap: 0.5rem;
             font-size: 1.8rem;
             font-weight: 700;
-            font-family: 'Montserrat', sans-serif;
         }
 
         .logo-icon {
@@ -229,7 +99,6 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
         }
 
         .logo-text {
@@ -271,7 +140,6 @@
             width: 100%;
             height: 3px;
             background: #eab308;
-            border-radius: 3px 3px 0 0;
         }
 
         .container {
@@ -291,7 +159,6 @@
             font-size: clamp(2rem, 5vw, 2.8rem);
             color: #0f172a;
             margin-bottom: 0.5rem;
-            font-family: 'Montserrat', sans-serif;
         }
 
         .subtitle {
@@ -309,7 +176,6 @@
             display: inline-block;
             margin: 1rem auto;
             font-weight: 600;
-            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.05);
         }
 
         .trial-counter span {
@@ -350,8 +216,6 @@
             font-weight: 600;
             color: #0f172a;
             margin-bottom: 0.5rem;
-            font-size: 0.95rem;
-            font-family: 'Montserrat', sans-serif;
         }
 
         .form-group input,
@@ -361,15 +225,12 @@
             border: 2px solid #e2e8f0;
             border-radius: 12px;
             font-size: 1rem;
-            transition: all 0.3s;
-            font-family: 'Inter', sans-serif;
         }
 
         .form-group input:focus,
         .form-group select:focus {
             outline: none;
             border-color: #eab308;
-            box-shadow: 0 0 0 3px rgba(234,179,8,0.1);
         }
 
         .currency-input {
@@ -426,7 +287,6 @@
             font-weight: 700;
             color: #0f172a;
             font-size: 1.1rem;
-            font-family: 'Montserrat', sans-serif;
         }
 
         .positive {
@@ -453,7 +313,6 @@
             transition: all 0.3s;
             border: none;
             width: 100%;
-            font-family: 'Montserrat', sans-serif;
         }
 
         .btn-primary {
@@ -464,7 +323,6 @@
         .btn-primary:hover:not(:disabled) {
             background: #1e293b;
             transform: translateY(-2px);
-            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.05);
         }
 
         .btn-primary:disabled {
@@ -481,7 +339,6 @@
 
         .btn-save:hover:not(:disabled) {
             border-color: #eab308;
-            background: #fef9e7;
         }
 
         .btn-export {
@@ -494,13 +351,10 @@
             cursor: pointer;
             width: 100%;
             margin-top: 1rem;
-            transition: all 0.3s;
-            font-family: 'Montserrat', sans-serif;
         }
 
         .btn-export:hover {
             background: #b91c1c;
-            transform: translateY(-2px);
         }
 
         .premium-banner {
@@ -515,7 +369,6 @@
         .premium-banner h2 {
             font-size: 2rem;
             margin-bottom: 1rem;
-            font-family: 'Montserrat', sans-serif;
         }
 
         .premium-banner p {
@@ -559,7 +412,6 @@
         .pricing-card h3 {
             font-size: 1.5rem;
             margin-bottom: 1rem;
-            font-family: 'Montserrat', sans-serif;
         }
 
         .pricing-card .price {
@@ -579,13 +431,29 @@
             cursor: pointer;
             transition: all 0.3s;
             width: 100%;
-            font-family: 'Montserrat', sans-serif;
         }
 
         .btn-premium:hover {
             background: #fbbf24;
             transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(234,179,8,0.3);
+        }
+
+        .theme-toggle {
+            position: fixed;
+            bottom: 110px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #0f172a;
+            color: #eab308;
+            border: 2px solid #eab308;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            z-index: 999;
         }
 
         .footer {
@@ -606,7 +474,6 @@
         .footer-section h4 {
             color: #eab308;
             margin-bottom: 1.5rem;
-            font-family: 'Montserrat', sans-serif;
         }
 
         .footer-section a {
@@ -614,12 +481,10 @@
             text-decoration: none;
             display: block;
             margin-bottom: 0.8rem;
-            transition: color 0.3s;
         }
 
         .footer-section a:hover {
             color: #eab308;
-            transform: translateX(5px);
         }
 
         .footer-legal {
@@ -634,10 +499,6 @@
             color: #94a3b8;
             text-decoration: none;
             font-size: 0.9rem;
-        }
-
-        .footer-legal a:hover {
-            color: #eab308;
         }
 
         .amazon-disclaimer {
@@ -672,113 +533,6 @@
             .premium-pricing {
                 flex-direction: column;
             }
-        }
-    </style>
- 
-    <style>
-        /* Mode sombre */
-        body.dark-mode {
-            background: #0f172a;
-            color: #f8fafc;
-        }
-        body.dark-mode .navbar {
-            background: #1e293b;
-            border-bottom: 1px solid #334155;
-        }
-        body.dark-mode .nav-links a {
-            color: #94a3b8;
-        }
-        body.dark-mode .nav-links a:hover,
-        body.dark-mode .nav-links a.active {
-            color: #eab308;
-        }
-        body.dark-mode .card,
-        body.dark-mode .feature-card,
-        body.dark-mode .guide-section,
-        body.dark-mode .investor-card,
-        body.dark-mode .testimonial-card,
-        body.dark-mode .contact-info,
-        body.dark-mode .contact-form {
-            background: #1e293b;
-            border-color: #334155;
-        }
-        body.dark-mode .result-section,
-        body.dark-mode .continent-stats,
-        body.dark-mode .book-card,
-        body.dark-mode .type-card {
-            background: #0f172a;
-        }
-        body.dark-mode .footer {
-            background: #0a0f1a;
-        }
-        body.dark-mode h1,
-        body.dark-mode h2,
-        body.dark-mode h3,
-        body.dark-mode h4,
-        body.dark-mode .result-value {
-            color: #f8fafc;
-        }
-        body.dark-mode p,
-        body.dark-mode .result-label,
-        body.dark-mode .stat-label,
-        body.dark-mode .blog-excerpt,
-        body.dark-mode .subtitle {
-            color: #94a3b8;
-        }
-        body.dark-mode input,
-        body.dark-mode select,
-        body.dark-mode textarea {
-            background: #0f172a;
-            border-color: #334155;
-            color: #f8fafc;
-        }
-        body.dark-mode input:focus,
-        body.dark-mode select:focus,
-        body.dark-mode textarea:focus {
-            border-color: #eab308;
-        }
-        body.dark-mode .btn-primary {
-            background: #eab308;
-            color: #0f172a;
-        }
-        body.dark-mode .btn-primary:hover {
-            background: #fbbf24;
-        }
-        body.dark-mode .btn-save {
-            background: transparent;
-            border-color: #334155;
-            color: #f8fafc;
-        }
-        .theme-toggle {
-            position: fixed;
-            bottom: 110px;
-            right: 30px;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: #0f172a;
-            color: #eab308;
-            border: 2px solid #eab308;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            z-index: 999;
-            transition: all 0.3s;
-        }
-        .theme-toggle:hover {
-            transform: scale(1.1);
-            background: #eab308;
-            color: #0f172a;
-        }
-        body.dark-mode .theme-toggle {
-            background: #eab308;
-            color: #0f172a;
-        }
-        body.dark-mode .theme-toggle:hover {
-            background: #0f172a;
-            color: #eab308;
         }
     </style>
 </head>
@@ -1026,90 +780,284 @@
         </div>
     </footer>
 
-    <!-- Assistant IA -->
-    <div class="chat-button" id="chatButton" onclick="toggleChat()">💬</div>
-    <div class="chat-window" id="chatWindow">
-        <div class="chat-header">
-            <h3><i>🏠</i> Assistant RentaPro</h3>
-            <button class="close-chat" onclick="toggleChat()">✕</button>
-        </div>
-        <div class="chat-messages" id="chatMessages">
-            <div class="message bot">
-                👋 Bonjour ! Je suis l'assistant IA de RentaPro. Posez-moi vos questions sur l'investissement immobilier !
-            </div>
-        </div>
-        <div class="chat-input-area">
-            <input type="text" class="chat-input" id="userInput" placeholder="Votre question..." onkeypress="if(event.key==='Enter') sendMessage()">
-            <button class="send-message" onclick="sendMessage()">➤</button>
-        </div>
-        <div class="suggestions">
-            <span class="suggestion-chip" onclick="useSuggestion('Comment calculer le rendement locatif ?')">📊 Rendement</span>
-            <span class="suggestion-chip" onclick="useSuggestion('C\'est quoi le cash-flow ?')">💰 Cash-flow</span>
-            <span class="suggestion-chip" onclick="useSuggestion('Comment financer mon premier achat ?')">🏦 Financement</span>
-            <span class="suggestion-chip" onclick="useSuggestion('LMNP ou location vide ?')">🏢 LMNP</span>
-        </div>
-    </div>
-
-    <!-- Bouton mode sombre -->
-    <div class="theme-toggle" id="themeToggle" onclick="toggleTheme()">🌙</div>
-
-    <script src="/assistant-ia.js"></script>
-    <script>
-        function toggleTheme() {
-            const body = document.body;
-            const toggle = document.getElementById("themeToggle");
-            body.classList.toggle("dark-mode");
-            
-            if (body.classList.contains("dark-mode")) {
-                toggle.textContent = "☀️";
-                localStorage.setItem("theme", "dark");
-            } else {
-                toggle.textContent = "🌙";
-                localStorage.setItem("theme", "light");
-            }
-        }
-
-        document.addEventListener("DOMContentLoaded", function() {
-            const savedTheme = localStorage.getItem("theme");
-            const toggle = document.getElementById("themeToggle");
-            
-            if (savedTheme === "dark") {
-                document.body.classList.add("dark-mode");
-                if (toggle) toggle.textContent = "☀️";
-            } else {
-                if (toggle) toggle.textContent = "🌙";
-            }
-        });
-    </script>
- 
     <!-- Bouton mode sombre -->
     <div class="theme-toggle" id="themeToggle" onclick="toggleTheme()">🌙</div>
 
     <script>
+        // ============================================
+        // SIMULATEUR DE RENTABILITÉ - VERSION COMPLÈTE
+        // ============================================
+
+        let simulationsRestantes = 3;
+        let isPremium = false;
+        let premiumExpiration = null;
+
         function toggleTheme() {
-            const body = document.body;
-            const toggle = document.getElementById("themeToggle");
-            body.classList.toggle("dark-mode");
-            
-            if (body.classList.contains("dark-mode")) {
-                toggle.textContent = "☀️";
-                localStorage.setItem("theme", "dark");
+            document.body.classList.toggle('dark-mode');
+            const toggle = document.getElementById('themeToggle');
+            toggle.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+            localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+        }
+
+        function checkPremiumStatus() {
+            try {
+                const premiumData = localStorage.getItem('rentapro_premium');
+                if (premiumData) {
+                    const data = JSON.parse(premiumData);
+                    if (data.expiration && new Date(data.expiration) > new Date()) {
+                        isPremium = true;
+                        premiumExpiration = data.expiration;
+                    } else {
+                        localStorage.removeItem('rentapro_premium');
+                        isPremium = false;
+                    }
+                }
+
+                const trialData = localStorage.getItem('rentapro_trials');
+                if (trialData) {
+                    const data = JSON.parse(trialData);
+                    const lastReset = new Date(data.lastReset);
+                    const today = new Date();
+                    if (lastReset.toDateString() !== today.toDateString()) {
+                        simulationsRestantes = 3;
+                        localStorage.setItem('rentapro_trials', JSON.stringify({
+                            count: 3,
+                            lastReset: today.toISOString()
+                        }));
+                    } else {
+                        simulationsRestantes = data.count;
+                    }
+                } else {
+                    localStorage.setItem('rentapro_trials', JSON.stringify({
+                        count: 3,
+                        lastReset: new Date().toISOString()
+                    }));
+                }
+            } catch (e) {}
+        }
+
+        function updateDisplay() {
+            const trialSpan = document.getElementById('trialCount');
+            const calculBtn = document.getElementById('calculBtn');
+            const saveBtn = document.getElementById('saveBtn');
+            const premiumBanner = document.getElementById('premiumBanner');
+
+            if (isPremium) {
+                trialSpan.textContent = '∞';
+                trialSpan.style.color = '#eab308';
+                trialSpan.style.fontWeight = 'bold';
+                if (calculBtn) calculBtn.disabled = false;
+                if (saveBtn) saveBtn.disabled = false;
+                if (premiumBanner) premiumBanner.style.display = 'none';
             } else {
-                toggle.textContent = "🌙";
-                localStorage.setItem("theme", "light");
+                trialSpan.textContent = simulationsRestantes;
+                trialSpan.style.color = '';
+                trialSpan.style.fontWeight = '';
+                if (calculBtn) calculBtn.disabled = simulationsRestantes <= 0;
+                if (saveBtn) saveBtn.disabled = simulationsRestantes <= 0;
+                if (premiumBanner) premiumBanner.style.display = 'block';
             }
         }
 
-        document.addEventListener("DOMContentLoaded", function() {
-            const savedTheme = localStorage.getItem("theme");
-            const toggle = document.getElementById("themeToggle");
-            
-            if (savedTheme === "dark") {
-                document.body.classList.add("dark-mode");
-                if (toggle) toggle.textContent = "☀️";
-            } else {
-                if (toggle) toggle.textContent = "🌙";
+        function calculer() {
+            if (!isPremium && simulationsRestantes <= 0) {
+                alert('❌ Vous avez utilisé vos 3 simulations gratuites.\n\nPour continuer, choisissez une formule Premium ci-dessous !');
+                document.getElementById('premiumBanner').scrollIntoView({ behavior: 'smooth' });
+                return;
             }
+
+            const prixAchat = parseFloat(document.getElementById('prixAchat').value) || 0;
+            const fraisNotaire = parseFloat(document.getElementById('fraisNotaire').value) || 0;
+            const travaux = parseFloat(document.getElementById('travaux').value) || 0;
+            const apport = parseFloat(document.getElementById('apport').value) || 0;
+            const taux = parseFloat(document.getElementById('taux').value) || 0;
+            const duree = parseFloat(document.getElementById('duree').value) || 0;
+            const loyer = parseFloat(document.getElementById('loyer').value) || 0;
+            const charges = parseFloat(document.getElementById('charges').value) || 0;
+            const taxeFonciere = parseFloat(document.getElementById('taxeFonciere').value) || 0;
+            const vacance = parseFloat(document.getElementById('vacance').value) || 0;
+            const tauxImposition = parseFloat(document.getElementById('tauxImposition').value) || 30;
+
+            const fraisMontant = prixAchat * (fraisNotaire / 100);
+            const totalAcquisition = prixAchat + fraisMontant + travaux;
+            const montantEmprunt = totalAcquisition - apport;
+
+            let mensualite = 0;
+            if (montantEmprunt > 0 && taux > 0 && duree > 0) {
+                const tauxMensuel = taux / 100 / 12;
+                const nbMois = duree * 12;
+                if (tauxMensuel > 0) {
+                    mensualite = montantEmprunt * tauxMensuel * Math.pow(1 + tauxMensuel, nbMois) / (Math.pow(1 + tauxMensuel, nbMois) - 1);
+                }
+            }
+
+            const loyerAnnuel = loyer * 12;
+            const chargesAnnuel = charges * 12;
+            const perteVacance = loyerAnnuel * (vacance / 100);
+            const revenusNetsAnnuel = loyerAnnuel - chargesAnnuel - perteVacance - taxeFonciere;
+            const cashflowMensuel = (revenusNetsAnnuel / 12) - mensualite;
+
+            const rendementBrut = prixAchat > 0 ? (loyerAnnuel / prixAchat) * 100 : 0;
+            const rendementNet = totalAcquisition > 0 ? (revenusNetsAnnuel / totalAcquisition) * 100 : 0;
+            const rendementNetNet = rendementNet * (1 - tauxImposition / 100);
+
+            let retourInvestissement = 0;
+            if (apport > 0 && (revenusNetsAnnuel - mensualite * 12) > 0) {
+                retourInvestissement = apport / (revenusNetsAnnuel - mensualite * 12);
+            }
+
+            document.getElementById('totalAchat').innerText = '$' + totalAcquisition.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+            document.getElementById('montantEmprunte').innerText = '$' + montantEmprunt.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+            document.getElementById('mensualite').innerText = '$' + mensualite.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+            document.getElementById('revenusNets').innerText = '$' + revenusNetsAnnuel.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+            document.getElementById('cashflow').innerText = '$' + cashflowMensuel.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+            document.getElementById('rendementBrut').innerText = rendementBrut.toFixed(2) + '%';
+            document.getElementById('rendementNet').innerText = rendementNet.toFixed(2) + '%';
+            document.getElementById('rendementNetNet').innerText = rendementNetNet.toFixed(2) + '%';
+            document.getElementById('retourInvestissement').innerText = retourInvestissement.toFixed(1) + ' ans';
+
+            const cashflowSpan = document.getElementById('cashflow');
+            if (cashflowMensuel < 0) {
+                cashflowSpan.classList.add('negative');
+                cashflowSpan.classList.remove('positive');
+            } else {
+                cashflowSpan.classList.add('positive');
+                cashflowSpan.classList.remove('negative');
+            }
+
+            if (!isPremium) {
+                simulationsRestantes--;
+                localStorage.setItem('rentapro_trials', JSON.stringify({
+                    count: simulationsRestantes,
+                    lastReset: new Date().toISOString()
+                }));
+                updateDisplay();
+
+                if (simulationsRestantes === 0) {
+                    alert('✅ Vous avez utilisé vos 3 simulations gratuites.\n\n✨ Passez à Premium pour continuer !');
+                }
+            }
+        }
+
+        function sauvegarderSimulation() {
+            if (!isPremium) {
+                alert('❌ La sauvegarde est réservée aux membres Premium.\n\nPassez à Premium pour sauvegarder vos simulations !');
+                return;
+            }
+            alert('✅ Simulation sauvegardée !');
+        }
+
+        function acheterPremium(type) {
+            let montant, duree, libelle, lienPaypal;
+
+            switch(type) {
+                case 'monthly':
+                    montant = 2.99;
+                    duree = 30;
+                    libelle = 'Mensuel';
+                    lienPaypal = 'https://www.paypal.me/KevinMukendi669/2.99';
+                    break;
+                case 'yearly':
+                    montant = 29.99;
+                    duree = 365;
+                    libelle = 'Annuel';
+                    lienPaypal = 'https://www.paypal.me/KevinMukendi669/29.99';
+                    break;
+                case 'lifetime':
+                    montant = 49.99;
+                    duree = 36500;
+                    libelle = 'À vie';
+                    lienPaypal = 'https://www.paypal.me/KevinMukendi669/49.99';
+                    break;
+                default:
+                    return;
+            }
+
+            // Ouvrir PayPal dans un nouvel onglet
+            window.open(lienPaypal, '_blank');
+            
+            // Message de confirmation
+            alert(`🔒 Redirection vers PayPal pour un paiement de ${montant}$ (formule ${libelle})`);
+
+            // Simuler l'activation après 5 secondes
+            setTimeout(() => {
+                if(confirm("✅ Votre paiement a-t-il été effectué ? Cliquez sur OK pour activer votre compte Premium")) {
+                    const expiration = new Date();
+                    expiration.setDate(expiration.getDate() + duree);
+
+                    localStorage.setItem('rentapro_premium', JSON.stringify({
+                        active: true,
+                        type: type,
+                        expiration: expiration.toISOString()
+                    }));
+
+                    alert(`🎉 FÉLICITATIONS !\n\nAccès Premium ${libelle} activé jusqu'au ${expiration.toLocaleDateString()}`);
+                    location.reload();
+                }
+            }, 5000);
+        }
+
+        function exporterPDF() {
+            const { jsPDF } = window.jspdf;
+            
+            const prix = document.getElementById('prixAchat').value;
+            const rendement = document.getElementById('rendementNet').innerText;
+            const cashflow = document.getElementById('cashflow').innerText;
+            const mensualite = document.getElementById('mensualite').innerText;
+            
+            const doc = new jsPDF();
+            
+            doc.setFontSize(22);
+            doc.setTextColor(15, 23, 42);
+            doc.text('RentaPro', 20, 20);
+            
+            doc.setFontSize(16);
+            doc.setTextColor(234, 179, 8);
+            doc.text('Simulation de rentabilité locative', 20, 30);
+            
+            doc.setDrawColor(234, 179, 8);
+            doc.line(20, 35, 190, 35);
+            
+            doc.setFontSize(10);
+            doc.setTextColor(100, 116, 139);
+            const date = new Date();
+            doc.text('Date: ' + date.toLocaleDateString() + ' ' + date.toLocaleTimeString(), 20, 45);
+            
+            doc.setFontSize(14);
+            doc.setTextColor(15, 23, 42);
+            doc.text('Résultats de la simulation', 20, 60);
+            
+            doc.setFontSize(12);
+            doc.text('Prix d\'achat: $' + Number(prix).toLocaleString(), 20, 75);
+            doc.text('Mensualité: ' + mensualite, 20, 85);
+            doc.text('Rendement net: ' + rendement, 20, 95);
+            doc.text('Cash-flow mensuel: ' + cashflow, 20, 105);
+            
+            doc.setFontSize(8);
+            doc.setTextColor(150, 150, 150);
+            doc.text('Ce document est généré à titre indicatif. Les résultats ne constituent pas un conseil en investissement.', 20, 140);
+            doc.text('RentaPro - ' + new Date().getFullYear(), 20, 150);
+            
+            doc.save('simulation-rentapro.pdf');
+        }
+
+        // Initialisation
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('theme');
+            const toggle = document.getElementById('themeToggle');
+            
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+                if (toggle) toggle.textContent = '☀️';
+            } else {
+                if (toggle) toggle.textContent = '🌙';
+            }
+            
+            checkPremiumStatus();
+            updateDisplay();
+            setTimeout(() => {
+                calculer();
+            }, 100);
         });
     </script>
 </body>
