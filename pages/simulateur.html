@@ -2,6 +2,16 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    
+    <!-- Google tag (gtag.js) - Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-525423879"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-525423879');
+    </script>
+    
     <meta name="google-site-verification" content="googlef746d504e2f887e6" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
@@ -28,6 +38,9 @@
     <!-- Google AdSense -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
     
+    <!-- jsPDF pour l'export PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     
@@ -48,6 +61,116 @@
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+            transition: all 0.3s;
+        }
+
+        /* Mode sombre */
+        body.dark-mode {
+            background: #0f172a;
+            color: #f8fafc;
+        }
+
+        body.dark-mode .navbar {
+            background: #1e293b;
+            border-bottom: 1px solid #334155;
+        }
+
+        body.dark-mode .nav-links a {
+            color: #94a3b8;
+        }
+
+        body.dark-mode .nav-links a:hover,
+        body.dark-mode .nav-links a.active {
+            color: #eab308;
+        }
+
+        body.dark-mode .card,
+        body.dark-mode .premium-banner {
+            background: #1e293b;
+            border-color: #334155;
+        }
+
+        body.dark-mode .result-section {
+            background: #0f172a;
+        }
+
+        body.dark-mode h1,
+        body.dark-mode h2,
+        body.dark-mode h3,
+        body.dark-mode .result-value {
+            color: #f8fafc;
+        }
+
+        body.dark-mode .result-label,
+        body.dark-mode p,
+        body.dark-mode .subtitle {
+            color: #94a3b8;
+        }
+
+        body.dark-mode input,
+        body.dark-mode select {
+            background: #0f172a;
+            border-color: #334155;
+            color: #f8fafc;
+        }
+
+        body.dark-mode input:focus,
+        body.dark-mode select:focus {
+            border-color: #eab308;
+        }
+
+        body.dark-mode .btn-primary {
+            background: #eab308;
+            color: #0f172a;
+        }
+
+        body.dark-mode .btn-primary:hover {
+            background: #fbbf24;
+        }
+
+        body.dark-mode .btn-save {
+            background: transparent;
+            border-color: #334155;
+            color: #f8fafc;
+        }
+
+        body.dark-mode .footer {
+            background: #0a0f1a;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            bottom: 110px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #0f172a;
+            color: #eab308;
+            border: 2px solid #eab308;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            z-index: 999;
+            transition: all 0.3s;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            background: #eab308;
+            color: #0f172a;
+        }
+
+        body.dark-mode .theme-toggle {
+            background: #eab308;
+            color: #0f172a;
+        }
+
+        body.dark-mode .theme-toggle:hover {
+            background: #0f172a;
+            color: #eab308;
         }
 
         .navbar {
@@ -340,6 +463,25 @@
             background: #fef9e7;
         }
 
+        .btn-export {
+            background: #dc2626;
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 1rem;
+            transition: all 0.3s;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .btn-export:hover {
+            background: #b91c1c;
+            transform: translateY(-2px);
+        }
+
         .premium-banner {
             background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
             border-radius: 30px;
@@ -627,6 +769,7 @@
 
                 <button class="btn btn-primary" id="calculBtn" onclick="calculer()">Calculer la rentabilité</button>
                 <button class="btn btn-save" id="saveBtn" onclick="sauvegarderSimulation()">💾 Sauvegarder cette simulation</button>
+                <button class="btn btn-export" onclick="exporterPDF()">📄 Exporter en PDF</button>
             </div>
 
             <!-- Résultats -->
@@ -779,6 +922,9 @@
         </div>
     </div>
 
+    <!-- Bouton mode sombre -->
+    <div class="theme-toggle" id="themeToggle" onclick="toggleTheme()">🌙</div>
+
     <script src="/assistant-ia.js"></script>
     <script>
         let simulationsRestantes = 3;
@@ -828,6 +974,20 @@
         function useSuggestion(text) {
             document.getElementById('userInput').value = text;
             sendMessage();
+        }
+
+        function toggleTheme() {
+            const body = document.body;
+            const toggle = document.getElementById('themeToggle');
+            body.classList.toggle('dark-mode');
+            
+            if (body.classList.contains('dark-mode')) {
+                toggle.textContent = '☀️';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                toggle.textContent = '🌙';
+                localStorage.setItem('theme', 'light');
+            }
         }
 
         document.addEventListener('click', function(event) {
@@ -1033,43 +1193,68 @@
             }, 5000);
         }
 
+        function exporterPDF() {
+            const { jsPDF } = window.jspdf;
+            
+            const prix = document.getElementById('prixAchat').value;
+            const rendement = document.getElementById('rendementNet').innerText;
+            const cashflow = document.getElementById('cashflow').innerText;
+            const mensualite = document.getElementById('mensualite').innerText;
+            
+            const doc = new jsPDF();
+            
+            doc.setFontSize(22);
+            doc.setTextColor(15, 23, 42);
+            doc.text('RentaPro', 20, 20);
+            
+            doc.setFontSize(16);
+            doc.setTextColor(234, 179, 8);
+            doc.text('Simulation de rentabilité locative', 20, 30);
+            
+            doc.setDrawColor(234, 179, 8);
+            doc.line(20, 35, 190, 35);
+            
+            doc.setFontSize(10);
+            doc.setTextColor(100, 116, 139);
+            const date = new Date();
+            doc.text('Date: ' + date.toLocaleDateString() + ' ' + date.toLocaleTimeString(), 20, 45);
+            
+            doc.setFontSize(14);
+            doc.setTextColor(15, 23, 42);
+            doc.text('Résultats de la simulation', 20, 60);
+            
+            doc.setFontSize(12);
+            doc.text('Prix d\'achat: $' + Number(prix).toLocaleString(), 20, 75);
+            doc.text('Mensualité: ' + mensualite, 20, 85);
+            doc.text('Rendement net: ' + rendement, 20, 95);
+            doc.text('Cash-flow mensuel: ' + cashflow, 20, 105);
+            
+            doc.setFontSize(8);
+            doc.setTextColor(150, 150, 150);
+            doc.text('Ce document est généré à titre indicatif. Les résultats ne constituent pas un conseil en investissement.', 20, 140);
+            doc.text('RentaPro - ' + new Date().getFullYear(), 20, 150);
+            
+            doc.save('simulation-rentapro.pdf');
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
             checkPremiumStatus();
             updateDisplay();
+            
+            const savedTheme = localStorage.getItem('theme');
+            const toggle = document.getElementById('themeToggle');
+            
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+                if (toggle) toggle.textContent = '☀️';
+            } else {
+                if (toggle) toggle.textContent = '🌙';
+            }
+            
             setTimeout(() => {
                 calculer();
             }, 100);
         });
     </script>
-<!-- Bouton mode sombre -->
-<div class="theme-toggle" id="themeToggle" onclick="toggleTheme()">🌙</div>
-
-<script>
-function toggleTheme() {
-    const body = document.body;
-    const toggle = document.getElementById("themeToggle");
-    body.classList.toggle("dark-mode");
-    
-    if (body.classList.contains("dark-mode")) {
-        toggle.textContent = "☀️";
-        localStorage.setItem("theme", "dark");
-    } else {
-        toggle.textContent = "🌙";
-        localStorage.setItem("theme", "light");
-    }
-}
-
-document.addEventListener("DOMContentLoaded", function() {
-    const savedTheme = localStorage.getItem("theme");
-    const toggle = document.getElementById("themeToggle");
-    
-    if (savedTheme === "dark") {
-        document.body.classList.add("dark-mode");
-        if (toggle) toggle.textContent = "☀️";
-    } else {
-        if (toggle) toggle.textContent = "🌙";
-    }
-});
-</script>
 </body>
 </html>
