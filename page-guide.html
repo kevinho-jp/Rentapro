@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-525423879"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-525423879');
+    </script>
+    
+    <title>Guide complet de l'investisseur locatif - RentaPro</title>
+    <meta name="description" content="Guide gratuit pour investir dans l'immobilier locatif. Comprenez ce qu'est l'investissement locatif : faire louer pour générer des revenus et se constituer un patrimoine.">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            background: #f8fafc;
+            color: #1e293b;
+            line-height: 1.6;
+            transition: all 0.3s;
+        }
+
+        /* Mode sombre */
+        body.dark-mode {
+            background: #0f172a;
+            color: #f8fafc;
+        }
+
+        body.dark-mode .navbar {
+            background: #1e293b;
+            border-bottom: 1px solid #334155;
+        }
+
+        body.dark-mode .nav-links a {
+            color: #94a3b8;
+        }
+
+        body.dark-mode .nav-links a:hover,
+        body.dark-mode .nav-links a.active {
+            color: #eab308;
+        }
+
+        body.dark-mode .guide-hero {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+        }
+
+        body.dark-mode .guide-section,
+        body.dark-mode .chapter-card {
+            background: #1e293b;
+            border-color: #334155;
+        }
+
+        body.dark-mode h1,
+        body.dark-mode h2,
+        body.dark-mode h3,
+        body.dark-mode .section-header h2 {
+            color: #f8fafc;
+        }
+
+        body.dark-mode p,
+        body.dark-mode .section-content,
+        body.dark-mode .chapter-card p {
+            color: #94a3b8;
+        }
+
+        body.dark-mode .footer {
+            background: #0a0f1a;
+        }
+
+        body.dark-mode .theme-toggle {
+            background: #eab308;
+            color: #0f172a;
+        }
+
+        body.dark-mode .theme-toggle:hover {
+            background: #0f172a;
+            color: #eab308;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: white;
+            padding: 1rem 5%;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.8rem;
+            font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .logo-icon {
+            font-size: 2rem;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #eab308;
+            width: 50px;
+            height: 50px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
+        }
+
+        .logo-text {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .nav-links a {
+            color: #64748b;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 0.5rem 0;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #0f172a;
+        }
+
+        .nav-links a.active {
+            color: #0f172a;
+            font-weight: 600;
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #eab308, #fbbf24);
+            border-radius: 3px 3px 0 0;
+        }
+
+        /* Conteneur principal */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            width: 100%;
+        }
+
+        /* Hero section avec explication claire */
+        .guide-hero {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            border-radius: 30px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .guide-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(234,179,8,0.1) 0%, transparent 70%);
+            animation: rotate 30s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .guide-hero h1 {
+            font-size: clamp(2rem, 5vw, 2.8rem);
+            margin-bottom: 1.5rem;
+            text-align: center;
+            position: relative;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .guide-hero p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            color: #cbd5e1;
+            position: relative;
+        }
+
+        .definition-box {
+            background: rgba(234,179,8,0.1);
+            border-left: 4px solid #eab308;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-top: 2rem;
+            position: relative;
+        }
+
+        .definition-box h2 {
+            color: #eab308;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .definition-box p {
+            color: white;
+            font-size: 1.1rem;
+            margin-bottom: 0;
+        }
+
+        .highlight {
+            color: #eab308;
+            font-weight: 600;
+        }
+
+        /* Chapitres */
+        .chapters {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .chapter-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.05);
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 1px solid #e2e8f0;
+            text-decoration: none;
+            display: block;
+        }
+
+        .chapter-card:hover {
+            transform: translateY(-5px);
+            border-color: #eab308;
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+        }
+
+        .chapter-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .chapter-card h3 {
+            color: #0f172a;
+            margin-bottom: 0.5rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .chapter-card p {
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        /* Sections du guide */
+        .guide-section {
+            background: white;
+            border-radius: 30px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.05);
+            scroll-margin-top: 100px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .section-header h2 {
+            font-size: 2rem;
+            color: #0f172a;
+            margin-bottom: 1rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .section-header h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #eab308, #fbbf24);
+            margin: 1rem auto;
+            border-radius: 2px;
+        }
+
+        .section-content {
+            max-width: 800px;
+            margin: 0 auto;
+            color: #475569;
+            line-height: 1.8;
+        }
+
+        .section-content p {
+            margin-bottom: 1rem;
+        }
+
+        .section-content ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        .info-box {
+            background: #fef9e7;
+            border-left: 4px solid #eab308;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+        }
+
+        .info-box h3 {
+            color: #0f172a;
+            margin-bottom: 0.5rem;
+        }
+
+        .info-box p {
+            color: #475569;
+            margin-bottom: 0;
+        }
+
+        /* Bouton mode sombre */
+        .theme-toggle {
+            position: fixed;
+            bottom: 110px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #0f172a;
+            color: #eab308;
+            border: 2px solid #eab308;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            z-index: 999;
+            transition: all 0.3s;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            background: #eab308;
+            color: #0f172a;
+        }
+
+        /* Footer */
+        .footer {
+            background: #0f172a;
+            color: white;
+            padding: 4rem 5% 2rem;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+        }
+
+        .footer-section h4 {
+            color: #eab308;
+            margin-bottom: 1.5rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .footer-section a {
+            color: #94a3b8;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.8rem;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: #eab308;
+            transform: translateX(5px);
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin: 2rem 0 1rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-legal a {
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .footer-legal a:hover {
+            color: #eab308;
+        }
+
+        .amazon-disclaimer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #94a3b8;
+            margin-top: 1rem;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #334155;
+            color: #64748b;
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .nav-links {
+                gap: 1rem;
+            }
+            .guide-section {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <div class="logo-icon">🏠</div>
+            <span class="logo-text">RentaPro</span>
+        </div>
+        <div class="nav-links">
+            <a href="/">Accueil</a>
+            <a href="/pages/simulateur.html">Simulateur</a>
+            <a href="/pages/guide.html" class="active">Guide</a>
+            <a href="/pages/investissement-mondial.html">🌍 Monde</a>
+            <a href="/pages/analyse-financiere.html">📊 Finance</a>
+            <a href="/pages/blog.html">📝 Blog</a>
+            <a href="/pages/temoignages.html">🗣️ Témoignages</a>
+            <a href="/pages/contact.html">Contact</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="guide-hero">
+            <h1>📚 Guide de l'investisseur locatif</h1>
+            
+            <div class="definition-box">
+                <h2>💡 Qu'est-ce que l'investissement locatif ?</h2>
+                <p>L'<span class="highlight">investissement locatif</span> consiste à <strong>acheter un bien immobilier</strong> (appartement, maison, local commercial) dans le but de <strong>le louer</strong> à des locataires. En échange, vous percevez des <strong>loyers mensuels</strong> qui constituent un revenu complémentaire.</p>
+                <p style="margin-top: 1rem;">📌 <strong>En termes simples :</strong> Vous achetez, vous louez, et vous gagnez de l'argent tout en vous constituant un patrimoine qui prend de la valeur avec le temps.</p>
+                <p style="margin-top: 1rem;">🎯 <strong>Objectif :</strong> Générer des revenus passifs et se constituer un capital sur le long terme.</p>
+            </div>
+        </div>
+
+        <div class="chapters">
+            <a href="/pages/guide/guide-achat.html" class="chapter-card">
+                <div class="chapter-icon">🏠</div>
+                <h3>Guide d'achat</h3>
+                <p>Comment choisir le bon bien immobilier</p>
+            </a>
+            <a href="/pages/guide/guide-financement.html" class="chapter-card">
+                <div class="chapter-icon">🏦</div>
+                <h3>Guide financement</h3>
+                <p>Crédit, apport, taux d'intérêt</p>
+            </a>
+            <a href="/pages/guide/guide-fiscalite.html" class="chapter-card">
+                <div class="chapter-icon">📝</div>
+                <h3>Guide fiscalité</h3>
+                <p>LMNP, micro-foncier, régime réel</p>
+            </a>
+            <a href="/pages/guide/guide-gestion.html" class="chapter-card">
+                <div class="chapter-icon">👥</div>
+                <h3>Guide gestion</h3>
+                <p>Locataires, assurance, travaux</p>
+            </a>
+        </div>
+
+        <section id="section1" class="guide-section">
+            <div class="section-header">
+                <h2>1. Les bases de l'investissement locatif</h2>
+            </div>
+            <div class="section-content">
+                <p>L'investissement locatif consiste à acheter un bien immobilier pour le louer et en tirer des revenus. C'est l'une des stratégies les plus efficaces pour se constituer un patrimoine à long terme.</p>
+                <p><strong>Pourquoi investir dans l'immobilier ?</strong></p>
+                <ul>
+                    <li>💰 Revenus complémentaires réguliers</li>
+                    <li>📈 Plus-value à la revente</li>
+                    <li>🏦 Constitution d'un patrimoine</li>
+                    <li>📉 Avantages fiscaux</li>
+                    <li>🛡️ Protection contre l'inflation</li>
+                </ul>
+                <div class="info-box">
+                    <h3>📌 À retenir</h3>
+                    <p>L'investissement locatif, c'est acheter pour louer. Les loyers payent le crédit et vous générez des revenus. À long terme, le bien prend de la valeur et vous devenez propriétaire d'un patrimoine.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="section2" class="guide-section">
+            <div class="section-header">
+                <h2>2. Comment financer son achat</h2>
+            </div>
+            <div class="section-content">
+                <p>Le financement est la clé d'un investissement réussi. Voici les principales options :</p>
+                <ul>
+                    <li><strong>Crédit immobilier classique</strong> : taux entre 3.5% et 4.5%</li>
+                    <li><strong>Prêt à taux zéro (PTZ)</strong> : pour primo-accédants</li>
+                    <li><strong>Crédit in fine</strong> : vous ne remboursez que les intérêts</li>
+                    <li><strong>Apport personnel</strong> : idéalement 10-20%</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>RentaPro</h4>
+                <a href="/">Accueil</a>
+                <a href="/pages/simulateur.html">Simulateur</a>
+                <a href="/pages/guide.html">Guide</a>
+                <a href="/pages/investissement-mondial.html">🌍 Monde</a>
+                <a href="/pages/analyse-financiere.html">📊 Finance</a>
+                <a href="/pages/blog.html">📝 Blog</a>
+                <a href="/pages/temoignages.html">🗣️ Témoignages</a>
+                <a href="/pages/contact.html">Contact</a>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p style="color: #94a3b8;">📧 rubenmukend287@gmail.com</p>
+                <p style="color: #94a3b8;">📞 +243 974 843 721</p>
+            </div>
+        </div>
+
+        <div class="footer-legal">
+            <a href="/pages/mentions-legales.html">Mentions légales</a>
+            <a href="/pages/confidentialite.html">Politique de confidentialité</a>
+            <a href="/pages/cgu.html">CGU</a>
+        </div>
+
+        <div class="amazon-disclaimer">
+            En tant que Partenaire Amazon, je réalise un bénéfice sur les achats remplissant les conditions requises.
+        </div>
+
+        <div class="copyright">
+            © 2026 RentaPro - Guide gratuit pour investisseurs immobiliers
+        </div>
+    </footer>
+
+    <!-- Bouton mode sombre -->
+    <div class="theme-toggle" id="themeToggle" onclick="toggleTheme()">🌙</div>
+
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            const toggle = document.getElementById('themeToggle');
+            body.classList.toggle('dark-mode');
+            
+            if (body.classList.contains('dark-mode')) {
+                toggle.textContent = '☀️';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                toggle.textContent = '🌙';
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('theme');
+            const toggle = document.getElementById('themeToggle');
+            
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+                if (toggle) toggle.textContent = '☀️';
+            } else {
+                if (toggle) toggle.textContent = '🌙';
+            }
+        });
+    </script>
+</body>
+</html>
