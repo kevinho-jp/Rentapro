@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulateur immobilier de tourisme - RentaPro</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { background: #f8fafc; color: #1e293b; padding: 2rem; }
+        .navbar { background: white; padding: 1rem 5%; display: flex; justify-content: center; gap: 2rem; border-radius: 50px; margin-bottom: 2rem; }
+        .nav-links a { color: #64748b; text-decoration: none; margin: 0 1rem; }
+        .nav-links a.active { color: #0f172a; font-weight: 600; border-bottom: 3px solid #eab308; }
+        .container { max-width: 800px; margin: 0 auto; background: white; border-radius: 30px; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        h1 { color: #0f172a; margin-bottom: 1rem; }
+        .subtitle { color: #64748b; margin-bottom: 2rem; }
+        .form-group { margin-bottom: 1.5rem; }
+        label { display: block; font-weight: 600; margin-bottom: 0.5rem; }
+        input, select { width: 100%; padding: 0.8rem; border: 2px solid #e2e8f0; border-radius: 10px; font-size: 1rem; }
+        input:focus, select:focus { outline: none; border-color: #eab308; }
+        .btn { background: #0f172a; color: white; border: none; padding: 1rem; border-radius: 10px; font-size: 1rem; font-weight: 600; cursor: pointer; width: 100%; margin: 1rem 0; }
+        .btn:hover { background: #1e293b; }
+        .result-card { background: #f8fafc; border-radius: 15px; padding: 1.5rem; margin-top: 2rem; }
+        .result-item { display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid #e2e8f0; }
+        .result-item:last-child { border-bottom: none; }
+        .result-label { color: #64748b; }
+        .result-value { font-weight: 700; color: #0f172a; }
+        .footer { margin-top: 2rem; text-align: center; color: #64748b; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-links">
+            <a href="/">Accueil</a>
+            <a href="/pages/simulateur.html">Simulateur</a>
+            <a href="/pages/immobilier-tourisme.html" class="active">🏨 Tourisme</a>
+            <a href="/pages/contact.html">Contact</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>🏨 Simulateur pour l'immobilier de tourisme</h1>
+        <p class="subtitle">Hôtels, résidences de tourisme, villages de vacances</p>
+
+        <div class="form-group">
+            <label>Prix d'achat du bien ($)</label>
+            <input type="number" id="prix" value="500000" step="50000">
+        </div>
+
+        <div class="form-group">
+            <label>Type d'établissement</label>
+            <select id="type">
+                <option value="hotel">Hôtel</option>
+                <option value="residence" selected>Résidence de tourisme</option>
+                <option value="village">Village de vacances</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Nombre de chambres / unités</label>
+            <input type="number" id="nbUnites" value="20" step="5">
+        </div>
+
+        <div class="form-group">
+            <label>Prix moyen par nuit ($)</label>
+            <input type="number" id="prixNuit" value="120" step="10">
+        </div>
+
+        <div class="form-group">
+            <label>Taux d'occupation annuel (%)</label>
+            <input type="number" id="occupation" value="70" step="5">
+        </div>
+
+        <button class="btn" onclick="calculerTourisme()">Calculer</button>
+
+        <div class="result-card" id="resultats">
+            <h3 style="margin-bottom: 1rem;">📊 Résultats</h3>
+            <div class="result-item">
+                <span class="result-label">Chiffre d'affaires annuel</span>
+                <span class="result-value" id="ca">$0</span>
+            </div>
+            <div class="result-item">
+                <span class="result-label">Charges d'exploitation</span>
+                <span class="result-value" id="charges">$0</span>
+            </div>
+            <div class="result-item">
+                <span class="result-label">EBE (Excédent Brut)</span>
+                <span class="result-value" id="ebe">$0</span>
+            </div>
+            <div class="result-item">
+                <span class="result-label">Rendement sur investissement</span>
+                <span class="result-value" id="rendement">0%</span>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        © 2026 RentaPro - Simulateur immobilier de tourisme
+    </footer>
+
+    <script>
+        function calculerTourisme() {
+            const prix = parseFloat(document.getElementById('prix').value) || 0;
+            const type = document.getElementById('type').value;
+            const nbUnites = parseFloat(document.getElementById('nbUnites').value) || 0;
+            const prixNuit = parseFloat(document.getElementById('prixNuit').value) || 0;
+            const occupation = parseFloat(document.getElementById('occupation').value) || 0;
+
+            const nuits = 365 * occupation / 100;
+            const ca = nbUnites * prixNuit * nuits;
+            
+            // Charges selon le type d'établissement
+            let ratioCharges;
+            switch(type) {
+                case 'hotel': ratioCharges = 0.65; break;
+                case 'residence': ratioCharges = 0.55; break;
+                case 'village': ratioCharges = 0.6; break;
+                default: ratioCharges = 0.6;
+            }
+            
+            const charges = ca * ratioCharges;
+            const ebe = ca - charges;
+            const rendement = (ebe / prix * 100).toFixed(2);
+
+            document.getElementById('ca').innerText = '$' + ca.toFixed(0);
+            document.getElementById('charges').innerText = '$' + charges.toFixed(0);
+            document.getElementById('ebe').innerText = '$' + ebe.toFixed(0);
+            document.getElementById('rendement').innerText = rendement + '%';
+        }
+
+        window.onload = calculerTourisme;
+    </script>
+</body>
+</html>

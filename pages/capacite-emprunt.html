@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculateur de capacité d'emprunt - RentaPro</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { background: #f8fafc; color: #1e293b; padding: 2rem; }
+        .navbar { background: white; padding: 1rem 5%; display: flex; justify-content: center; gap: 2rem; border-radius: 50px; margin-bottom: 2rem; }
+        .nav-links a { color: #64748b; text-decoration: none; margin: 0 1rem; }
+        .nav-links a.active { color: #0f172a; font-weight: 600; border-bottom: 3px solid #eab308; }
+        .container { max-width: 800px; margin: 0 auto; background: white; border-radius: 30px; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        h1 { color: #0f172a; margin-bottom: 1rem; }
+        .subtitle { color: #64748b; margin-bottom: 2rem; }
+        .form-group { margin-bottom: 1.5rem; }
+        label { display: block; font-weight: 600; margin-bottom: 0.5rem; }
+        input { width: 100%; padding: 0.8rem; border: 2px solid #e2e8f0; border-radius: 10px; font-size: 1rem; }
+        input:focus { outline: none; border-color: #eab308; }
+        .btn { background: #0f172a; color: white; border: none; padding: 1rem; border-radius: 10px; font-size: 1rem; font-weight: 600; cursor: pointer; width: 100%; margin: 1rem 0; }
+        .btn:hover { background: #1e293b; }
+        .result-card { background: #f8fafc; border-radius: 15px; padding: 1.5rem; margin-top: 2rem; }
+        .result-item { display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid #e2e8f0; }
+        .result-item:last-child { border-bottom: none; }
+        .result-label { color: #64748b; }
+        .result-value { font-weight: 700; color: #0f172a; }
+        .footer { margin-top: 2rem; text-align: center; color: #64748b; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-links">
+            <a href="/">Accueil</a>
+            <a href="/pages/simulateur.html">Simulateur</a>
+            <a href="/pages/capacite-emprunt.html" class="active">🏦 Capacité</a>
+            <a href="/pages/contact.html">Contact</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>🏦 Calculateur de capacité d'emprunt</h1>
+        <p class="subtitle">Combien pouvez-vous emprunter pour votre projet immobilier ?</p>
+
+        <div class="form-group">
+            <label>Revenus mensuels nets ($)</label>
+            <input type="number" id="revenus" value="3000" step="100">
+        </div>
+
+        <div class="form-group">
+            <label>Charges mensuelles (crédits en cours) ($)</label>
+            <input type="number" id="charges" value="0" step="50">
+        </div>
+
+        <div class="form-group">
+            <label>Apport personnel ($)</label>
+            <input type="number" id="apport" value="30000" step="1000">
+        </div>
+
+        <div class="form-group">
+            <label>Taux d'intérêt annuel (%)</label>
+            <input type="number" id="taux" value="3.5" step="0.1">
+        </div>
+
+        <div class="form-group">
+            <label>Durée du prêt (années)</label>
+            <input type="number" id="duree" value="20" min="5" max="30">
+        </div>
+
+        <button class="btn" onclick="calculerCapacite()">Calculer</button>
+
+        <div class="result-card" id="resultats">
+            <h3 style="margin-bottom: 1rem;">📊 Résultats</h3>
+            <div class="result-item">
+                <span class="result-label">Capacité de remboursement mensuelle</span>
+                <span class="result-value" id="mensualiteMax">$0</span>
+            </div>
+            <div class="result-item">
+                <span class="result-label">Montant maximum empruntable</span>
+                <span class="result-value" id="montantEmprunt">$0</span>
+            </div>
+            <div class="result-item">
+                <span class="result-label">Prix d'achat maximum (avec apport)</span>
+                <span class="result-value" id="prixMax">$0</span>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        © 2026 RentaPro - Calculateur de capacité d'emprunt
+    </footer>
+
+    <script>
+        function calculerCapacite() {
+            const revenus = parseFloat(document.getElementById('revenus').value) || 0;
+            const charges = parseFloat(document.getElementById('charges').value) || 0;
+            const apport = parseFloat(document.getElementById('apport').value) || 0;
+            const taux = parseFloat(document.getElementById('taux').value) || 0;
+            const duree = parseFloat(document.getElementById('duree').value) || 0;
+
+            // Taux d'endettement maximum : 35%
+            const mensualiteMax = (revenus - charges) * 0.35;
+            
+            // Calcul du montant empruntable
+            const tauxMensuel = taux / 100 / 12;
+            const nbMois = duree * 12;
+            
+            let montantEmprunt = 0;
+            if (tauxMensuel > 0) {
+                montantEmprunt = mensualiteMax * (Math.pow(1 + tauxMensuel, nbMois) - 1) / (tauxMensuel * Math.pow(1 + tauxMensuel, nbMois));
+            } else {
+                montantEmprunt = mensualiteMax * nbMois;
+            }
+
+            const prixMax = montantEmprunt + apport;
+
+            document.getElementById('mensualiteMax').innerText = '$' + mensualiteMax.toFixed(2);
+            document.getElementById('montantEmprunt').innerText = '$' + montantEmprunt.toFixed(2);
+            document.getElementById('prixMax').innerText = '$' + prixMax.toFixed(2);
+        }
+
+        window.onload = calculerCapacite;
+    </script>
+</body>
+</html>
