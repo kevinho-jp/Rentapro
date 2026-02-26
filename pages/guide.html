@@ -3,7 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guide complet de l'investisseur locatif - RentaPro</title>
+    
+    <!-- Google tag (gtag.js) - Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-525423879"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-525423879');
+    </script>
+    
+    <title>Cours complet sur l'investissement immobilier - RentaPro</title>
+    
     <style>
         * {
             margin: 0;
@@ -29,13 +40,23 @@
             background: #1e293b;
         }
 
-        body.dark-mode .nav-links a {
+        body.dark-mode .nav-links a,
+        body.dark-mode .dropbtn {
             color: #94a3b8;
         }
 
         body.dark-mode .nav-links a:hover,
-        body.dark-mode .nav-links a.active {
+        body.dark-mode .dropbtn:hover {
             color: #eab308;
+        }
+
+        body.dark-mode .dropdown-content {
+            background: #1e293b;
+            border-color: #334155;
+        }
+
+        body.dark-mode .dropdown-content a {
+            color: #f8fafc;
         }
 
         body.dark-mode .guide-hero {
@@ -49,17 +70,62 @@
 
         body.dark-mode h1,
         body.dark-mode h2,
-        body.dark-mode h3 {
+        body.dark-mode h3,
+        body.dark-mode .section-header h2 {
             color: #f8fafc;
         }
 
         body.dark-mode p,
-        body.dark-mode .section-content {
+        body.dark-mode .section-content,
+        body.dark-mode .chapter-card p {
             color: #94a3b8;
         }
 
         body.dark-mode .footer {
             background: #0a0f1a;
+        }
+
+        body.dark-mode .theme-toggle {
+            background: #eab308;
+            color: #0f172a;
+        }
+
+        body.dark-mode .theme-toggle:hover {
+            background: #0f172a;
+            color: #eab308;
+        }
+
+        body.dark-mode .info-box {
+            background: #0f172a;
+            border-left-color: #eab308;
+        }
+
+        body.dark-mode .info-box h3 {
+            color: #eab308;
+        }
+
+        body.dark-mode .info-box p {
+            color: #94a3b8;
+        }
+
+        body.dark-mode table {
+            background: #1e293b;
+            border-color: #334155;
+        }
+
+        body.dark-mode th {
+            background: #0f172a;
+            color: #f8fafc;
+        }
+
+        body.dark-mode td {
+            color: #94a3b8;
+            border-color: #334155;
+        }
+
+        body.dark-mode .affiliation-section {
+            background: #1e293b;
+            border-color: #eab308;
         }
 
         /* Navigation */
@@ -75,6 +141,8 @@
             position: sticky;
             top: 0;
             z-index: 100;
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.9);
         }
 
         .logo {
@@ -83,6 +151,7 @@
             gap: 0.5rem;
             font-size: 1.8rem;
             font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .logo-icon {
@@ -95,6 +164,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
         }
 
         .logo-text {
@@ -108,124 +178,169 @@
             gap: 2rem;
             flex-wrap: wrap;
             justify-content: center;
+            align-items: center;
         }
 
-        .nav-links a {
+        .nav-links a, .dropbtn {
             color: #64748b;
             text-decoration: none;
             font-weight: 500;
             transition: color 0.3s;
             padding: 0.5rem 0;
-            position: relative;
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-size: 1rem;
         }
 
-        .nav-links a:hover {
+        .nav-links a:hover, .dropbtn:hover {
             color: #0f172a;
         }
 
         .nav-links a.active {
             color: #0f172a;
             font-weight: 600;
+            border-bottom: 3px solid #eab308;
         }
 
-        .nav-links a.active::after {
-            content: '';
+        /* Menu déroulant */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
             position: absolute;
-            bottom: 0;
+            background-color: white;
+            min-width: 280px;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+            border-radius: 10px;
+            z-index: 1000;
+            max-height: 400px;
+            overflow-y: auto;
+            top: 100%;
             left: 0;
-            width: 100%;
-            height: 3px;
-            background: #eab308;
-            border-radius: 3px 3px 0 0;
         }
 
+        .dropdown-content a {
+            color: #1e293b;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            font-size: 0.9rem;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f8fafc;
+            color: #eab308;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Conteneur principal */
         .container {
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 2rem;
             width: 100%;
         }
 
+        /* Hero section */
         .guide-hero {
             background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
             border-radius: 30px;
             padding: 3rem;
             margin-bottom: 3rem;
             color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .guide-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(234,179,8,0.1) 0%, transparent 70%);
+            animation: rotate 30s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
 
         .guide-hero h1 {
-            font-size: clamp(2rem, 5vw, 2.8rem);
+            font-size: clamp(2rem, 5vw, 3rem);
             margin-bottom: 1.5rem;
+            position: relative;
+            font-family: 'Montserrat', sans-serif;
             text-align: center;
         }
 
-        .definition-box {
-            background: rgba(234,179,8,0.1);
-            border-left: 4px solid #eab308;
-            padding: 2rem;
-            border-radius: 15px;
-            margin-top: 2rem;
+        .guide-hero p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            color: #cbd5e1;
+            position: relative;
+            text-align: center;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .definition-box h2 {
+        /* Table des matières */
+        .toc {
+            background: rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            position: relative;
+        }
+
+        .toc h2 {
             color: #eab308;
             margin-bottom: 1rem;
             font-size: 1.5rem;
         }
 
-        .definition-box p {
-            color: white;
-            font-size: 1.1rem;
-            margin-bottom: 1rem;
+        .toc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
         }
 
-        .highlight {
-            color: #eab308;
+        .toc-item {
+            background: rgba(255,255,255,0.05);
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .toc-item:hover {
+            background: #eab308;
+            transform: translateX(5px);
+        }
+
+        .toc-item a {
+            color: white;
+            text-decoration: none;
+            display: block;
+        }
+
+        .toc-item:hover a {
+            color: #0f172a;
             font-weight: 600;
         }
 
-        .chapters {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 3rem;
-        }
-
-        .chapter-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.05);
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s;
-            border: 1px solid #e2e8f0;
-            text-decoration: none;
-            display: block;
-            color: inherit;
-        }
-
-        .chapter-card:hover {
-            transform: translateY(-5px);
-            border-color: #eab308;
-        }
-
-        .chapter-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .chapter-card h3 {
-            color: #0f172a;
-            margin-bottom: 0.5rem;
-        }
-
-        .chapter-card p {
-            color: #64748b;
-            font-size: 0.9rem;
-        }
-
+        /* Sections du guide */
         .guide-section {
             background: white;
             border-radius: 30px;
@@ -233,48 +348,69 @@
             margin-bottom: 3rem;
             box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.05);
             scroll-margin-top: 100px;
+            border: 1px solid #e2e8f0;
         }
 
         .section-header {
-            text-align: center;
             margin-bottom: 2rem;
+            border-bottom: 2px solid #eab308;
+            padding-bottom: 1rem;
         }
 
         .section-header h2 {
             font-size: 2rem;
             color: #0f172a;
-            margin-bottom: 1rem;
+            font-family: 'Montserrat', sans-serif;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
-        .section-header h2::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 3px;
+        .section-header h2 span {
             background: #eab308;
-            margin: 1rem auto;
+            color: #0f172a;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: 700;
         }
 
         .section-content {
-            max-width: 800px;
-            margin: 0 auto;
             color: #475569;
             line-height: 1.8;
         }
 
         .section-content p {
-            margin-bottom: 1rem;
+            margin-bottom: 1.2rem;
         }
 
-        .section-content ul {
+        .section-content h3 {
+            color: #0f172a;
+            margin: 2rem 0 1rem;
+            font-size: 1.5rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .section-content h4 {
+            color: #0f172a;
+            margin: 1.5rem 0 0.8rem;
+            font-size: 1.2rem;
+        }
+
+        .section-content ul, .section-content ol {
             margin-left: 1.5rem;
-            margin-bottom: 1rem;
+            margin-bottom: 1.2rem;
         }
 
         .section-content li {
             margin-bottom: 0.5rem;
         }
 
+        /* Boîtes d'information */
         .info-box {
             background: #fef9e7;
             border-left: 4px solid #eab308;
@@ -286,6 +422,7 @@
         .info-box h3 {
             color: #0f172a;
             margin-bottom: 0.5rem;
+            font-size: 1.3rem;
         }
 
         .info-box p {
@@ -293,162 +430,130 @@
             margin-bottom: 0;
         }
 
-        .types-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin: 1.5rem 0;
+        .warning-box {
+            background: #fee2e2;
+            border-left: 4px solid #dc2626;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 2rem 0;
         }
 
-        .type-card {
+        .warning-box h3 {
+            color: #b91c1c;
+            margin-bottom: 0.5rem;
+        }
+
+        .success-box {
+            background: #dcfce7;
+            border-left: 4px solid #059669;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+        }
+
+        .success-box h3 {
+            color: #059669;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Grilles */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .card {
             background: #f8fafc;
             padding: 1.5rem;
-            border-radius: 20px;
-            transition: all 0.3s;
+            border-radius: 15px;
             border: 1px solid #e2e8f0;
         }
 
-        .type-card:hover {
-            transform: translateY(-5px);
-            border-color: #eab308;
-        }
-
-        .type-card h3 {
+        .card h4 {
             color: #0f172a;
-            margin-bottom: 0.5rem;
-            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            font-size: 1.2rem;
         }
 
-        .type-card p {
-            margin-bottom: 0.5rem;
-            color: #64748b;
-        }
-
+        /* Tableaux */
         .table-container {
             overflow-x: auto;
-            margin: 1.5rem 0;
+            margin: 2rem 0;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
             background: white;
-            border-radius: 16px;
+            border-radius: 15px;
             overflow: hidden;
             box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
         }
 
-        thead {
+        th {
             background: #0f172a;
             color: white;
-        }
-
-        th, td {
             padding: 1rem;
             text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 1rem;
             border-bottom: 1px solid #e2e8f0;
         }
 
-        tbody tr:hover {
+        tr:hover {
             background: #f8fafc;
         }
 
-        .checklist-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1rem;
-        }
-
-        .checklist-item {
+        /* Bouton retour haut de page */
+        .back-to-top {
+            position: fixed;
+            bottom: 180px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #0f172a;
+            color: #eab308;
+            border: 2px solid #eab308;
+            cursor: pointer;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-            padding: 0.8rem;
-            background: #fef2f2;
-            border-radius: 8px;
-            border-left: 4px solid #dc2626;
-        }
-
-        .strategy-card {
-            margin-bottom: 1.5rem;
-            padding: 1.5rem;
-            background: linear-gradient(135deg, #f8fafc, #ffffff);
-            border-radius: 16px;
-            border-left: 4px solid #eab308;
+            justify-content: center;
+            font-size: 1.5rem;
+            z-index: 999;
             transition: all 0.3s;
-        }
-
-        .strategy-card:hover {
-            transform: translateX(10px);
-        }
-
-        .strategy-card h3 {
-            color: #0f172a;
-            margin-bottom: 0.5rem;
-        }
-
-        .affiliation-section {
-            margin: 3rem 0;
-            padding: 2rem;
-            background: white;
-            border-radius: 30px;
-            border: 2px solid #eab308;
-        }
-
-        .affiliation-section h3 {
-            text-align: center;
-            font-size: 1.8rem;
-            color: #0f172a;
-            margin-bottom: 2rem;
-        }
-
-        .books-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-
-        .book-card {
-            text-align: center;
-            padding: 1.5rem;
-            background: #f8fafc;
-            border-radius: 16px;
-        }
-
-        .book-image {
-            width: 150px;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 10px;
-            margin-bottom: 1rem;
-        }
-
-        .book-title {
-            font-weight: 600;
-            color: #0f172a;
-            margin-bottom: 0.5rem;
-        }
-
-        .book-price {
-            color: #eab308;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-
-        .btn-amazon {
-            display: inline-block;
-            padding: 0.8rem 1.5rem;
-            background: #ff9900;
-            color: white;
             text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
         }
 
-        .btn-amazon:hover {
-            background: #e68900;
+        .back-to-top:hover {
+            transform: scale(1.1);
+            background: #eab308;
+            color: #0f172a;
         }
 
+        body.dark-mode .back-to-top {
+            background: #eab308;
+            color: #0f172a;
+        }
+
+        body.dark-mode .back-to-top:hover {
+            background: #0f172a;
+            color: #eab308;
+        }
+
+        /* Bouton mode sombre */
         .theme-toggle {
             position: fixed;
             bottom: 110px;
@@ -465,8 +570,16 @@
             justify-content: center;
             font-size: 1.5rem;
             z-index: 999;
+            transition: all 0.3s;
         }
 
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            background: #eab308;
+            color: #0f172a;
+        }
+
+        /* Pied de page */
         .footer {
             background: #0f172a;
             color: white;
@@ -485,6 +598,7 @@
         .footer-section h4 {
             color: #eab308;
             margin-bottom: 1.5rem;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .footer-section a {
@@ -492,10 +606,12 @@
             text-decoration: none;
             display: block;
             margin-bottom: 0.8rem;
+            transition: color 0.3s;
         }
 
         .footer-section a:hover {
             color: #eab308;
+            transform: translateX(5px);
         }
 
         .footer-legal {
@@ -512,6 +628,10 @@
             font-size: 0.9rem;
         }
 
+        .footer-legal a:hover {
+            color: #eab308;
+        }
+
         .copyright {
             text-align: center;
             margin-top: 2rem;
@@ -520,6 +640,7 @@
             color: #64748b;
         }
 
+        /* Responsive */
         @media (max-width: 768px) {
             .navbar {
                 flex-direction: column;
@@ -530,6 +651,14 @@
             }
             .guide-section {
                 padding: 2rem;
+            }
+            .grid-2, .grid-3 {
+                grid-template-columns: 1fr;
+            }
+            .dropdown-content {
+                position: static;
+                width: 100%;
+                max-height: none;
             }
         }
     </style>
@@ -542,81 +671,583 @@
         </div>
         <div class="nav-links">
             <a href="/">Accueil</a>
-            <a href="/pages/simulateur.html">Simulateur</a>
+            <div class="dropdown">
+                <span class="dropbtn">📊 Simulateurs ▼</span>
+                <div class="dropdown-content">
+                    <a href="/pages/simulateur.html">Simulateur principal</a>
+                    <a href="/pages/simulateur-lmnp.html">Simulateur LMNP</a>
+                    <a href="/pages/calculateur-plus-value.html">Calculateur plus-value</a>
+                    <a href="/pages/capacite-emprunt.html">Capacité d'emprunt</a>
+                    <a href="/pages/simulateur-colocation.html">Simulateur colocation</a>
+                    <a href="/pages/frais-notaire.html">Frais de notaire</a>
+                    <a href="/pages/effet-levier.html">Effet de levier</a>
+                    <a href="/pages/simulateur-scpi.html">Simulateur SCPI</a>
+                    <a href="/pages/comparateur-credit.html">Comparateur crédit</a>
+                    <a href="/pages/immobilier-ancien.html">Immobilier ancien</a>
+                    <a href="/pages/immobilier-neuf.html">Immobilier neuf</a>
+                    <a href="/pages/location-saisonniere.html">Location saisonnière</a>
+                    <a href="/pages/simulateur-travaux.html">Simulateur travaux</a>
+                    <a href="/pages/immobilier-luxe.html">Immobilier luxe</a>
+                    <a href="/pages/immobilier-etudiant.html">Immobilier étudiant</a>
+                    <a href="/pages/immobilier-tourisme.html">Immobilier tourisme</a>
+                </div>
+            </div>
             <a href="/pages/guide.html" class="active">Guide</a>
+            <a href="/pages/investissement-mondial.html">🌍 Monde</a>
+            <a href="/pages/analyse-financiere.html">📊 Finance</a>
+            <a href="/pages/blog.html">📝 Blog</a>
+            <a href="/pages/temoignages.html">🗣️ Témoignages</a>
             <a href="/pages/contact.html">Contact</a>
         </div>
     </nav>
 
     <div class="container">
         <div class="guide-hero">
-            <h1>📚 Guide de l'investisseur locatif</h1>
+            <h1>📚 Cours complet sur l'investissement immobilier</h1>
+            <p>De débutant à expert : tout ce que vous devez savoir pour réussir vos investissements locatifs</p>
             
-            <div class="definition-box">
-                <h2>💡 Qu'est-ce que l'investissement locatif ?</h2>
-                <p>L'<span class="highlight">investissement locatif</span> consiste à <strong>acheter un bien immobilier</strong> dans le but de <strong>le louer</strong> et d'en tirer des revenus. C'est une stratégie qui permet à la fois de <strong>générer des revenus complémentaires</strong> et de <strong>se constituer un patrimoine</strong> sur le long terme.</p>
-                <p>👉 En résumé : vous achetez, vous louez, et vous gagnez de l'argent !</p>
+            <div class="toc">
+                <h2>📋 Table des matières</h2>
+                <div class="toc-grid">
+                    <div class="toc-item"><a href="#chapitre1">Chapitre 1: Les bases</a></div>
+                    <div class="toc-item"><a href="#chapitre2">Chapitre 2: Financement</a></div>
+                    <div class="toc-item"><a href="#chapitre3">Chapitre 3: Rentabilité</a></div>
+                    <div class="toc-item"><a href="#chapitre4">Chapitre 4: Types de biens</a></div>
+                    <div class="toc-item"><a href="#chapitre5">Chapitre 5: Fiscalité</a></div>
+                    <div class="toc-item"><a href="#chapitre6">Chapitre 6: Gestion locative</a></div>
+                    <div class="toc-item"><a href="#chapitre7">Chapitre 7: Stratégies avancées</a></div>
+                    <div class="toc-item"><a href="#chapitre8">Chapitre 8: Erreurs à éviter</a></div>
+                    <div class="toc-item"><a href="#chapitre9">Chapitre 9: Cas pratiques</a></div>
+                    <div class="toc-item"><a href="#chapitre10">Chapitre 10: Glossaire</a></div>
+                </div>
             </div>
         </div>
 
-        <div class="guide-section">
+        <!-- CHAPITRE 1: LES BASES -->
+        <section id="chapitre1" class="guide-section">
             <div class="section-header">
-                <h2>Les bases de l'investissement locatif</h2>
+                <h2><span>1</span> Les bases de l'investissement locatif</h2>
             </div>
             <div class="section-content">
-                <p>L'investissement locatif consiste à acheter un bien immobilier pour le louer et en tirer des revenus. C'est l'une des stratégies les plus efficaces pour se constituer un patrimoine à long terme.</p>
-                <p><strong>Pourquoi investir dans l'immobilier ?</strong></p>
+                <h3>Qu'est-ce que l'investissement locatif ?</h3>
+                <p>L'<strong>investissement locatif</strong> consiste à acquérir un bien immobilier (appartement, maison, local commercial) dans le but de le louer et d'en tirer des revenus réguliers. C'est une stratégie patrimoniale qui permet à la fois de :</p>
                 <ul>
-                    <li>💰 Revenus complémentaires réguliers</li>
-                    <li>📈 Plus-value à la revente</li>
-                    <li>🏦 Constitution d'un patrimoine</li>
-                    <li>📉 Avantages fiscaux</li>
-                    <li>🛡️ Protection contre l'inflation</li>
+                    <li><strong>Générer des revenus complémentaires</strong> : les loyers perçus constituent une source de revenus régulière</li>
+                    <li><strong>Se constituer un patrimoine</strong> : vous devenez propriétaire d'un bien qui prend généralement de la valeur avec le temps</li>
+                    <li><strong>Bénéficier d'avantages fiscaux</strong> : de nombreux dispositifs permettent de réduire vos impôts</li>
+                    <li><strong>Préparer sa retraite</strong> : des revenus complémentaires une fois le crédit remboursé</li>
+                    <li><strong>Transmettre un patrimoine</strong> : à vos enfants ou proches</li>
+                </ul>
+
+                <div class="info-box">
+                    <h3>💡 En résumé</h3>
+                    <p>Investissement locatif = Acheter + Louer + Gagner de l'argent + Devenir propriétaire</p>
+                </div>
+
+                <h3>Les avantages de l'immobilier</h3>
+                <div class="grid-2">
+                    <div class="card">
+                        <h4>📈 Plus-value à long terme</h4>
+                        <p>L'immobilier a historiquement pris de la valeur. Sur 20 ans, la hausse moyenne est d'environ 3-4% par an.</p>
+                    </div>
+                    <div class="card">
+                        <h4>💰 Effet de levier du crédit</h4>
+                        <p>Vous empruntez pour acheter, et ce sont vos locataires qui remboursent une partie du prêt via les loyers.</p>
+                    </div>
+                    <div class="card">
+                        <h4>🛡️ Protection contre l'inflation</h4>
+                        <p>Les loyers augmentent avec l'inflation, protégeant votre pouvoir d'achat.</p>
+                    </div>
+                    <div class="card">
+                        <h4>📉 Déductions fiscales</h4>
+                        <p>Les intérêts d'emprunt, les travaux, les frais de gestion sont déductibles de vos revenus fonciers.</p>
+                    </div>
+                </div>
+
+                <h3>Les inconvénients à connaître</h3>
+                <div class="warning-box">
+                    <h3>⚠️ Points de vigilance</h3>
+                    <ul>
+                        <li><strong>Liquidité</strong> : l'immobilier ne se vend pas du jour au lendemain</li>
+                        <li><strong>Gestion</strong> : trouver des locataires, gérer les incidents, les travaux</li>
+                        <li><strong>Risques</strong> : loyers impayés, vacance locative, dégradations</li>
+                        <li><strong>Fiscalité</strong> : les revenus locatifs sont imposables</li>
+                        <li><strong>Frais</strong> : frais de notaire, de dossier, de garantie, de gestion</li>
+                    </ul>
+                </div>
+
+                <h3>Les différents types d'investisseurs</h3>
+                <ul>
+                    <li><strong>Débutant</strong> : premier investissement, souvent un studio ou un petit appartement</li>
+                    <li><strong>Confirmé</strong> : possède déjà plusieurs biens, diversifie son portefeuille</li>
+                    <li><strong>Professionnel</strong> : fait de l'immobilier son activité principale (marchand de biens, promoteur)</li>
+                    <li><strong>Institutionnel</strong> : investit via des SCPI, des OPCI, des foncières cotées</li>
                 </ul>
             </div>
-        </div>
+        </section>
 
-        <div class="guide-section">
+        <!-- CHAPITRE 2: FINANCEMENT -->
+        <section id="chapitre2" class="guide-section">
             <div class="section-header">
-                <h2>Comment financer son achat</h2>
+                <h2><span>2</span> Le financement de votre investissement</h2>
             </div>
             <div class="section-content">
+                <h3>Comment financer son achat immobilier ?</h3>
+                <p>Le financement est la clé d'un investissement réussi. Voici les principales options :</p>
+
+                <h4>1. Le crédit immobilier classique</h4>
+                <p>C'est la solution la plus courante. Vous empruntez une somme auprès d'une banque et vous remboursez chaque mois des mensualités comprenant le capital et les intérêts.</p>
                 <ul>
-                    <li><strong>Crédit immobilier classique</strong> : taux entre 3.5% et 4.5%</li>
-                    <li><strong>Prêt à taux zéro (PTZ)</strong> : pour primo-accédants</li>
-                    <li><strong>Crédit in fine</strong> : vous ne remboursez que les intérêts</li>
-                    <li><strong>Apport personnel</strong> : idéalement 10-20%</li>
+                    <li><strong>Taux moyens</strong> : entre 3% et 4.5% selon la durée et votre profil</li>
+                    <li><strong>Durée</strong> : généralement de 10 à 25 ans</li>
+                    <li><strong>Apport</strong> : idéalement 10-20% du prix du bien</li>
+                </ul>
+
+                <h4>2. Le prêt à taux zéro (PTZ)</h4>
+                <p>Pour les primo-accédants dans certaines zones. Il peut financer jusqu'à 40% du projet sans intérêts.</p>
+
+                <h4>3. Le crédit in fine</h4>
+                <p>Vous ne remboursez que les intérêts pendant la durée du prêt, et vous remboursez le capital à la fin. Idéal pour défiscaliser mais plus risqué.</p>
+
+                <h4>4. Le prêt relais</h4>
+                <p>Pour acheter un nouveau bien avant d'avoir vendu l'ancien. Il couvre temporairement le financement.</p>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Type de prêt</th>
+                                <th>Taux moyen</th>
+                                <th>Durée</th>
+                                <th>Apport conseillé</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Classique</td>
+                                <td>3.5% - 4.5%</td>
+                                <td>15-25 ans</td>
+                                <td>10-20%</td>
+                            </tr>
+                            <tr>
+                                <td>PTZ</td>
+                                <td>0%</td>
+                                <td>20-25 ans</td>
+                                <td>Variable</td>
+                            </tr>
+                            <tr>
+                                <td>In fine</td>
+                                <td>4% - 5%</td>
+                                <td>10-20 ans</td>
+                                <td>30-50%</td>
+                            </tr>
+                            <tr>
+                                <td>Relais</td>
+                                <td>4% - 5%</td>
+                                <td>1-2 ans</td>
+                                <td>Selon bien vendu</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>Comment obtenir le meilleur taux ?</h3>
+                <div class="success-box">
+                    <h3>✅ Astuces pour négocier</h3>
+                    <ul>
+                        <li><strong>Faites jouer la concurrence</strong> : consultez plusieurs banques et courtiers</li>
+                        <li><strong>Soignez votre dossier</strong> : revenus stables, épargne, absence de crédits en cours</li>
+                        <li><strong>Apportez un maximum</strong> : plus l'apport est élevé, meilleur est le taux</li>
+                        <li><strong>Négociez les frais</strong> : frais de dossier, pénalités de remboursement anticipé</li>
+                        <li><strong>Comparez les assurances</strong> : vous n'êtes pas obligé de prendre celle de la banque</li>
+                    </ul>
+                </div>
+
+                <h3>Calculateur de capacité d'emprunt</h3>
+                <p>Pour savoir combien vous pouvez emprunter, utilisez notre <a href="/pages/capacite-emprunt.html">simulateur de capacité d'emprunt</a>.</p>
+            </div>
+        </section>
+
+        <!-- CHAPITRE 3: RENTABILITÉ -->
+        <section id="chapitre3" class="guide-section">
+            <div class="section-header">
+                <h2><span>3</span> La rentabilité locative</h2>
+            </div>
+            <div class="section-content">
+                <h3>Les différents types de rentabilité</h3>
+
+                <h4>Rentabilité brute</h4>
+                <p><strong>Formule :</strong> (Loyer annuel / Prix d'achat) × 100</p>
+                <p><em>Exemple :</em> Un bien acheté 200 000€ loué 800€/mois → (9 600 / 200 000) × 100 = 4,8% de rendement brut</p>
+
+                <h4>Rentabilité nette</h4>
+                <p><strong>Formule :</strong> (Loyer annuel - charges) / (Prix d'achat + frais) × 100</p>
+                <p>Les charges comprennent : taxe foncière, charges de copropriété, assurance, frais de gestion, etc.</p>
+
+                <h4>Rentabilité nette-nette (après impôts)</h4>
+                <p><strong>Formule :</strong> (Loyer annuel - charges - impôts) / (Prix d'achat + frais) × 100</p>
+
+                <div class="info-box">
+                    <h3>📊 Ce qu'il faut retenir</h3>
+                    <p>Un bon investissement locatif se situe généralement entre 4% et 8% de rendement net selon la zone géographique et le type de bien.</p>
+                </div>
+
+                <h3>Le cash-flow</h3>
+                <p>Le cash-flow est la différence entre vos revenus locatifs et vos charges (incluant le crédit).</p>
+                <p><strong>Cash-flow positif :</strong> vos loyers couvrent toutes vos charges + crédit → vous gagnez de l'argent chaque mois.</p>
+                <p><strong>Cash-flow négatif :</strong> vos loyers ne couvrent pas toutes vos charges → vous devez compléter.</p>
+
+                <h3>Les indicateurs avancés</h3>
+                <ul>
+                    <li><strong>VAN (Valeur Actuelle Nette)</strong> : mesure la rentabilité d'un investissement sur la durée</li>
+                    <li><strong>TRI (Taux de Rendement Interne)</strong> : le taux d'actualisation pour lequel la VAN est nulle</li>
+                    <li><strong>Délai de récupération</strong> : le temps nécessaire pour récupérer votre apport</li>
+                </ul>
+
+                <p>Utilisez notre <a href="/pages/analyse-financiere.html">analyse financière avancée</a> pour calculer ces indicateurs.</p>
+            </div>
+        </section>
+
+        <!-- CHAPITRE 4: TYPES DE BIENS -->
+        <section id="chapitre4" class="guide-section">
+            <div class="section-header">
+                <h2><span>4</span> Les différents types de biens</h2>
+            </div>
+            <div class="section-content">
+                <h3>Chaque type de bien a ses spécificités</h3>
+
+                <div class="grid-2">
+                    <div class="card">
+                        <h4>🏠 Studio / T1</h4>
+                        <p><strong>Avantages :</strong> Forte demande (étudiants), rendement élevé, gestion simple</p>
+                        <p><strong>Inconvénients :</strong> Turnover fréquent, petits espaces</p>
+                        <p><strong>Rendement moyen :</strong> 5-7%</p>
+                    </div>
+                    <div class="card">
+                        <h4>🏢 Appartement T2/T3</h4>
+                        <p><strong>Avantages :</strong> Demande familiale, stabilité locative</p>
+                        <p><strong>Inconvénients :</strong> Prix plus élevé, charges plus importantes</p>
+                        <p><strong>Rendement moyen :</strong> 4-6%</p>
+                    </div>
+                    <div class="card">
+                        <h4>🏘️ Maison</h4>
+                        <p><strong>Avantages :</strong> Plus-value potentielle, demande de familles</p>
+                        <p><strong>Inconvénients :</strong> Entretien plus lourd, risque de vacance</p>
+                        <p><strong>Rendement moyen :</strong> 3-5%</p>
+                    </div>
+                    <div class="card">
+                        <h4>🅿️ Parking / Box</h4>
+                        <p><strong>Avantages :</strong> Investissement modeste, gestion simple, pas de travaux</p>
+                        <p><strong>Inconvénients :</strong> Rendement modéré, pas de plus-value</p>
+                        <p><strong>Rendement moyen :</strong> 4-6%</p>
+                    </div>
+                    <div class="card">
+                        <h4>🏪 Local commercial</h4>
+                        <p><strong>Avantages :</strong> Baux longue durée (3-6-9 ans), rendement élevé</p>
+                        <p><strong>Inconvénients :</strong> Risque de vacance, gestion spécifique</p>
+                        <p><strong>Rendement moyen :</strong> 6-10%</p>
+                    </div>
+                    <div class="card">
+                        <h4>📦 SCPI</h4>
+                        <p><strong>Avantages :</strong> Investissement sans gestion, diversification</p>
+                        <p><strong>Inconvénients :</strong> Frais d'entrée, absence de liquidité</p>
+                        <p><strong>Rendement moyen :</strong> 4-5%</p>
+                    </div>
+                </div>
+
+                <p>Utilisez nos simulateurs spécialisés pour chaque type de bien :</p>
+                <ul>
+                    <li><a href="/pages/immobilier-etudiant.html">Immobilier étudiant</a></li>
+                    <li><a href="/pages/immobilier-ancien.html">Immobilier ancien</a></li>
+                    <li><a href="/pages/immobilier-neuf.html">Immobilier neuf</a></li>
+                    <li><a href="/pages/immobilier-luxe.html">Immobilier de luxe</a></li>
                 </ul>
             </div>
-        </div>
+        </section>
 
-        <div class="guide-section">
+        <!-- CHAPITRE 5: FISCALITÉ -->
+        <section id="chapitre5" class="guide-section">
             <div class="section-header">
-                <h2>Calculer la rentabilité</h2>
+                <h2><span>5</span> La fiscalité immobilière</h2>
             </div>
             <div class="section-content">
-                <p><strong>Rentabilité brute :</strong> (Loyer annuel / Prix d'achat) × 100</p>
-                <p><strong>Rentabilité nette :</strong> (Loyer annuel - charges) / (Prix d'achat + frais) × 100</p>
-                <p><strong>Cash-flow :</strong> Loyer - charges - mensualité</p>
-                <p>👉 Utilisez notre <a href="/pages/simulateur.html">simulateur gratuit</a> pour des calculs précis.</p>
-            </div>
-        </div>
+                <h3>Les régimes fiscaux pour la location vide</h3>
 
-        <div class="guide-section">
-            <div class="section-header">
-                <h2>Choisir le bon bien</h2>
-            </div>
-            <div class="section-content">
+                <h4>Micro-foncier</h4>
                 <ul>
-                    <li><strong>Emplacement</strong> : proximité transports, écoles, commerces</li>
-                    <li><strong>État du bien</strong> : travaux nécessaires</li>
-                    <li><strong>Demande locative</strong> : étudiants, familles, etc.</li>
-                    <li><strong>Prix au m²</strong> : comparer avec le marché</li>
+                    <li><strong>Plafond :</strong> jusqu'à 15 000€ de loyers annuels</li>
+                    <li><strong>Avantage :</strong> abattement forfaitaire de 30% sur les revenus</li>
+                    <li><strong>Idéal pour :</strong> les petites surfaces, charges faibles</li>
+                </ul>
+
+                <h4>Régime réel</h4>
+                <ul>
+                    <li><strong>Plafond :</strong> au-delà de 15 000€ ou sur option</li>
+                    <li><strong>Avantage :</strong> déduction des charges réelles (travaux, intérêts, taxe foncière)</li>
+                    <li><strong>Idéal pour :</strong> biens avec charges élevées, travaux importants</li>
+                </ul>
+
+                <h3>La location meublée (LMNP)</h3>
+                <ul>
+                    <li><strong>Micro-BIC :</strong> abattement de 50% jusqu'à 70 000€ de recettes</li>
+                    <li><strong>Régime réel :</strong> amortissement du bien possible (réduction d'impôt significative)</li>
+                    <li><strong>Avantage :</strong> possibilité de dégager un déficit imputable sur les revenus globaux</li>
+                </ul>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Régime</th>
+                                <th>Type</th>
+                                <th>Plafond</th>
+                                <th>Abattement / Déduction</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Micro-foncier</td>
+                                <td>Location vide</td>
+                                <td>15 000€</td>
+                                <td>30%</td>
+                            </tr>
+                            <tr>
+                                <td>Réel</td>
+                                <td>Location vide</td>
+                                <td>-</td>
+                                <td>Charges réelles</td>
+                            </tr>
+                            <tr>
+                                <td>Micro-BIC</td>
+                                <td>Meublé</td>
+                                <td>70 000€</td>
+                                <td>50%</td>
+                            </tr>
+                            <tr>
+                                <td>LMNP réel</td>
+                                <td>Meublé</td>
+                                <td>-</td>
+                                <td>Amortissement + charges</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>Les dispositifs de défiscalisation</h3>
+                <ul>
+                    <li><strong>Loi Pinel</strong> : réduction d'impôt pour investissement dans le neuf (12-21%)</li>
+                    <li><strong>Loi Malraux</strong> : pour l'immobilier ancien dans des secteurs sauvegardés</li>
+                    <li><strong>Loi Denormandie</strong> : pour la rénovation dans l'ancien</li>
+                    <li><strong>Dispositif Censi-Bouvard</strong> : pour les résidences services (étudiantes, seniors)</li>
+                </ul>
+
+                <p>Pour optimiser votre fiscalité, utilisez notre <a href="/pages/simulateur-lmnp.html">simulateur LMNP</a>.</p>
+            </div>
+        </section>
+
+        <!-- CHAPITRE 6: GESTION LOCATIVE -->
+        <section id="chapitre6" class="guide-section">
+            <div class="section-header">
+                <h2><span>6</span> La gestion locative</h2>
+            </div>
+            <div class="section-content">
+                <h3>Gérer soi-même ou par une agence ?</h3>
+
+                <div class="grid-2">
+                    <div class="card">
+                        <h4>Auto-gestion</h4>
+                        <p><strong>Avantages :</strong></p>
+                        <ul>
+                            <li>Économies (6-10% des loyers)</li>
+                            <li>Relation directe avec les locataires</li>
+                            <li>Maîtrise totale</li>
+                        </ul>
+                        <p><strong>Inconvénients :</strong></p>
+                        <ul>
+                            <li>Temps passé</li>
+                            <li>Compétences juridiques nécessaires</li>
+                            <li>Gestion des conflits</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h4>Gestion par agence</h4>
+                        <p><strong>Avantages :</strong></p>
+                        <ul>
+                            <li>Tranquillité</li>
+                            <li>Expertise juridique</li>
+                            <li>Recherche de locataires</li>
+                            <li>Gestion des litiges</li>
+                        </ul>
+                        <p><strong>Inconvénients :</strong></p>
+                        <ul>
+                            <li>Coût (6-10% des loyers)</li>
+                            <li>Moins de contrôle</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3>La sélection des locataires</h3>
+                <div class="success-box">
+                    <h3>✅ Checklist de sélection</h3>
+                    <ul>
+                        <li>Vérifier les revenus (au moins 3 fois le montant du loyer)</li>
+                        <li>Demander des garanties (garant, caution bancaire, VISALE)</li>
+                        <li>Vérifier les références des précédents propriétaires</li>
+                        <li>Analyser la stabilité professionnelle (CDI, fonctionnaire)</li>
+                    </ul>
+                </div>
+
+                <h3>L'assurance loyers impayés</h3>
+                <p>Coût : 2-3% des loyers. Elle couvre :</p>
+                <ul>
+                    <li>Les loyers impayés (généralement 6-12 mois)</li>
+                    <li>Les frais de procédure</li>
+                    <li>Parfois les dégradations</li>
+                </ul>
+
+                <h3>Les points clés du bail</h3>
+                <ul>
+                    <li><strong>Durée</strong> : 3 ans pour location vide, 1 an pour meublé</li>
+                    <li><strong>Dépôt de garantie</strong> : 1 mois pour vide, 2 mois pour meublé</li>
+                    <li><strong>Révision du loyer</strong> : possible chaque année selon l'IRL</li>
+                    <li><strong>État des lieux</strong> : obligatoire à l'entrée et à la sortie</li>
                 </ul>
             </div>
-        </div>
+        </section>
+
+        <!-- CHAPITRE 7: STRATÉGIES AVANCÉES -->
+        <section id="chapitre7" class="guide-section">
+            <div class="section-header">
+                <h2><span>7</span> Stratégies avancées</h2>
+            </div>
+            <div class="section-content">
+                <h3>L'effet de levier du crédit</h3>
+                <p>L'effet de levier consiste à utiliser l'emprunt pour amplifier votre rentabilité. Exemple :</p>
+                <ul>
+                    <li>Sans crédit : apport 200 000€, rendement 4% → 8 000€/an</li>
+                    <li>Avec crédit : apport 40 000€, emprunt 160 000€ à 3.5%, même rendement → après crédit, votre rentabilité sur apport peut atteindre 8-10%</li>
+                </ul>
+                <p>Utilisez notre <a href="/pages/effet-levier.html">calculateur d'effet de levier</a> pour visualiser l'impact.</p>
+
+                <h3>Le crowdlending immobilier</h3>
+                <p>Prêtez de l'argent à des promoteurs immobiliers via des plateformes participatives. Rendement moyen : 8-10% sur 12-24 mois.</p>
+
+                <h3>La colocation</h3>
+                <p>Transformez un grand appartement en colocation pour booster le rendement. Un 100m² peut rapporter 30% de plus en colocation.</p>
+                <p>Simulez votre projet avec notre <a href="/pages/simulateur-colocation.html">simulateur colocation</a>.</p>
+
+                <h3>La location saisonnière</h3>
+                <p>Airbnb, Booking : des rendements plus élevés mais une gestion plus lourde et une fiscalité différente.</p>
+                <p>Calculez votre potentiel avec notre <a href="/pages/location-saisonniere.html">simulateur saisonnier</a>.</p>
+
+                <h3>L'achat-revente (flip)</h3>
+                <p>Acheter, rénover, revendre rapidement. Nécessite une bonne connaissance du marché et des travaux.</p>
+
+                <h3>Les SCPI à crédit</h3>
+                <p>Investir dans des SCPI avec un crédit pour bénéficier de l'effet de levier sans gérer de bien.</p>
+            </div>
+        </section>
+
+        <!-- CHAPITRE 8: ERREURS À ÉVITER -->
+        <section id="chapitre8" class="guide-section">
+            <div class="section-header">
+                <h2><span>8</span> Les erreurs à éviter</h2>
+            </div>
+            <div class="section-content">
+                <div class="warning-box">
+                    <h3>❌ Les 10 erreurs fatales</h3>
+                    <ol>
+                        <li><strong>Ne pas calculer la rentabilité</strong> : toujours simuler avant d'acheter</li>
+                        <li><strong>Sous-estimer les charges</strong> : taxe foncière, travaux, vacance locative</li>
+                        <li><strong>Mauvais emplacement</strong> : l'emplacement est le critère n°1</li>
+                        <li><strong>Sur-endettement</strong> : ne pas mettre tous ses œufs dans le même panier</li>
+                        <li><strong>Ignorer la fiscalité</strong> : chaque régime a ses particularités</li>
+                        <li><strong>Négliger les travaux</strong> : prévoir toujours une marge</li>
+                        <li><strong>Mauvaise sélection des locataires</strong> : prendre le premier venu</li>
+                        <li><strong>Pas d'assurance loyers impayés</strong> : surtout pour les primo-accédants</li>
+                        <li><strong>Surestimer la plus-value</strong> : ne pas compter uniquement là-dessus</li>
+                        <li><strong>Se précipiter sans comparer</strong> : prendre le temps d'analyser</li>
+                    </ol>
+                </div>
+
+                <div class="info-box">
+                    <h3>💡 La règle d'or</h3>
+                    <p>Un bon investissement se prépare. Prenez le temps d'analyser, de comparer, de simuler. Utilisez tous nos outils pour prendre la meilleure décision.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CHAPITRE 9: CAS PRATIQUES -->
+        <section id="chapitre9" class="guide-section">
+            <div class="section-header">
+                <h2><span>9</span> Cas pratiques</h2>
+            </div>
+            <div class="section-content">
+                <h3>Cas n°1 : Studio étudiant à Lyon</h3>
+                <p><strong>Situation :</strong> Thomas, 28 ans, achète un studio de 22m² à Lyon pour 85 000€.</p>
+                <p><strong>Financement :</strong> Apport 15 000€, crédit 70 000€ sur 20 ans à 3.8% (mensualité 417€).</p>
+                <p><strong>Loyer :</strong> 580€/mois, charges 45€.</p>
+                <p><strong>Résultat :</strong> Cash-flow mensuel +118€, rendement net 4.5%.</p>
+
+                <h3>Cas n°2 : Appartement familial à Bordeaux</h3>
+                <p><strong>Situation :</strong> Sophie achète un T3 de 65m² à Bordeaux pour 220 000€.</p>
+                <p><strong>Financement :</strong> Apport 44 000€, crédit 176 000€ sur 20 ans à 3.5% (mensualité 1 020€).</p>
+                <p><strong>Loyer :</strong> 1 200€/mois, charges 120€.</p>
+                <p><strong>Résultat :</strong> Cash-flow mensuel +60€, rendement net 3.8%.</p>
+
+                <h3>Cas n°3 : Colocation à Montpellier</h3>
+                <p><strong>Situation :</strong> Marc transforme un T5 de 100m² en colocation 4 chambres.</p>
+                <p><strong>Prix :</strong> 280 000€, apport 56 000€, crédit 224 000€ sur 20 ans à 3.5% (mensualité 1 300€).</p>
+                <p><strong>Loyers :</strong> 4 × 450€ = 1 800€, charges 200€.</p>
+                <p><strong>Résultat :</strong> Cash-flow mensuel +300€, rendement net 6.4%.</p>
+            </div>
+        </section>
+
+        <!-- CHAPITRE 10: GLOSSAIRE -->
+        <section id="chapitre10" class="guide-section">
+            <div class="section-header">
+                <h2><span>10</span> Glossaire de l'investissement immobilier</h2>
+            </div>
+            <div class="section-content">
+                <div class="grid-2">
+                    <div class="card">
+                        <h4>Cash-flow</h4>
+                        <p>Différence entre les revenus locatifs et les charges (crédit inclus).</p>
+                    </div>
+                    <div class="card">
+                        <h4>Rendement brut</h4>
+                        <p>(Loyer annuel / Prix d'achat) × 100</p>
+                    </div>
+                    <div class="card">
+                        <h4>Rendement net</h4>
+                        <p>(Loyer annuel - charges) / (Prix d'achat + frais) × 100</p>
+                    </div>
+                    <div class="card">
+                        <h4>VAN</h4>
+                        <p>Valeur Actuelle Nette. Mesure la rentabilité d'un investissement.</p>
+                    </div>
+                    <div class="card">
+                        <h4>TRI</h4>
+                        <p>Taux de Rendement Interne. Taux pour lequel la VAN est nulle.</p>
+                    </div>
+                    <div class="card">
+                        <h4>LMNP</h4>
+                        <p>Loueur Meublé Non Professionnel. Régime fiscal avantageux pour le meublé.</p>
+                    </div>
+                    <div class="card">
+                        <h4>SCPI</h4>
+                        <p>Société Civile de Placement Immobilier. Investir dans l'immobilier sans gérer.</p>
+                    </div>
+                    <div class="card">
+                        <h4>PTZ</h4>
+                        <p>Prêt à Taux Zéro. Aide pour les primo-accédants.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
 
+    <!-- Pied de page -->
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-section">
@@ -632,24 +1263,51 @@
                 <p>📞 +243 974 843 721</p>
             </div>
         </div>
+        <div class="footer-legal">
+            <a href="/pages/mentions-legales.html">Mentions légales</a>
+            <a href="/pages/confidentialite.html">Confidentialité</a>
+            <a href="/pages/cgu.html">CGU</a>
+        </div>
         <div class="copyright">
-            © 2026 RentaPro - Guide gratuit pour investisseurs immobiliers
+            © 2026 RentaPro - Cours complet sur l'investissement immobilier
         </div>
     </footer>
 
+    <!-- Bouton retour haut de page -->
+    <a href="#" class="back-to-top" id="backToTop">↑</a>
+
+    <!-- Bouton mode sombre -->
     <div class="theme-toggle" id="themeToggle" onclick="toggleTheme()">🌙</div>
 
     <script>
+        // Mode sombre
         function toggleTheme() {
             document.body.classList.toggle('dark-mode');
             const toggle = document.getElementById('themeToggle');
             toggle.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
             localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
         }
-        if (localStorage.getItem('theme') === 'dark') {
-            document.body.classList.add('dark-mode');
-            document.getElementById('themeToggle').textContent = '☀️';
-        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('theme');
+            const toggle = document.getElementById('themeToggle');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+                if (toggle) toggle.textContent = '☀️';
+            } else {
+                if (toggle) toggle.textContent = '🌙';
+            }
+        });
+
+        // Bouton retour haut de page
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTop.style.display = 'flex';
+            } else {
+                backToTop.style.display = 'none';
+            }
+        });
     </script>
 </body>
 </html>
