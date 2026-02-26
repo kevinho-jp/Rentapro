@@ -13,151 +13,36 @@
         gtag('config', 'G-525423879');
     </script>
     
-    <!-- ========== BALISES SEO ========== -->
-    <title>Analyse financière immobilière - VAN, TRI, délai de récupération - RentaPro</title>
-    <meta name="description" content="Analyse financière avancée pour investissement immobilier : calculez la VAN, le TRI, le délai de récupération et le seuil de rentabilité de vos projets.">
-    <meta name="keywords" content="VAN immobilière, TRI investissement, délai de récupération, analyse financière immobilier, indicateurs financiers">
-    <meta name="author" content="RentaPro">
-    <meta name="robots" content="index, follow">
+    <title>Analyse financière immobilière - RentaPro</title>
     
-    <!-- Open Graph -->
-    <meta property="og:title" content="Analyse financière immobilière - RentaPro">
-    <meta property="og:description" content="Calculez la VAN, le TRI et le délai de récupération de vos investissements immobiliers">
-    <meta property="og:image" content="https://rentapro-swart.vercel.app/images/og-finance.jpg">
-    <meta property="og:url" content="https://rentapro-swart.vercel.app/pages/analyse-financiere.html">
-    <meta property="og:type" content="website">
+    <!-- IMPORTANT: Chart.js version stable -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Analyse financière immobilière - RentaPro">
-    <meta name="twitter:description" content="VAN, TRI, délai de récupération pour vos investissements">
-    <meta name="twitter:image" content="https://rentapro-swart.vercel.app/images/og-finance.jpg">
-    
-    <!-- Google AdSense -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- IMPORTANT: Chart.js pour les graphiques -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    
-    <!-- Anime.js pour les animations (optionnel) -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
-    
-    <!-- Assistant IA CSS -->
-    <link rel="stylesheet" href="/assistant-ia.css">
-
     <style>
-        /* ============================================
-           STYLES GLOBAUX AMÉLIORÉS - RENTAPRO
-           ============================================ */
-
-        /* Variables et thèmes */
-        :root {
-            --primary-dark: #0f172a;
-            --primary-light: #1e293b;
-            --accent: #eab308;
-            --accent-hover: #fbbf24;
-            --accent-soft: rgba(234, 179, 8, 0.1);
-            --text-dark: #1e293b;
-            --text-light: #64748b;
-            --text-muted: #94a3b8;
-            --bg-light: #f8fafc;
-            --bg-white: #ffffff;
-            --bg-card: #ffffff;
-            --border: #e2e8f0;
-            --success: #059669;
-            --danger: #dc2626;
-            --warning: #d97706;
-            --info: #2563eb;
-            
-            /* Ombres améliorées */
-            --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-            --shadow-sm: 0 4px 6px -1px rgb(0 0 0 / 0.05);
-            --shadow-md: 0 10px 15px -3px rgb(0 0 0 / 0.05);
-            --shadow-lg: 0 20px 25px -5px rgb(0 0 0 / 0.05);
-            --shadow-xl: 0 25px 50px -12px rgb(0 0 0 / 0.1);
-            --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
-            
-            /* Animations */
-            --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
-            --transition-base: 300ms cubic-bezier(0.4, 0, 0.2, 1);
-            --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
-            
-            /* Bordures */
-            --radius-sm: 0.375rem;
-            --radius-base: 0.75rem;
-            --radius-lg: 1.5rem;
-            --radius-xl: 2rem;
-            --radius-full: 9999px;
-        }
-
-        /* Mode sombre */
-        body.dark-mode {
-            --primary-dark: #f8fafc;
-            --primary-light: #e2e8f0;
-            --text-dark: #f8fafc;
-            --text-light: #cbd5e1;
-            --text-muted: #94a3b8;
-            --bg-light: #0f172a;
-            --bg-white: #1e293b;
-            --bg-card: #1e293b;
-            --border: #334155;
-        }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background: var(--bg-light);
-            color: var(--text-dark);
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            transition: background-color var(--transition-base), color var(--transition-base);
+            background: #f8fafc;
+            color: #1e293b;
+            padding: 2rem;
         }
 
-        body * {
-            transition: background-color var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
-        }
-
-        /* Animations globales */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Navigation */
         .navbar {
-            background: var(--bg-white);
+            background: white;
             padding: 1rem 5%;
-            box-shadow: var(--shadow-sm);
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
             display: flex;
             justify-content: center;
             align-items: center;
             flex-wrap: wrap;
             gap: 2rem;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            backdrop-filter: blur(10px);
-            background: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+            border-radius: 50px;
         }
 
         .logo {
@@ -166,20 +51,18 @@
             gap: 0.5rem;
             font-size: 1.8rem;
             font-weight: 700;
-            font-family: 'Montserrat', sans-serif;
         }
 
         .logo-icon {
             font-size: 2rem;
             background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-            color: var(--accent);
+            color: #eab308;
             width: 50px;
             height: 50px;
-            border-radius: var(--radius-lg);
+            border-radius: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: var(--shadow-sm);
         }
 
         .logo-text {
@@ -196,40 +79,24 @@
         }
 
         .nav-links a {
-            color: var(--text-light);
+            color: #64748b;
             text-decoration: none;
             font-weight: 500;
-            transition: color var(--transition-fast);
-            padding: 0.5rem 0;
-            position: relative;
         }
 
         .nav-links a:hover {
-            color: var(--primary-dark);
+            color: #0f172a;
         }
 
         .nav-links a.active {
-            color: var(--primary-dark);
+            color: #0f172a;
             font-weight: 600;
-        }
-
-        .nav-links a.active::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, var(--accent), var(--accent-hover));
-            border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+            border-bottom: 3px solid #eab308;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 2rem;
-            width: 100%;
-            flex: 1;
         }
 
         .header-center {
@@ -237,74 +104,13 @@
             margin-bottom: 3rem;
             padding: 3rem;
             background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-            border-radius: var(--radius-xl);
+            border-radius: 40px;
             color: white;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .header-center::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(234,179,8,0.1) 0%, transparent 70%);
-            animation: rotate 30s linear infinite;
-        }
-
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
         }
 
         .header-center h1 {
             font-size: clamp(2rem, 5vw, 3rem);
             margin-bottom: 1rem;
-            position: relative;
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .header-center p {
-            color: #cbd5e1;
-            font-size: 1.2rem;
-            max-width: 800px;
-            margin: 0 auto;
-            position: relative;
-        }
-
-        /* Cards améliorées */
-        .card {
-            background: var(--bg-card);
-            border-radius: var(--radius-lg);
-            padding: 2rem;
-            box-shadow: var(--shadow-md);
-            border: 1px solid var(--border);
-            transition: all var(--transition-base);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--accent), var(--accent-hover));
-            transform: scaleX(0);
-            transition: transform var(--transition-base);
-        }
-
-        .card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .card:hover {
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: var(--shadow-2xl);
         }
 
         .finance-grid {
@@ -312,6 +118,14 @@
             grid-template-columns: 1fr 1fr;
             gap: 2rem;
             margin: 2rem 0;
+        }
+
+        .card {
+            background: white;
+            border-radius: 30px;
+            padding: 2rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.05);
+            border: 1px solid #e2e8f0;
         }
 
         .input-group {
@@ -328,71 +142,42 @@
         .form-group label {
             display: block;
             font-weight: 600;
-            color: var(--text-dark);
+            color: #0f172a;
             margin-bottom: 0.5rem;
-            font-family: 'Montserrat', sans-serif;
         }
 
         .form-group input {
             width: 100%;
             padding: 0.8rem 1rem;
-            border: 2px solid var(--border);
-            border-radius: var(--radius-base);
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
             font-size: 1rem;
-            transition: all var(--transition-fast);
-            background: var(--bg-white);
-            color: var(--text-dark);
         }
 
         .form-group input:focus {
             outline: none;
-            border-color: var(--accent);
-            box-shadow: 0 0 0 3px var(--accent-soft);
+            border-color: #eab308;
         }
 
         .btn-calculate {
-            background: var(--primary-dark);
+            background: #0f172a;
             color: white;
             border: none;
             padding: 1rem;
-            border-radius: var(--radius-base);
+            border-radius: 12px;
             font-size: 1.1rem;
             font-weight: 600;
             cursor: pointer;
             width: 100%;
-            transition: all var(--transition-fast);
-            font-family: 'Montserrat', sans-serif;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn-calculate::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.3);
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
-        }
-
-        .btn-calculate:hover::after {
-            width: 300px;
-            height: 300px;
         }
 
         .btn-calculate:hover {
-            background: var(--primary-light);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
+            background: #1e293b;
         }
 
         .result-card {
-            background: var(--bg-light);
-            border-radius: var(--radius-base);
+            background: #f8fafc;
+            border-radius: 20px;
             padding: 1.5rem;
             margin-bottom: 1rem;
         }
@@ -401,7 +186,7 @@
             display: flex;
             justify-content: space-between;
             padding: 0.8rem 0;
-            border-bottom: 1px solid var(--border);
+            border-bottom: 1px solid #e2e8f0;
         }
 
         .result-item:last-child {
@@ -409,71 +194,21 @@
         }
 
         .result-label {
-            color: var(--text-light);
+            color: #64748b;
         }
 
         .result-value {
             font-weight: 700;
-            color: var(--text-dark);
+            color: #0f172a;
             font-size: 1.1rem;
-            font-family: 'Montserrat', sans-serif;
         }
 
         .positive {
-            color: var(--success);
+            color: #059669;
         }
 
         .negative {
-            color: var(--danger);
-        }
-
-        .summary-section {
-            background: var(--bg-white);
-            border-radius: var(--radius-xl);
-            padding: 2rem;
-            margin: 2rem 0;
-            box-shadow: var(--shadow-md);
-        }
-
-        .summary-section h2 {
-            color: var(--text-dark);
-            margin-bottom: 1.5rem;
-            font-family: 'Montserrat', sans-serif;
-            text-align: center;
-        }
-
-        .summary-section h2::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--accent), var(--accent-hover));
-            margin: 1rem auto;
-            border-radius: 2px;
-        }
-
-        .summary-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .summary-card {
-            background: linear-gradient(135deg, var(--bg-light) 0%, var(--bg-white) 100%);
-            padding: 1.5rem;
-            border-radius: var(--radius-base);
-            border-left: 4px solid var(--accent);
-        }
-
-        .summary-card h3 {
-            color: var(--text-dark);
-            margin-bottom: 0.5rem;
-            font-size: 1.2rem;
-        }
-
-        .summary-card p {
-            color: var(--text-light);
-            line-height: 1.6;
+            color: #dc2626;
         }
 
         /* Section graphiques */
@@ -485,18 +220,6 @@
             text-align: center;
             font-size: 2rem;
             margin-bottom: 2rem;
-            color: var(--text-dark);
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .graph-section h2::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--accent), var(--accent-hover));
-            margin: 1rem auto;
-            border-radius: 2px;
         }
 
         .graph-grid {
@@ -507,250 +230,82 @@
         }
 
         .graph-container {
-            background: var(--bg-card);
-            border-radius: var(--radius-lg);
+            background: white;
+            border-radius: 30px;
             padding: 2rem;
-            box-shadow: var(--shadow-md);
-            border: 1px solid var(--border);
-            transition: all var(--transition-base);
-        }
-
-        .graph-container:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-xl);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.05);
+            border: 1px solid #e2e8f0;
+            min-height: 350px;
+            position: relative;
         }
 
         .graph-container h3 {
-            color: var(--text-dark);
-            margin-bottom: 1rem;
             text-align: center;
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .investors-section {
-            margin: 4rem 0;
-        }
-
-        .investors-section h2 {
-            text-align: center;
-            font-size: 2.2rem;
-            color: var(--text-dark);
-            margin-bottom: 2rem;
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .investors-section h2::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--accent), var(--accent-hover));
-            margin: 1rem auto;
-            border-radius: 2px;
-        }
-
-        .investors-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .investor-card {
-            background: var(--bg-white);
-            border-radius: var(--radius-lg);
-            padding: 2rem;
-            box-shadow: var(--shadow-sm);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            border: 1px solid var(--border);
-            transition: all var(--transition-base);
-        }
-
-        .investor-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-md);
-            border-color: var(--accent);
-        }
-
-        .investor-image {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            background-size: cover;
-            background-position: center;
-            margin-bottom: 1.5rem;
-            border: 4px solid var(--accent);
-        }
-
-        .investor-name {
-            font-size: 1.5rem;
-            color: var(--text-dark);
-            margin-bottom: 0.3rem;
-        }
-
-        .investor-title {
-            color: var(--text-light);
-            font-size: 0.95rem;
             margin-bottom: 1rem;
+            color: #0f172a;
         }
 
-        .investor-quote {
-            color: var(--text-dark);
-            font-style: italic;
-            line-height: 1.6;
-            margin-bottom: 1rem;
-        }
-
-        .investor-advice {
-            background: var(--bg-light);
-            padding: 1rem;
-            border-radius: var(--radius-base);
-            font-size: 0.95rem;
-            color: var(--text-light);
+        .graph-wrapper {
+            height: 300px;
             width: 100%;
-            text-align: left;
+            position: relative;
         }
 
-        /* Bouton mode sombre amélioré */
-        .theme-toggle {
-            position: fixed;
-            bottom: 110px;
-            right: 30px;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: var(--primary-dark);
-            color: var(--accent);
-            border: 2px solid var(--accent);
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            z-index: 999;
-            transition: all var(--transition-base);
-            box-shadow: var(--shadow-lg);
+        canvas {
+            display: block;
+            width: 100% !important;
+            height: 100% !important;
         }
 
-        .theme-toggle:hover {
-            transform: scale(1.1) rotate(10deg);
-            background: var(--accent);
-            color: var(--primary-dark);
-            box-shadow: 0 0 20px var(--accent);
+        .summary-section {
+            background: white;
+            border-radius: 30px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.05);
         }
 
-        body.dark-mode .theme-toggle {
-            background: var(--accent);
-            color: var(--primary-dark);
+        .summary-section h2 {
+            text-align: center;
+            margin-bottom: 2rem;
         }
 
-        body.dark-mode .theme-toggle:hover {
-            background: var(--primary-dark);
-            color: var(--accent);
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .summary-card {
+            background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+            padding: 1.5rem;
+            border-radius: 20px;
+            border-left: 4px solid #eab308;
+        }
+
+        .summary-card h3 {
+            color: #0f172a;
+            margin-bottom: 0.5rem;
+        }
+
+        .summary-card p {
+            color: #64748b;
+            line-height: 1.6;
         }
 
         .footer {
-            background: #0f172a;
-            color: white;
-            padding: 4rem 5% 2rem;
+            text-align: center;
             margin-top: 3rem;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 3rem;
-        }
-
-        .footer-section h4 {
-            color: var(--accent);
-            margin-bottom: 1.5rem;
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .footer-section a {
-            color: #94a3b8;
-            text-decoration: none;
-            display: block;
-            margin-bottom: 0.8rem;
-            transition: color var(--transition-fast);
-        }
-
-        .footer-section a:hover {
-            color: var(--accent);
-            transform: translateX(5px);
-        }
-
-        .footer-legal {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            margin: 2rem 0 1rem;
-            flex-wrap: wrap;
-        }
-
-        .footer-legal a {
-            color: #94a3b8;
-            text-decoration: none;
-            font-size: 0.9rem;
-        }
-
-        .footer-legal a:hover {
-            color: var(--accent);
-        }
-
-        .amazon-disclaimer {
-            text-align: center;
-            font-size: 0.8rem;
-            color: #94a3b8;
-            margin-top: 1rem;
-        }
-
-        .copyright {
-            text-align: center;
-            margin-top: 2rem;
-            padding-top: 2rem;
-            border-top: 1px solid #334155;
             color: #64748b;
         }
 
         @media (max-width: 768px) {
-            .navbar {
-                flex-direction: column;
-                gap: 1rem;
-            }
-            .nav-links {
-                gap: 1rem;
-            }
             .finance-grid {
                 grid-template-columns: 1fr;
             }
             .graph-grid {
                 grid-template-columns: 1fr;
             }
-        }
-
-        /* Scrollbar personnalisée */
-        ::-webkit-scrollbar {
-            width: 10px;
-            height: 10px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: var(--bg-light);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--accent);
-            border-radius: var(--radius-full);
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--accent-hover);
         }
     </style>
 </head>
@@ -764,10 +319,7 @@
             <a href="/">Accueil</a>
             <a href="/pages/simulateur.html">Simulateur</a>
             <a href="/pages/guide.html">Guide</a>
-            <a href="/pages/investissement-mondial.html">🌍 Monde</a>
             <a href="/pages/analyse-financiere.html" class="active">📊 Finance</a>
-            <a href="/pages/blog.html">📝 Blog</a>
-            <a href="/pages/temoignages.html">🗣️ Témoignages</a>
             <a href="/pages/contact.html">Contact</a>
         </div>
     </nav>
@@ -775,7 +327,7 @@
     <div class="container">
         <div class="header-center">
             <h1>📊 Analyse financière avancée</h1>
-            <p>VAN, TRI, délai de récupération... Tous les indicateurs pour une décision d'investissement éclairée.</p>
+            <p>VAN, TRI, délai de récupération</p>
         </div>
 
         <div class="finance-grid">
@@ -784,28 +336,28 @@
                 <h2 style="margin-bottom: 1.5rem;">💰 Paramètres d'investissement</h2>
                 
                 <div class="form-group">
-                    <label for="investInitial">Investissement initial ($)</label>
-                    <input type="number" id="investInitial" value="250000" step="1000">
+                    <label>Investissement initial ($)</label>
+                    <input type="number" id="investInitial" value="60000" step="1000">
                 </div>
 
                 <div class="form-group">
-                    <label for="fluxAnnuel">Flux de trésorerie annuel ($)</label>
+                    <label>Flux de trésorerie annuel ($)</label>
                     <input type="number" id="fluxAnnuel" value="15000" step="500">
                 </div>
 
                 <div class="input-group">
                     <div class="form-group">
-                        <label for="tauxActualisation">Taux d'actualisation (%)</label>
+                        <label>Taux d'actualisation (%)</label>
                         <input type="number" id="tauxActualisation" value="5" step="0.1">
                     </div>
                     <div class="form-group">
-                        <label for="duree">Durée (années)</label>
+                        <label>Durée (années)</label>
                         <input type="number" id="duree" value="10" min="1" max="30">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="valeurResiduelle">Valeur résiduelle ($)</label>
+                    <label>Valeur résiduelle ($)</label>
                     <input type="number" id="valeurResiduelle" value="300000" step="1000">
                 </div>
 
@@ -822,7 +374,7 @@
                         <span class="result-label">VAN</span>
                         <span class="result-value" id="van">$0</span>
                     </div>
-                    <div style="margin-top: 0.5rem; font-size: 0.9rem;" id="vanInterpretation"></div>
+                    <div style="margin-top: 0.5rem;" id="vanInterpretation"></div>
                 </div>
 
                 <div class="result-card">
@@ -852,23 +404,29 @@
             <h2>📈 Analyse graphique interactive</h2>
             
             <div class="graph-grid">
-                <!-- Graphique 1 : Évolution de la VAN -->
+                <!-- Graphique 1 -->
                 <div class="graph-container">
                     <h3>Évolution de la VAN</h3>
-                    <canvas id="vanChart" style="width:100%; height:300px;"></canvas>
+                    <div class="graph-wrapper">
+                        <canvas id="vanChart"></canvas>
+                    </div>
                 </div>
                 
-                <!-- Graphique 2 : Flux de trésorerie -->
+                <!-- Graphique 2 -->
                 <div class="graph-container">
                     <h3>Flux de trésorerie annuels</h3>
-                    <canvas id="cashflowChart" style="width:100%; height:300px;"></canvas>
+                    <div class="graph-wrapper">
+                        <canvas id="cashflowChart"></canvas>
+                    </div>
                 </div>
             </div>
             
-            <!-- Graphique 3 : Comparaison des scénarios -->
+            <!-- Graphique 3 -->
             <div class="graph-container" style="margin-top: 2rem;">
                 <h3>Comparaison des scénarios</h3>
-                <canvas id="comparisonChart" style="width:100%; height:300px;"></canvas>
+                <div class="graph-wrapper">
+                    <canvas id="comparisonChart"></canvas>
+                </div>
             </div>
         </div>
 
@@ -878,7 +436,7 @@
             <div class="summary-grid">
                 <div class="summary-card">
                     <h3>✅ VAN positive</h3>
-                    <p>Si la VAN est positive, l'investissement crée de la valeur. Plus elle est élevée, mieux c'est.</p>
+                    <p>Si la VAN est positive, l'investissement crée de la valeur.</p>
                 </div>
                 <div class="summary-card">
                     <h3>📊 TRI élevé</h3>
@@ -888,214 +446,20 @@
                     <h3>⏱️ Délai court</h3>
                     <p>Plus le délai de récupération est court, moins le risque est élevé.</p>
                 </div>
-                <div class="summary-card">
-                    <h3>💡 Diversifiez</h3>
-                    <p>Ne mettez pas tous vos œufs dans le même panier selon votre niveau de revenu.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Investisseurs -->
-        <div class="investors-section">
-            <h2>💡 Conseils des grands investisseurs</h2>
-            <div class="investors-grid">
-                <div class="investor-card">
-                    <div class="investor-image" style="background-image: url('https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80');"></div>
-                    <h3 class="investor-name">Warren Buffett</h3>
-                    <div class="investor-title">PDG de Berkshire Hathaway</div>
-                    <div class="investor-quote">"Le risque vient de ne pas savoir ce que vous faites."</div>
-                    <div class="investor-advice">
-                        <strong>Conseil :</strong> "Pour un débutant, commencez petit. Pour un expert, diversifiez."
-                    </div>
-                </div>
-
-                <div class="investor-card">
-                    <div class="investor-image" style="background-image: url('https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80');"></div>
-                    <h3 class="investor-name">Robert Kiyosaki</h3>
-                    <div class="investor-title">Auteur de "Père riche, Père pauvre"</div>
-                    <div class="investor-quote">"L'immobilier est la base de la richesse."</div>
-                    <div class="investor-advice">
-                        <strong>Conseil :</strong> "Un bon investissement doit avoir une VAN positive et un TRI supérieur à 15%."
-                    </div>
-                </div>
-
-                <div class="investor-card">
-                    <div class="investor-image" style="background-image: url('https://images.unsplash.com/photo-1573497019940-1c28c88b4f9e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80');"></div>
-                    <h3 class="investor-name">Barbara Corcoran</h3>
-                    <div class="investor-title">Investisseur, "Shark Tank"</div>
-                    <div class="investor-quote">"Les meilleurs deals sont ceux que vous comprenez."</div>
-                    <div class="investor-advice">
-                        <strong>Conseil :</strong> "Un délai de récupération inférieur à 5 ans est excellent."
-                    </div>
-                </div>
             </div>
         </div>
     </div>
 
     <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h4>RentaPro</h4>
-                <a href="/">Accueil</a>
-                <a href="/pages/simulateur.html">Simulateur</a>
-                <a href="/pages/guide.html">Guide</a>
-                <a href="/pages/investissement-mondial.html">🌍 Monde</a>
-                <a href="/pages/analyse-financiere.html">📊 Finance</a>
-                <a href="/pages/blog.html">📝 Blog</a>
-                <a href="/pages/temoignages.html">🗣️ Témoignages</a>
-                <a href="/pages/contact.html">Contact</a>
-            </div>
-            <div class="footer-section">
-                <h4>Contact</h4>
-                <p style="color: #94a3b8;">📧 rubenmukend287@gmail.com</p>
-                <p style="color: #94a3b8;">📞 +243 974 843 721</p>
-            </div>
-        </div>
-
-        <div class="footer-legal">
-            <a href="/pages/mentions-legales.html">Mentions légales</a>
-            <a href="/pages/confidentialite.html">Politique de confidentialité</a>
-            <a href="/pages/cgu.html">CGU</a>
-        </div>
-
-        <div class="amazon-disclaimer">
-            En tant que Partenaire Amazon, je réalise un bénéfice sur les achats remplissant les conditions requises.
-        </div>
-
-        <div class="copyright">
-            © 2026 RentaPro - Analyse financière avancée
-        </div>
+        © 2026 RentaPro - Analyse financière avancée
     </footer>
 
-    <!-- Assistant IA -->
-    <div class="chat-button" id="chatButton" onclick="toggleChat()">💬</div>
-    <div class="chat-window" id="chatWindow">
-        <div class="chat-header">
-            <h3><i>🏠</i> Assistant RentaPro</h3>
-            <button class="close-chat" onclick="toggleChat()">✕</button>
-        </div>
-        <div class="chat-messages" id="chatMessages">
-            <div class="message bot">
-                👋 Bonjour ! Je suis l'assistant IA de RentaPro. Posez-moi vos questions sur l'investissement immobilier !
-            </div>
-        </div>
-        <div class="chat-input-area">
-            <input type="text" class="chat-input" id="userInput" placeholder="Votre question..." onkeypress="if(event.key==='Enter') sendMessage()">
-            <button class="send-message" onclick="sendMessage()">➤</button>
-        </div>
-        <div class="suggestions">
-            <span class="suggestion-chip" onclick="useSuggestion('Comment calculer le rendement locatif ?')">📊 Rendement</span>
-            <span class="suggestion-chip" onclick="useSuggestion('C\'est quoi le cash-flow ?')">💰 Cash-flow</span>
-            <span class="suggestion-chip" onclick="useSuggestion('Comment financer mon premier achat ?')">🏦 Financement</span>
-            <span class="suggestion-chip" onclick="useSuggestion('C\'est quoi la VAN ?')">📈 VAN</span>
-        </div>
-    </div>
-
-    <!-- Bouton mode sombre amélioré -->
-    <div class="theme-toggle" id="themeToggle" onclick="toggleTheme()">
-        <span class="theme-icon">🌙</span>
-    </div>
-
-    <script src="/assistant-ia.js"></script>
     <script>
-        let chatVisible = false;
+        // Variables globales pour les graphiques
         let vanChart, cashflowChart, comparisonChart;
 
-        // ============================================
-        // FONCTIONS ASSISTANT IA
-        // ============================================
-        function toggleChat() {
-            const chatWindow = document.getElementById('chatWindow');
-            const chatButton = document.getElementById('chatButton');
-            chatVisible = !chatVisible;
-            
-            if (chatVisible) {
-                chatWindow.style.display = 'flex';
-                chatButton.style.opacity = '0';
-                chatButton.style.pointerEvents = 'none';
-            } else {
-                chatWindow.style.display = 'none';
-                chatButton.style.opacity = '1';
-                chatButton.style.pointerEvents = 'auto';
-            }
-        }
-
-        function sendMessage() {
-            const input = document.getElementById('userInput');
-            const message = input.value.trim();
-            if (!message) return;
-            
-            addMessage(message, 'user');
-            input.value = '';
-            
-            setTimeout(() => {
-                const reponse = assistantIA ? assistantIA.repondre(message) : "Merci pour votre question ! Un conseiller vous répondra bientôt.";
-                addMessage(reponse, 'bot');
-            }, 1000);
-        }
-
-        function addMessage(text, sender) {
-            const messages = document.getElementById('chatMessages');
-            const messageDiv = document.createElement('div');
-            messageDiv.className = `message ${sender}`;
-            messageDiv.textContent = text;
-            messages.appendChild(messageDiv);
-            messages.scrollTop = messages.scrollHeight;
-        }
-
-        function useSuggestion(text) {
-            document.getElementById('userInput').value = text;
-            sendMessage();
-        }
-
-        document.addEventListener('click', function(event) {
-            const chatWindow = document.getElementById('chatWindow');
-            const chatButton = document.getElementById('chatButton');
-            
-            if (chatVisible && !chatWindow.contains(event.target) && !chatButton.contains(event.target)) {
-                toggleChat();
-            }
-        });
-
-        // ============================================
-        // MODE SOMBRE
-        // ============================================
-        function toggleTheme() {
-            const body = document.body;
-            const icon = document.querySelector('.theme-icon');
-            
-            body.classList.toggle('dark-mode');
-            
-            if (body.classList.contains('dark-mode')) {
-                icon.textContent = '☀️';
-                localStorage.setItem('theme', 'dark');
-            } else {
-                icon.textContent = '🌙';
-                localStorage.setItem('theme', 'light');
-            }
-            
-            // Mettre à jour les couleurs des graphiques
-            mettreAJourCouleursGraphiques();
-        }
-
-        function mettreAJourCouleursGraphiques() {
-            const couleur = document.body.classList.contains('dark-mode') ? '#eab308' : '#eab308';
-            if (vanChart) {
-                vanChart.data.datasets[0].borderColor = couleur;
-                vanChart.update();
-            }
-            if (cashflowChart) {
-                cashflowChart.data.datasets[0].backgroundColor = couleur;
-                cashflowChart.update();
-            }
-        }
-
-        // ============================================
-        // CALCULS FINANCIERS
-        // ============================================
         function calculerFinance() {
-            console.log("Calcul des indicateurs financiers...");
-            
+            // Récupération des valeurs
             const investInitial = parseFloat(document.getElementById('investInitial').value) || 0;
             const fluxAnnuel = parseFloat(document.getElementById('fluxAnnuel').value) || 0;
             const tauxActualisation = parseFloat(document.getElementById('tauxActualisation').value) || 0;
@@ -1144,10 +508,10 @@
             }
 
             // Affichage
-            document.getElementById('van').innerHTML = '$' + van.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-            document.getElementById('tri').innerHTML = tri.toFixed(2) + '%';
-            document.getElementById('delaiSimple').innerHTML = delaiSimple.toFixed(1) + ' ans';
-            document.getElementById('delaiActualise').innerHTML = delaiActualise.toFixed(1) + ' ans';
+            document.getElementById('van').innerText = '$' + van.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+            document.getElementById('tri').innerText = tri.toFixed(2) + '%';
+            document.getElementById('delaiSimple').innerText = delaiSimple.toFixed(1) + ' ans';
+            document.getElementById('delaiActualise').innerText = delaiActualise.toFixed(1) + ' ans';
 
             const vanInterpretation = document.getElementById('vanInterpretation');
             if (van > 0) {
@@ -1158,15 +522,16 @@
                 vanInterpretation.style.color = '#dc2626';
             }
 
-            // Mettre à jour les graphiques
+            // Créer les graphiques
             creerGraphiques(investInitial, fluxAnnuel, valeurResiduelle, duree);
         }
 
-        // ============================================
-        // CRÉATION DES GRAPHIQUES
-        // ============================================
         function creerGraphiques(investInitial, fluxAnnuel, valeurResiduelle, duree) {
-            
+            // Détruire les anciens graphiques s'ils existent
+            if (vanChart) vanChart.destroy();
+            if (cashflowChart) cashflowChart.destroy();
+            if (comparisonChart) comparisonChart.destroy();
+
             // Données pour les graphiques
             const annees = ['Année 0', ...Array.from({length: duree}, (_, i) => `Année ${i+1}`)];
             const vanData = [];
@@ -1181,14 +546,9 @@
 
             const fluxData = Array(duree).fill(fluxAnnuel);
 
-            // Détruire les anciens graphiques s'ils existent
-            if (window.vanChart) window.vanChart.destroy();
-            if (window.cashflowChart) window.cashflowChart.destroy();
-            if (window.comparisonChart) window.comparisonChart.destroy();
-
-            // Graphique 1 : Évolution VAN
+            // Graphique 1 : VAN
             const ctxVan = document.getElementById('vanChart').getContext('2d');
-            window.vanChart = new Chart(ctxVan, {
+            vanChart = new Chart(ctxVan, {
                 type: 'line',
                 data: {
                     labels: annees,
@@ -1198,11 +558,6 @@
                         borderColor: '#eab308',
                         backgroundColor: 'rgba(234,179,8,0.1)',
                         borderWidth: 3,
-                        pointBackgroundColor: '#eab308',
-                        pointBorderColor: 'white',
-                        pointBorderWidth: 2,
-                        pointRadius: 4,
-                        pointHoverRadius: 6,
                         tension: 0.4,
                         fill: true
                     }]
@@ -1210,14 +565,13 @@
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
-                    animation: { duration: 1000 },
                     plugins: { legend: { display: false } }
                 }
             });
 
-            // Graphique 2 : Flux annuels
+            // Graphique 2 : Flux
             const ctxFlux = document.getElementById('cashflowChart').getContext('2d');
-            window.cashflowChart = new Chart(ctxFlux, {
+            cashflowChart = new Chart(ctxFlux, {
                 type: 'bar',
                 data: {
                     labels: annees.slice(1),
@@ -1225,62 +579,40 @@
                         label: 'Flux annuel ($)',
                         data: fluxData,
                         backgroundColor: '#eab308',
-                        borderRadius: 8
+                        borderRadius: 5
                     }]
                 },
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
-                    animation: { duration: 1000 },
                     plugins: { legend: { display: false } }
                 }
             });
 
             // Graphique 3 : Comparaison
             const ctxComp = document.getElementById('comparisonChart').getContext('2d');
-            window.comparisonChart = new Chart(ctxComp, {
+            comparisonChart = new Chart(ctxComp, {
                 type: 'doughnut',
                 data: {
-                    labels: ['Investissement initial', 'Flux cumulés', 'Valeur résiduelle'],
+                    labels: ['Investissement', 'Flux cumulés', 'Valeur résiduelle'],
                     datasets: [{
                         data: [investInitial, fluxAnnuel * duree, valeurResiduelle],
                         backgroundColor: ['#eab308', '#fbbf24', '#fde68a'],
-                        borderColor: 'white',
-                        borderWidth: 2,
-                        hoverOffset: 10
+                        borderWidth: 2
                     }]
                 },
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
-                    animation: { duration: 1000 },
                     plugins: { legend: { position: 'bottom' } }
                 }
             });
         }
 
-        // ============================================
-        // INITIALISATION
-        // ============================================
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log("Page chargée, initialisation...");
-            
-            // Mode sombre
-            const savedTheme = localStorage.getItem('theme');
-            const icon = document.querySelector('.theme-icon');
-            
-            if (savedTheme === 'dark') {
-                document.body.classList.add('dark-mode');
-                if (icon) icon.textContent = '☀️';
-            } else {
-                if (icon) icon.textContent = '🌙';
-            }
-            
-            // Lancer le calcul initial
-            setTimeout(() => {
-                calculerFinance();
-            }, 100);
-        });
+        // Lancer le calcul au chargement
+        window.onload = function() {
+            calculerFinance();
+        };
     </script>
 </body>
 </html>
