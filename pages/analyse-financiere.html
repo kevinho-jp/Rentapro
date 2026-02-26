@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- Google Analytics -->
+    <!-- Google tag (gtag.js) - Google Analytics 4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-525423879"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -39,10 +39,10 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Chart.js pour les graphiques -->
+    <!-- IMPORTANT: Chart.js pour les graphiques -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
-    <!-- Anime.js pour les animations -->
+    <!-- Anime.js pour les animations (optionnel) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
     
     <!-- Assistant IA CSS -->
@@ -481,6 +481,24 @@
             margin: 3rem 0;
         }
 
+        .graph-section h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--text-dark);
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .graph-section h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-hover));
+            margin: 1rem auto;
+            border-radius: 2px;
+        }
+
         .graph-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -829,14 +847,12 @@
             </div>
         </div>
 
-        <!-- Section graphiques améliorée -->
+        <!-- Section graphiques -->
         <div class="graph-section">
-            <div class="section-header">
-                <h2 style="text-align: center; font-size: 2rem; margin-bottom: 2rem;">📈 Analyse graphique interactive</h2>
-            </div>
+            <h2>📈 Analyse graphique interactive</h2>
             
             <div class="graph-grid">
-                <!-- Graphique 1 : Évolution de la VAN avec animation -->
+                <!-- Graphique 1 : Évolution de la VAN -->
                 <div class="graph-container">
                     <h3>Évolution de la VAN</h3>
                     <canvas id="vanChart" style="width:100%; height:300px;"></canvas>
@@ -985,6 +1001,9 @@
         let chatVisible = false;
         let vanChart, cashflowChart, comparisonChart;
 
+        // ============================================
+        // FONCTIONS ASSISTANT IA
+        // ============================================
         function toggleChat() {
             const chatWindow = document.getElementById('chatWindow');
             const chatButton = document.getElementById('chatButton');
@@ -1038,63 +1057,45 @@
             }
         });
 
-        // Mode sombre amélioré
+        // ============================================
+        // MODE SOMBRE
+        // ============================================
         function toggleTheme() {
             const body = document.body;
             const icon = document.querySelector('.theme-icon');
-            
-            // Animation de rotation
-            if (window.anime) {
-                anime({
-                    targets: '.theme-toggle',
-                    rotate: '1turn',
-                    duration: 600,
-                    easing: 'easeInOutQuad'
-                });
-            }
             
             body.classList.toggle('dark-mode');
             
             if (body.classList.contains('dark-mode')) {
                 icon.textContent = '☀️';
                 localStorage.setItem('theme', 'dark');
-                
-                // Animation de fondu
-                if (window.anime) {
-                    anime({
-                        targets: '.container',
-                        opacity: [0.5, 1],
-                        duration: 800,
-                        easing: 'easeInOutQuad'
-                    });
-                }
             } else {
                 icon.textContent = '🌙';
                 localStorage.setItem('theme', 'light');
-                
-                if (window.anime) {
-                    anime({
-                        targets: '.container',
-                        opacity: [0.5, 1],
-                        duration: 800,
-                        easing: 'easeInOutQuad'
-                    });
-                }
             }
             
             // Mettre à jour les couleurs des graphiques
+            mettreAJourCouleursGraphiques();
+        }
+
+        function mettreAJourCouleursGraphiques() {
+            const couleur = document.body.classList.contains('dark-mode') ? '#eab308' : '#eab308';
             if (vanChart) {
-                vanChart.data.datasets[0].borderColor = body.classList.contains('dark-mode') ? '#eab308' : '#eab308';
+                vanChart.data.datasets[0].borderColor = couleur;
                 vanChart.update();
             }
             if (cashflowChart) {
-                cashflowChart.data.datasets[0].backgroundColor = body.classList.contains('dark-mode') ? '#eab308' : '#eab308';
+                cashflowChart.data.datasets[0].backgroundColor = couleur;
                 cashflowChart.update();
             }
         }
 
-        // Fonction principale de calcul
+        // ============================================
+        // CALCULS FINANCIERS
+        // ============================================
         function calculerFinance() {
+            console.log("Calcul des indicateurs financiers...");
+            
             const investInitial = parseFloat(document.getElementById('investInitial').value) || 0;
             const fluxAnnuel = parseFloat(document.getElementById('fluxAnnuel').value) || 0;
             const tauxActualisation = parseFloat(document.getElementById('tauxActualisation').value) || 0;
@@ -1142,6 +1143,7 @@
                 }
             }
 
+            // Affichage
             document.getElementById('van').innerHTML = '$' + van.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
             document.getElementById('tri').innerHTML = tri.toFixed(2) + '%';
             document.getElementById('delaiSimple').innerHTML = delaiSimple.toFixed(1) + ' ans';
@@ -1157,11 +1159,13 @@
             }
 
             // Mettre à jour les graphiques
-            mettreAJourGraphiques(investInitial, fluxAnnuel, valeurResiduelle, duree);
+            creerGraphiques(investInitial, fluxAnnuel, valeurResiduelle, duree);
         }
 
-        // ========== GRAPHIQUES AMÉLIORÉS ==========
-        function mettreAJourGraphiques(investInitial, fluxAnnuel, valeurResiduelle, duree) {
+        // ============================================
+        // CRÉATION DES GRAPHIQUES
+        // ============================================
+        function creerGraphiques(investInitial, fluxAnnuel, valeurResiduelle, duree) {
             
             // Données pour les graphiques
             const annees = ['Année 0', ...Array.from({length: duree}, (_, i) => `Année ${i+1}`)];
@@ -1182,7 +1186,7 @@
             if (window.cashflowChart) window.cashflowChart.destroy();
             if (window.comparisonChart) window.comparisonChart.destroy();
 
-            // Graphique 1 : Évolution VAN (line avec animations)
+            // Graphique 1 : Évolution VAN
             const ctxVan = document.getElementById('vanChart').getContext('2d');
             window.vanChart = new Chart(ctxVan, {
                 type: 'line',
@@ -1206,24 +1210,12 @@
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
-                    animation: {
-                        duration: 2000,
-                        easing: 'easeInOutQuart'
-                    },
-                    plugins: {
-                        legend: { display: false },
-                        tooltip: { enabled: true, mode: 'index', intersect: false }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: false,
-                            grid: { color: 'rgba(0,0,0,0.05)' }
-                        }
-                    }
+                    animation: { duration: 1000 },
+                    plugins: { legend: { display: false } }
                 }
             });
 
-            // Graphique 2 : Flux annuels (bar avec animations)
+            // Graphique 2 : Flux annuels
             const ctxFlux = document.getElementById('cashflowChart').getContext('2d');
             window.cashflowChart = new Chart(ctxFlux, {
                 type: 'bar',
@@ -1233,31 +1225,18 @@
                         label: 'Flux annuel ($)',
                         data: fluxData,
                         backgroundColor: '#eab308',
-                        borderRadius: 8,
-                        barPercentage: 0.7,
-                        categoryPercentage: 0.8
+                        borderRadius: 8
                     }]
                 },
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
-                    animation: {
-                        duration: 2000,
-                        easing: 'easeInOutQuart'
-                    },
-                    plugins: {
-                        legend: { display: false }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            grid: { color: 'rgba(0,0,0,0.05)' }
-                        }
-                    }
+                    animation: { duration: 1000 },
+                    plugins: { legend: { display: false } }
                 }
             });
 
-            // Graphique 3 : Comparaison (doughnut)
+            // Graphique 3 : Comparaison
             const ctxComp = document.getElementById('comparisonChart').getContext('2d');
             window.comparisonChart = new Chart(ctxComp, {
                 type: 'doughnut',
@@ -1274,31 +1253,19 @@
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
-                    animation: {
-                        duration: 2000,
-                        easing: 'easeInOutQuart'
-                    },
-                    plugins: {
-                        legend: { position: 'bottom' }
-                    }
+                    animation: { duration: 1000 },
+                    plugins: { legend: { position: 'bottom' } }
                 }
             });
-
-            // Animation supplémentaire avec Anime.js
-            if (window.anime) {
-                anime({
-                    targets: '.graph-container',
-                    scale: [0.95, 1],
-                    opacity: [0, 1],
-                    duration: 1000,
-                    delay: anime.stagger(200),
-                    easing: 'easeOutElastic(1, .5)'
-                });
-            }
         }
 
-        // Chargement initial
+        // ============================================
+        // INITIALISATION
+        // ============================================
         document.addEventListener('DOMContentLoaded', function() {
+            console.log("Page chargée, initialisation...");
+            
+            // Mode sombre
             const savedTheme = localStorage.getItem('theme');
             const icon = document.querySelector('.theme-icon');
             
@@ -1309,19 +1276,10 @@
                 if (icon) icon.textContent = '🌙';
             }
             
-            // Animation d'entrée
-            if (window.anime) {
-                anime({
-                    targets: '.container, .card, .graph-container',
-                    opacity: [0, 1],
-                    translateY: [20, 0],
-                    duration: 1000,
-                    delay: anime.stagger(100),
-                    easing: 'easeOutQuad'
-                });
-            }
-            
-            calculerFinance();
+            // Lancer le calcul initial
+            setTimeout(() => {
+                calculerFinance();
+            }, 100);
         });
     </script>
 </body>
