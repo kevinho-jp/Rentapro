@@ -1,1106 +1,940 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
- 
-    <!-- Google tag (gtag.js) - Google Analytics 4 -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-525423879"></script>
-    <script>
-        function toggleTheme() {
-            const body = document.body;
-            const toggle = document.getElementById("themeToggle");
-            body.classList.toggle("dark-mode");
-            
-            if (body.classList.contains("dark-mode")) {
-                toggle.textContent = "☀️";
-                localStorage.setItem("theme", "dark");
-            } else {
-                toggle.textContent = "🌙";
-                localStorage.setItem("theme", "light");
-            }
-        }
-
-        document.addEventListener("DOMContentLoaded", function() {
-            const savedTheme = localStorage.getItem("theme");
-            const toggle = document.getElementById("themeToggle");
-            
-            if (savedTheme === "dark") {
-                document.body.classList.add("dark-mode");
-                if (toggle) toggle.textContent = "☀️";
-            } else {
-                if (toggle) toggle.textContent = "🌙";
-            }
-        });
-    </script>
-    <meta charset="UTF-8">
-    <meta name="google-site-verification" content="googlef746d504e2f887e6" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- ========== BALISES SEO ========== -->
-    <title>Investissement immobilier par continent - RentaPro</title>
-    <meta name="description" content="Guide complet de l'investissement immobilier par continent : Europe, Amérique, Asie, Afrique, Océanie. Opportunités, rendements et conseils par région.">
-    <meta name="keywords" content="investissement immobilier international, immobilier Europe, immobilier Amérique, immobilier Asie, immobilier Afrique, investir à l'étranger">
-    <meta name="author" content="RentaPro">
-    <meta name="robots" content="index, follow">
-    
-    <!-- Open Graph -->
-    <meta property="og:title" content="Investissement immobilier mondial par continent - RentaPro">
-    <meta property="og:description" content="Découvrez les opportunités d'investissement immobilier sur chaque continent.">
-    <meta property="og:image" content="https://rentapro-swart.vercel.app/images/og-monde.jpg">
-    <meta property="og:url" content="https://rentapro-swart.vercel.app/pages/investissement-mondial.html">
-    <meta property="og:type" content="website">
-    
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Investissement immobilier mondial - RentaPro">
-    <meta name="twitter:description" content="Guide par continent pour investir dans l'immobilier">
-    <meta name="twitter:image" content="https://rentapro-swart.vercel.app/images/og-monde.jpg">
-    
-    <!-- Google AdSense -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Assistant IA CSS -->
-    <link rel="stylesheet" href="/assistant-ia.css">
-
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RentaPro - Investissement Mondial</title>
+    <!-- Font Awesome pour les icônes -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <style>
+        /* ---------- RESET & BASE ---------- */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background: #f8fafc;
-            color: #1e293b;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
+            background: #0b0a0a;
+            color: #eaeaea;
+            line-height: 1.6;
         }
 
-        .navbar {
-            background: white;
-            padding: 1rem 5%;
-            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 2rem;
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 25px;
+        }
+
+        /* ---------- SCROLLBAR ---------- */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1a1a1a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #d4af37;
+            border-radius: 10px;
+        }
+
+        /* ---------- HEADER / NAV ---------- */
+        header {
+            background: rgba(11, 10, 10, 0.85);
+            backdrop-filter: blur(12px);
+            padding: 18px 0;
+            border-bottom: 1px solid #2a2a2a;
             position: sticky;
             top: 0;
-            z-index: 100;
-            backdrop-filter: blur(10px);
-            background: rgba(255, 255, 255, 0.9);
+            z-index: 999;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         .logo {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 1.8rem;
-            font-weight: 700;
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .logo-icon {
-            font-size: 2rem;
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-            color: #eab308;
-            width: 50px;
-            height: 50px;
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
-        }
-
-        .logo-text {
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            background: linear-gradient(135deg, #d4af37, #f9e28c);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+        }
+        .logo span {
+            font-weight: 300;
+            -webkit-text-fill-color: #aaa;
         }
 
         .nav-links {
             display: flex;
-            gap: 2rem;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .nav-links a {
-            color: #64748b;
-            text-decoration: none;
+            gap: 35px;
             font-weight: 500;
-            transition: color 0.3s;
-            padding: 0.5rem 0;
-            position: relative;
         }
-
+        .nav-links a {
+            transition: 0.3s;
+            font-size: 15px;
+            color: #ccc;
+        }
         .nav-links a:hover {
-            color: #0f172a;
+            color: #d4af37;
         }
-
         .nav-links a.active {
-            color: #0f172a;
-            font-weight: 600;
+            color: #d4af37;
+            border-bottom: 2px solid #d4af37;
+            padding-bottom: 4px;
         }
 
-        .nav-links a.active::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: #eab308;
-            border-radius: 3px 3px 0 0;
+        .hamburger {
+            display: none;
+            font-size: 28px;
+            color: #d4af37;
+            cursor: pointer;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-            width: 100%;
-            flex: 1;
-        }
-
-        .header-center {
+        /* ---------- HERO ---------- */
+        .hero {
+            padding: 70px 0 50px;
             text-align: center;
-            margin-bottom: 3rem;
-            padding: 3rem;
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            background: radial-gradient(circle at 20% 30%, #1f1b10, #0b0a0a 80%);
+            border-bottom: 1px solid #2a2a2a;
+        }
+
+        .hero h1 {
+            font-size: 52px;
+            font-weight: 700;
+            background: linear-gradient(to right, #fff, #d4af37);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: #aaa;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+
+        .hero .btn-gold {
+            background: #d4af37;
+            color: #0b0a0a;
+            padding: 14px 40px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 18px;
+            border: none;
+            transition: 0.3s;
+            cursor: pointer;
+            display: inline-block;
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.2);
+        }
+        .hero .btn-gold:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 50px rgba(212, 175, 55, 0.5);
+        }
+
+        /* ---------- FILTRES ---------- */
+        .filters-section {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            padding: 40px 0 10px;
+        }
+
+        .filter-btn {
+            background: transparent;
+            border: 1px solid #333;
+            color: #aaa;
+            padding: 10px 28px;
             border-radius: 40px;
-            color: white;
-            position: relative;
-            overflow: hidden;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 14px;
+        }
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: #d4af37;
+            color: #0b0a0a;
+            border-color: #d4af37;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
         }
 
-        .header-center::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(234,179,8,0.1) 0%, transparent 70%);
-            animation: rotate 30s linear infinite;
-        }
-
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        .header-center h1 {
-            font-size: clamp(2rem, 5vw, 3rem);
-            margin-bottom: 1rem;
-            position: relative;
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .header-center p {
-            color: #cbd5e1;
-            font-size: 1.2rem;
-            max-width: 800px;
-            margin: 0 auto;
-            position: relative;
-        }
-
-        .continent-grid {
+        /* ---------- CHIFFRES CLES ---------- */
+        .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            padding: 40px 0 60px;
+        }
+
+        .stat-item {
+            text-align: center;
+            background: #141210;
+            padding: 30px 20px;
+            border-radius: 20px;
+            border: 1px solid #26221c;
+            transition: 0.3s;
+        }
+        .stat-item:hover {
+            border-color: #d4af37;
+            transform: translateY(-6px);
+        }
+
+        .stat-item .number {
+            font-size: 48px;
+            font-weight: 800;
+            color: #d4af37;
+            display: block;
+        }
+        .stat-item .label {
+            color: #aaa;
+            font-size: 16px;
+            margin-top: 8px;
+            letter-spacing: 1px;
+        }
+
+        /* ---------- CARTES CONTINENTS ---------- */
+        .grid-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 35px;
+            padding: 30px 0 70px;
         }
 
         .continent-card {
-            background: white;
-            border-radius: 30px;
+            background: #141210;
+            border-radius: 24px;
+            padding: 30px 25px;
+            border: 1px solid #26221c;
+            transition: 0.4s cubic-bezier(0.2, 0.9, 0.3, 1.2);
+            opacity: 0;
+            transform: translateY(40px);
+            animation: fadeUp 0.7s forwards;
+            position: relative;
             overflow: hidden;
-            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.05);
-            border: 1px solid #e2e8f0;
-            transition: all 0.3s;
+        }
+        .continent-card:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+        .continent-card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        .continent-card:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+        .continent-card:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+        .continent-card:nth-child(5) {
+            animation-delay: 0.5s;
+        }
+
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .continent-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1);
-            border-color: #eab308;
+            border-color: #d4af37;
+            transform: translateY(-12px) scale(1.01);
+            box-shadow: 0 20px 60px rgba(212, 175, 55, 0.08);
         }
 
-        .continent-image {
-            height: 200px;
-            background-size: cover;
-            background-position: center;
-            position: relative;
+        .continent-card .icon {
+            font-size: 42px;
+            color: #d4af37;
+            margin-bottom: 10px;
         }
 
-        .continent-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.7) 100%);
+        .continent-card h3 {
+            font-size: 26px;
+            margin-bottom: 5px;
+            color: #fff;
         }
 
-        .continent-icon {
-            position: absolute;
-            bottom: 1rem;
-            left: 1rem;
-            font-size: 3rem;
-            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
-        }
-
-        .continent-content {
-            padding: 2rem;
-        }
-
-        .continent-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1rem;
-        }
-
-        .continent-header h2 {
-            font-size: 1.8rem;
-            color: #0f172a;
-        }
-
-        .continent-badge {
-            padding: 0.3rem 1rem;
-            border-radius: 50px;
-            font-size: 0.8rem;
+        .continent-card .sub {
+            color: #d4af37;
             font-weight: 600;
+            font-size: 14px;
+            letter-spacing: 2px;
             text-transform: uppercase;
         }
 
-        .badge-europe {
-            background: #1e3c72;
-            color: white;
-        }
-
-        .badge-america {
-            background: #b91c1c;
-            color: white;
-        }
-
-        .badge-asia {
-            background: #b45309;
-            color: white;
-        }
-
-        .badge-africa {
-            background: #065f46;
-            color: white;
-        }
-
-        .badge-oceania {
-            background: #1e4b6e;
-            color: white;
-        }
-
-        .continent-description {
-            color: #64748b;
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-        }
-
-        .continent-stats {
-            background: #f8fafc;
-            border-radius: 16px;
-            padding: 1.2rem;
-            margin: 1.5rem 0;
-        }
-
-        .stat-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 0.5rem 0;
-            border-bottom: 1px solid #e2e8f0;
-        }
-
-        .stat-row:last-child {
-            border-bottom: none;
-        }
-
-        .stat-label {
-            color: #64748b;
-            font-size: 0.95rem;
-        }
-
-        .stat-value {
+        .continent-card .yield {
+            background: #1f1b14;
+            padding: 8px 16px;
+            border-radius: 40px;
+            display: inline-block;
+            margin: 15px 0;
             font-weight: 700;
-            color: #0f172a;
+            font-size: 22px;
+            color: #d4af37;
         }
 
-        .continent-features {
+        .continent-card .city-list {
             list-style: none;
-            margin: 1.5rem 0;
+            margin: 15px 0;
         }
-
-        .continent-features li {
-            margin-bottom: 0.8rem;
+        .continent-card .city-list li {
+            padding: 6px 0;
+            border-bottom: 1px solid #1e1b17;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-            color: #64748b;
+            gap: 10px;
+            color: #ccc;
+            font-size: 15px;
+        }
+        .continent-card .city-list li i {
+            color: #d4af37;
+            width: 18px;
         }
 
-        .continent-features li::before {
-            content: "✓";
-            color: #eab308;
-            font-weight: bold;
+        .continent-card .expert {
+            margin-top: 20px;
+            padding: 18px;
+            background: #1b1814;
+            border-radius: 16px;
+            border-left: 4px solid #d4af37;
         }
-
-        .btn-continent {
-            display: inline-block;
-            width: 100%;
-            padding: 1rem;
-            background: #0f172a;
-            color: white;
-            text-align: center;
-            text-decoration: none;
-            border-radius: 12px;
-            font-weight: 600;
-            transition: all 0.3s;
-            border: none;
-            cursor: pointer;
-            font-family: 'Montserrat', sans-serif;
+        .continent-card .expert p {
+            font-style: italic;
+            color: #ddd;
+            font-size: 14px;
         }
-
-        .btn-continent:hover {
-            background: #1e293b;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.05);
-        }
-
-        .btn-seloger {
-            display: inline-block;
-            padding: 1.2rem 3rem;
-            background: #E30613;
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
+        .continent-card .expert .name {
             font-weight: 700;
-            font-size: 1.2rem;
-            transition: all 0.3s;
-            box-shadow: 0 5px 15px rgba(227,6,19,0.3);
-            margin: 2rem 0;
+            color: #d4af37;
+            font-style: normal;
         }
 
-        .btn-seloger:hover {
-            background: #b30510;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(227,6,19,0.4);
+        /* ---------- GRAPHIQUE RENDEMENT ---------- */
+        .graph-section {
+            background: #141210;
+            border-radius: 28px;
+            padding: 40px 35px;
+            margin: 20px 0 60px;
+            border: 1px solid #26221c;
         }
 
-        .investors-section {
-            margin: 4rem 0;
-        }
-
-        .investors-section h2 {
+        .graph-section h2 {
             text-align: center;
-            font-size: 2.2rem;
-            color: #0f172a;
-            margin-bottom: 2rem;
-            font-family: 'Montserrat', sans-serif;
+            margin-bottom: 40px;
+            font-size: 32px;
+            color: #fff;
+        }
+        .graph-section h2 i {
+            color: #d4af37;
+            margin-right: 12px;
         }
 
-        .investors-section h2::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 3px;
-            background: linear-gradient(90deg, #eab308, #fbbf24);
-            margin: 1rem auto;
-            border-radius: 2px;
+        .graph-bars {
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-end;
+            height: 220px;
+            gap: 20px;
         }
 
-        .investors-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .investor-card {
-            background: white;
-            border-radius: 20px;
-            padding: 2rem;
-            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
+        .bar-item {
             display: flex;
             flex-direction: column;
             align-items: center;
-            text-align: center;
-            border: 1px solid #e2e8f0;
-            transition: all 0.3s;
+            flex: 1;
         }
 
-        .investor-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.05);
-            border-color: #eab308;
-        }
-
-        .investor-image {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            background-size: cover;
-            background-position: center;
-            margin-bottom: 1.5rem;
-            border: 4px solid #eab308;
-        }
-
-        .investor-name {
-            font-size: 1.5rem;
-            color: #0f172a;
-            margin-bottom: 0.3rem;
-        }
-
-        .investor-title {
-            color: #64748b;
-            font-size: 0.95rem;
-            margin-bottom: 1rem;
-        }
-
-        .investor-quote {
-            color: #1e293b;
-            font-style: italic;
-            line-height: 1.6;
-            margin-bottom: 1rem;
-        }
-
-        .investor-advice {
-            background: #f8fafc;
-            padding: 1rem;
-            border-radius: 12px;
-            font-size: 0.95rem;
-            color: #64748b;
+        .bar-item .bar {
             width: 100%;
-            text-align: left;
+            max-width: 60px;
+            background: linear-gradient(180deg, #d4af37, #a07c20);
+            border-radius: 10px 10px 4px 4px;
+            height: calc(70% + 20px);
+            transition: 0.6s;
+            min-height: 20px;
+            position: relative;
+        }
+        .bar-item .bar .value {
+            position: absolute;
+            top: -28px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #d4af37;
+            font-weight: 800;
+            font-size: 16px;
+        }
+        .bar-item .label {
+            margin-top: 14px;
+            font-weight: 600;
+            color: #aaa;
+            font-size: 14px;
         }
 
-        .footer {
-            background: #0f172a;
-            color: white;
-            padding: 4rem 5% 2rem;
-            margin-top: 3rem;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 3rem;
-        }
-
-        .footer-section h4 {
-            color: #eab308;
-            margin-bottom: 1.5rem;
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .footer-section a {
-            color: #94a3b8;
-            text-decoration: none;
-            display: block;
-            margin-bottom: 0.8rem;
-            transition: color 0.3s;
-        }
-
-        .footer-section a:hover {
-            color: #eab308;
-            transform: translateX(5px);
-        }
-
-        .footer-legal {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            margin: 2rem 0 1rem;
-            flex-wrap: wrap;
-        }
-
-        .footer-legal a {
-            color: #94a3b8;
-            text-decoration: none;
-            font-size: 0.9rem;
-        }
-
-        .footer-legal a:hover {
-            color: #eab308;
-        }
-
-        .amazon-disclaimer {
-            text-align: center;
-            font-size: 0.8rem;
-            color: #94a3b8;
-            margin-top: 1rem;
-        }
-
-        .copyright {
-            text-align: center;
-            margin-top: 2rem;
-            padding-top: 2rem;
-            border-top: 1px solid #334155;
-            color: #64748b;
-        }
-
-        @media (max-width: 768px) {
-            .navbar {
-                flex-direction: column;
-                gap: 1rem;
-            }
-            .nav-links {
-                gap: 1rem;
-            }
-        }
-    </style>
- 
-    <style>
-        /* Mode sombre */
-        body.dark-mode {
-            background: #0f172a;
-            color: #f8fafc;
-        }
-        body.dark-mode .navbar {
-            background: #1e293b;
-            border-bottom: 1px solid #334155;
-        }
-        body.dark-mode .nav-links a {
-            color: #94a3b8;
-        }
-        body.dark-mode .nav-links a:hover,
-        body.dark-mode .nav-links a.active {
-            color: #eab308;
-        }
-        body.dark-mode .card,
-        body.dark-mode .feature-card,
-        body.dark-mode .guide-section,
-        body.dark-mode .investor-card,
-        body.dark-mode .testimonial-card,
-        body.dark-mode .contact-info,
-        body.dark-mode .contact-form {
-            background: #1e293b;
-            border-color: #334155;
-        }
-        body.dark-mode .result-section,
-        body.dark-mode .continent-stats,
-        body.dark-mode .book-card,
-        body.dark-mode .type-card {
-            background: #0f172a;
-        }
-        body.dark-mode .footer {
-            background: #0a0f1a;
-        }
-        body.dark-mode h1,
-        body.dark-mode h2,
-        body.dark-mode h3,
-        body.dark-mode h4,
-        body.dark-mode .result-value {
-            color: #f8fafc;
-        }
-        body.dark-mode p,
-        body.dark-mode .result-label,
-        body.dark-mode .stat-label,
-        body.dark-mode .blog-excerpt,
-        body.dark-mode .subtitle {
-            color: #94a3b8;
-        }
-        body.dark-mode input,
-        body.dark-mode select,
-        body.dark-mode textarea {
-            background: #0f172a;
-            border-color: #334155;
-            color: #f8fafc;
-        }
-        body.dark-mode input:focus,
-        body.dark-mode select:focus,
-        body.dark-mode textarea:focus {
-            border-color: #eab308;
-        }
-        body.dark-mode .btn-primary {
-            background: #eab308;
-            color: #0f172a;
-        }
-        body.dark-mode .btn-primary:hover {
-            background: #fbbf24;
-        }
-        body.dark-mode .btn-save {
-            background: transparent;
-            border-color: #334155;
-            color: #f8fafc;
-        }
-        .theme-toggle {
+        /* ---------- ASSISTANT IA (CHAT) ---------- */
+        .chat-float {
             position: fixed;
-            bottom: 110px;
+            bottom: 30px;
             right: 30px;
-            width: 50px;
-            height: 50px;
+            z-index: 9999;
+        }
+
+        .chat-toggle {
+            background: #d4af37;
+            color: #0b0a0a;
+            width: 65px;
+            height: 65px;
             border-radius: 50%;
-            background: #0f172a;
-            color: #eab308;
-            border: 2px solid #eab308;
-            cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
-            z-index: 999;
-            transition: all 0.3s;
+            font-size: 30px;
+            box-shadow: 0 8px 30px rgba(212, 175, 55, 0.4);
+            cursor: pointer;
+            transition: 0.3s;
+            border: none;
         }
-        .theme-toggle:hover {
-            transform: scale(1.1);
-            background: #eab308;
-            color: #0f172a;
+        .chat-toggle:hover {
+            transform: scale(1.08);
         }
-        body.dark-mode .theme-toggle {
-            background: #eab308;
-            color: #0f172a;
+
+        .chat-box {
+            position: absolute;
+            bottom: 85px;
+            right: 0;
+            width: 350px;
+            background: #1a1714;
+            border-radius: 24px;
+            border: 1px solid #333;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+            overflow: hidden;
+            display: none;
+            flex-direction: column;
         }
-        body.dark-mode .theme-toggle:hover {
-            background: #0f172a;
-            color: #eab308;
+        .chat-box.open {
+            display: flex;
+        }
+
+        .chat-header {
+            background: #0b0a0a;
+            padding: 18px 20px;
+            border-bottom: 1px solid #2a2a2a;
+            font-weight: 700;
+            color: #d4af37;
+            display: flex;
+            justify-content: space-between;
+        }
+        .chat-header i {
+            cursor: pointer;
+            color: #666;
+        }
+
+        .chat-messages {
+            padding: 20px;
+            height: 250px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .msg {
+            padding: 12px 16px;
+            border-radius: 16px;
+            max-width: 85%;
+            font-size: 14px;
+        }
+        .msg.user {
+            background: #d4af37;
+            color: #0b0a0a;
+            align-self: flex-end;
+        }
+        .msg.bot {
+            background: #26221c;
+            color: #ddd;
+            align-self: flex-start;
+        }
+
+        .chat-input-area {
+            display: flex;
+            border-top: 1px solid #2a2a2a;
+            padding: 10px;
+            background: #0b0a0a;
+        }
+        .chat-input-area input {
+            flex: 1;
+            padding: 12px 16px;
+            border: none;
+            border-radius: 40px;
+            background: #1f1b17;
+            color: #fff;
+            outline: none;
+        }
+        .chat-input-area button {
+            background: #d4af37;
+            border: none;
+            color: #0b0a0a;
+            width: 48px;
+            border-radius: 50%;
+            margin-left: 10px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: 0.2s;
+        }
+        .chat-input-area button:hover {
+            background: #f9e28c;
+        }
+
+        /* ---------- FOOTER ---------- */
+        footer {
+            border-top: 1px solid #1f1b17;
+            padding: 35px 0;
+            text-align: center;
+            color: #555;
+            font-size: 14px;
+            margin-top: 20px;
+        }
+        footer .socials {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-bottom: 15px;
+        }
+        footer .socials a {
+            color: #666;
+            font-size: 22px;
+            transition: 0.3s;
+        }
+        footer .socials a:hover {
+            color: #d4af37;
+        }
+
+        /* ---------- RESPONSIVE ---------- */
+        @media (max-width: 900px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .hero h1 {
+                font-size: 38px;
+            }
+            .graph-bars {
+                height: 160px;
+            }
+        }
+
+        @media (max-width: 700px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                background: #0b0a0a;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                padding: 30px;
+                gap: 20px;
+                border-bottom: 1px solid #2a2a2a;
+            }
+            .nav-links.open {
+                display: flex;
+            }
+            .hamburger {
+                display: block;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 15px;
+            }
+            .stat-item .number {
+                font-size: 34px;
+            }
+
+            .grid-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .chat-box {
+                width: 290px;
+                right: -10px;
+            }
+            .hero h1 {
+                font-size: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            .graph-bars {
+                height: 120px;
+                gap: 8px;
+            }
+            .bar-item .bar {
+                max-width: 30px;
+            }
+            .filters-section {
+                gap: 8px;
+            }
+            .filter-btn {
+                padding: 6px 16px;
+                font-size: 12px;
+            }
+        }
+
+        /* utilité */
+        .hidden-card {
+            display: none !important;
         }
     </style>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="logo">
-            <div class="logo-icon">🏠</div>
-            <span class="logo-text">RentaPro</span>
-        </div>
-        <div class="nav-links">
-            <a href="/">Accueil</a>
-            <a href="/pages/simulateur.html">Simulateur</a>
-            <a href="/pages/guide.html">Guide</a>
-            <a href="/pages/investissement-mondial.html" class="active">🌍 Monde</a>
-            <a href="/pages/analyse-financiere.html">📊 Finance</a>
-            <a href="/pages/blog.html">📝 Blog</a>
-            <a href="/pages/temoignages.html">🗣️ Témoignages</a>
-            <a href="/pages/contact.html">Contact</a>
-        </div>
-    </nav>
 
+    <!-- HEADER -->
+    <header>
+        <div class="container nav-container">
+            <div class="logo">Renta<span>Pro</span></div>
+            <div class="nav-links" id="navLinks">
+                <a href="#" class="active">Monde</a>
+                <a href="#">Europe</a>
+                <a href="#">Amérique</a>
+                <a href="#">Asie</a>
+                <a href="#">Contact</a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="container">
+            <h1>Investissement Immobilier <br>Global</h1>
+            <p>Analyse des rendements locatifs, villes phares et conseils d'experts par continent.</p>
+            <a href="#" class="btn-gold"><i class="fas fa-chart-line"></i> Explorer les marchés</a>
+        </div>
+    </section>
+
+    <!-- STATS -->
     <div class="container">
-        <div class="header-center">
-            <h1>🌍 Investir dans l'immobilier à travers le monde</h1>
-            <p>Découvrez les spécificités de chaque continent, les opportunités uniques et les conseils des plus grands investisseurs pour réussir vos placements internationaux.</p>
+        <div class="stats-grid" id="statsGrid">
+            <div class="stat-item">
+                <span class="number" data-target="8.4">0</span>
+                <span class="label">Rendement moyen (%)</span>
+            </div>
+            <div class="stat-item">
+                <span class="number" data-target="45">0</span>
+                <span class="label">Villes analysées</span>
+            </div>
+            <div class="stat-item">
+                <span class="number" data-target="120">0</span>
+                <span class="label">Experts partenaires</span>
+            </div>
+            <div class="stat-item">
+                <span class="number" data-target="2.4">0</span>
+                <span class="label">Mds € sous gestion</span>
+            </div>
         </div>
+    </div>
 
-        <div class="continent-grid">
+    <!-- FILTRES -->
+    <div class="container">
+        <div class="filters-section" id="filterSection">
+            <button class="filter-btn active" data-filter="all">🌍 Tous</button>
+            <button class="filter-btn" data-filter="europe">🇪🇺 Europe</button>
+            <button class="filter-btn" data-filter="amerique">🇺🇸 Amérique</button>
+            <button class="filter-btn" data-filter="asie">🇯🇵 Asie</button>
+            <button class="filter-btn" data-filter="afrique">🇿🇦 Afrique</button>
+            <button class="filter-btn" data-filter="oceanie">🇦🇺 Océanie</button>
+        </div>
+    </div>
+
+    <!-- CARTES CONTINENTS -->
+    <div class="container">
+        <div class="grid-cards" id="cardGrid">
+
             <!-- EUROPE -->
-            <div class="continent-card">
-                <div class="continent-image" style="background-image: url('https://images.unsplash.com/photo-1491557345352-5929e343eb89?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');">
-                    <div class="continent-overlay"></div>
-                    <div class="continent-icon">🇪🇺</div>
-                </div>
-                <div class="continent-content">
-                    <div class="continent-header">
-                        <h2>Europe</h2>
-                        <span class="continent-badge badge-europe">Marché mature</span>
-                    </div>
-                    <p class="continent-description">L'Europe offre un marché immobilier stable et réglementé, avec des opportunités variées selon les pays.</p>
-                    
-                    <div class="continent-stats">
-                        <div class="stat-row">
-                            <span class="stat-label">Rendement locatif moyen</span>
-                            <span class="stat-value">3-6%</span>
-                        </div>
-                        <div class="stat-row">
-                            <span class="stat-label">Prix au m² (centre)</span>
-                            <span class="stat-value">5 000€ - 15 000€</span>
-                        </div>
-                        <div class="stat-row">
-                            <span class="stat-label">Meilleures villes</span>
-                            <span class="stat-value">Berlin, Lisbonne, Budapest</span>
-                        </div>
-                    </div>
-
-                    <ul class="continent-features">
-                        <li>Cadre juridique protecteur</li>
-                        <li>Marché locatif très liquide</li>
-                        <li>Fiscalité variable selon pays</li>
-                        <li>Forte demande dans capitales</li>
-                    </ul>
-
-                    <button class="btn-continent" onclick="alert('Guide Europe bientôt disponible !')">En savoir plus</button>
+            <div class="continent-card" data-continent="europe">
+                <div class="icon"><i class="fas fa-globe-europe"></i></div>
+                <h3>Europe</h3>
+                <div class="sub">Marché stable</div>
+                <div class="yield">+4.8%</div>
+                <ul class="city-list">
+                    <li><i class="fas fa-city"></i> Lisbonne – 6.2%</li>
+                    <li><i class="fas fa-city"></i> Berlin – 4.5%</li>
+                    <li><i class="fas fa-city"></i> Paris – 3.8%</li>
+                </ul>
+                <div class="expert">
+                    <p>“L'Europe offre une sécurité juridique inégalée, parfaite pour le long terme.”</p>
+                    <span class="name">— Warren Buffett</span>
                 </div>
             </div>
 
-            <!-- AMÉRIQUE -->
-            <div class="continent-card">
-                <div class="continent-image" style="background-image: url('https://images.unsplash.com/photo-1485738422979-f5c462d49f74?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');">
-                    <div class="continent-overlay"></div>
-                    <div class="continent-icon">🌎</div>
-                </div>
-                <div class="continent-content">
-                    <div class="continent-header">
-                        <h2>Amérique</h2>
-                        <span class="continent-badge badge-america">Marché dynamique</span>
-                    </div>
-                    <p class="continent-description">Du nord au sud, l'Amérique propose des marchés très différents, des REITs américains aux opportunités en Amérique latine.</p>
-                    
-                    <div class="continent-stats">
-                        <div class="stat-row">
-                            <span class="stat-label">Rendement locatif (USA)</span>
-                            <span class="stat-value">4-8%</span>
-                        </div>
-                        <div class="stat-row">
-                            <span class="stat-label">Rendement (Amérique latine)</span>
-                            <span class="stat-value">6-12%</span>
-                        </div>
-                        <div class="stat-row">
-                            <span class="stat-label">Villes clés</span>
-                            <span class="stat-value">Miami, Mexico, São Paulo</span>
-                        </div>
-                    </div>
-
-                    <ul class="continent-features">
-                        <li>REITs très développés</li>
-                        <li>Forte croissance démographique</li>
-                        <li>Marché très professionnalisé</li>
-                        <li>Opportunités en rénovation</li>
-                    </ul>
-
-                    <button class="btn-continent" onclick="alert('Guide Amérique bientôt disponible !')">En savoir plus</button>
+            <!-- AMERIQUE -->
+            <div class="continent-card" data-continent="amerique">
+                <div class="icon"><i class="fas fa-globe-americas"></i></div>
+                <h3>Amérique</h3>
+                <div class="sub">Fort potentiel</div>
+                <div class="yield">+7.2%</div>
+                <ul class="city-list">
+                    <li><i class="fas fa-city"></i> Miami – 8.5%</li>
+                    <li><i class="fas fa-city"></i> Mexico – 7.8%</li>
+                    <li><i class="fas fa-city"></i> São Paulo – 6.9%</li>
+                </ul>
+                <div class="expert">
+                    <p>“Diversifiez vos actifs, les Amériques sont un eldorado pour le cash-flow.”</p>
+                    <span class="name">— Robert Kiyosaki</span>
                 </div>
             </div>
 
             <!-- ASIE -->
-            <div class="continent-card">
-                <div class="continent-image" style="background-image: url('https://images.unsplash.com/photo-1536599424071-0b215a388ba7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');">
-                    <div class="continent-overlay"></div>
-                    <div class="continent-icon">🌏</div>
-                </div>
-                <div class="continent-content">
-                    <div class="continent-header">
-                        <h2>Asie</h2>
-                        <span class="continent-badge badge-asia">Marché émergent</span>
-                    </div>
-                    <p class="continent-description">L'Asie offre des croissances spectaculaires mais aussi des risques spécifiques à connaître avant d'investir.</p>
-                    
-                    <div class="continent-stats">
-                        <div class="stat-row">
-                            <span class="stat-label">Rendement locatif</span>
-                            <span class="stat-value">2-10% selon pays</span>
-                        </div>
-                        <div class="stat-row">
-                            <span class="stat-label">Croissance prix</span>
-                            <span class="stat-value">5-15% par an</span>
-                        </div>
-                        <div class="stat-row">
-                            <span class="stat-label">Pôles majeurs</span>
-                            <span class="stat-value">Singapour, Tokyo, Bangkok</span>
-                        </div>
-                    </div>
-
-                    <ul class="continent-features">
-                        <li>Marchés très contrastés</li>
-                        <li>Forte urbanisation</li>
-                        <li>Règles d'accès complexes</li>
-                        <li>Potentiel de plus-value</li>
-                    </ul>
-
-                    <button class="btn-continent" onclick="alert('Guide Asie bientôt disponible !')">En savoir plus</button>
+            <div class="continent-card" data-continent="asie">
+                <div class="icon"><i class="fas fa-globe-asia"></i></div>
+                <h3>Asie</h3>
+                <div class="sub">Croissance rapide</div>
+                <div class="yield">+6.5%</div>
+                <ul class="city-list">
+                    <li><i class="fas fa-city"></i> Tokyo – 5.9%</li>
+                    <li><i class="fas fa-city"></i> Singapour – 5.2%</li>
+                    <li><i class="fas fa-city"></i> Dubaï – 8.1%</li>
+                </ul>
+                <div class="expert">
+                    <p>“L'Asie est le moteur de la croissance mondiale, suivez les flux.”</p>
+                    <span class="name">— Barbara Corcoran</span>
                 </div>
             </div>
 
             <!-- AFRIQUE -->
-            <div class="continent-card">
-                <div class="continent-image" style="background-image: url('https://images.unsplash.com/photo-1489392191911-3c0c7a1cdd13?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');">
-                    <div class="continent-overlay"></div>
-                    <div class="continent-icon">🌍</div>
-                </div>
-                <div class="continent-content">
-                    <div class="continent-header">
-                        <h2>Afrique</h2>
-                        <span class="continent-badge badge-africa">Marché en développement</span>
-                    </div>
-                    <p class="continent-description">Le continent africain offre des opportunités uniques avec une démographie explosive et des besoins immenses en logement.</p>
-                    
-                    <div class="continent-stats">
-                        <div class="stat-row">
-                            <span class="stat-label">Rendement locatif</span>
-                            <span class="stat-value">8-15%</span>
-                        </div>
-                        <div class="stat-row">
-                            <span class="stat-label">Croissance démographique</span>
-                            <span class="stat-value">2.5% par an</span>
-                        </div>
-                        <div class="stat-row">
-                            <span class="stat-label">Villes clés</span>
-                            <span class="stat-value">Casablanca, Nairobi, Kinshasa</span>
-                        </div>
-                    </div>
-
-                    <ul class="continent-features">
-                        <li>Très forte demande locative</li>
-                        <li>Rendements attractifs</li>
-                        <li>Cadre juridique en construction</li>
-                        <li>Opportunités logement social</li>
-                    </ul>
-
-                    <button class="btn-continent" onclick="alert('Guide Afrique bientôt disponible !')">En savoir plus</button>
+            <div class="continent-card" data-continent="afrique">
+                <div class="icon"><i class="fas fa-globe-africa"></i></div>
+                <h3>Afrique</h3>
+                <div class="sub">Marché émergent</div>
+                <div class="yield">+9.1%</div>
+                <ul class="city-list">
+                    <li><i class="fas fa-city"></i> Le Cap – 10.2%</li>
+                    <li><i class="fas fa-city"></i> Nairobi – 8.7%</li>
+                    <li><i class="fas fa-city"></i> Casablanca – 7.3%</li>
+                </ul>
+                <div class="expert">
+                    <p>“Les rendements les plus élevés se cachent souvent là où on les attend le moins.”</p>
+                    <span class="name">— Warren Buffett</span>
                 </div>
             </div>
 
-            <!-- OCÉANIE -->
-            <div class="continent-card">
-                <div class="continent-image" style="background-image: url('https://images.unsplash.com/photo-1523482580672-f109ba8c8226?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');">
-                    <div class="continent-overlay"></div>
-                    <div class="continent-icon">🌏</div>
-                </div>
-                <div class="continent-content">
-                    <div class="continent-header">
-                        <h2>Océanie</h2>
-                        <span class="continent-badge badge-oceania">Marché mature</span>
-                    </div>
-                    <p class="continent-description">Australie et Nouvelle-Zélande offrent des marchés stables, très réglementés, avec une forte demande locative.</p>
-                    
-                    <div class="continent-stats">
-                        <div class="stat-row">
-                            <span class="stat-label">Rendement locatif</span>
-                            <span class="stat-value">3-5%</span>
-                        </div>
-                        <div class="stat-row">
-                            <span class="stat-label">Prix au m² (Sydney)</span>
-                            <span class="stat-value">12 000 AUD</span>
-                        </div>
-                        <div class="stat-row">
-                            <span class="stat-label">Villes clés</span>
-                            <span class="stat-value">Sydney, Melbourne, Auckland</span>
-                        </div>
-                    </div>
-
-                    <ul class="continent-features">
-                        <li>Marché très transparent</li>
-                        <li>Forte immigration</li>
-                        <li>Crédit accessible</li>
-                        <li>Qualité de vie exceptionnelle</li>
-                    </ul>
-
-                    <button class="btn-continent" onclick="alert('Guide Océanie bientôt disponible !')">En savoir plus</button>
+            <!-- OCEANIE -->
+            <div class="continent-card" data-continent="oceanie">
+                <div class="icon"><i class="fas fa-globe-oceania"></i></div>
+                <h3>Océanie</h3>
+                <div class="sub">Qualité de vie</div>
+                <div class="yield">+5.3%</div>
+                <ul class="city-list">
+                    <li><i class="fas fa-city"></i> Sydney – 5.8%</li>
+                    <li><i class="fas fa-city"></i> Melbourne – 5.1%</li>
+                    <li><i class="fas fa-city"></i> Auckland – 4.9%</li>
+                </ul>
+                <div class="expert">
+                    <p>“Un havre de paix pour les investisseurs cherchant sécurité et rendement.”</p>
+                    <span class="name">— Robert Kiyosaki</span>
                 </div>
             </div>
+
         </div>
+    </div>
 
-        <div style="text-align: center;">
-            <a href="https://www.seloger.com/?utm_source=rentapro" target="_blank" class="btn-seloger">
-                🔍 Rechercher un bien sur SeLoger
-            </a>
-        </div>
-
-        <!-- Section livres sur l'investissement international -->
-        <div style="margin: 3rem 0; padding: 2rem; background: white; border-radius: 30px; border: 2px solid #eab308;">
-            <h3 style="text-align: center; font-size: 1.8rem; color: #0f172a; margin-bottom: 2rem;">📚 Investir à l'international</h3>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
-                <div style="text-align: center;">
-                    <h4>Investir en Europe</h4>
-                    <a href="https://www.amazon.fr/dp/2416008746?tag=rentapro-21" target="_blank" style="display: inline-block; background: #ff9900; color: white; padding: 0.5rem 1.5rem; border-radius: 50px; text-decoration: none; margin-top: 1rem;">Voir le livre</a>
+    <!-- GRAPHIQUE -->
+    <div class="container">
+        <div class="graph-section">
+            <h2><i class="fas fa-chart-bar"></i> Comparaison des rendements</h2>
+            <div class="graph-bars">
+                <div class="bar-item">
+                    <div class="bar" style="height: 60%;"><span class="value">4.8%</span></div>
+                    <span class="label">Europe</span>
                 </div>
-                <div style="text-align: center;">
-                    <h4>Investir aux USA</h4>
-                    <a href="https://www.amazon.fr/dp/2290152491?tag=rentapro-21" target="_blank" style="display: inline-block; background: #ff9900; color: white; padding: 0.5rem 1.5rem; border-radius: 50px; text-decoration: none; margin-top: 1rem;">Voir le livre</a>
+                <div class="bar-item">
+                    <div class="bar" style="height: 85%;"><span class="value">7.2%</span></div>
+                    <span class="label">Amérique</span>
                 </div>
-                <div style="text-align: center;">
-                    <h4>Investir en Asie</h4>
-                    <a href="https://www.amazon.fr/dp/2412058767?tag=rentapro-21" target="_blank" style="display: inline-block; background: #ff9900; color: white; padding: 0.5rem 1.5rem; border-radius: 50px; text-decoration: none; margin-top: 1rem;">Voir le livre</a>
+                <div class="bar-item">
+                    <div class="bar" style="height: 75%;"><span class="value">6.5%</span></div>
+                    <span class="label">Asie</span>
                 </div>
-            </div>
-        </div>
-
-        <!-- Investisseurs -->
-        <div class="investors-section">
-            <h2>💡 Conseils des grands investisseurs</h2>
-            <div class="investors-grid">
-                <div class="investor-card">
-                    <div class="investor-image" style="background-image: url('https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80');"></div>
-                    <h3 class="investor-name">Warren Buffett</h3>
-                    <div class="investor-title">PDG de Berkshire Hathaway</div>
-                    <div class="investor-quote">"Le risque vient de ne pas savoir ce que vous faites."</div>
-                    <div class="investor-advice">
-                        <strong>Conseil :</strong> "Pour investir à l'international, commencez par les marchés que vous comprenez."
-                    </div>
+                <div class="bar-item">
+                    <div class="bar" style="height: 100%;"><span class="value">9.1%</span></div>
+                    <span class="label">Afrique</span>
                 </div>
-
-                <div class="investor-card">
-                    <div class="investor-image" style="background-image: url('https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80');"></div>
-                    <h3 class="investor-name">Robert Kiyosaki</h3>
-                    <div class="investor-title">Auteur de "Père riche, Père pauvre"</div>
-                    <div class="investor-quote">"L'immobilier est la base de la richesse."</div>
-                    <div class="investor-advice">
-                        <strong>Conseil :</strong> "Chaque continent a ses opportunités. Diversifiez géographiquement."
-                    </div>
-                </div>
-
-                <div class="investor-card">
-                    <div class="investor-image" style="background-image: url('https://images.unsplash.com/photo-1573497019940-1c28c88b4f9e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80');"></div>
-                    <h3 class="investor-name">Barbara Corcoran</h3>
-                    <div class="investor-title">Investisseur, "Shark Tank"</div>
-                    <div class="investor-quote">"Les meilleurs deals sont ceux que vous comprenez."</div>
-                    <div class="investor-advice">
-                        <strong>Conseil :</strong> "Renseignez-vous sur les lois locales avant d'investir à l'étranger."
-                    </div>
+                <div class="bar-item">
+                    <div class="bar" style="height: 55%;"><span class="value">5.3%</span></div>
+                    <span class="label">Océanie</span>
                 </div>
             </div>
         </div>
     </div>
 
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h4>RentaPro</h4>
-                <a href="/">Accueil</a>
-                <a href="/pages/simulateur.html">Simulateur</a>
-                <a href="/pages/guide.html">Guide</a>
-                <a href="/pages/investissement-mondial.html">🌍 Monde</a>
-                <a href="/pages/analyse-financiere.html">📊 Finance</a>
-                <a href="/pages/blog.html">📝 Blog</a>
-                <a href="/pages/temoignages.html">🗣️ Témoignages</a>
-                <a href="/pages/contact.html">Contact</a>
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="socials">
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
             </div>
-            <div class="footer-section">
-                <h4>Contact</h4>
-                <p style="color: #94a3b8;">📧 rubenmukend287@gmail.com</p>
-                <p style="color: #94a3b8;">📞 +243 974 843 721</p>
-            </div>
-        </div>
-
-        <div class="footer-legal">
-            <a href="/pages/mentions-legales.html">Mentions légales</a>
-            <a href="/pages/confidentialite.html">Politique de confidentialité</a>
-            <a href="/pages/cgu.html">CGU</a>
-        </div>
-
-        <div class="amazon-disclaimer">
-            En tant que Partenaire Amazon, je réalise un bénéfice sur les achats remplissant les conditions requises.
-        </div>
-
-        <div class="copyright">
-            © 2026 RentaPro - Investissement immobilier mondial
+            <p>© 2026 RentaPro — Tous droits réservés. Données mises à jour en temps réel.</p>
         </div>
     </footer>
 
-    <!-- Assistant IA -->
-    <div class="chat-button" id="chatButton" onclick="toggleChat()">💬</div>
-    <div class="chat-window" id="chatWindow">
-        <div class="chat-header">
-            <h3><i>🏠</i> Assistant RentaPro</h3>
-            <button class="close-chat" onclick="toggleChat()">✕</button>
-        </div>
-        <div class="chat-messages" id="chatMessages">
-            <div class="message bot">
-                👋 Bonjour ! Je suis l'assistant IA de RentaPro. Posez-moi vos questions sur l'investissement immobilier !
+    <!-- CHAT ASSISTANT IA -->
+    <div class="chat-float">
+        <div class="chat-box" id="chatBox">
+            <div class="chat-header">
+                <span><i class="fas fa-robot"></i> RentaBot IA</span>
+                <i class="fas fa-times" id="closeChat"></i>
+            </div>
+            <div class="chat-messages" id="chatMessages">
+                <div class="msg bot">Bonjour ! Je suis votre assistant investissement. Posez-moi une question sur les rendements ou les villes.</div>
+            </div>
+            <div class="chat-input-area">
+                <input type="text" id="chatInput" placeholder="Ex: Quel est le meilleur rendement ?" />
+                <button id="sendChat"><i class="fas fa-paper-plane"></i></button>
             </div>
         </div>
-        <div class="chat-input-area">
-            <input type="text" class="chat-input" id="userInput" placeholder="Votre question..." onkeypress="if(event.key==='Enter') sendMessage()">
-            <button class="send-message" onclick="sendMessage()">➤</button>
-        </div>
-        <div class="suggestions">
-            <span class="suggestion-chip" onclick="useSuggestion('Comment calculer le rendement locatif ?')">📊 Rendement</span>
-            <span class="suggestion-chip" onclick="useSuggestion('C\'est quoi le cash-flow ?')">💰 Cash-flow</span>
-            <span class="suggestion-chip" onclick="useSuggestion('Comment financer mon premier achat ?')">🏦 Financement</span>
-            <span class="suggestion-chip" onclick="useSuggestion('Investir en Afrique')">🌍 Afrique</span>
+        <div class="chat-toggle" id="chatToggle">
+            <i class="fas fa-comment-dots"></i>
         </div>
     </div>
 
-    <script src="/assistant-ia.js"></script>
     <script>
-        function toggleTheme() {
-            const body = document.body;
-            const toggle = document.getElementById("themeToggle");
-            body.classList.toggle("dark-mode");
-            
-            if (body.classList.contains("dark-mode")) {
-                toggle.textContent = "☀️";
-                localStorage.setItem("theme", "dark");
-            } else {
-                toggle.textContent = "🌙";
-                localStorage.setItem("theme", "light");
-            }
+        // ---------- MENU HAMBURGER ----------
+        document.getElementById('hamburger').addEventListener('click', function() {
+            document.getElementById('navLinks').classList.toggle('open');
+        });
+
+        // ---------- FILTRES ----------
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const cards = document.querySelectorAll('.continent-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                const filter = this.dataset.filter;
+
+                cards.forEach(card => {
+                    if (filter === 'all' || card.dataset.continent === filter) {
+                        card.classList.remove('hidden-card');
+                    } else {
+                        card.classList.add('hidden-card');
+                    }
+                });
+            });
+        });
+
+        // ---------- COMPTEURS ANIMES ----------
+        const stats = document.querySelectorAll('.number');
+        let counted = false;
+
+        function animateCounters() {
+            if (counted) return;
+            stats.forEach(stat => {
+                const target = parseFloat(stat.dataset.target);
+                const increment = target / 45;
+                let current = 0;
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        stat.textContent = target + (target % 1 === 0 ? '' : '');
+                        clearInterval(timer);
+                    } else {
+                        stat.textContent = current.toFixed(1);
+                    }
+                }, 30);
+            });
+            counted = true;
         }
 
-        document.addEventListener("DOMContentLoaded", function() {
-            const savedTheme = localStorage.getItem("theme");
-            const toggle = document.getElementById("themeToggle");
-            
-            if (savedTheme === "dark") {
-                document.body.classList.add("dark-mode");
-                if (toggle) toggle.textContent = "☀️";
-            } else {
-                if (toggle) toggle.textContent = "🌙";
+        // Déclenche au scroll
+        window.addEventListener('scroll', function() {
+            const statsGrid = document.getElementById('statsGrid');
+            const rect = statsGrid.getBoundingClientRect();
+            if (rect.top < window.innerHeight - 100) {
+                animateCounters();
+            }
+        });
+        // Si déjà visible au chargement
+        setTimeout(animateCounters, 500);
+
+        // ---------- CHAT IA ----------
+        const chatToggle = document.getElementById('chatToggle');
+        const chatBox = document.getElementById('chatBox');
+        const closeChat = document.getElementById('closeChat');
+        const sendBtn = document.getElementById('sendChat');
+        const chatInput = document.getElementById('chatInput');
+        const chatMessages = document.getElementById('chatMessages');
+
+        function toggleChat() {
+            chatBox.classList.toggle('open');
+        }
+
+        chatToggle.addEventListener('click', toggleChat);
+        closeChat.addEventListener('click', toggleChat);
+
+        function sendMessage() {
+            const msg = chatInput.value.trim();
+            if (!msg) return;
+            // User message
+            const userDiv = document.createElement('div');
+            userDiv.className = 'msg user';
+            userDiv.textContent = msg;
+            chatMessages.appendChild(userDiv);
+
+            chatInput.value = '';
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            // Bot response (simulée)
+            setTimeout(() => {
+                let reply = 'Je vous recommande de diversifier entre l\'Asie et l\'Afrique pour un rendement optimal.';
+                if (msg.toLowerCase().includes('europe')) reply =
+                    'L\'Europe affiche un rendement moyen de 4.8%, avec Lisbonne en tête (6.2%).';
+                else if (msg.toLowerCase().includes('afrique')) reply =
+                    'L\'Afrique offre le meilleur rendement (9.1%), notamment au Cap (10.2%).';
+                else if (msg.toLowerCase().includes('amérique') || msg.toLowerCase().includes('amerique')) reply =
+                    'L\'Amérique est très dynamique avec Miami à 8.5% et Mexico à 7.8%.';
+                else if (msg.toLowerCase().includes('merci')) reply = 'Avec plaisir ! À votre service.';
+
+                const botDiv = document.createElement('div');
+                botDiv.className = 'msg bot';
+                botDiv.textContent = reply;
+                chatMessages.appendChild(botDiv);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }, 400);
+        }
+
+        sendBtn.addEventListener('click', sendMessage);
+        chatInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') sendMessage();
+        });
+
+        // ---------- FERMER LE MENU EN CAS DE CLIC EXTERNE ----------
+        document.addEventListener('click', function(e) {
+            const nav = document.getElementById('navLinks');
+            const hamb = document.getElementById('hamburger');
+            if (!nav.contains(e.target) && !hamb.contains(e.target)) {
+                nav.classList.remove('open');
             }
         });
     </script>
-<!-- Bouton mode sombre -->
-<div class="theme-toggle" id="themeToggle" onclick="toggleTheme()">🌙</div>
 
-    <script>
-        function toggleTheme() {
-            const body = document.body;
-            const toggle = document.getElementById("themeToggle");
-            body.classList.toggle("dark-mode");
-            
-            if (body.classList.contains("dark-mode")) {
-                toggle.textContent = "☀️";
-                localStorage.setItem("theme", "dark");
-            } else {
-                toggle.textContent = "🌙";
-                localStorage.setItem("theme", "light");
-            }
-        }
-
-        document.addEventListener("DOMContentLoaded", function() {
-            const savedTheme = localStorage.getItem("theme");
-            const toggle = document.getElementById("themeToggle");
-            
-            if (savedTheme === "dark") {
-                document.body.classList.add("dark-mode");
-                if (toggle) toggle.textContent = "☀️";
-            } else {
-                if (toggle) toggle.textContent = "🌙";
-            }
-        });
-    </script>
- 
-    <!-- Bouton mode sombre -->
-    <div class="theme-toggle" id="themeToggle" onclick="toggleTheme()">🌙</div>
-
-    <script>
-        function toggleTheme() {
-            const body = document.body;
-            const toggle = document.getElementById("themeToggle");
-            body.classList.toggle("dark-mode");
-            
-            if (body.classList.contains("dark-mode")) {
-                toggle.textContent = "☀️";
-                localStorage.setItem("theme", "dark");
-            } else {
-                toggle.textContent = "🌙";
-                localStorage.setItem("theme", "light");
-            }
-        }
-
-        document.addEventListener("DOMContentLoaded", function() {
-            const savedTheme = localStorage.getItem("theme");
-            const toggle = document.getElementById("themeToggle");
-            
-            if (savedTheme === "dark") {
-                document.body.classList.add("dark-mode");
-                if (toggle) toggle.textContent = "☀️";
-            } else {
-                if (toggle) toggle.textContent = "🌙";
-            }
-        });
-    </script>
 </body>
 </html>
