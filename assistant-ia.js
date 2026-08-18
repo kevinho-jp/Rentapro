@@ -1,82 +1,176 @@
-// ============================================
-// ASSISTANT IA RENTAPRO - VERSION COMPLÈTE
-// ============================================
+// ==================== ASSISTANT IA - RentaPro ====================
 
-const assistantIA = {
-    // Base de connaissances enrichie
-    connaissances: {
-        "rendement": "📊 Le rendement locatif se calcule de deux façons :\n\n• Rendement brut : (Loyer annuel / Prix d'achat) × 100\n• Rendement net : (Loyer annuel - charges) / Prix d'achat × 100\n\nUtilisez notre simulateur pour des calculs précis ! Il prend en compte les frais de notaire, les travaux, et la fiscalité.",
-        
-        "cash-flow": "💰 Le cash-flow est la différence entre vos revenus locatifs et vos charges (crédit, taxe foncière, charges de copropriété, assurance).\n\nUn cash-flow positif signifie que votre investissement s'autofinance et génère un revenu complémentaire. C'est l'objectif à atteindre !",
-        
-        "van": "📈 La VAN (Valeur Actuelle Nette) mesure la rentabilité d'un investissement sur la durée.\n\n• VAN > 0 : Projet rentable\n• VAN = 0 : Projet à l'équilibre\n• VAN < 0 : Projet non rentable\n\nPlus la VAN est élevée, plus l'investissement crée de la valeur.",
-        
-        "tri": "📊 Le TRI (Taux de Rendement Interne) est le taux d'actualisation pour lequel la VAN est nulle.\n\nIl doit être comparé au taux d'actualisation (généralement le coût du crédit). Un TRI supérieur au taux d'emprunt signifie que l'investissement est rentable.",
-        
-        "premier achat": "🏠 Pour un premier achat locatif, voici mes conseils :\n\n• Privilégiez les petites surfaces (studios, T2)\n• Choisissez des zones étudiantes ou bien desservies\n• Prévoyez un apport de 10-20%\n• Calculez précisément la rentabilité avant d'acheter\n• N'oubliez pas les frais de notaire (7-8%)",
-        
-        "financement": "🏦 Options de financement :\n\n• Crédit immobilier classique : taux 3.5-4.5%\n• Prêt à taux zéro (PTZ) : pour primo-accédants\n• Crédit in fine : vous ne remboursez que les intérêts\n• Apport personnel : idéalement 10-20%\n\nFaites jouer la concurrence entre banques !",
-        
-        "fiscalité": "📝 Résumé fiscalité immobilière :\n\n• Micro-foncier : abattement 30% (jusqu'à 15 000€)\n• Régime réel : déduction des charges\n• LMNP : amortissement du bien possible\n• Pinel : réduction d'impôt (investissement neuf)\n• Malraux : pour l'immobilier ancien",
-        
-        "gestion": "👥 La gestion locative peut être :\n\n• Personnelle : économies mais plus de travail\n• Par une agence : 6-10% des loyers, tranquillité\n• Par un mandataire : alternative moins chère\n\nPoints clés : sélection rigoureuse des locataires, assurance loyers impayés, entretien régulier.",
-        
-        "investir afrique": "🌍 L'Afrique offre des rendements attractifs (8-15%) mais nécessite une bonne connaissance du marché local.\n\nVilles prometteuses :\n• Casablanca (Maroc) : marché stable\n• Nairobi (Kenya) : croissance forte\n• Kinshasa (RDC) : demande énorme\n• Dakar (Sénégal) : économie dynamique",
-        
-        "investir europe": "🇪🇺 En Europe, les rendements varient de 3 à 6% :\n\n• Europe de l'Ouest : stabilité, rendements plus faibles\n• Europe de l'Est : meilleurs rendements, plus de risques\n\nMeilleures villes : Berlin, Lisbonne, Budapest, Varsovie",
-        
-        "investir amerique": "🌎 Amérique du Nord :\n\n• USA : REITs très développés, rendements 4-8%\n• Canada : marché stable, forte immigration\n\nAmérique latine :\n• Mexique, Brésil, Colombie : rendements 6-12%",
-        
-        "investir asie": "🌏 Asie : marchés très contrastés\n\n• Japon : stabilité, rendements faibles\n• Singapour : marché mature, très cher\n• Vietnam, Thaïlande : croissance forte, risques",
-        
-        "investir oceanie": "🇦🇺 Océanie :\n\n• Australie : marché transparent, forte immigration\n• Nouvelle-Zélande : qualité de vie, rendements modérés\n\nAttention aux règles d'accès pour les non-résidents.",
-        
-        "lmnp": "🏢 Le statut LMNP (Loueur Meublé Non Professionnel) :\n\n• Location meublée obligatoire\n• Amortissement du bien possible (réduction d'impôts)\n• Deux régimes : micro-BIC (abattement 50%) ou réel\n• Idéal pour les petites surfaces en zone tendue",
-        
-        "pinel": "🏗️ Loi Pinel :\n\n• Investissement dans le neuf\n• Réduction d'impôt de 12-21% selon la durée\n• Plafonds de loyer et de ressources\n• Zones éligibles limitées",
-        
-        "scpi": "📦 SCPI (Société Civile de Placement Immobilier) :\n\n• Investir dans l'immobilier sans gérer\n• Mise de départ faible (quelques centaines d'euros)\n• Rendement moyen 4-5%\n• Diversification possible"
-    },
-
-    // Réponses par défaut
-    reponsesDefaut: [
-        "Je ne suis pas sûr de comprendre. Pouvez-vous reformuler ?",
-        "Intéressant ! Pouvez-vous être plus précis ?",
-        "Je recherche cette information... En attendant, consultez notre guide !",
-        "Bonne question ! Je vous suggère de lire notre article sur le sujet.",
-        "Désolé, je n'ai pas encore appris cela. Utilisez notre simulateur ou consultez le guide !"
-    ],
-
-    // Suggestions rapides
-    suggestions: [
-        "Comment calculer le rendement ?",
-        "Qu'est-ce que le cash-flow ?",
-        "Comment financer mon premier achat ?",
-        "LMNP ou location vide ?",
-        "Investir en Afrique",
-        "Erreurs à éviter"
-    ],
-
-    // Fonction pour trouver une réponse
-    repondre: function(question) {
-        question = question.toLowerCase();
-        
-        // Chercher une correspondance dans les connaissances
-        for (let motCle in this.connaissances) {
-            if (question.includes(motCle)) {
-                return this.connaissances[motCle];
-            }
-        }
-        
-        // Réponse par défaut aléatoire
-        return this.reponsesDefaut[Math.floor(Math.random() * this.reponsesDefaut.length)];
-    },
-
-    // Initialisation
-    init: function() {
-        console.log("✅ Assistant IA RentaPro chargé avec succès !");
-    }
+// ---- Base de connaissances enrichie ----
+const botKnowledge = {
+  'rendement': [
+    "Le rendement locatif moyen en France est de 4,5 % hors charges. Les villes moyennes offrent souvent 6 à 7 %.",
+    "En Europe, Lisbonne affiche 6,2 %, Berlin 4,5 %, Paris 3,8 %. L'Afrique propose les meilleurs rendements : Le Cap 10,2 %.",
+    "Pour un investissement locatif, le rendement brut se calcule : (loyer annuel / prix d'achat) × 100.",
+    "Les SCPI distribuent en moyenne 4 à 5 % par an, sans gestion locative."
+  ],
+  'scpi': [
+    "Les SCPI permettent d'investir dans l'immobilier d'entreprise ou résidentiel sans acheter de murs. Le rendement moyen est de 4,5 %.",
+    "Les SCPI de rendement (ex : Primovie, Epargne Pierre) versent des dividendes trimestriels. Attention aux frais d'entrée.",
+    "Vous pouvez acheter des parts de SCPI en direct ou via un contrat d'assurance-vie."
+  ],
+  'travaux': [
+    "Pour financer vos travaux, un prêt travaux ou un crédit immobilier avec apport sont possibles. Notre simulateur de travaux vous aide.",
+    "Les travaux de rénovation énergétique peuvent donner droit à des subventions (MaPrimeRénov', CEE).",
+    "Prévoyez un budget de 10 à 20 % du prix d'achat pour des travaux de rafraîchissement."
+  ],
+  'credit': [
+    "Les taux d'emprunt sont actuellement autour de 3,5 % sur 20 ans. Utilisez notre comparateur de crédit pour trouver le meilleur taux.",
+    "Votre capacité d'emprunt dépend de vos revenus, de votre apport et de la durée. Le taux d'endettement ne doit pas dépasser 35 %.",
+    "N'oubliez pas d'inclure l'assurance emprunteur dans votre calcul."
+  ],
+  'colocation': [
+    "La colocation peut augmenter votre rendement locatif de 20 à 30 % par rapport à une location classique.",
+    "Notre simulateur de colocation vous aide à estimer le loyer optimal et la rentabilité.",
+    "La colocation est particulièrement prisée dans les villes étudiantes et les métropoles."
+  ],
+  'lmnp': [
+    "Le statut LMNP (Loueur Meublé Non Professionnel) permet de bénéficier d'un régime fiscal avantageux : amortissement du bien et déduction des charges.",
+    "Avec le LMNP, vous pouvez déduire les intérêts d'emprunt, les travaux et les frais de gestion de vos revenus fonciers.",
+    "Le régime réel est plus intéressant que le micro-BIC si vos charges dépassent 50 % des loyers."
+  ],
+  'plus-value': [
+    "La plus-value immobilière est imposée à 19 % + prélèvements sociaux (17,2 %) après un abattement pour durée de détention.",
+    "Au-delà de 22 ans de détention, vous êtes totalement exonéré d'impôt sur la plus-value.",
+    "Utilisez notre simulateur de plus-value pour estimer votre fiscalité."
+  ],
+  'frais': [
+    "Les frais de notaire représentent environ 7 à 8 % du prix d'achat dans l'ancien, et 2 à 3 % dans le neuf.",
+    "Les frais d'agence sont généralement à la charge de l'acheteur (5 à 8 %). Négociez-les !",
+    "Les frais de dossier bancaire et les garanties (hypothèque, caution) sont aussi à prévoir."
+  ],
+  'merci': [
+    "Avec plaisir ! N'hésitez pas si vous avez d'autres questions.",
+    "Je suis là pour vous aider. À votre service !",
+    "De rien ! Pensez à consulter nos simulateurs pour aller plus loin."
+  ],
+  'bonjour': [
+    "Bonjour ! Je suis RentaBot, votre assistant immobilier. Comment puis-je vous aider ?",
+    "Bonjour et bienvenue ! Avez-vous une question sur l'investissement locatif ?",
+    "Bonjour ! Que souhaitez-vous savoir : rendement, fiscalité, financement ?"
+  ]
 };
 
-// Initialiser au chargement
-assistantIA.init();
+// Réponses par défaut (aléatoires, variées)
+const defaultReplies = [
+  "Je vous conseille de consulter notre simulateur pour une estimation personnalisée.",
+  "Avez-vous pensé à diversifier vos investissements entre immobilier neuf et ancien ?",
+  "Pensez à vérifier les dispositifs fiscaux (Pinel, LMNP) qui peuvent booster votre rentabilité.",
+  "Je vous recommande de lire notre guide sur l'effet de levier pour optimiser votre financement.",
+  "Pourriez-vous reformuler votre question ? Je suis là pour vous éclairer.",
+  "Saviez-vous que l'investissement en SCPI permet de commencer avec un petit budget ?",
+  "La colocation est une excellente stratégie pour maximiser vos revenus locatifs."
+];
+
+// ---- Fonction de recherche de réponse ----
+function getBotReply(userMessage) {
+  const msg = userMessage.toLowerCase().trim();
+  let reply = '';
+
+  // Parcours des mots-clés
+  for (const [keyword, responses] of Object.entries(botKnowledge)) {
+    if (msg.includes(keyword)) {
+      const randomIndex = Math.floor(Math.random() * responses.length);
+      reply = responses[randomIndex];
+      break;
+    }
+  }
+
+  // Si pas de correspondance, réponse par défaut aléatoire
+  if (!reply) {
+    const randomIndex = Math.floor(Math.random() * defaultReplies.length);
+    reply = defaultReplies[randomIndex];
+  }
+
+  return reply;
+}
+
+// ---- Création dynamique de l'interface du chat ----
+function createChatWidget() {
+  // Structure HTML du chat
+  const chatHTML = `
+    <div class="chat-float">
+      <div class="chat-box" id="chatBox">
+        <div class="chat-header">
+          <span><i class="fas fa-robot"></i> RentaBot IA</span>
+          <i class="fas fa-times" id="closeChat"></i>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+          <div class="msg bot">Bonjour ! Je suis RentaBot, votre assistant investissement. Posez-moi une question sur le rendement, la fiscalité, les SCPI, les travaux, le crédit, etc.</div>
+        </div>
+        <div class="chat-input-area">
+          <input type="text" id="chatInput" placeholder="Ex: Quel est le meilleur rendement ?" />
+          <button id="sendChat"><i class="fas fa-paper-plane"></i></button>
+        </div>
+      </div>
+      <div class="chat-toggle" id="chatToggle">
+        <i class="fas fa-comment-dots"></i>
+      </div>
+    </div>
+  `;
+
+  // Insérer le HTML dans le body
+  document.body.insertAdjacentHTML('beforeend', chatHTML);
+
+  // ---- Gestion des événements ----
+  const chatToggle = document.getElementById('chatToggle');
+  const chatBox = document.getElementById('chatBox');
+  const closeChat = document.getElementById('closeChat');
+  const sendBtn = document.getElementById('sendChat');
+  const chatInput = document.getElementById('chatInput');
+  const chatMessages = document.getElementById('chatMessages');
+
+  function toggleChat() {
+    chatBox.classList.toggle('open');
+  }
+
+  chatToggle.addEventListener('click', toggleChat);
+  closeChat.addEventListener('click', toggleChat);
+
+  function sendMessage() {
+    const msg = chatInput.value.trim();
+    if (!msg) return;
+
+    // Afficher le message utilisateur
+    const userDiv = document.createElement('div');
+    userDiv.className = 'msg user';
+    userDiv.textContent = msg;
+    chatMessages.appendChild(userDiv);
+    chatInput.value = '';
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+
+    // Simuler une réponse du bot après un court délai
+    setTimeout(() => {
+      const reply = getBotReply(msg);
+      const botDiv = document.createElement('div');
+      botDiv.className = 'msg bot';
+      botDiv.textContent = reply;
+      chatMessages.appendChild(botDiv);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }, 400);
+  }
+
+  sendBtn.addEventListener('click', sendMessage);
+  chatInput.addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') sendMessage();
+  });
+
+  // Fermer le chat si on clique en dehors (sauf sur le toggle)
+  document.addEventListener('click', function(e) {
+    const chat = document.querySelector('.chat-float');
+    if (chat && !chat.contains(e.target) && !e.target.closest('.chat-float')) {
+      chatBox.classList.remove('open');
+    }
+  });
+}
+
+// ---- Lancer la création au chargement du DOM ----
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', createChatWidget);
+} else {
+  createChatWidget();
+}

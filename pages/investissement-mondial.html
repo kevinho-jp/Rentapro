@@ -1,940 +1,534 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>RentaPro - Investissement Mondial</title>
-    <!-- Font Awesome pour les icônes -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-    <style>
-        /* ---------- RESET & BASE ---------- */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RentaPro - Investissement Mondial</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <!-- Fichier CSS global -->
+  <link rel="stylesheet" href="/style-global.css" />
+  <style>
+    /* Styles spécifiques à la page investissement-mondial */
+    .hero {
+      padding: 70px 0 50px;
+      text-align: center;
+      background: radial-gradient(circle at 20% 30%, #1f1b10, #0b0a0a 80%);
+      border-bottom: 1px solid #2a2a2a;
+    }
+    .hero h1 {
+      font-size: 52px;
+      font-weight: 700;
+      background: linear-gradient(to right, #fff, #d4af37);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 15px;
+    }
+    .hero p {
+      font-size: 20px;
+      color: #aaa;
+      max-width: 700px;
+      margin: 0 auto 30px;
+    }
+    .btn-gold {
+      background: #d4af37;
+      color: #0b0a0a;
+      padding: 14px 40px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 18px;
+      border: none;
+      transition: 0.3s;
+      cursor: pointer;
+      display: inline-block;
+      box-shadow: 0 0 30px rgba(212, 175, 55, 0.2);
+      text-decoration: none;
+    }
+    .btn-gold:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 50px rgba(212, 175, 55, 0.5);
+    }
 
-        body {
-            background: #0b0a0a;
-            color: #eaeaea;
-            line-height: 1.6;
-        }
+    .filters-section {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+      padding: 40px 0 10px;
+    }
+    .filter-btn {
+      background: transparent;
+      border: 1px solid #333;
+      color: #aaa;
+      padding: 10px 28px;
+      border-radius: 40px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+      font-size: 14px;
+    }
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: #d4af37;
+      color: #0b0a0a;
+      border-color: #d4af37;
+      box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+    }
 
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 30px;
+      padding: 40px 0 60px;
+    }
+    .stat-item {
+      text-align: center;
+      background: #141210;
+      padding: 30px 20px;
+      border-radius: 20px;
+      border: 1px solid #26221c;
+      transition: 0.3s;
+    }
+    .stat-item:hover {
+      border-color: #d4af37;
+      transform: translateY(-6px);
+    }
+    .stat-item .number {
+      font-size: 48px;
+      font-weight: 800;
+      color: #d4af37;
+      display: block;
+    }
+    .stat-item .label {
+      color: #aaa;
+      font-size: 16px;
+      margin-top: 8px;
+      letter-spacing: 1px;
+    }
 
-        .container {
-            max-width: 1300px;
-            margin: 0 auto;
-            padding: 0 25px;
-        }
+    .grid-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 35px;
+      padding: 30px 0 70px;
+    }
+    .continent-card {
+      background: #141210;
+      border-radius: 24px;
+      padding: 30px 25px;
+      border: 1px solid #26221c;
+      transition: 0.4s cubic-bezier(0.2, 0.9, 0.3, 1.2);
+      opacity: 0;
+      transform: translateY(40px);
+      animation: fadeUp 0.7s forwards;
+    }
+    .continent-card:nth-child(1) { animation-delay: 0.1s; }
+    .continent-card:nth-child(2) { animation-delay: 0.2s; }
+    .continent-card:nth-child(3) { animation-delay: 0.3s; }
+    .continent-card:nth-child(4) { animation-delay: 0.4s; }
+    .continent-card:nth-child(5) { animation-delay: 0.5s; }
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .continent-card:hover {
+      border-color: #d4af37;
+      transform: translateY(-12px) scale(1.01);
+      box-shadow: 0 20px 60px rgba(212, 175, 55, 0.08);
+    }
+    .continent-card .icon {
+      font-size: 42px;
+      color: #d4af37;
+      margin-bottom: 10px;
+    }
+    .continent-card h3 {
+      font-size: 26px;
+      margin-bottom: 5px;
+      color: #fff;
+    }
+    .continent-card .sub {
+      color: #d4af37;
+      font-weight: 600;
+      font-size: 14px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    .continent-card .yield {
+      background: #1f1b14;
+      padding: 8px 16px;
+      border-radius: 40px;
+      display: inline-block;
+      margin: 15px 0;
+      font-weight: 700;
+      font-size: 22px;
+      color: #d4af37;
+    }
+    .continent-card .city-list {
+      list-style: none;
+      margin: 15px 0;
+    }
+    .continent-card .city-list li {
+      padding: 6px 0;
+      border-bottom: 1px solid #1e1b17;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #ccc;
+      font-size: 15px;
+    }
+    .continent-card .city-list li i {
+      color: #d4af37;
+      width: 18px;
+    }
+    .continent-card .expert {
+      margin-top: 20px;
+      padding: 18px;
+      background: #1b1814;
+      border-radius: 16px;
+      border-left: 4px solid #d4af37;
+    }
+    .continent-card .expert p {
+      font-style: italic;
+      color: #ddd;
+      font-size: 14px;
+    }
+    .continent-card .expert .name {
+      font-weight: 700;
+      color: #d4af37;
+      font-style: normal;
+    }
 
-        /* ---------- SCROLLBAR ---------- */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #1a1a1a;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #d4af37;
-            border-radius: 10px;
-        }
+    .graph-section {
+      background: #141210;
+      border-radius: 28px;
+      padding: 40px 35px;
+      margin: 20px 0 60px;
+      border: 1px solid #26221c;
+    }
+    .graph-section h2 {
+      text-align: center;
+      margin-bottom: 40px;
+      font-size: 32px;
+      color: #fff;
+    }
+    .graph-section h2 i {
+      color: #d4af37;
+      margin-right: 12px;
+    }
+    .graph-bars {
+      display: flex;
+      justify-content: space-around;
+      align-items: flex-end;
+      height: 220px;
+      gap: 20px;
+    }
+    .bar-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex: 1;
+    }
+    .bar-item .bar {
+      width: 100%;
+      max-width: 60px;
+      background: linear-gradient(180deg, #d4af37, #a07c20);
+      border-radius: 10px 10px 4px 4px;
+      min-height: 20px;
+      position: relative;
+    }
+    .bar-item .bar .value {
+      position: absolute;
+      top: -28px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: #d4af37;
+      font-weight: 800;
+      font-size: 16px;
+    }
+    .bar-item .label {
+      margin-top: 14px;
+      font-weight: 600;
+      color: #aaa;
+      font-size: 14px;
+    }
 
-        /* ---------- HEADER / NAV ---------- */
-        header {
-            background: rgba(11, 10, 10, 0.85);
-            backdrop-filter: blur(12px);
-            padding: 18px 0;
-            border-bottom: 1px solid #2a2a2a;
-            position: sticky;
-            top: 0;
-            z-index: 999;
-        }
+    .hidden-card {
+      display: none !important;
+    }
 
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 28px;
-            font-weight: 800;
-            letter-spacing: -1px;
-            background: linear-gradient(135deg, #d4af37, #f9e28c);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .logo span {
-            font-weight: 300;
-            -webkit-text-fill-color: #aaa;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 35px;
-            font-weight: 500;
-        }
-        .nav-links a {
-            transition: 0.3s;
-            font-size: 15px;
-            color: #ccc;
-        }
-        .nav-links a:hover {
-            color: #d4af37;
-        }
-        .nav-links a.active {
-            color: #d4af37;
-            border-bottom: 2px solid #d4af37;
-            padding-bottom: 4px;
-        }
-
-        .hamburger {
-            display: none;
-            font-size: 28px;
-            color: #d4af37;
-            cursor: pointer;
-        }
-
-        /* ---------- HERO ---------- */
-        .hero {
-            padding: 70px 0 50px;
-            text-align: center;
-            background: radial-gradient(circle at 20% 30%, #1f1b10, #0b0a0a 80%);
-            border-bottom: 1px solid #2a2a2a;
-        }
-
-        .hero h1 {
-            font-size: 52px;
-            font-weight: 700;
-            background: linear-gradient(to right, #fff, #d4af37);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 15px;
-        }
-
-        .hero p {
-            font-size: 20px;
-            color: #aaa;
-            max-width: 700px;
-            margin: 0 auto 30px;
-        }
-
-        .hero .btn-gold {
-            background: #d4af37;
-            color: #0b0a0a;
-            padding: 14px 40px;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 18px;
-            border: none;
-            transition: 0.3s;
-            cursor: pointer;
-            display: inline-block;
-            box-shadow: 0 0 30px rgba(212, 175, 55, 0.2);
-        }
-        .hero .btn-gold:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 50px rgba(212, 175, 55, 0.5);
-        }
-
-        /* ---------- FILTRES ---------- */
-        .filters-section {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-            padding: 40px 0 10px;
-        }
-
-        .filter-btn {
-            background: transparent;
-            border: 1px solid #333;
-            color: #aaa;
-            padding: 10px 28px;
-            border-radius: 40px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.3s;
-            font-size: 14px;
-        }
-        .filter-btn:hover,
-        .filter-btn.active {
-            background: #d4af37;
-            color: #0b0a0a;
-            border-color: #d4af37;
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
-        }
-
-        /* ---------- CHIFFRES CLES ---------- */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 30px;
-            padding: 40px 0 60px;
-        }
-
-        .stat-item {
-            text-align: center;
-            background: #141210;
-            padding: 30px 20px;
-            border-radius: 20px;
-            border: 1px solid #26221c;
-            transition: 0.3s;
-        }
-        .stat-item:hover {
-            border-color: #d4af37;
-            transform: translateY(-6px);
-        }
-
-        .stat-item .number {
-            font-size: 48px;
-            font-weight: 800;
-            color: #d4af37;
-            display: block;
-        }
-        .stat-item .label {
-            color: #aaa;
-            font-size: 16px;
-            margin-top: 8px;
-            letter-spacing: 1px;
-        }
-
-        /* ---------- CARTES CONTINENTS ---------- */
-        .grid-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 35px;
-            padding: 30px 0 70px;
-        }
-
-        .continent-card {
-            background: #141210;
-            border-radius: 24px;
-            padding: 30px 25px;
-            border: 1px solid #26221c;
-            transition: 0.4s cubic-bezier(0.2, 0.9, 0.3, 1.2);
-            opacity: 0;
-            transform: translateY(40px);
-            animation: fadeUp 0.7s forwards;
-            position: relative;
-            overflow: hidden;
-        }
-        .continent-card:nth-child(1) {
-            animation-delay: 0.1s;
-        }
-        .continent-card:nth-child(2) {
-            animation-delay: 0.2s;
-        }
-        .continent-card:nth-child(3) {
-            animation-delay: 0.3s;
-        }
-        .continent-card:nth-child(4) {
-            animation-delay: 0.4s;
-        }
-        .continent-card:nth-child(5) {
-            animation-delay: 0.5s;
-        }
-
-        @keyframes fadeUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .continent-card:hover {
-            border-color: #d4af37;
-            transform: translateY(-12px) scale(1.01);
-            box-shadow: 0 20px 60px rgba(212, 175, 55, 0.08);
-        }
-
-        .continent-card .icon {
-            font-size: 42px;
-            color: #d4af37;
-            margin-bottom: 10px;
-        }
-
-        .continent-card h3 {
-            font-size: 26px;
-            margin-bottom: 5px;
-            color: #fff;
-        }
-
-        .continent-card .sub {
-            color: #d4af37;
-            font-weight: 600;
-            font-size: 14px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        .continent-card .yield {
-            background: #1f1b14;
-            padding: 8px 16px;
-            border-radius: 40px;
-            display: inline-block;
-            margin: 15px 0;
-            font-weight: 700;
-            font-size: 22px;
-            color: #d4af37;
-        }
-
-        .continent-card .city-list {
-            list-style: none;
-            margin: 15px 0;
-        }
-        .continent-card .city-list li {
-            padding: 6px 0;
-            border-bottom: 1px solid #1e1b17;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: #ccc;
-            font-size: 15px;
-        }
-        .continent-card .city-list li i {
-            color: #d4af37;
-            width: 18px;
-        }
-
-        .continent-card .expert {
-            margin-top: 20px;
-            padding: 18px;
-            background: #1b1814;
-            border-radius: 16px;
-            border-left: 4px solid #d4af37;
-        }
-        .continent-card .expert p {
-            font-style: italic;
-            color: #ddd;
-            font-size: 14px;
-        }
-        .continent-card .expert .name {
-            font-weight: 700;
-            color: #d4af37;
-            font-style: normal;
-        }
-
-        /* ---------- GRAPHIQUE RENDEMENT ---------- */
-        .graph-section {
-            background: #141210;
-            border-radius: 28px;
-            padding: 40px 35px;
-            margin: 20px 0 60px;
-            border: 1px solid #26221c;
-        }
-
-        .graph-section h2 {
-            text-align: center;
-            margin-bottom: 40px;
-            font-size: 32px;
-            color: #fff;
-        }
-        .graph-section h2 i {
-            color: #d4af37;
-            margin-right: 12px;
-        }
-
-        .graph-bars {
-            display: flex;
-            justify-content: space-around;
-            align-items: flex-end;
-            height: 220px;
-            gap: 20px;
-        }
-
-        .bar-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            flex: 1;
-        }
-
-        .bar-item .bar {
-            width: 100%;
-            max-width: 60px;
-            background: linear-gradient(180deg, #d4af37, #a07c20);
-            border-radius: 10px 10px 4px 4px;
-            height: calc(70% + 20px);
-            transition: 0.6s;
-            min-height: 20px;
-            position: relative;
-        }
-        .bar-item .bar .value {
-            position: absolute;
-            top: -28px;
-            left: 50%;
-            transform: translateX(-50%);
-            color: #d4af37;
-            font-weight: 800;
-            font-size: 16px;
-        }
-        .bar-item .label {
-            margin-top: 14px;
-            font-weight: 600;
-            color: #aaa;
-            font-size: 14px;
-        }
-
-        /* ---------- ASSISTANT IA (CHAT) ---------- */
-        .chat-float {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            z-index: 9999;
-        }
-
-        .chat-toggle {
-            background: #d4af37;
-            color: #0b0a0a;
-            width: 65px;
-            height: 65px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 30px;
-            box-shadow: 0 8px 30px rgba(212, 175, 55, 0.4);
-            cursor: pointer;
-            transition: 0.3s;
-            border: none;
-        }
-        .chat-toggle:hover {
-            transform: scale(1.08);
-        }
-
-        .chat-box {
-            position: absolute;
-            bottom: 85px;
-            right: 0;
-            width: 350px;
-            background: #1a1714;
-            border-radius: 24px;
-            border: 1px solid #333;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
-            overflow: hidden;
-            display: none;
-            flex-direction: column;
-        }
-        .chat-box.open {
-            display: flex;
-        }
-
-        .chat-header {
-            background: #0b0a0a;
-            padding: 18px 20px;
-            border-bottom: 1px solid #2a2a2a;
-            font-weight: 700;
-            color: #d4af37;
-            display: flex;
-            justify-content: space-between;
-        }
-        .chat-header i {
-            cursor: pointer;
-            color: #666;
-        }
-
-        .chat-messages {
-            padding: 20px;
-            height: 250px;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .msg {
-            padding: 12px 16px;
-            border-radius: 16px;
-            max-width: 85%;
-            font-size: 14px;
-        }
-        .msg.user {
-            background: #d4af37;
-            color: #0b0a0a;
-            align-self: flex-end;
-        }
-        .msg.bot {
-            background: #26221c;
-            color: #ddd;
-            align-self: flex-start;
-        }
-
-        .chat-input-area {
-            display: flex;
-            border-top: 1px solid #2a2a2a;
-            padding: 10px;
-            background: #0b0a0a;
-        }
-        .chat-input-area input {
-            flex: 1;
-            padding: 12px 16px;
-            border: none;
-            border-radius: 40px;
-            background: #1f1b17;
-            color: #fff;
-            outline: none;
-        }
-        .chat-input-area button {
-            background: #d4af37;
-            border: none;
-            color: #0b0a0a;
-            width: 48px;
-            border-radius: 50%;
-            margin-left: 10px;
-            cursor: pointer;
-            font-size: 18px;
-            transition: 0.2s;
-        }
-        .chat-input-area button:hover {
-            background: #f9e28c;
-        }
-
-        /* ---------- FOOTER ---------- */
-        footer {
-            border-top: 1px solid #1f1b17;
-            padding: 35px 0;
-            text-align: center;
-            color: #555;
-            font-size: 14px;
-            margin-top: 20px;
-        }
-        footer .socials {
-            display: flex;
-            justify-content: center;
-            gap: 25px;
-            margin-bottom: 15px;
-        }
-        footer .socials a {
-            color: #666;
-            font-size: 22px;
-            transition: 0.3s;
-        }
-        footer .socials a:hover {
-            color: #d4af37;
-        }
-
-        /* ---------- RESPONSIVE ---------- */
-        @media (max-width: 900px) {
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .hero h1 {
-                font-size: 38px;
-            }
-            .graph-bars {
-                height: 160px;
-            }
-        }
-
-        @media (max-width: 700px) {
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                background: #0b0a0a;
-                position: absolute;
-                top: 70px;
-                left: 0;
-                width: 100%;
-                padding: 30px;
-                gap: 20px;
-                border-bottom: 1px solid #2a2a2a;
-            }
-            .nav-links.open {
-                display: flex;
-            }
-            .hamburger {
-                display: block;
-            }
-
-            .stats-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 15px;
-            }
-            .stat-item .number {
-                font-size: 34px;
-            }
-
-            .grid-cards {
-                grid-template-columns: 1fr;
-            }
-
-            .chat-box {
-                width: 290px;
-                right: -10px;
-            }
-            .hero h1 {
-                font-size: 30px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
-            .graph-bars {
-                height: 120px;
-                gap: 8px;
-            }
-            .bar-item .bar {
-                max-width: 30px;
-            }
-            .filters-section {
-                gap: 8px;
-            }
-            .filter-btn {
-                padding: 6px 16px;
-                font-size: 12px;
-            }
-        }
-
-        /* utilité */
-        .hidden-card {
-            display: none !important;
-        }
-    </style>
+    @media (max-width: 900px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .hero h1 { font-size: 38px; }
+      .graph-bars { height: 160px; }
+    }
+    @media (max-width: 700px) {
+      .stats-grid { grid-template-columns: 1fr 1fr; gap: 15px; }
+      .stat-item .number { font-size: 34px; }
+      .grid-cards { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 30px; }
+    }
+    @media (max-width: 480px) {
+      .stats-grid { grid-template-columns: 1fr; }
+      .graph-bars { height: 120px; gap: 8px; }
+      .bar-item .bar { max-width: 30px; }
+      .filters-section { gap: 8px; }
+      .filter-btn { padding: 6px 16px; font-size: 12px; }
+    }
+  </style>
 </head>
 <body>
 
-    <!-- HEADER -->
-    <header>
-        <div class="container nav-container">
-            <div class="logo">Renta<span>Pro</span></div>
-            <div class="nav-links" id="navLinks">
-                <a href="/">Accueil</a>
-                <a href="/pages/investissement-mondial.html" class="active">Monde</a>
-                <a href="/pages/simulateur.html">Simulateur</a>
-                <a href="/pages/guide.html">Guide</a>
-                <a href="/pages/contact.html">Contact</a>
-            </div>
-            <div class="hamburger" id="hamburger">
-                <i class="fas fa-bars"></i>
-            </div>
-        </div>
-    </header>
+  <!-- ========== HEADER (identique pour toutes les pages) ========== -->
+  <header>
+    <div class="container nav-container">
+      <div class="logo">Renta<span>Pro</span></div>
+      <div class="nav-links" id="navLinks">
+        <a href="/">Accueil</a>
+        <a href="/pages/investissement-mondial.html" class="active">Monde</a>
+        <a href="/pages/simulateur.html">Simulateur</a>
+        <a href="/pages/guide.html">Guide</a>
+        <a href="/pages/contact.html">Contact</a>
+      </div>
+      <div class="hamburger" id="hamburger">
+        <i class="fas fa-bars"></i>
+      </div>
+    </div>
+  </header>
 
-    <!-- HERO -->
-    <section class="hero">
-        <div class="container">
-            <h1>Investissement Immobilier <br>Global</h1>
-            <p>Analyse des rendements locatifs, villes phares et conseils d'experts par continent.</p>
-            <a href="#" class="btn-gold"><i class="fas fa-chart-line"></i> Explorer les marchés</a>
-        </div>
-    </section>
-
-    <!-- STATS -->
+  <!-- ========== HERO ========== -->
+  <section class="hero">
     <div class="container">
-        <div class="stats-grid" id="statsGrid">
-            <div class="stat-item">
-                <span class="number" data-target="8.4">0</span>
-                <span class="label">Rendement moyen (%)</span>
-            </div>
-            <div class="stat-item">
-                <span class="number" data-target="45">0</span>
-                <span class="label">Villes analysées</span>
-            </div>
-            <div class="stat-item">
-                <span class="number" data-target="120">0</span>
-                <span class="label">Experts partenaires</span>
-            </div>
-            <div class="stat-item">
-                <span class="number" data-target="2.4">0</span>
-                <span class="label">Mds € sous gestion</span>
-            </div>
-        </div>
+      <h1>Investissement Immobilier <br>Global</h1>
+      <p>Analyse des rendements locatifs, villes phares et conseils d'experts par continent.</p>
+      <a href="#" class="btn-gold"><i class="fas fa-chart-line"></i> Explorer les marchés</a>
     </div>
+  </section>
 
-    <!-- FILTRES -->
+  <!-- ========== STATS ========== -->
+  <div class="container">
+    <div class="stats-grid" id="statsGrid">
+      <div class="stat-item">
+        <span class="number" data-target="8.4">0</span>
+        <span class="label">Rendement moyen (%)</span>
+      </div>
+      <div class="stat-item">
+        <span class="number" data-target="45">0</span>
+        <span class="label">Villes analysées</span>
+      </div>
+      <div class="stat-item">
+        <span class="number" data-target="120">0</span>
+        <span class="label">Experts partenaires</span>
+      </div>
+      <div class="stat-item">
+        <span class="number" data-target="2.4">0</span>
+        <span class="label">Mds € sous gestion</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== FILTRES ========== -->
+  <div class="container">
+    <div class="filters-section" id="filterSection">
+      <button class="filter-btn active" data-filter="all">🌍 Tous</button>
+      <button class="filter-btn" data-filter="europe">🇪🇺 Europe</button>
+      <button class="filter-btn" data-filter="amerique">🇺🇸 Amérique</button>
+      <button class="filter-btn" data-filter="asie">🇯🇵 Asie</button>
+      <button class="filter-btn" data-filter="afrique">🇿🇦 Afrique</button>
+      <button class="filter-btn" data-filter="oceanie">🇦🇺 Océanie</button>
+    </div>
+  </div>
+
+  <!-- ========== CARTES CONTINENTS ========== -->
+  <div class="container">
+    <div class="grid-cards" id="cardGrid">
+      <!-- Europe -->
+      <div class="continent-card" data-continent="europe">
+        <div class="icon"><i class="fas fa-globe-europe"></i></div>
+        <h3>Europe</h3>
+        <div class="sub">Marché stable</div>
+        <div class="yield">+4.8%</div>
+        <ul class="city-list">
+          <li><i class="fas fa-city"></i> Lisbonne – 6.2%</li>
+          <li><i class="fas fa-city"></i> Berlin – 4.5%</li>
+          <li><i class="fas fa-city"></i> Paris – 3.8%</li>
+        </ul>
+        <div class="expert">
+          <p>“L'Europe offre une sécurité juridique inégalée, parfaite pour le long terme.”</p>
+          <span class="name">— Warren Buffett</span>
+        </div>
+      </div>
+      <!-- Amérique -->
+      <div class="continent-card" data-continent="amerique">
+        <div class="icon"><i class="fas fa-globe-americas"></i></div>
+        <h3>Amérique</h3>
+        <div class="sub">Fort potentiel</div>
+        <div class="yield">+7.2%</div>
+        <ul class="city-list">
+          <li><i class="fas fa-city"></i> Miami – 8.5%</li>
+          <li><i class="fas fa-city"></i> Mexico – 7.8%</li>
+          <li><i class="fas fa-city"></i> São Paulo – 6.9%</li>
+        </ul>
+        <div class="expert">
+          <p>“Diversifiez vos actifs, les Amériques sont un eldorado pour le cash-flow.”</p>
+          <span class="name">— Robert Kiyosaki</span>
+        </div>
+      </div>
+      <!-- Asie -->
+      <div class="continent-card" data-continent="asie">
+        <div class="icon"><i class="fas fa-globe-asia"></i></div>
+        <h3>Asie</h3>
+        <div class="sub">Croissance rapide</div>
+        <div class="yield">+6.5%</div>
+        <ul class="city-list">
+          <li><i class="fas fa-city"></i> Tokyo – 5.9%</li>
+          <li><i class="fas fa-city"></i> Singapour – 5.2%</li>
+          <li><i class="fas fa-city"></i> Dubaï – 8.1%</li>
+        </ul>
+        <div class="expert">
+          <p>“L'Asie est le moteur de la croissance mondiale, suivez les flux.”</p>
+          <span class="name">— Barbara Corcoran</span>
+        </div>
+      </div>
+      <!-- Afrique -->
+      <div class="continent-card" data-continent="afrique">
+        <div class="icon"><i class="fas fa-globe-africa"></i></div>
+        <h3>Afrique</h3>
+        <div class="sub">Marché émergent</div>
+        <div class="yield">+9.1%</div>
+        <ul class="city-list">
+          <li><i class="fas fa-city"></i> Le Cap – 10.2%</li>
+          <li><i class="fas fa-city"></i> Nairobi – 8.7%</li>
+          <li><i class="fas fa-city"></i> Casablanca – 7.3%</li>
+        </ul>
+        <div class="expert">
+          <p>“Les rendements les plus élevés se cachent souvent là où on les attend le moins.”</p>
+          <span class="name">— Warren Buffett</span>
+        </div>
+      </div>
+      <!-- Océanie -->
+      <div class="continent-card" data-continent="oceanie">
+        <div class="icon"><i class="fas fa-globe-oceania"></i></div>
+        <h3>Océanie</h3>
+        <div class="sub">Qualité de vie</div>
+        <div class="yield">+5.3%</div>
+        <ul class="city-list">
+          <li><i class="fas fa-city"></i> Sydney – 5.8%</li>
+          <li><i class="fas fa-city"></i> Melbourne – 5.1%</li>
+          <li><i class="fas fa-city"></i> Auckland – 4.9%</li>
+        </ul>
+        <div class="expert">
+          <p>“Un havre de paix pour les investisseurs cherchant sécurité et rendement.”</p>
+          <span class="name">— Robert Kiyosaki</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== GRAPHIQUE ========== -->
+  <div class="container">
+    <div class="graph-section">
+      <h2><i class="fas fa-chart-bar"></i> Comparaison des rendements</h2>
+      <div class="graph-bars">
+        <div class="bar-item">
+          <div class="bar" style="height: 60%;"><span class="value">4.8%</span></div>
+          <span class="label">Europe</span>
+        </div>
+        <div class="bar-item">
+          <div class="bar" style="height: 85%;"><span class="value">7.2%</span></div>
+          <span class="label">Amérique</span>
+        </div>
+        <div class="bar-item">
+          <div class="bar" style="height: 75%;"><span class="value">6.5%</span></div>
+          <span class="label">Asie</span>
+        </div>
+        <div class="bar-item">
+          <div class="bar" style="height: 100%;"><span class="value">9.1%</span></div>
+          <span class="label">Afrique</span>
+        </div>
+        <div class="bar-item">
+          <div class="bar" style="height: 55%;"><span class="value">5.3%</span></div>
+          <span class="label">Océanie</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== FOOTER ========== -->
+  <footer>
     <div class="container">
-        <div class="filters-section" id="filterSection">
-            <button class="filter-btn active" data-filter="all">🌍 Tous</button>
-            <button class="filter-btn" data-filter="europe">🇪🇺 Europe</button>
-            <button class="filter-btn" data-filter="amerique">🇺🇸 Amérique</button>
-            <button class="filter-btn" data-filter="asie">🇯🇵 Asie</button>
-            <button class="filter-btn" data-filter="afrique">🇿🇦 Afrique</button>
-            <button class="filter-btn" data-filter="oceanie">🇦🇺 Océanie</button>
-        </div>
+      <div class="socials">
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+      </div>
+      <p>© 2026 RentaPro — Tous droits réservés. Données mises à jour en temps réel.</p>
     </div>
+  </footer>
 
-    <!-- CARTES CONTINENTS -->
-    <div class="container">
-        <div class="grid-cards" id="cardGrid">
+  <!-- ========== SCRIPTS ========== -->
+  <!-- Menu hamburger -->
+  <script>
+    document.getElementById('hamburger').addEventListener('click', function() {
+      document.getElementById('navLinks').classList.toggle('open');
+    });
+    // Fermer le menu au clic externe
+    document.addEventListener('click', function(e) {
+      const nav = document.getElementById('navLinks');
+      const hamb = document.getElementById('hamburger');
+      if (!nav.contains(e.target) && !hamb.contains(e.target)) {
+        nav.classList.remove('open');
+      }
+    });
+  </script>
 
-            <!-- EUROPE -->
-            <div class="continent-card" data-continent="europe">
-                <div class="icon"><i class="fas fa-globe-europe"></i></div>
-                <h3>Europe</h3>
-                <div class="sub">Marché stable</div>
-                <div class="yield">+4.8%</div>
-                <ul class="city-list">
-                    <li><i class="fas fa-city"></i> Lisbonne – 6.2%</li>
-                    <li><i class="fas fa-city"></i> Berlin – 4.5%</li>
-                    <li><i class="fas fa-city"></i> Paris – 3.8%</li>
-                </ul>
-                <div class="expert">
-                    <p>“L'Europe offre une sécurité juridique inégalée, parfaite pour le long terme.”</p>
-                    <span class="name">— Warren Buffett</span>
-                </div>
-            </div>
+  <!-- Compteurs animés -->
+  <script>
+    const stats = document.querySelectorAll('.number');
+    let counted = false;
+    function animateCounters() {
+      if (counted) return;
+      stats.forEach(stat => {
+        const target = parseFloat(stat.dataset.target);
+        const increment = target / 45;
+        let current = 0;
+        const timer = setInterval(() => {
+          current += increment;
+          if (current >= target) {
+            stat.textContent = target + (target % 1 === 0 ? '' : '');
+            clearInterval(timer);
+          } else {
+            stat.textContent = current.toFixed(1);
+          }
+        }, 30);
+      });
+      counted = true;
+    }
+    window.addEventListener('scroll', function() {
+      const rect = document.getElementById('statsGrid').getBoundingClientRect();
+      if (rect.top < window.innerHeight - 100) animateCounters();
+    });
+    setTimeout(animateCounters, 500);
+  </script>
 
-            <!-- AMERIQUE -->
-            <div class="continent-card" data-continent="amerique">
-                <div class="icon"><i class="fas fa-globe-americas"></i></div>
-                <h3>Amérique</h3>
-                <div class="sub">Fort potentiel</div>
-                <div class="yield">+7.2%</div>
-                <ul class="city-list">
-                    <li><i class="fas fa-city"></i> Miami – 8.5%</li>
-                    <li><i class="fas fa-city"></i> Mexico – 7.8%</li>
-                    <li><i class="fas fa-city"></i> São Paulo – 6.9%</li>
-                </ul>
-                <div class="expert">
-                    <p>“Diversifiez vos actifs, les Amériques sont un eldorado pour le cash-flow.”</p>
-                    <span class="name">— Robert Kiyosaki</span>
-                </div>
-            </div>
-
-            <!-- ASIE -->
-            <div class="continent-card" data-continent="asie">
-                <div class="icon"><i class="fas fa-globe-asia"></i></div>
-                <h3>Asie</h3>
-                <div class="sub">Croissance rapide</div>
-                <div class="yield">+6.5%</div>
-                <ul class="city-list">
-                    <li><i class="fas fa-city"></i> Tokyo – 5.9%</li>
-                    <li><i class="fas fa-city"></i> Singapour – 5.2%</li>
-                    <li><i class="fas fa-city"></i> Dubaï – 8.1%</li>
-                </ul>
-                <div class="expert">
-                    <p>“L'Asie est le moteur de la croissance mondiale, suivez les flux.”</p>
-                    <span class="name">— Barbara Corcoran</span>
-                </div>
-            </div>
-
-            <!-- AFRIQUE -->
-            <div class="continent-card" data-continent="afrique">
-                <div class="icon"><i class="fas fa-globe-africa"></i></div>
-                <h3>Afrique</h3>
-                <div class="sub">Marché émergent</div>
-                <div class="yield">+9.1%</div>
-                <ul class="city-list">
-                    <li><i class="fas fa-city"></i> Le Cap – 10.2%</li>
-                    <li><i class="fas fa-city"></i> Nairobi – 8.7%</li>
-                    <li><i class="fas fa-city"></i> Casablanca – 7.3%</li>
-                </ul>
-                <div class="expert">
-                    <p>“Les rendements les plus élevés se cachent souvent là où on les attend le moins.”</p>
-                    <span class="name">— Warren Buffett</span>
-                </div>
-            </div>
-
-            <!-- OCEANIE -->
-            <div class="continent-card" data-continent="oceanie">
-                <div class="icon"><i class="fas fa-globe-oceania"></i></div>
-                <h3>Océanie</h3>
-                <div class="sub">Qualité de vie</div>
-                <div class="yield">+5.3%</div>
-                <ul class="city-list">
-                    <li><i class="fas fa-city"></i> Sydney – 5.8%</li>
-                    <li><i class="fas fa-city"></i> Melbourne – 5.1%</li>
-                    <li><i class="fas fa-city"></i> Auckland – 4.9%</li>
-                </ul>
-                <div class="expert">
-                    <p>“Un havre de paix pour les investisseurs cherchant sécurité et rendement.”</p>
-                    <span class="name">— Robert Kiyosaki</span>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-    <!-- GRAPHIQUE -->
-    <div class="container">
-        <div class="graph-section">
-            <h2><i class="fas fa-chart-bar"></i> Comparaison des rendements</h2>
-            <div class="graph-bars">
-                <div class="bar-item">
-                    <div class="bar" style="height: 60%;"><span class="value">4.8%</span></div>
-                    <span class="label">Europe</span>
-                </div>
-                <div class="bar-item">
-                    <div class="bar" style="height: 85%;"><span class="value">7.2%</span></div>
-                    <span class="label">Amérique</span>
-                </div>
-                <div class="bar-item">
-                    <div class="bar" style="height: 75%;"><span class="value">6.5%</span></div>
-                    <span class="label">Asie</span>
-                </div>
-                <div class="bar-item">
-                    <div class="bar" style="height: 100%;"><span class="value">9.1%</span></div>
-                    <span class="label">Afrique</span>
-                </div>
-                <div class="bar-item">
-                    <div class="bar" style="height: 55%;"><span class="value">5.3%</span></div>
-                    <span class="label">Océanie</span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- FOOTER -->
-    <footer>
-        <div class="container">
-            <div class="socials">
-                <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-youtube"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-            </div>
-            <p>© 2026 RentaPro — Tous droits réservés. Données mises à jour en temps réel.</p>
-        </div>
-    </footer>
-
-    <!-- CHAT ASSISTANT IA -->
-    <div class="chat-float">
-        <div class="chat-box" id="chatBox">
-            <div class="chat-header">
-                <span><i class="fas fa-robot"></i> RentaBot IA</span>
-                <i class="fas fa-times" id="closeChat"></i>
-            </div>
-            <div class="chat-messages" id="chatMessages">
-                <div class="msg bot">Bonjour ! Je suis votre assistant investissement. Posez-moi une question sur les rendements ou les villes.</div>
-            </div>
-            <div class="chat-input-area">
-                <input type="text" id="chatInput" placeholder="Ex: Quel est le meilleur rendement ?" />
-                <button id="sendChat"><i class="fas fa-paper-plane"></i></button>
-            </div>
-        </div>
-        <div class="chat-toggle" id="chatToggle">
-            <i class="fas fa-comment-dots"></i>
-        </div>
-    </div>
-
-    <script>
-        // ---------- MENU HAMBURGER ----------
-        document.getElementById('hamburger').addEventListener('click', function() {
-            document.getElementById('navLinks').classList.toggle('open');
+  <!-- Filtres -->
+  <script>
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const cards = document.querySelectorAll('.continent-card');
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', function() {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        const filter = this.dataset.filter;
+        cards.forEach(card => {
+          card.classList.toggle('hidden-card', filter !== 'all' && card.dataset.continent !== filter);
         });
+      });
+    });
+  </script>
 
-        // ---------- FILTRES ----------
-        const filterBtns = document.querySelectorAll('.filter-btn');
-        const cards = document.querySelectorAll('.continent-card');
-
-        filterBtns.forEach(btn => {
-            btn.addEventListener('click', function() {
-                filterBtns.forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                const filter = this.dataset.filter;
-
-                cards.forEach(card => {
-                    if (filter === 'all' || card.dataset.continent === filter) {
-                        card.classList.remove('hidden-card');
-                    } else {
-                        card.classList.add('hidden-card');
-                    }
-                });
-            });
-        });
-
-        // ---------- COMPTEURS ANIMES ----------
-        const stats = document.querySelectorAll('.number');
-        let counted = false;
-
-        function animateCounters() {
-            if (counted) return;
-            stats.forEach(stat => {
-                const target = parseFloat(stat.dataset.target);
-                const increment = target / 45;
-                let current = 0;
-                const timer = setInterval(() => {
-                    current += increment;
-                    if (current >= target) {
-                        stat.textContent = target + (target % 1 === 0 ? '' : '');
-                        clearInterval(timer);
-                    } else {
-                        stat.textContent = current.toFixed(1);
-                    }
-                }, 30);
-            });
-            counted = true;
-        }
-
-        // Déclenche au scroll
-        window.addEventListener('scroll', function() {
-            const statsGrid = document.getElementById('statsGrid');
-            const rect = statsGrid.getBoundingClientRect();
-            if (rect.top < window.innerHeight - 100) {
-                animateCounters();
-            }
-        });
-        // Si déjà visible au chargement
-        setTimeout(animateCounters, 500);
-
-        // ---------- CHAT IA ----------
-        const chatToggle = document.getElementById('chatToggle');
-        const chatBox = document.getElementById('chatBox');
-        const closeChat = document.getElementById('closeChat');
-        const sendBtn = document.getElementById('sendChat');
-        const chatInput = document.getElementById('chatInput');
-        const chatMessages = document.getElementById('chatMessages');
-
-        function toggleChat() {
-            chatBox.classList.toggle('open');
-        }
-
-        chatToggle.addEventListener('click', toggleChat);
-        closeChat.addEventListener('click', toggleChat);
-
-        function sendMessage() {
-            const msg = chatInput.value.trim();
-            if (!msg) return;
-            // User message
-            const userDiv = document.createElement('div');
-            userDiv.className = 'msg user';
-            userDiv.textContent = msg;
-            chatMessages.appendChild(userDiv);
-
-            chatInput.value = '';
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-
-            // Bot response (simulée)
-            setTimeout(() => {
-                let reply = 'Je vous recommande de diversifier entre l\'Asie et l\'Afrique pour un rendement optimal.';
-                if (msg.toLowerCase().includes('europe')) reply =
-                    'L\'Europe affiche un rendement moyen de 4.8%, avec Lisbonne en tête (6.2%).';
-                else if (msg.toLowerCase().includes('afrique')) reply =
-                    'L\'Afrique offre le meilleur rendement (9.1%), notamment au Cap (10.2%).';
-                else if (msg.toLowerCase().includes('amérique') || msg.toLowerCase().includes('amerique')) reply =
-                    'L\'Amérique est très dynamique avec Miami à 8.5% et Mexico à 7.8%.';
-                else if (msg.toLowerCase().includes('merci')) reply = 'Avec plaisir ! À votre service.';
-
-                const botDiv = document.createElement('div');
-                botDiv.className = 'msg bot';
-                botDiv.textContent = reply;
-                chatMessages.appendChild(botDiv);
-                chatMessages.scrollTop = chatMessages.scrollHeight;
-            }, 400);
-        }
-
-        sendBtn.addEventListener('click', sendMessage);
-        chatInput.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') sendMessage();
-        });
-
-        // ---------- FERMER LE MENU EN CAS DE CLIC EXTERNE ----------
-        document.addEventListener('click', function(e) {
-            const nav = document.getElementById('navLinks');
-            const hamb = document.getElementById('hamburger');
-            if (!nav.contains(e.target) && !hamb.contains(e.target)) {
-                nav.classList.remove('open');
-            }
-        });
-    </script>
+  <!-- ========== ASSISTANT IA (généré automatiquement) ========== -->
+  <!-- Chargez le script une fois pour toutes les pages -->
+  <script src="/js/assistant-ia.js"></script>
 
 </body>
 </html>
