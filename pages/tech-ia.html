@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tech & IA - RentaPro</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <link rel="stylesheet" href="/style-global.css" />
+  <style>
+    /* Styles spécifiques à cette page Tech */
+    .hero-tech {
+      padding: 70px 0 50px;
+      text-align: center;
+      background: radial-gradient(circle at 70% 20%, #0a1a2b, #0b0a0a 80%);
+      border-bottom: 1px solid #2a2a2a;
+    }
+    .hero-tech h1 {
+      font-size: 52px;
+      font-weight: 700;
+      background: linear-gradient(to right, #00d4ff, #d4af37);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 15px;
+    }
+    .hero-tech p {
+      font-size: 20px;
+      color: #aaa;
+      max-width: 700px;
+      margin: 0 auto 30px;
+    }
+    .tech-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 35px;
+      padding: 40px 0 70px;
+    }
+    .tech-card {
+      background: #141210;
+      border-radius: 24px;
+      padding: 30px 25px;
+      border: 1px solid #26221c;
+      transition: 0.4s;
+      text-align: left;
+    }
+    .tech-card:hover {
+      border-color: #00d4ff;
+      transform: translateY(-10px);
+      box-shadow: 0 0 40px rgba(0, 212, 255, 0.05);
+    }
+    .tech-card .icon {
+      font-size: 40px;
+      color: #00d4ff;
+      margin-bottom: 15px;
+    }
+    .tech-card h3 {
+      color: #fff;
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+    .tech-card p {
+      color: #aaa;
+      font-size: 15px;
+      line-height: 1.7;
+    }
+    .tech-card .tag {
+      display: inline-block;
+      background: #00d4ff22;
+      color: #00d4ff;
+      padding: 4px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      margin-top: 15px;
+      border: 1px solid #00d4ff44;
+    }
+    @media (max-width: 700px) {
+      .hero-tech h1 { font-size: 32px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========== HEADER (menu avec la nouvelle page) ========== -->
+  <header>
+    <div class="container nav-container">
+      <div class="logo">Renta<span>Pro</span></div>
+      <div class="nav-links" id="navLinks">
+        <a href="/">Accueil</a>
+        <a href="/pages/investissement-mondial.html">Immobilier</a>
+        <a href="/pages/tech-ia.html" class="active">Tech & IA</a> <!-- Nouvelle page active -->
+        <a href="/pages/simulateur.html">Simulateur</a>
+        <a href="/pages/contact.html">Contact</a>
+      </div>
+      <div class="hamburger" id="hamburger">
+        <i class="fas fa-bars"></i>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========== HERO TECH ========== -->
+  <section class="hero-tech">
+    <div class="container">
+      <h1>🔮 Tech & Intelligence Artificielle</h1>
+      <p>Les dernières avancées, outils et tendances qui façonnent notre avenir numérique.</p>
+      <a href="#" class="btn-gold"><i class="fas fa-microchip"></i> Explorer les tendances</a>
+    </div>
+  </section>
+
+  <!-- ========== CONTENU PRINCIPAL ========== -->
+  <div class="container">
+    <div class="tech-grid">
+      <div class="tech-card">
+        <div class="icon"><i class="fas fa-robot"></i></div>
+        <h3>Agents IA autonomes</h3>
+        <p>Les modèles comme AutoGPT et BabyAGI révolutionnent la façon dont les machines exécutent des tâches complexes sans intervention humaine.</p>
+        <span class="tag">🔥 Tendance 2026</span>
+      </div>
+      <div class="tech-card">
+        <div class="icon"><i class="fas fa-brain"></i></div>
+        <h3>Neurotechnologie</h3>
+        <p>Les interfaces cerveau-machine (Neuralink) franchissent des caps majeurs, ouvrant la voie à une symbiose homme-machine inédite.</p>
+        <span class="tag">🧠 Recherche</span>
+      </div>
+      <div class="tech-card">
+        <div class="icon"><i class="fas fa-cloud"></i></div>
+        <h3>Edge Computing</h3>
+        <p>Le traitement des données en périphérie des réseaux explose, réduisant la latence pour les objets connectés et la réalité augmentée.</p>
+        <span class="tag">⚡ Performance</span>
+      </div>
+      <div class="tech-card">
+        <div class="icon"><i class="fas fa-shield-alt"></i></div>
+        <h3>Cybersécurité quantique</h3>
+        <p>Avec l'arrivée des ordinateurs quantiques, la cryptographie post-quantique devient le nouveau Graal de la sécurité informatique.</p>
+        <span class="tag">🔒 Sécurité</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== FOOTER ========== -->
+  <footer>
+    <div class="container">
+      <div class="socials">
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+      </div>
+      <p>© 2026 RentaPro — Tous droits réservés.</p>
+    </div>
+  </footer>
+
+  <!-- ========== SCRIPTS ========== -->
+  <script>
+    document.getElementById('hamburger').addEventListener('click', function() {
+      document.getElementById('navLinks').classList.toggle('open');
+    });
+    document.addEventListener('click', function(e) {
+      const nav = document.getElementById('navLinks');
+      const hamb = document.getElementById('hamburger');
+      if (!nav.contains(e.target) && !hamb.contains(e.target)) {
+        nav.classList.remove('open');
+      }
+    });
+  </script>
+  <!-- Assistant IA commun -->
+  <script src="/js/assistant-ia.js"></script>
+
+</body>
+</html>
